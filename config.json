@@ -61,7 +61,8 @@
       "professor", "faculty", "lecturer", "postdoc",
       "phd ", "ph.d", "principal scientist", "classe principale",
       "analyst iv", "analyst v", "technician iv", "technician v",
-      "support analyst iv", "IT Support Analyst IV"
+      "support analyst iv", "IT Support Analyst IV",
+      "agronome", "agronomist", "biologist", "chemist"
     ],
     "fuzzy_seniority": [],
     "fuzzy_domain": [],
