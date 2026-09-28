@@ -17,7 +17,7 @@
       "endpoint support", "endpoint technician", "endpoint analyst",
       "application support", "apps support", "application technician",
       "remote support", "remote technician", "remote desktop",
-      "field technician", "field service technician", "field tech",
+      "field technician", "field service technician",
       "deployment technician", "deployment specialist", "IT deployment",
       "migration technician", "migration specialist", "IT migration",
       "rollout technician", "rollout specialist", "implementation technician",
@@ -54,11 +54,12 @@
       "architect", "chief ", "cto", "cio", "vp of",
       "intern", "internship", "co-op", "coop ", "trainee", "apprentice",
       "sales", "account executive", "business development", "recruiter",
+      "customer success", "success manager",
       "nurse", "nursing", "physician", "dental", "pharmacist",
       "warehouse associate", "forklift", "truck driver", "delivery driver",
       "cashier", "barista", "cook", "server ", "dishwasher",
       "professor", "faculty", "lecturer", "postdoc",
-      "phd ", "ph.d", "principal scientist"
+      "phd ", "ph.d", "principal scientist", "classe principale"
     ],
     "fuzzy_seniority": [],
     "fuzzy_domain": [],
