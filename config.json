@@ -54,12 +54,14 @@
       "architect", "chief ", "cto", "cio", "vp of",
       "intern", "internship", "co-op", "coop ", "trainee", "apprentice",
       "sales", "account executive", "business development", "recruiter",
-      "customer success", "success manager",
+      "customer success", "success manager", "customer support specialist",
       "nurse", "nursing", "physician", "dental", "pharmacist",
       "warehouse associate", "forklift", "truck driver", "delivery driver",
       "cashier", "barista", "cook", "server ", "dishwasher",
       "professor", "faculty", "lecturer", "postdoc",
-      "phd ", "ph.d", "principal scientist", "classe principale"
+      "phd ", "ph.d", "principal scientist", "classe principale",
+      "analyst iv", "analyst v", "technician iv", "technician v",
+      "support analyst iv", "IT Support Analyst IV"
     ],
     "fuzzy_seniority": [],
     "fuzzy_domain": [],

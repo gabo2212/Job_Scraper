@@ -1147,6 +1147,7 @@ def _ensure_work_arrangement(job: dict) -> dict:
         job.get("telework", ""),
         job.get("job_type", ""),
         job.get("location", ""),
+        job.get("title", ""),
         is_remote=job.get("is_remote"),
     )
     if label:

@@ -748,7 +748,7 @@
   ];
   function classifyWorkArrangement(j) {
     const text = [
-      j.work_arrangement, j.telework, j.job_type, j.location,
+      j.work_arrangement, j.telework, j.job_type, j.location, j.title,
     ].filter(Boolean).join(' ').toLowerCase().replace(/[\s\-_]+/g, ' ');
     // Map legacy CA-centric labels from older scraped data.
     if (text.includes('remote out-of-state') || text.includes('geo-restricted')) {
@@ -766,7 +766,7 @@
     if (/\b(in state|instate|in site|remote in state|remote in site)\b/.test(text)) {
       return 'Remote';
     }
-    if (/\b(telecommut\w*|telework|hybrid)\b/.test(text)) return 'Hybrid';
+    if (/\b(telecommut\w*|telework|hybrid|hybride)\b/.test(text)) return 'Hybrid';
     if (/\b(work from home|remote|long distance|télétravail|teletravail)\b/.test(text) || j.is_remote === true) {
       return 'Remote';
     }
