@@ -322,24 +322,45 @@ _US_STATE_NAMES = [
 ]
 
 
+def _config_targets_non_us() -> bool:
+    """True when location_filter is aimed outside the US (e.g. Canada forks)."""
+    joined = " ".join(TARGET_LOCATIONS)
+    return any(
+        marker in joined
+        for marker in (
+            "canada", "québec", "quebec", "montreal", "montréal",
+            "ontario", "toronto", "vancouver", "calgary",
+            "australia", "united kingdom", " england", "scotland",
+        )
+    )
+
+
 def is_target_location(location: str) -> bool:
     if not location:
         return False
     loc = location.lower()
-    # If a US state full name matches, accept immediately — this handles
-    # "New Mexico" (contains "mexico") and "Indiana" (contains "india")
-    # which would otherwise be rejected by the country check below.
-    if any(state in loc for state in _US_STATE_NAMES):
+    # Prefer configured location terms first so Canada/Québec/international
+    # forks can accept their target geography (and "remote"/"hybrid").
+    if any(place in loc for place in TARGET_LOCATIONS):
         return True
-    # Reject non-US countries — prevents ", ca" matching "Canada", etc.
-    # Multi-word countries: substring match (safe, distinctive phrases).
-    if any(country in loc for country in NON_US_COUNTRIES_MULTI):
-        return False
-    # Single-word countries: word-boundary match (prevents "india" matching
-    # "Indiana", "mexico" matching "New Mexico", etc.).
-    if _NON_US_COUNTRY_RE.search(loc):
-        return False
-    return any(place in loc for place in TARGET_LOCATIONS)
+    # US-state shortcut only for US-centric configs. Without this gate, a
+    # Canada-focused fork would keep every US state posting that slipped
+    # through board geo filters.
+    if not _config_targets_non_us():
+        # If a US state full name matches, accept immediately — this handles
+        # "New Mexico" (contains "mexico") and "Indiana" (contains "india")
+        # which would otherwise be rejected by the country check below.
+        if any(state in loc for state in _US_STATE_NAMES):
+            return True
+        # Reject non-US countries — prevents ", ca" matching "Canada", etc.
+        # Multi-word countries: substring match (safe, distinctive phrases).
+        if any(country in loc for country in NON_US_COUNTRIES_MULTI):
+            return False
+        # Single-word countries: word-boundary match (prevents "india" matching
+        # "Indiana", "mexico" matching "New Mexico", etc.).
+        if _NON_US_COUNTRY_RE.search(loc):
+            return False
+    return False
 
 
 def _parse_posted_at(value: str, *, now: datetime | None = None) -> datetime | None:
@@ -1095,9 +1116,9 @@ def _coerce_bool(value):
 
 WORK_ARRANGEMENTS = {
     "onsite": "On-site",
-    "remote_in_state": "Remote in-state eligible",
-    "remote_out_of_state": "Remote out-of-state eligible",
-    "telecommute": "Telecommute eligible",
+    "remote_in_state": "Remote",
+    "remote_out_of_state": "Remote (geo-restricted)",
+    "telecommute": "Hybrid",
 }
 
 
@@ -1111,11 +1132,11 @@ def classify_work_arrangement(*parts, is_remote=None) -> str:
         return WORK_ARRANGEMENTS["remote_out_of_state"]
     if re.search(r"\b(in state|instate|in site|remote in state|remote in site)\b", text):
         return WORK_ARRANGEMENTS["remote_in_state"]
-    if re.search(r"\b(telecommut\w*|telework|hybrid)\b", text):
+    if re.search(r"\b(telecommut\w*|telework|hybrid|hybride)\b", text):
         return WORK_ARRANGEMENTS["telecommute"]
-    if re.search(r"\b(work from home|remote|long distance)\b", text) or is_remote is True:
+    if re.search(r"\b(work from home|remote|long distance|télétravail|teletravail)\b", text) or is_remote is True:
         return WORK_ARRANGEMENTS["remote_in_state"]
-    if re.search(r"\b(on site|onsite|in office|office centered|in person|business location|work in person)\b", text) or is_remote is False:
+    if re.search(r"\b(on site|onsite|in office|office centered|in person|business location|work in person|sur place|présentiel|presentiel)\b", text) or is_remote is False:
         return WORK_ARRANGEMENTS["onsite"]
     return ""
 

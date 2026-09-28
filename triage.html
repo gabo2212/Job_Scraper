@@ -742,25 +742,35 @@
 
   const WORK_MODES = [
     'On-site',
-    'Remote in-state eligible',
-    'Remote out-of-state eligible',
-    'Telecommute eligible',
+    'Remote',
+    'Remote (geo-restricted)',
+    'Hybrid',
   ];
   function classifyWorkArrangement(j) {
     const text = [
       j.work_arrangement, j.telework, j.job_type, j.location,
     ].filter(Boolean).join(' ').toLowerCase().replace(/[\s\-_]+/g, ' ');
+    // Map legacy CA-centric labels from older scraped data.
+    if (text.includes('remote out-of-state') || text.includes('geo-restricted')) {
+      return 'Remote (geo-restricted)';
+    }
+    if (text.includes('remote in-state') || text === 'remote') {
+      return 'Remote';
+    }
+    if (text.includes('telecommute eligible') || text === 'hybrid') {
+      return 'Hybrid';
+    }
     if (/\b(out of state|out state|out of state eligible|remote out of state)\b/.test(text)) {
-      return 'Remote out-of-state eligible';
+      return 'Remote (geo-restricted)';
     }
     if (/\b(in state|instate|in site|remote in state|remote in site)\b/.test(text)) {
-      return 'Remote in-state eligible';
+      return 'Remote';
     }
-    if (/\b(telecommut\w*|telework|hybrid)\b/.test(text)) return 'Telecommute eligible';
-    if (/\b(work from home|remote|long distance)\b/.test(text) || j.is_remote === true) {
-      return 'Remote in-state eligible';
+    if (/\b(telecommut\w*|telework|hybrid)\b/.test(text)) return 'Hybrid';
+    if (/\b(work from home|remote|long distance|télétravail|teletravail)\b/.test(text) || j.is_remote === true) {
+      return 'Remote';
     }
-    if (/\b(on site|onsite|in office|office centered|in person|business location|work in person)\b/.test(text) || j.is_remote === false) {
+    if (/\b(on site|onsite|in office|office centered|in person|business location|work in person|sur place|présentiel|presentiel)\b/.test(text) || j.is_remote === false) {
       return 'On-site';
     }
     return '';

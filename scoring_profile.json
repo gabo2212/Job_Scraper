@@ -1,0 +1,117 @@
+{
+  "version": 1,
+  "description": "Deterministic fit scoring for Gabriel Fortin — remote IT technician / deployment / migration / support from Québec, Canada. Based on gab-cloud.com portfolio (CompuCom/Sobeys–IGA, Cirque du Soleil IT support, CDI AI program).",
+  "settings": {
+    "title_multiplier": 3,
+    "body_multiplier": 1,
+    "score_multiplier": 1.6,
+    "generic_cap": 35,
+    "standout_threshold": 60
+  },
+  "fit_terms": [
+    {
+      "pattern": "\\b(deployment technician|migration technician|IT deployment|rollout technician|implementation technician|technicien (?:de )?déploiement|technicien migration)\\b",
+      "weight": 16
+    },
+    {
+      "pattern": "\\b(remote support|remote technician|remote IT|télétravail|teletravail|work from home)\\b.*\\b(support|technician|technicien|deployment|migration)\\b|\\b(support|technician|technicien|deployment|migration)\\b.*\\b(remote|télétravail|teletravail)\\b",
+      "weight": 15
+    },
+    {
+      "pattern": "\\b(IT support technician|technical support technician|desktop support|help\\s*desk|service desk|endpoint support|technicien informatique|technicien soutien|analyste centre de services)\\b",
+      "weight": 14
+    },
+    {
+      "pattern": "\\b(VPN|remote desktop|\\bRDP\\b|PowerShell|Active Directory|E-?ScaleLink|E-?plum|store server|PLU)\\b",
+      "weight": 13
+    },
+    {
+      "pattern": "\\b(software (?:deployment|update|install)|deploy(?:ed|ing)? (?:software|updates|packages)|validate(?:d|ing)? install|documented (?:technical )?intervention)\\b",
+      "weight": 12
+    },
+    {
+      "pattern": "\\b(Microsoft 365|\\bM365\\b|Office 365|\\bO365\\b|Intune|Windows 10|Windows 11)\\b",
+      "weight": 11
+    },
+    {
+      "pattern": "\\b(retail IT|POS support|scale[- ]management|grocery|Sobeys|IGA|CompuCom)\\b",
+      "weight": 11
+    },
+    {
+      "pattern": "\\b(junior systems? admin|systems? technician|network technician|administrateur syst[eè]me junior|technicien niveau [12]|technicien N[12])\\b",
+      "weight": 10
+    },
+    {
+      "pattern": "\\b(application support|desktop analyst|IT support analyst|support specialist)\\b",
+      "weight": 9
+    },
+    {
+      "pattern": "\\b(Linux|Bash|TCP/?IP|Cisco|VLAN|troubleshooting|d[eé]pannage)\\b",
+      "weight": 8
+    },
+    {
+      "pattern": "\\b(Canada|Qu[eé]bec|Montreal|Montr[eé]al|remote[- ]first|Canada[- ]wide)\\b",
+      "weight": 8
+    },
+    {
+      "pattern": "\\b(Python|automation|scripting|FastAPI|\\.?NET)\\b",
+      "weight": 6
+    },
+    {
+      "pattern": "\\b(bilingual|fran[cç]ais|anglais|French and English)\\b",
+      "weight": 5
+    }
+  ],
+  "signature_terms": [
+    "deployment|migration|rollout|d[eé]ploiement",
+    "remote desktop|\\bVPN\\b|\\bRDP\\b|PowerShell",
+    "service desk|help\\s*desk|desktop support|technicien informatique",
+    "Microsoft 365|Active Directory|Windows 1[01]",
+    "Qu[eé]bec|Montreal|Canada remote|t[eé]l[eé]travail"
+  ],
+  "poor_fit_terms": [
+    {
+      "pattern": "\\b(senior|\\bsr\\.?\\b|principal|staff engineer|director|manager|vice president|\\bvp\\b|head of|architect|chief)\\b",
+      "penalty": 40
+    },
+    {
+      "pattern": "\\b(US only|United States only|must be (?:located|based) in the (?:US|USA|United States)|requires US (?:citizenship|work authorization|residency)|no candidates outside the US)\\b",
+      "penalty": 45
+    },
+    {
+      "pattern": "\\b(relocat(?:e|ion) (?:to|required)|on[- ]site only|must work from (?:office|our)|five days in office)\\b",
+      "penalty": 30
+    },
+    {
+      "pattern": "\\b(\\d{2}\\+?\\s+years?|ten years|15 years|phd|ph\\.d|master'?s degree required)\\b",
+      "penalty": 25
+    },
+    {
+      "pattern": "\\b(sales|account executive|quota|commission|nurse|warehouse|forklift|truck driver|cashier)\\b",
+      "penalty": 35
+    }
+  ],
+  "test_cases": [
+    {
+      "title": "Remote Deployment Technician — Retail IT",
+      "company": "CompuCom",
+      "description": "Remote migration of store systems via VPN and RDP. PowerShell scripts, software deployment, Active Directory, documentation across Québec stores.",
+      "expected_score_range": [85, 100],
+      "rationale": "Matches prior Sobeys/CompuCom contract exactly"
+    },
+    {
+      "title": "Technicien soutien informatique — télétravail",
+      "company": "CGI",
+      "description": "Soutien technique niveau 1/2, Windows 11, Microsoft 365, Active Directory, bilingue français/anglais, remote from Québec.",
+      "expected_score_range": [70, 100],
+      "rationale": "French Québec remote IT support"
+    },
+    {
+      "title": "Senior Director of Engineering",
+      "company": "Example Corp",
+      "description": "Lead a global engineering org. 15+ years required. US only.",
+      "expected_score_range": [0, 25],
+      "rationale": "Senior + US-only + wrong family"
+    }
+  ]
+}

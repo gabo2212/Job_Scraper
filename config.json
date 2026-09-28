@@ -1,0 +1,268 @@
+{
+  "_README": "Personalized for Gabriel Fortin (Québec, Canada). Portfolio: https://gab-cloud.com/ — remote IT technician / deployment / migration / support focus. Title matching is case-insensitive substring on JOB TITLE unless noted.",
+
+  "profile": {
+    "title": "Gabriel Fortin — Remote IT Jobs (Québec)",
+    "subtitle": "Remote Québec/Canada · IT Support · Deployment · Migration",
+    "emoji": "🖥️"
+  },
+
+  "keywords": {
+    "_comment": "A job TITLE is kept if it contains any of these. Broader search_terms feed the boards; these filter titles.",
+    "include": [
+      "IT support", "IT technician", "IT tech", "IT specialist", "IT analyst",
+      "technical support", "tech support", "technology support",
+      "desktop support", "desktop technician", "desktop analyst",
+      "help desk", "helpdesk", "service desk",
+      "endpoint support", "endpoint technician", "endpoint analyst",
+      "application support", "apps support", "application technician",
+      "remote support", "remote technician", "remote desktop",
+      "field technician", "field service technician", "field tech",
+      "deployment technician", "deployment specialist", "IT deployment",
+      "migration technician", "migration specialist", "IT migration",
+      "rollout technician", "rollout specialist", "implementation technician",
+      "computer technician", "computer support", "PC support", "PC technician",
+      "systems technician", "system technician", "junior systems", "junior system admin",
+      "systems administrator", "system administrator", "sysadmin",
+      "service desk analyst", "service desk technician", "service desk specialist",
+      "support technician", "support analyst", "support specialist",
+      "POS support", "retail IT", "store systems", "scale technician",
+      "Microsoft 365", "M365", "Office 365", "O365",
+      "Active Directory", "Windows support", "Windows technician",
+      "network technician", "network support", "junior network",
+      "technicien informatique", "technicien en informatique",
+      "technicien soutien", "technicien support", "technicien au soutien",
+      "technicien centre de services", "analyste centre de services",
+      "analyste soutien", "soutien technique", "support technique",
+      "technicien déploiement", "technicien de déploiement",
+      "technicien migration", "technicien poste de travail",
+      "technicien niveau 1", "technicien niveau 2", "technicien N1", "technicien N2",
+      "administrateur système junior", "administrateur systeme junior",
+      "administrateur systèmes junior", "soutien informatique",
+      "technicien TI", "analyste TI",
+      "poste de travail",
+      "IT operations", "IT ops", "desktop engineer",
+      "junior IT", "junior technician", "associate IT",
+      "cybersecurity analyst", "SOC analyst", "security analyst junior",
+      "junior developer", "junior python", "junior software",
+      "automation specialist", "support engineer"
+    ],
+    "_exclude_comment": "Drop senior/management and clearly unrelated titles.",
+    "exclude": [
+      "senior", "sr.", "sr ", " lead", "lead ", "principal", "staff engineer",
+      "manager", "director", "vice president", " vp", "vp ", "head of",
+      "architect", "chief ", "cto", "cio", "vp of",
+      "intern", "internship", "co-op", "coop ", "trainee", "apprentice",
+      "sales", "account executive", "business development", "recruiter",
+      "nurse", "nursing", "physician", "dental", "pharmacist",
+      "warehouse associate", "forklift", "truck driver", "delivery driver",
+      "cashier", "barista", "cook", "server ", "dishwasher",
+      "professor", "faculty", "lecturer", "postdoc",
+      "phd ", "ph.d", "principal scientist"
+    ],
+    "fuzzy_seniority": [],
+    "fuzzy_domain": [],
+    "fuzzy_exclude": []
+  },
+
+  "search_terms": {
+    "_comment": "Broader queries sent to job boards. keywords.include then filters titles.",
+    "linkedin": [
+      "IT Support Technician",
+      "Technical Support Technician",
+      "Desktop Support",
+      "Help Desk Technician",
+      "Service Desk Analyst",
+      "Remote Support Technician",
+      "Deployment Technician",
+      "Migration Technician",
+      "IT Technician remote",
+      "Endpoint Support",
+      "Application Support",
+      "Field Service Technician remote",
+      "Junior Systems Administrator",
+      "Microsoft 365 Support",
+      "Windows Support Technician",
+      "Active Directory Support",
+      "Technicien informatique",
+      "Technicien soutien informatique",
+      "Technicien support technique",
+      "Technicien centre de services",
+      "Analyste soutien informatique",
+      "Technicien déploiement",
+      "Technicien migration",
+      "Technicien poste de travail",
+      "Administrateur système junior",
+      "Soutien technique TI"
+    ],
+    "indeed": [
+      "IT Support Technician",
+      "Desktop Support",
+      "Help Desk",
+      "Service Desk",
+      "Deployment Technician",
+      "Migration Technician",
+      "Technical Support remote",
+      "Technicien informatique",
+      "Technicien soutien informatique",
+      "Technicien déploiement",
+      "Soutien technique"
+    ],
+    "glassdoor": [
+      "IT Support Technician",
+      "Desktop Support",
+      "Help Desk",
+      "Service Desk",
+      "Deployment Technician",
+      "Technicien informatique",
+      "Technicien soutien"
+    ],
+    "ziprecruiter": [
+      "IT Support Technician",
+      "Desktop Support",
+      "Help Desk",
+      "Service Desk",
+      "Deployment Technician",
+      "Technical Support",
+      "Technicien informatique",
+      "Technicien soutien informatique"
+    ],
+    "google_jobs": [
+      "IT Support Technician remote Canada",
+      "Desktop Support remote Québec",
+      "Help Desk Technician remote Canada",
+      "Deployment Technician remote",
+      "Technicien informatique télétravail",
+      "Technicien soutien informatique remote",
+      "Service Desk Analyst Canada remote"
+    ],
+    "hiring_cafe": [],
+    "calcareers": [],
+    "usajobs": [],
+    "governmentjobs": [],
+    "workday": [
+      "IT Support",
+      "Desktop Support",
+      "Service Desk",
+      "Deployment Technician",
+      "Technicien informatique"
+    ]
+  },
+
+  "locations": {
+    "_comment": "Canada / Québec focus. LinkedIn geoIds verified via guest typeahead 2026-09-28.",
+    "linkedin": [
+      { "name": "Québec", "location": "Quebec, Canada", "geoId": "102237789" },
+      { "name": "Greater Montréal", "location": "Greater Montreal Metropolitan Area", "geoId": "90009540" },
+      { "name": "Canada", "location": "Canada", "geoId": "101174742" }
+    ],
+    "indeed": [
+      { "location": "Quebec", "country": "Canada" },
+      { "location": "Montreal, QC", "country": "Canada" },
+      { "location": "Canada", "country": "Canada" }
+    ],
+    "glassdoor": [
+      { "location": "Quebec", "country": "Canada" },
+      { "location": "Montreal, QC", "country": "Canada" },
+      { "location": "Canada", "country": "Canada" }
+    ],
+    "ziprecruiter": [
+      { "location": "Quebec", "country": "Canada" },
+      { "location": "Montreal, QC", "country": "Canada" },
+      { "location": "Canada", "country": "Canada" }
+    ],
+    "google_jobs": [
+      { "location": "Quebec, Canada", "country": "Canada" },
+      { "location": "Montreal, QC, Canada", "country": "Canada" },
+      { "location": "Canada", "country": "Canada" }
+    ],
+    "hiring_cafe": [],
+    "linkedin_partitions": {
+      "states": [],
+      "high_volume": {
+        "locations": [],
+        "day_slices": true
+      }
+    }
+  },
+
+  "location_filter": {
+    "_comment": "Post-filter for boards without geo APIs. Must include Canada markers so scrape_jobs accepts QC/Canada roles.",
+    "terms": [
+      "canada", "québec", "quebec", "qc", "montreal", "montréal",
+      "laval", "longueuil", "gatineau", "sherbrooke", "trois-rivières",
+      "saint-lambert", "rive-sud", "south shore", "greater montreal",
+      "remote", "hybrid", "télétravail", "teletravail", "hybride",
+      "work from home", "anywhere in canada", "canada-wide", "nationwide canada"
+    ]
+  },
+
+  "google_jobs": {
+    "queries": [],
+    "serpapi_api_key": "",
+    "oxylabs_username": "",
+    "oxylabs_password": ""
+  },
+
+  "jobspy": {
+    "proxies": [],
+    "user_agent": ""
+  },
+
+  "hiring_cafe": {
+    "_comment": "Disabled for this fork — HiringCafe public route is US-centric.",
+    "max_pages": 0
+  },
+
+  "employers": {
+    "_priority_comment": "Canadian IT / retail / MSP employers aligned with CompuCom–Sobeys style work.",
+    "priority": [
+      "CompuCom", "Sobeys", "IGA", "Empire Company", "Metro Inc", "Couche-Tard",
+      "CGI", "Softchoice", "TELUS", "Bell Canada", "Rogers", "Videotron",
+      "Desjardins", "Banque Nationale", "National Bank", "BMO", "RBC", "TD", "Scotiabank",
+      "Cirque du Soleil", "Ubisoft", "Hydro-Québec", "Hydro-Quebec",
+      "Accenture", "Deloitte", "Fujitsu", "IBM", "Ricoh", "CDW",
+      "Insight Enterprises", "SHI International", "Computacenter",
+      "Wipro", "Cognizant", "Tata Consultancy", "Tech Mahindra",
+      "Samsara", "Nutanix", "Microsoft", "Google", "Amazon"
+    ],
+    "_exclude_comment": "Drop clearly unrelated employers when title still matched.",
+    "exclude": []
+  },
+
+  "priority_topics": {
+    "_comment": "Gold ★ for signals matching Gabriel's CompuCom/Sobeys remote deployment experience and portfolio skills.",
+    "terms": [
+      ["Remote deployment / migration", "deploy|migration|rollout|e-?plum|scale.?link|store system|POS|PLU"],
+      ["Remote support (VPN/RDP)", "\\bVPN\\b|remote desktop|\\bRDP\\b|télétravail|teletravail|work from home|\\bremote\\b"],
+      ["Windows / PowerShell", "windows\\s*1[01]|powershell|active directory|\\bAD\\b|group policy|\\bGPO\\b"],
+      ["Microsoft 365", "microsoft 365|\\bM365\\b|office 365|\\bO365\\b|intune|endpoint manager"],
+      ["Service desk / desktop", "service desk|help\\s*desk|desktop support|endpoint support|soutien technique|centre de services"],
+      ["Linux / networking", "\\blinux\\b|raspberry|tcp/?ip|cisco|vlan|réseau|reseau"],
+      ["Automation / scripting", "powershell|\\bbash\\b|python|automat|script"]
+    ]
+  },
+
+  "role_categories": {
+    "_comment": "Dashboard Role buckets — first buckets mirror CompuCom/Sobeys-style work.",
+    "terms": [
+      ["Deployment / Migration", "deploy|migration|rollout|implementation|déploiement|deploiement"],
+      ["IT Support / Help Desk", "help\\s*desk|helpdesk|IT support|technical support|tech support|soutien informatique|support technique|technicien informatique|technicien soutien|technicien support"],
+      ["Desktop / Endpoint Support", "desktop|endpoint|poste de travail|PC support|computer technician|computer support"],
+      ["Service Desk", "service desk|centre de services|service-desk"],
+      ["Application Support", "application support|apps support|application technician"],
+      ["Systems / Infrastructure", "systems? admin|sysadmin|systems? technician|administrateur syst|network tech|network support|infrastructure"],
+      ["Cloud / Microsoft 365", "microsoft 365|\\bM365\\b|office 365|\\bO365\\b|intune|azure|aws|cloud"],
+      ["Cybersecurity", "security|cyber|\\bSOC\\b|active directory attack|pentest|hack"],
+      ["Junior AI / Automation", "artificial intelligence|machine learning|\\bAI\\b|automat|python developer|junior developer|llm"]
+    ]
+  },
+
+  "notify": {
+    "min_fit": 70,
+    "weekly_digest": {
+      "enabled": false,
+      "days": 7
+    }
+  }
+}
