@@ -54,7 +54,7 @@ def test_resolve_provider_unknown_raises(monkeypatch):
 
 
 def test_resolve_model_default_openai():
-    assert ta.resolve_model("openai") == "gpt-5.6-luna"
+    assert ta.resolve_model("openai") == "gpt-6-luna"
 
 
 def test_resolve_model_default_anthropic():
@@ -68,7 +68,7 @@ def test_resolve_model_env_triage_model(monkeypatch):
 
 def test_resolve_model_cli_arg_wins(monkeypatch):
     monkeypatch.setenv("TRIAGE_MODEL", "gpt-4o-mini")
-    assert ta.resolve_model("openai", "gpt-5.6-luna") == "gpt-5.6-luna"
+    assert ta.resolve_model("openai", "gpt-6-luna") == "gpt-6-luna"
 
 
 def test_resolve_model_openai_model_env(monkeypatch):
@@ -119,12 +119,14 @@ def test_openai_caller_extracts_json_content(monkeypatch):
         fake_openai = MagicMock()
         fake_openai.OpenAI = lambda: mock_client
         sys.modules["openai"] = fake_openai
-        caller = ta._make_openai_caller("gpt-5.6-luna")
+        caller = ta._make_openai_caller("gpt-6-luna")
         out = caller("system prefix", "job prompt")
     assert '"score": 70' in out
     kwargs = mock_client.chat.completions.create.call_args.kwargs
-    assert kwargs["model"] == "gpt-5.6-luna"
+    assert kwargs["model"] == "gpt-6-luna"
     assert kwargs["response_format"] == {"type": "json_object"}
+    assert kwargs["reasoning_effort"] == "none"
+    assert kwargs["max_completion_tokens"] == ta.MAX_OUTPUT_TOKENS
     assert kwargs["messages"][0]["role"] == "system"
     assert kwargs["messages"][1]["content"] == "job prompt"
 
@@ -132,7 +134,7 @@ def test_openai_caller_extracts_json_content(monkeypatch):
 def test_openai_caller_missing_key(monkeypatch):
     monkeypatch.delenv("OPENAI_API_KEY", raising=False)
     with pytest.raises(RuntimeError, match="OPENAI_API_KEY"):
-        ta._make_openai_caller("gpt-5.6-luna")
+        ta._make_openai_caller("gpt-6-luna")
 
 
 def test_openai_caller_maps_rate_limit(monkeypatch):
@@ -145,7 +147,7 @@ def test_openai_caller_maps_rate_limit(monkeypatch):
     fake_openai = MagicMock()
     fake_openai.OpenAI = lambda: mock_client
     sys.modules["openai"] = fake_openai
-    caller = ta._make_openai_caller("gpt-5.6-luna")
+    caller = ta._make_openai_caller("gpt-6-luna")
     with pytest.raises(RuntimeError, match="rate limit"):
         caller("sys", "job")
 
@@ -163,6 +165,6 @@ def test_make_call_model_openai_path(monkeypatch):
     monkeypatch.setenv("OPENAI_API_KEY", "sk-test")
     monkeypatch.delenv("TRIAGE_PROVIDER", raising=False)
     with patch.object(ta, "_make_openai_caller", return_value=lambda a, b: "{}") as m:
-        fn = ta.make_call_model("gpt-5.6-luna")
+        fn = ta.make_call_model("gpt-6-luna")
         assert fn("s", "j") == "{}"
-        m.assert_called_once_with("gpt-5.6-luna")
+        m.assert_called_once_with("gpt-6-luna")

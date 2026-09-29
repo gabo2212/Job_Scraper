@@ -48,7 +48,7 @@ python3 triage_agent.py --no-jd --limit 20 # faster/cheaper: metadata only
 | `--limit N` | Cap roles scored this run (default 50); prints `scored N of M` — no silent caps |
 | `--no-jd` | Skip JD fetches, score on metadata only |
 | `--since N` | Only roles `first_seen` in the last N days |
-| `--model ID` | Model for the API path (default OpenAI `gpt-5.6-luna`; Anthropic `claude-haiku-4-5-20251001`) |
+| `--model ID` | Model for the API path (default OpenAI `gpt-6-luna`; Anthropic `claude-haiku-4-5-20251001`) |
 | `--from-files` | Read the rolling snapshots instead of `all_jobs.json` |
 | `--dry-run` | Report only, write nothing |
 
@@ -70,12 +70,12 @@ Required repo secrets / variables (Settings → Secrets and variables → Action
 | `ANTHROPIC_API_KEY` | Anthropic API key (alternate) |
 | `CANDIDATE_PROFILE` | Your profile markdown (targets/anti-targets use the canonical role-family tokens) |
 | `CANDIDATE_RESUME` | *(optional)* resume as plain text/markdown, < 48 KB |
-| `TRIAGE_MODEL` *(Variable)* | Optional model override (default `gpt-5.6-luna`) |
+| `TRIAGE_MODEL` *(Variable)* | Optional model override (default `gpt-6-luna`) |
 | `TRIAGE_PROVIDER` *(Variable)* | Optional `openai` \| `anthropic` |
 
 Secrets reach the agent as env vars only — never written to disk, never committed.
 
-**Cost:** with default OpenAI `gpt-5.6-luna` (~$0.20 / $1.20 per 1M input/output tokens per [OpenAI pricing](https://platform.openai.com/docs/models/gpt-5.6-luna)), a full day's volume (~hundreds of new roles, `--limit 300`) is typically well under a dollar; already-scored roles are never re-billed. Levers: `--limit`, `--no-jd`, `TRIAGE_MODEL`.
+**Cost:** with default OpenAI `gpt-6-luna` (~$0.10 / $0.50 per 1M input/output tokens per [OpenAI pricing](https://developers.openai.com/api/docs/models/gpt-6-luna)), a full day's volume (~hundreds of new roles, `--limit 300`) is typically well under a dollar; already-scored roles are never re-billed. Levers: `--limit`, `--no-jd`, `TRIAGE_MODEL`.
 
 ## Evals (`eval_triage.py`)
 

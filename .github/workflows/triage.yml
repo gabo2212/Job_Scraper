@@ -38,7 +38,7 @@ jobs:
       # Profile/resume arrive as env vars straight from Actions secrets —
       # never written to disk, never committed (the repo is public).
       # Provider: TRIAGE_PROVIDER (openai|anthropic) or auto-detect from keys
-      # (prefer OpenAI). Model: TRIAGE_MODEL Variable, default gpt-5.6-luna.
+      # (prefer OpenAI). Model: TRIAGE_MODEL Variable, default gpt-6-luna.
       # --limit bounds worst-case daily spend; raise/lower as the cost knob.
       - name: Run triage agent
         env:

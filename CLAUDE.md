@@ -23,7 +23,7 @@ Designed to be forked. No server. No paid services required (AI triage is option
 All 18 workflows live in `.github/workflows/`. Pattern:
 - **Watcher workflows** (`*_watch.yml`, `scrape_jobs.yml`) run on cron, call `scrape_jobs.py`, then commit to `output/` when `vars.ENABLE_DATA_COMMITS == 'true'`.
 - **Concurrency group** `job-scraper-commit-push` serializes all commits (prevents push conflicts).
-- **`triage.yml`** scores new roles via OpenAI (default) or Anthropic nightly. Disabled by default — requires `OPENAI_API_KEY` (or `ANTHROPIC_API_KEY`), `CANDIDATE_PROFILE`, `CANDIDATE_RESUME` secrets. Optional Variables: `TRIAGE_PROVIDER`, `TRIAGE_MODEL` (default `gpt-5.6-luna`).
+- **`triage.yml`** scores new roles via OpenAI (default) or Anthropic nightly. Disabled by default — requires `OPENAI_API_KEY` (or `ANTHROPIC_API_KEY`), `CANDIDATE_PROFILE`, `CANDIDATE_RESUME` secrets. Optional Variables: `TRIAGE_PROVIDER`, `TRIAGE_MODEL` (default `gpt-6-luna`).
 - **`sync_upstream.yml`** rebases the fork weekly on upstream. Safer than GitHub's "Sync fork" button.
 
 ## Required GitHub configuration (for a fork to work)
@@ -37,7 +37,7 @@ All 18 workflows live in `.github/workflows/`. Pattern:
 | `OPENAI_API_KEY` secret | Settings → Secrets | Optional (AI triage; preferred) |
 | `ANTHROPIC_API_KEY` secret | Settings → Secrets | Optional (AI triage alternate) |
 | `CANDIDATE_PROFILE` + `CANDIDATE_RESUME` secrets | Settings → Secrets | Optional (AI triage only) |
-| `TRIAGE_MODEL` / `TRIAGE_PROVIDER` variables | Settings → Variables | Optional (default model `gpt-5.6-luna`, provider auto) |
+| `TRIAGE_MODEL` / `TRIAGE_PROVIDER` variables | Settings → Variables | Optional (default model `gpt-6-luna`, provider auto) |
 
 ## Automated setup
 
@@ -73,7 +73,7 @@ OPENAI_API_KEY=sk-... \     # or ANTHROPIC_API_KEY=...
 CANDIDATE_PROFILE="..." \
 CANDIDATE_RESUME="..." \
 python triage_agent.py --limit 50
-# Optional: TRIAGE_PROVIDER=openai|anthropic  TRIAGE_MODEL=gpt-5.6-luna
+# Optional: TRIAGE_PROVIDER=openai|anthropic  TRIAGE_MODEL=gpt-6-luna
 ```
 
 ### Run evals for the triage agent

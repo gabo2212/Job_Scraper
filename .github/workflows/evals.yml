@@ -36,7 +36,7 @@ jobs:
       - name: Install model SDKs
         run: pip install openai anthropic
 
-      # ~9 model calls — pennies per run with gpt-5.6-luna / Haiku.
+      # ~9 model calls — pennies per run with gpt-6-luna / Haiku.
       # Exit code 1 on any failed case fails the workflow.
       # Skipped silently when CANDIDATE_PROFILE secret is not set (e.g. upstream template).
       - name: Run evals

@@ -34,8 +34,8 @@ ALL_JOBS_PATH = os.path.join(OUTPUT_DIR, "all_jobs.json")
 SCORES_PATH = os.path.join(OUTPUT_DIR, "scores.json")
 SOURCE_FILES = ["jobs.json", "linkedin_jobs.json", "indeed_jobs.json"]
 
-# Official OpenAI ID: https://platform.openai.com/docs/models/gpt-5.6-luna
-DEFAULT_OPENAI_MODEL = "gpt-5.6-luna"
+# Official OpenAI ID: https://developers.openai.com/api/docs/models/gpt-6-luna
+DEFAULT_OPENAI_MODEL = "gpt-6-luna"
 DEFAULT_ANTHROPIC_MODEL = "claude-haiku-4-5-20251001"
 DEFAULT_MODEL = DEFAULT_OPENAI_MODEL  # fork default: OpenAI
 JD_MAX_CHARS = 6000
@@ -353,6 +353,9 @@ def _make_openai_caller(model: str):
                 ],
                 response_format={"type": "json_object"},
                 max_completion_tokens=MAX_OUTPUT_TOKENS,
+                # gpt-6-luna defaults to medium reasoning; none is cheapest for
+                # high-volume JSON triage (no tools). Chat Completions supported.
+                reasoning_effort="none",
             )
         except Exception as e:
             raise _safe_api_error(e, "OpenAI") from e
