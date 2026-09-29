@@ -139,23 +139,66 @@ def _build_title_re(terms: list) -> re.Pattern:
 
 EXCLUDED_SENIORITY_RE = _build_title_re(_cfg("keywords.exclude", []))
 
-# Soft exclude tokens: dropped by keywords.exclude unless the title also has
-# a clear entry-level / L1-L2 / support-technician signal. Lets us exclude
-# bare "specialist" / "administrator" / "engineer" without killing
-# "Junior IT Specialist" or "IT Support Specialist L1".
+# Soft exclude tokens: ambiguous role nouns that stay in keywords.exclude but
+# are bypassed when the title also has a junior/entry signal OR an IT-domain
+# support/deployment/technician word. Bare "Cloud Engineer" / "Consultant"
+# still drop; "Deployment Specialist" / "Junior Network Engineer" pass.
 _SOFT_EXCLUDE_RE = re.compile(
-    r"(?i)\b(?:specialist|sp[eé]cialiste|administrator|administrateur|"
-    r"engineer|ing[eé]nieur)\b"
-)
-_ENTRY_LEVEL_SIGNAL_RE = re.compile(
     r"(?i)\b(?:"
-    r"junior|jr\.?|entry[- ]?level|d[eé]butant|associate|"
-    r"level\s*[12]|niveau\s*[12]|tier\s*[12]|[ln][12]|"
-    r"technician|technicien|agent|"
-    r"help\s*desk|service\s*desk|desktop\s+support|"
-    r"it\s+support|technical\s+support|tech\s+support|"
-    r"support\s+engineer"
+    r"specialist|sp[eé]cialiste|"
+    r"administrator|administrateur|"
+    r"engineer|ing[eé]nieur|"
+    r"analyst|analyste|"
+    r"consultant|"
+    r"coordinator|coordonnateur|"
+    r"developer|d[eé]veloppeur|"
+    r"officer|"
+    r"advisor|adviser|"
+    r"expert|"
+    r"integrator"
     r")\b"
+)
+# Explicit junior / entry-level cues (including Roman "I" after a role noun).
+_JUNIOR_ENTRY_SIGNAL_RE = re.compile(
+    r"(?i)(?:"
+    r"\b(?:"
+    r"junior|jr\.?|entry[- ]?level|d[eé]butant|associate|"
+    r"graduate|new\s*grad|apprenti|"
+    r"level\s*[12]|niveau\s*[12]|tier\s*[12]|[ln][12]"
+    r")\b"
+    r"|(?:"
+    r"administrator|administrateur|specialist|sp[eé]cialiste|"
+    r"analyst|analyste|engineer|ing[eé]nieur|technician|technicien|"
+    r"developer|d[eé]veloppeur|coordinator|coordonnateur"
+    r")\s+I\b"
+    r")"
+)
+# IT-domain words that make an ambiguous noun entry-level-applyable
+# (Deployment Specialist, IT Support Consultant, Spécialiste soutien technique).
+_IT_DOMAIN_SIGNAL_RE = re.compile(
+    r"(?i)\b(?:"
+    r"technician|technicien|"
+    r"help\s*desk|helpdesk|service\s*desk|centre\s+de\s+services|"
+    r"desktop|endpoint|poste\s+de\s+travail|"
+    r"deploy(?:ment|ing)?|d[eé]ploiement|migration|rollout|"
+    r"it\s+support|technical\s+support|tech\s+support|"
+    r"systems?\s+support|application\s+support|network\s+support|"
+    r"soutien\s+technique|support\s+technique|soutien\s+informatique|"
+    r"support\s+engineer|field\s+(?:service\s+)?tech|"
+    r"agent\s+(?:de\s+)?(?:soutien|support)|"
+    r"noc"
+    r")\b"
+)
+def _has_soft_bypass_signal(title: str) -> bool:
+    """Junior/entry cue OR IT-domain support/deployment/technician word."""
+    return bool(
+        _JUNIOR_ENTRY_SIGNAL_RE.search(title) or _IT_DOMAIN_SIGNAL_RE.search(title)
+    )
+
+
+# JobSpy / board seniority fields — drop only when clearly senior+.
+_JOB_LEVEL_SENIOR_RE = re.compile(
+    r"(?i)\b(?:senior|director|executive|mid[-_ ]?senior|vp|chief|principal)\b"
 )
 
 # Multi-word phrases keep substring semantics; single-word keywords ("mle",
@@ -281,20 +324,20 @@ def fetch(url, *, retries=4, _base_wait=30.0):
 def _title_is_excluded(title: str) -> bool:
     """True if title hits keywords.exclude, with soft-exclude bypass.
 
-    Soft tokens (specialist / administrator / engineer and FR equivalents)
-    are ignored when the title also has a clear entry-level signal
-    (junior, L1/L2, technician, help desk, IT support, etc.). Any other
-    exclude match always drops the title.
+    Soft tokens (specialist / administrator / engineer / analyst / consultant /
+    coordinator / developer / officer and FR equivalents) are ignored when the
+    title also has a junior/entry cue OR an IT-domain support/deployment/
+    technician word. Hard excludes (senior, manager, architect, …) always drop.
     """
     if not title:
         return True
     soft_spans = {m.span() for m in _SOFT_EXCLUDE_RE.finditer(title)}
-    has_entry = bool(_ENTRY_LEVEL_SIGNAL_RE.search(title))
+    can_bypass = _has_soft_bypass_signal(title)
     for m in EXCLUDED_SENIORITY_RE.finditer(title):
-        if has_entry and m.span() in soft_spans:
+        if can_bypass and m.span() in soft_spans:
             continue
         # Soft token matched via a multi-word exclude phrase — still bypassable.
-        if has_entry and _SOFT_EXCLUDE_RE.fullmatch(m.group(0) or ""):
+        if can_bypass and _SOFT_EXCLUDE_RE.fullmatch(m.group(0) or ""):
             continue
         return True
     return False
@@ -1207,6 +1250,12 @@ def _ingest_jobspy_df(df, *, label: str, jobs_by_id: dict[str, dict]) -> int:
     for _, row in df.iterrows():
         title = str(row.get("title", "") or "")
         if not title_matches_keywords(title):
+            continue
+        # Cheap seniority gate when JobSpy exposes job_level / experience_level.
+        job_level = str(
+            row.get("job_level", "") or row.get("experience_level", "") or ""
+        )
+        if job_level and _JOB_LEVEL_SENIOR_RE.search(job_level):
             continue
         url = str(row.get("job_url", "") or "")
         if not url:
@@ -3134,10 +3183,10 @@ def _load_prev_ids(json_path: str) -> set[str]:
 
 
 ALL_JOBS_PRUNE_DAYS = 30
-# LinkedIn's guest API reliably supports ~30 days via f_TPR; use this for the
-# one-time historical backfill (--linkedin-backfill) so new users get a full
-# picture without running hourly for weeks.
-LINKEDIN_BACKFILL_DAYS = 30
+# LinkedIn's guest API reliably supports ~30 days via f_TPR. Prefer 14 for
+# this fork (full 30-day × many terms hangs on GHA). Override with env
+# LINKEDIN_BACKFILL_DAYS when needed.
+LINKEDIN_BACKFILL_DAYS = int(os.environ.get("LINKEDIN_BACKFILL_DAYS", "14") or "14")
 
 
 def _merge_into_all_jobs(new_jobs: list) -> int:

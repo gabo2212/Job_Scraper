@@ -18,8 +18,16 @@
       "weight": 17
     },
     {
-      "pattern": "\\b(deployment technician|migration technician|IT deployment|rollout technician|implementation technician|technicien (?:de )?d[eé]ploiement|technicien migration)\\b",
+      "pattern": "\\b(deployment (?:technician|specialist)|migration (?:technician|specialist)|IT deployment|rollout (?:technician|specialist)|implementation technician|technicien (?:de |au )?d[eé]ploiement|technicien migration)\\b",
       "weight": 16
+    },
+    {
+      "pattern": "\\b(junior systems? admin|junior (?:sysadmin|network|cloud|devops|developer|programmer|software|python|QA|security|SOC)|systems? administrator I|associate (?:network|cloud|software|developer)|network technician|NOC (?:technician|analyst)|administrateur syst[eè]me junior|technicien (?:r[eé]seau|niveau [12]|N[12])|programmeur junior|d[eé]veloppeur junior)\\b",
+      "weight": 14
+    },
+    {
+      "pattern": "\\b(cloud support(?: associate)?|Microsoft 365|\\bM365\\b|Office 365|\\bO365\\b|Intune|Active Directory|Windows 10|Windows 11)\\b",
+      "weight": 12
     },
     {
       "pattern": "\\b(remote support|remote technician|remote IT|t[eé]l[eé]travail|teletravail|work from home)\\b.*\\b(support|technician|technicien|deployment|migration|junior)\\b|\\b(support|technician|technicien|deployment|migration|junior)\\b.*\\b(remote|t[eé]l[eé]travail|teletravail)\\b",
@@ -42,19 +50,11 @@
       "weight": 12
     },
     {
-      "pattern": "\\b(Microsoft 365|\\bM365\\b|Office 365|\\bO365\\b|Intune|Windows 10|Windows 11)\\b",
-      "weight": 11
-    },
-    {
       "pattern": "\\b(retail IT|POS support|scale[- ]management|grocery|Sobeys|IGA|CompuCom)\\b",
       "weight": 11
     },
     {
-      "pattern": "\\b(junior systems? admin|junior (?:sysadmin|network|cloud|devops|developer|programmer|software|python|QA|security|SOC)|systems? technician|network technician|administrateur syst[eè]me junior|technicien niveau [12]|technicien N[12]|programmeur junior|d[eé]veloppeur junior)\\b",
-      "weight": 12
-    },
-    {
-      "pattern": "\\b(application support|desktop analyst|IT support analyst|support specialist|support agent|NOC (?:technician|analyst))\\b",
+      "pattern": "\\b(application support|desktop analyst|IT support analyst|support specialist|support agent)\\b",
       "weight": 9
     },
     {
