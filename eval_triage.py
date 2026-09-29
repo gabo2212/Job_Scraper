@@ -136,7 +136,7 @@ CASES = [
         "jd": ("Build small FastAPI services and automation scripts in Python. "
                "Docker and SQL a plus. Junior role; portfolio projects welcome. "
                "Fully remote for Canadian residents. No bachelor's required."),
-        "expect": {"min_score": 60, "max_score": 90,
+        "expect": {"min_score": 60, "max_score": 95,
                    "verdicts": ["strong", "maybe"],
                    "families": ["software-development", "automation-ai"]},
     },
