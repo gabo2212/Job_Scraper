@@ -1900,10 +1900,10 @@
   }
 
   // ---------- Map view (Leaflet) ----------
-  // Client-side geocoding via a static city/region → [lat,lng] table covering
-  // California, Oregon, and Australia (no API key, no network). Jobs cluster by
-  // location; the view auto-fits to wherever they are. Remote/unknown roles get
-  // a single marker at the California center.
+  // Client-side geocoding via a static city/region → [lat,lng] table (no API key,
+  // no network). Jobs cluster by location; the view auto-fits to wherever they
+  // are. Remote/unknown roles get a single marker at MAP_FALLBACK (Québec for
+  // this fork — upstream used California).
   const CITY_COORDS = {
     'sacramento': [38.5816, -121.4944], 'west sacramento': [38.5805, -121.5302],
     'davis': [38.5449, -121.7405], 'rancho cordova': [38.5891, -121.3027],
@@ -1947,7 +1947,7 @@
     'glendale': [34.1425, -118.2551], 'burbank': [34.1808, -118.309],
     'thousand oaks': [34.1706, -118.8376], 'camarillo': [34.2164, -119.0376],
     'ventura': [34.2746, -119.229], 'oxnard': [34.1975, -119.1771],
-    'ontario': [34.0633, -117.6509], 'rancho cucamonga': [34.1064, -117.5931],
+    'ontario, california': [34.0633, -117.6509], 'rancho cucamonga': [34.1064, -117.5931],
     'chula vista': [32.6401, -117.0842], 'la jolla': [32.8328, -117.2713],
     'escondido': [33.1192, -117.0864], 'temecula': [33.4936, -117.1484],
     'visalia': [36.3302, -119.2921], 'salinas': [36.6777, -121.6555],
@@ -2005,26 +2005,83 @@
     'new york': [40.7128, -74.006], 'houston': [29.7604, -95.3698],
     'dallas': [32.7767, -96.797], 'phoenix': [33.4484, -112.074],
     'anchorage': [61.2181, -149.9003], 'honolulu': [21.3069, -157.8583],
+    // ---- Québec / Canada (this fork) ----
+    'montreal': [45.5017, -73.5673], 'montréal': [45.5017, -73.5673],
+    'quebec city': [46.8139, -71.2080], 'ville de quebec': [46.8139, -71.2080],
+    'quebec, qc': [46.8139, -71.2080], 'québec, qc': [46.8139, -71.2080],
+    'laval': [45.6066, -73.7124], 'longueuil': [45.5312, -73.5185],
+    'boucherville': [45.5910, -73.4360], 'brossard': [45.4668, -73.4682],
+    'saint-laurent': [45.5088, -73.6976], 'st-laurent': [45.5088, -73.6976],
+    'dorval': [45.4500, -73.7500], 'mirabel': [45.6500, -74.0833],
+    'levis': [46.8033, -71.1779], 'lévis': [46.8033, -71.1779],
+    'sherbrooke': [45.4042, -71.8929], 'gatineau': [45.4765, -75.7013],
+    'trois-rivieres': [46.3432, -72.5432], 'trois-rivières': [46.3432, -72.5432],
+    'saguenay': [48.4280, -71.0685], 'chicoutimi': [48.4280, -71.0685],
+    'saint-hyacinthe': [45.6307, -72.9569], 'joliette': [46.0236, -73.4425],
+    'vaudreuil-dorion': [45.4000, -74.0333], 'vaudreuil': [45.4000, -74.0333],
+    'sainte-anne-de-bellevue': [45.4033, -73.9456], 'west island': [45.4580, -73.8250],
+    'baie-d\'urfe': [45.4139, -73.9156], 'baie-durfe': [45.4139, -73.9156],
+    'lac-megantic': [45.5833, -70.8833], 'lac-mégantic': [45.5833, -70.8833],
+    'cap-de-la-madeleine': [46.3667, -72.5000], 'drummondville': [45.8833, -72.4833],
+    'granby': [45.4000, -72.7333], 'saint-anselme': [46.6333, -70.9833],
+    // Greater Montréal / Ontario / rest of Canada
+    'toronto': [43.6532, -79.3832], 'mississauga': [43.5890, -79.6441],
+    'ottawa': [45.4215, -75.6972], 'hamilton': [43.2557, -79.8711],
+    'london, on': [42.9849, -81.2453], 'london, ontario': [42.9849, -81.2453],
+    'north bay': [46.3091, -79.4608], 'queensville': [44.1389, -79.4500],
+    'vaughan': [43.8361, -79.4983], 'etobicoke': [43.6205, -79.5132],
+    'brantford': [43.1394, -80.2644], 'barrie': [44.3894, -79.6903],
+    'belleville': [44.1628, -77.3832], 'orillia': [44.6083, -79.4200],
+    'ancaster': [43.2176, -79.9872], 'waterdown': [43.3333, -79.8833],
+    'hawkesbury': [45.6086, -74.6042], 'kenora': [49.7670, -94.4894],
+    'port hope': [43.9510, -78.2928], 'kawartha lakes': [44.3500, -78.7500],
+    'greater sudbury': [46.4917, -80.9930], 'sudbury': [46.4917, -80.9930],
+    'vancouver': [49.2827, -123.1207], 'victoria, bc': [48.4284, -123.3656],
+    'surrey': [49.1913, -122.8490], 'burnaby': [49.2488, -122.9805],
+    'abbotsford': [49.0504, -122.3045], 'new westminster': [49.2057, -122.9110],
+    'kamloops': [50.6745, -120.3273], 'prince george': [53.9171, -122.7497],
+    'terrace': [54.5182, -128.6037], 'duncan': [48.7787, -123.7079],
+    'calgary': [51.0447, -114.0719], 'edmonton': [53.5461, -113.4938],
+    'st. albert': [53.6305, -113.6256], 'leduc': [53.2594, -113.5492],
+    'rocky mountain house': [52.3753, -114.9211], 'rocky view': [51.2000, -114.0000],
+    'winnipeg': [49.8951, -97.1384], 'charlottetown': [46.2382, -63.1311],
+    'halifax': [44.6488, -63.5752], 'saskatoon': [52.1332, -106.6700],
+    'regina': [50.4452, -104.6189],
   };
-  const CA_CENTER = [37.4, -119.5];
+  // Québec centroid (near Québec City / corridor) — remote/unknown + empty-map fallback.
+  // Upstream used California [37.4, -119.5]; this fork is Canada/Québec-focused.
+  const MAP_FALLBACK = [46.8, -71.9];
+  const QC_CENTROID = [46.8, -71.9];
+  const CANADA_CENTROID = [56.1, -106.3];
   const US_CENTROID = [39.5, -98.0];
   // Full US state names (USAJOBS uses these) → fall back to the US centroid
-  // when no city matched, so federal roles don't pile onto California.
+  // when no city matched, so federal roles don't pile onto the map fallback.
   const US_STATE_RE = /\b(alabama|alaska|arizona|arkansas|colorado|connecticut|delaware|florida|georgia|hawaii|idaho|illinois|indiana|iowa|kansas|kentucky|louisiana|maine|maryland|massachusetts|michigan|minnesota|mississippi|missouri|montana|nebraska|nevada|new hampshire|new jersey|new mexico|new york|north carolina|north dakota|ohio|oklahoma|pennsylvania|rhode island|south carolina|south dakota|tennessee|texas|utah|vermont|virginia|washington|west virginia|wisconsin|wyoming|district of columbia|puerto rico)\b/;
   let _map = null, _markerLayer = null, _lastFitKey = '';
+
+  // Strip accents so "Montréal" matches "montreal" in CITY_COORDS.
+  function normalizeLoc(s) {
+    return (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  }
 
   // Longest-name match wins ("south san francisco" beats "san francisco"). If no
   // city/state matched, fall back to a country/region centroid; otherwise null
   // (→ remote/statewide bucket).
   function geocodeJob(loc) {
-    const s = (loc || '').toLowerCase();
+    const s = normalizeLoc(loc);
     let best = null, bestLen = 0;
     for (const city in CITY_COORDS) {
-      if (s.includes(city) && city.length > bestLen) { best = CITY_COORDS[city]; bestLen = city.length; }
+      const key = normalizeLoc(city);
+      if (s.includes(key) && key.length > bestLen) { best = CITY_COORDS[city]; bestLen = key.length; }
     }
     if (best) return best;
     if (/australia/.test(s)) return [-25.27, 133.77];      // AU centroid
     if (/\boregon\b|,\s*or\b/.test(s)) return [44.0, -120.5]; // OR centroid
+    // Québec / Canada before US — Indeed uses ", QC, CA" (CA = Canada country code).
+    // Province centroids only here (not in CITY_COORDS) so they don't outrank cities.
+    if (/\bquebec\b|,\s*qc\b/.test(s)) return QC_CENTROID;
+    if (/\bontario\b|,\s*on\b/.test(s)) return [50.0, -85.0];
+    if (/\bcanada\b/.test(s) || /,\s*[a-z]{2},\s*ca\b/.test(s)) return CANADA_CENTROID;
     if (US_STATE_RE.test(s)) return US_CENTROID;            // other US (federal) → US centroid
     return null;
   }
@@ -2037,7 +2094,7 @@
       return;
     }
     if (!_map) {
-      _map = L.map('map', { scrollWheelZoom: true }).setView(CA_CENTER, 6);
+      _map = L.map('map', { scrollWheelZoom: true }).setView(MAP_FALLBACK, 6);
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 18, attribution: '© OpenStreetMap'
       }).addTo(_map);
@@ -2053,7 +2110,7 @@
       const c = geocodeJob(j.location);
       if (!c) { remoteCount++;
         const k = 'remote';
-        if (!buckets.has(k)) buckets.set(k, { lat: CA_CENTER[0], lng: CA_CENTER[1], remote: true, jobs: [] });
+        if (!buckets.has(k)) buckets.set(k, { lat: MAP_FALLBACK[0], lng: MAP_FALLBACK[1], remote: true, jobs: [] });
         buckets.get(k).jobs.push(j); return;
       }
       const k = c[0] + ',' + c[1];
@@ -2071,7 +2128,7 @@
         `<div style="margin:3px 0">${j._star ? '<span style="color:#d97706">★</span> ' : ''}`
         + `<a href="${escape(j.url)}" target="_blank" rel="noopener">${escape(j.title)}</a> <span style="color:#888">· score ${rankScore(j).value}</span>`
         + `<br><span style="color:#666">${escape(j.company)}${j._salDisp ? ' · ' + escape(j._salDisp) : ''}</span></div>`).join('');
-      const where = b.remote ? 'Remote / Statewide' : escape(top[0].location || 'California');
+      const where = b.remote ? 'Remote / Nationwide' : escape(top[0].location || 'Québec');
       const m = L.circleMarker([b.lat, b.lng], {
         radius: r, color: b.remote ? '#a78bfa' : '#34d399',
         fillColor: b.remote ? '#a78bfa' : '#34d399', fillOpacity: 0.55, weight: 1.5,
@@ -2082,16 +2139,15 @@
         { maxWidth: 320 });
     });
 
-    // Auto-fit to wherever the jobs are (CA + Oregon + Australia). Only refit
-    // when the extent actually changes, so dragging the salary slider etc.
-    // doesn't keep snapping the view.
+    // Auto-fit to wherever the jobs are. Only refit when the extent actually
+    // changes, so dragging the salary slider etc. doesn't keep snapping the view.
     const pts = [...buckets.values()].map(b => [b.lat, b.lng]);
     const key = pts.map(p => p.join(',')).sort().join('|');
     if (pts.length && key !== _lastFitKey) {
       _map.fitBounds(pts, { padding: [34, 34], maxZoom: 9 });
       _lastFitKey = key;
     } else if (!pts.length) {
-      _map.setView(CA_CENTER, 5); _lastFitKey = '';
+      _map.setView(MAP_FALLBACK, 5); _lastFitKey = '';
     }
 
     note.hidden = false;
