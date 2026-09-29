@@ -277,63 +277,6 @@
       "jd": "read",
       "scored_at": "2026-09-29 20:16 UTC"
     },
-    "https://ca.indeed.com/viewjob?jk=48bcd1cad5f28d8b": {
-      "score": 18,
-      "verdict": "skip",
-      "role_family": "field-it",
-      "seniority_fit": "stretch",
-      "why": "The equipment deployment and troubleshooting duties are relevant, but the role requires three years of service-technician experience, extensive travel, a vehicle, and on-road work based in Manitoba, making it a poor fit for a Québec-based entry-level candidate.",
-      "flags": [
-        "relocation",
-        "experience-gap"
-      ],
-      "outreach_opener": "",
-      "jd": "read",
-      "scored_at": "2026-09-29 20:16 UTC"
-    },
-    "https://ca.indeed.com/viewjob?jk=32d2d606734b502b": {
-      "score": 24,
-      "verdict": "skip",
-      "role_family": "field-it",
-      "seniority_fit": "stretch",
-      "why": "The equipment troubleshooting and deployment work is relevant, but this is an Ontario-based road role requiring three years of service-technician experience, electro-mechanical repair skills, a vehicle, and extensive travel that do not match the candidate’s location or verified background.",
-      "flags": [
-        "relocation",
-        "experience-gap"
-      ],
-      "outreach_opener": "",
-      "jd": "read",
-      "scored_at": "2026-09-29 20:16 UTC"
-    },
-    "https://ca.indeed.com/viewjob?jk=c388f62d635e729c": {
-      "score": 24,
-      "verdict": "skip",
-      "role_family": "field-it",
-      "seniority_fit": "stretch",
-      "why": "The customer-facing equipment troubleshooting and deployment duties are transferable, but the role requires three years of service-technician experience, electro-mechanical repair skills, a vehicle, extensive travel, and on-road work based in Ontario.",
-      "flags": [
-        "relocation",
-        "experience-gap"
-      ],
-      "outreach_opener": "",
-      "jd": "read",
-      "scored_at": "2026-09-29 20:16 UTC"
-    },
-    "https://ca.indeed.com/viewjob?jk=9e94f472def00df0": {
-      "score": 48,
-      "verdict": "skip",
-      "role_family": "field-it",
-      "seniority_fit": "appropriate",
-      "why": "Entry-level and bilingual requirements fit, but this is an on-site field-service role in the Québec City area requiring travel and electromechanical or industrial-equipment training that the candidate does not clearly have.",
-      "flags": [
-        "bilingual-asset",
-        "relocation",
-        "experience-gap"
-      ],
-      "outreach_opener": "",
-      "jd": "read",
-      "scored_at": "2026-09-29 20:16 UTC"
-    },
     "https://ca.indeed.com/viewjob?jk=0bfaef04109464be": {
       "score": 64,
       "verdict": "maybe",
@@ -473,34 +416,6 @@
       ],
       "outreach_opener": "",
       "jd": "read",
-      "scored_at": "2026-09-29 20:17 UTC"
-    },
-    "https://ca.indeed.com/viewjob?jk=29acb148ad1bc894": {
-      "score": 24,
-      "verdict": "skip",
-      "role_family": "it-support",
-      "seniority_fit": "unclear",
-      "why": "The support analyst title aligns with the candidate’s target, but no duties or remote option are stated and the role is located in British Columbia, making relocation from Québec a major barrier.",
-      "flags": [
-        "relocation",
-        "location-unclear"
-      ],
-      "outreach_opener": "",
-      "jd": "metadata-only",
-      "scored_at": "2026-09-29 20:17 UTC"
-    },
-    "https://ca.indeed.com/viewjob?jk=89c85655815686c8": {
-      "score": 22,
-      "verdict": "skip",
-      "role_family": "help-desk-service-desk",
-      "seniority_fit": "unclear",
-      "why": "The support analyst title aligns with the candidate’s target, but the posting is located in Revelstoke, BC and provides no indication of remote work or Québec eligibility.",
-      "flags": [
-        "relocation",
-        "location-unclear"
-      ],
-      "outreach_opener": "",
-      "jd": "metadata-only",
       "scored_at": "2026-09-29 20:17 UTC"
     },
     "https://ca.indeed.com/viewjob?jk=c6ca4aa4a27b5c1b": {
@@ -766,21 +681,6 @@
       "flags": [
         "location-unclear",
         "relocation"
-      ],
-      "outreach_opener": "",
-      "jd": "metadata-only",
-      "scored_at": "2026-09-29 20:17 UTC"
-    },
-    "https://ca.indeed.com/viewjob?jk=e44ba01860e6c387": {
-      "score": 18,
-      "verdict": "skip",
-      "role_family": "network-infrastructure",
-      "seniority_fit": "unclear",
-      "why": "The network-support title is only a tentative match because no duties or requirements are available, and the position is located in Saskatchewan rather than Québec with no remote eligibility stated.",
-      "flags": [
-        "relocation",
-        "location-unclear",
-        "networking-match"
       ],
       "outreach_opener": "",
       "jd": "metadata-only",
@@ -1206,20 +1106,6 @@
       "jd": "metadata-only",
       "scored_at": "2026-09-29 20:18 UTC"
     },
-    "https://ca.indeed.com/viewjob?jk=9396864325fc5468": {
-      "score": 23,
-      "verdict": "skip",
-      "role_family": "field-it",
-      "seniority_fit": "unclear",
-      "why": "The field-service title loosely aligns with technical troubleshooting, but there are no duties or requirements to verify fit, and the listed Mississauga location is outside Québec with no remote or relocation details.",
-      "flags": [
-        "relocation",
-        "location-unclear"
-      ],
-      "outreach_opener": "",
-      "jd": "metadata-only",
-      "scored_at": "2026-09-29 20:18 UTC"
-    },
     "https://www.jobbank.gc.ca/jobsearch/jobposting/50330280": {
       "score": 55,
       "verdict": "skip",
@@ -1242,20 +1128,6 @@
       "flags": [
         "location-unclear",
         "networking-match"
-      ],
-      "outreach_opener": "",
-      "jd": "metadata-only",
-      "scored_at": "2026-09-29 20:18 UTC"
-    },
-    "https://ca.indeed.com/viewjob?jk=325abc02f27e4abd": {
-      "score": 48,
-      "verdict": "skip",
-      "role_family": "field-it",
-      "seniority_fit": "unclear",
-      "why": "The field service title is a partial match for the candidate’s troubleshooting and technical support background, but there are no duties or requirements to confirm fit, and the Saint-Laurent location appears on-site with travel expectations unclear.",
-      "flags": [
-        "location-unclear",
-        "experience-gap"
       ],
       "outreach_opener": "",
       "jd": "metadata-only",
@@ -1580,20 +1452,6 @@
       "jd": "metadata-only",
       "scored_at": "2026-09-29 20:19 UTC"
     },
-    "https://ca.indeed.com/viewjob?jk=3cdc8f8c54225353": {
-      "score": 18,
-      "verdict": "skip",
-      "role_family": "field-it",
-      "seniority_fit": "unclear",
-      "why": "The field-service title loosely overlaps with the candidate’s technical troubleshooting, but there are no duties or remote-work details, and the on-site location in British Columbia is far from Québec.",
-      "flags": [
-        "relocation",
-        "location-unclear"
-      ],
-      "outreach_opener": "",
-      "jd": "metadata-only",
-      "scored_at": "2026-09-29 20:19 UTC"
-    },
     "https://www.jobbank.gc.ca/jobsearch/jobposting/50291756": {
       "score": 52,
       "verdict": "skip",
@@ -1861,32 +1719,6 @@
       "jd": "metadata-only",
       "scored_at": "2026-09-29 20:20 UTC"
     },
-    "https://ca.indeed.com/viewjob?jk=d3e9ca6bba334b22": {
-      "score": 45,
-      "verdict": "skip",
-      "role_family": "other",
-      "seniority_fit": "unclear",
-      "why": "The Montréal-based IT Operations Analyst title may align with technical operations, but without duties, requirements, or work arrangement, there is too little evidence to assess fit beyond the candidate’s relevant support and deployment experience.",
-      "flags": [
-        "location-unclear"
-      ],
-      "outreach_opener": "",
-      "jd": "metadata-only",
-      "scored_at": "2026-09-29 20:20 UTC"
-    },
-    "https://ca.indeed.com/viewjob?jk=61b31be69a36fd8d": {
-      "score": 42,
-      "verdict": "skip",
-      "role_family": "field-it",
-      "seniority_fit": "unclear",
-      "why": "The field-support title aligns broadly with the candidate’s IT support and deployment background, but no duties, requirements, or work arrangement are provided to assess fit reliably.",
-      "flags": [
-        "location-unclear"
-      ],
-      "outreach_opener": "",
-      "jd": "metadata-only",
-      "scored_at": "2026-09-29 20:20 UTC"
-    },
     "https://ca.indeed.com/viewjob?jk=b59010e53152da2b": {
       "score": 52,
       "verdict": "skip",
@@ -2137,19 +1969,6 @@
         "experience-gap",
         "relocation",
         "location-unclear"
-      ],
-      "outreach_opener": "",
-      "jd": "read",
-      "scored_at": "2026-09-29 22:36 UTC"
-    },
-    "https://ca.indeed.com/viewjob?jk=d864661c19d0476a": {
-      "score": 26,
-      "verdict": "skip",
-      "role_family": "field-it",
-      "seniority_fit": "appropriate",
-      "why": "This is a hands-on industrial field-service role centered on gas systems, pressure vessels, mechanical installation, and travel rather than IT support, and it is based in Ontario with a required Class G licence not established for the candidate.",
-      "flags": [
-        "relocation"
       ],
       "outreach_opener": "",
       "jd": "read",
@@ -2526,23 +2345,6 @@
       "jd": "read",
       "scored_at": "2026-09-29 22:36 UTC"
     },
-    "https://ca.indeed.com/viewjob?jk=5fcee538d3511b6c": {
-      "score": 25,
-      "verdict": "skip",
-      "role_family": "field-it",
-      "seniority_fit": "stretch",
-      "why": "The POS, hardware, networking, and troubleshooting duties overlap with the candidate’s remote retail migration work, but this role is based in New Brunswick, requires frequent field travel and a driver’s licence, and mandates a degree, A+ certification, and 3–5 years of field-service experience.",
-      "flags": [
-        "strong-deployment-match",
-        "networking-match",
-        "degree-required",
-        "experience-gap",
-        "relocation"
-      ],
-      "outreach_opener": "",
-      "jd": "read",
-      "scored_at": "2026-09-29 22:37 UTC"
-    },
     "https://ca.indeed.com/viewjob?jk=f50b8b741f51bcd1": {
       "score": 29,
       "verdict": "skip",
@@ -2601,20 +2403,6 @@
         "networking-match",
         "degree-required",
         "relocation"
-      ],
-      "outreach_opener": "",
-      "jd": "read",
-      "scored_at": "2026-09-29 22:37 UTC"
-    },
-    "https://ca.indeed.com/viewjob?jk=8975397c2419d934": {
-      "score": 22,
-      "verdict": "skip",
-      "role_family": "field-it",
-      "seniority_fit": "stretch",
-      "why": "The Windows support, hardware troubleshooting, and migration duties are relevant, but this requires break/fix field experience and an owned car for travel in Winnipeg, making it a poor location and experience fit.",
-      "flags": [
-        "relocation",
-        "experience-gap"
       ],
       "outreach_opener": "",
       "jd": "read",

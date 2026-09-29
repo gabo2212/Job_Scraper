@@ -1,365 +1,653 @@
 # 🟦 Indeed — Gabriel Fortin — Junior / Entry-Level IT (Québec) Roles
-*Last updated: 2026-09-29 20:52 UTC*
+*Last updated: 2026-09-29 22:57 UTC*
 
-**120 new role(s)** since last run · 146 total
+**111 new role(s)** since last run · 222 total in last 24h
 
-### [Application Support Analyst (Junior)](https://ca.indeed.com/viewjob?jk=2f28afe675bf0552) — CGI
+### [Consultant en Déploiement Bilingue / Bilingual Deployment Consultant (QC or ON)](https://ca.indeed.com/viewjob?jk=82a66798d7c7a92a) — BD
+- 📍 **Location:** Quebec City, QC, CA
+- **Work mode:** Remote
+- 🕒 **Posted:** 2026-09-21
+
+### [Field Service Technician EXO](https://ca.indeed.com/viewjob?jk=1698e195a1dfe054) — Siemens
 - 📍 **Location:** Montréal, QC, CA
+- **Work mode:** On-site
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-17
 
-### [Application Support Analyst (Junior)](https://ca.indeed.com/viewjob?jk=2af3c689fb77bb40) — CGI
+### [Associate, Dispatch](https://ca.indeed.com/viewjob?jk=7811a22d39f2c0a6) — Aecon Group Inc.
+- 📍 **Location:** Lachine, QC, CA
+- **Work mode:** On-site
+- 🕒 **Posted:** 2026-09-08
+
+### [Junior Technical Support Analyst](https://ca.indeed.com/viewjob?jk=0b8da45061cea0bf) — BBGC
 - 📍 **Location:** Montréal, QC, CA
+- **Work mode:** On-site
+- 🕒 **Posted:** 2026-09-05
 
-### [Field Service Technician](https://ca.indeed.com/viewjob?jk=325abc02f27e4abd) — ABB
-- 📍 **Location:** Saint-Laurent, QC, CA
+### [Shopfloor OT/IT support Technician (L-5](https://ca.indeed.com/viewjob?jk=44fdb7a99fe70c50) — Realign
+- 📍 **Location:** Mirabel, QC, CA
+- **Work mode:** On-site
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-22
 
-### [IT Support Technician](https://ca.indeed.com/viewjob?jk=52134d97cdd6157b) — PixMob
-- 📍 **Location:** Montréal, QC, CA
-
-### [Systems Support Specialist](https://ca.indeed.com/viewjob?jk=6d52a75df7d2d669) — Vast-Auto Distribution
-- 📍 **Location:** Montréal, QC, CA
-
-### [Technicien Informatique N2](https://ca.indeed.com/viewjob?jk=0bfaef04109464be) — Bumper to Bumper
+### [Application Support Technician](https://ca.indeed.com/viewjob?jk=c44b19bf7d21a2f9) — Unimax
 - 📍 **Location:** Boucherville, QC, CA
+- **Work mode:** Remote
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-29
 
-### [Service Desk Analyst](https://ca.indeed.com/viewjob?jk=422322600c033d45) — Compugen Inc
+### [Automotive Back Parts Window Associate – Crmazie et Papineau](https://ca.indeed.com/viewjob?jk=ecd137d8e64bda03) — Canadian Tire Corporation, Ltd.
 - 📍 **Location:** Montréal, QC, CA
+- **Work mode:** On-site
+- **Job type:** parttime, fulltime
+- 🕒 **Posted:** 2026-09-08
 
-### [Bilingual IT Technician Network Cabler](https://ca.indeed.com/viewjob?jk=bd5682abe31d2455) — SoftFlow IT Services
-- 📍 **Location:** Saint-Laurent, QC, CA
+### [Automotive Back Parts Window Associate - Crmazie et Papineau](https://ca.indeed.com/viewjob?jk=0ae7c1880844d28b) — Canadian Tire Corporation, Ltd.
+- 📍 **Location:** Montréal, QC, CA
+- **Work mode:** On-site
+- **Job type:** parttime, fulltime
+- 🕒 **Posted:** 2026-09-08
 
-### [Technicien Informatique Niveau 2 - Sherbrooke](https://ca.indeed.com/viewjob?jk=733b0b718d68685d) — Groupe Solulan inc
+### [Technicien itinérant/ Field Service Technician](https://ca.indeed.com/viewjob?jk=c7ba1f50fad96ec7) — Bunzl Canada Inc.
+- 📍 **Location:** Montréal, QC, CA
+- **Work mode:** On-site
+- 🕒 **Posted:** 2026-09-16
+
+### [Field Service Technician - Mont-Joli New Brunswick](https://ca.indeed.com/viewjob?jk=24f70ce0b50ecf94) — NCR
+- 📍 **Location:** Mont-Joli, QC, CA
+- **Work mode:** On-site
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-22
+
+### [Technical Support Specialist](https://ca.indeed.com/viewjob?jk=94e030fd0c81a934) — Siemens
+- 📍 **Location:** Montréal, QC, CA
+- **Work mode:** Remote
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-17
+
+### [Technicien(ne) de Service en Chantier / Field Service Technician](https://ca.indeed.com/viewjob?jk=f1fa44fea6cbf8d9) — MacLean Engineering & Marketing Co Limited
+- 📍 **Location:** Val-d'Or, QC, CA
+- **Work mode:** On-site
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-04
+
+### [Représentant adjoint à l'acquisition de clients | Associate Customer Acquisition Representative, AWS Canada](https://ca.indeed.com/viewjob?jk=15d9e843873657f5) — Amazon Web Services
+- 📍 **Location:** Montréal, QC, CA
+- **Work mode:** On-site
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-17
+
+### [Consultant(e) Associate — SAP S/4HANA | Programme LGS-IBM 2027](https://ca.indeed.com/viewjob?jk=21eea94167252142) — LGS, an IBM Company
+- 📍 **Location:** Montréal, QC, CA
+- **Work mode:** On-site
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-15
+
+### [Consultant(e) Associate — SAP S/4HANA | Programme LGS-IBM 2027](https://ca.indeed.com/viewjob?jk=a6ad6a5833d6b3f3) — LGS, an IBM Company
+- 📍 **Location:** Montréal, QC, CA
+- **Work mode:** Remote
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-15
+
+### [Gestionnaire de projets, Implantation – Réseaux de partenaires de Services aux petites entreprises - Implementation Proj. Mgr, SBS PC](https://ca.indeed.com/viewjob?jk=b49996128ac98235) — ADP
+- 📍 **Location:** Montréal, QC, CA
+- **Work mode:** On-site
+- 🕒 **Posted:** 2026-09-08
+
+### [Junior Software Engineer, Emergency Call Handling](https://ca.indeed.com/viewjob?jk=04ed64b74df5d49c) — Motorola Solutions
+- 📍 **Location:** Gatineau, QC, CA
+- **Work mode:** On-site
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-29
+
+### [Associé(e) à l'entretien ménager / Housekeeping Associate](https://ca.indeed.com/viewjob?jk=52bfc19d43808987) — Midtown Athletic Club
+- 📍 **Location:** Montréal, QC, CA
+- **Work mode:** On-site
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-29
+
+### [Client Service Associate-Bilingual](https://ca.indeed.com/viewjob?jk=c6577b0fe9a3e4d2) — CIBC
+- 📍 **Location:** Montréal, QC, CA
+- **Work mode:** Remote
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-28
+
+### [Associe aux Vente de Detail / Retail Associate](https://ca.indeed.com/viewjob?jk=5eeb48c9f98d14b7) — Midtown Athletic Club
+- 📍 **Location:** Montréal, QC, CA
+- **Work mode:** On-site
+- **Job type:** parttime
+- 🕒 **Posted:** 2026-09-28
+
+### [Community Associate, L'Avenue (Montreal)](https://ca.indeed.com/viewjob?jk=5d875c8193e1b5c8) — WeWork
+- 📍 **Location:** Montréal, QC, CA
+- **Work mode:** On-site
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-25
+
+### [Associés aux ventes – temps plein - Carrefour de L'Estrie](https://ca.indeed.com/viewjob?jk=c35d14d42a79f349) — Wow! Mobile Boutique
 - 📍 **Location:** Sherbrooke, QC, CA
+- **Work mode:** On-site
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-25
 
-### [Technicien(ne) soutien informatique Niveau 2 - Lévis](https://ca.indeed.com/viewjob?jk=d3a399e258122947) — Equans
-- 📍 **Location:** Lévis, QC, CA
+### [Associés aux ventes – temps plein - Galeries de la Capitale](https://ca.indeed.com/viewjob?jk=09770b3bd6442e8a) — Wow! Mobile Boutique
+- 📍 **Location:** Quebec City, QC, CA
+- **Work mode:** On-site
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-25
 
-### [Bilingual IT Support Specialist](https://ca.indeed.com/viewjob?jk=b5a915f6349ea2e7) — Advance Auto Parts
-- 📍 **Location:** Boucherville, QC, CA
+### [Associés aux ventes – temps plein - Mail Champlain](https://ca.indeed.com/viewjob?jk=51ee341331569315) — Wow! Mobile Boutique
+- 📍 **Location:** Brossard, QC, CA
+- **Work mode:** On-site
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-25
 
-### [Technical Support Agent](https://ca.indeed.com/viewjob?jk=86a784b23bb17fe9) — Desjardins
-- 📍 **Location:** Saint-Anselme, QC, CA
-
-### [Technical Support Agent](https://ca.indeed.com/viewjob?jk=c5b5b677ea96034f) — Desjardins
-- 📍 **Location:** Lévis, QC, CA
-
-### [Spécialiste du Support Technique à la Clientèle / Customer Technical Support Specialist](https://ca.indeed.com/viewjob?jk=abddbb3abd136d39) — Airbus
-- 📍 **Location:** Montréal, QC, CA
-
-### [IT Store Support Technician](https://ca.indeed.com/viewjob?jk=87b80ce7929bc9df) — Ardene
+### [Associés aux ventes – temps plein - Carrefour Laval](https://ca.indeed.com/viewjob?jk=e4b064cdaece1647) — Wow! Mobile Boutique
 - 📍 **Location:** Laval, QC, CA
+- **Work mode:** On-site
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-25
 
-### [Help Desk Agent](https://ca.indeed.com/viewjob?jk=c528c311d7b812d6) — Sonepar
-- 📍 **Location:** Laval, QC, CA
+### [Associate](https://ca.indeed.com/viewjob?jk=23492304b259cdf5) — National Bank of Canada
+- 📍 **Location:** Sorel-Tracy, QC, CA
+- **Work mode:** Remote
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-25
 
-### [Soutien pour les TI - IT Support Engineer](https://ca.indeed.com/viewjob?jk=2e6c8b4f9b369f39) — Brenntag
+### [Associate](https://ca.indeed.com/viewjob?jk=bff52f9de1183c9d) — National Bank of Canada
+- 📍 **Location:** Sorel-Tracy, QC, CA
+- **Work mode:** Remote
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-25
+
+### [Associé d’inventaire/Inventory Associate](https://ca.indeed.com/viewjob?jk=63fe0b2531ba9312) — WIS International
+- 📍 **Location:** Trois-Rivières, QC, CA
+- **Work mode:** On-site
+- **Job type:** parttime
+- 🕒 **Posted:** 2026-09-23
+
+### [Store Operations Associate (Full-Time)](https://ca.indeed.com/viewjob?jk=8ec8a4124e071a9b) — Giant Tiger
+- 📍 **Location:** Gatineau, QC, CA
+- **Work mode:** On-site
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-08-31
+
+### [Store Operations Associate (Full-Time)](https://ca.indeed.com/viewjob?jk=059dcd1f1d4050f1) — Giant Tiger
+- 📍 **Location:** Anjou, QC, CA
+- **Work mode:** On-site
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-07-13
+
+### [Associé ou associée des opérations du magasin (à temps plein)](https://ca.indeed.com/viewjob?jk=3b0aee828b45ca1c) — Giant Tiger
+- 📍 **Location:** Mont-Laurier, QC, CA
+- **Work mode:** On-site
+- **Job type:** fulltime
+- 🕒 **Posted:** 2025-12-31
+
+### [Finance Associate, FIN](https://ca.indeed.com/viewjob?jk=2a18eee2e739a2dd) — United Nations Development Programme
 - 📍 **Location:** Montréal, QC, CA
+- **Work mode:** On-site
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-28
 
-### [Service Desk Technician L1](https://ca.indeed.com/viewjob?jk=bdf12e109e600155) — Milestone Technologies
+### [Field Service Technician (Generator Mechanic)](https://ca.indeed.com/viewjob?jk=b2c7b3be36982b6d) — GENREP LTD
 - 📍 **Location:** Montréal, QC, CA
+- **Work mode:** On-site
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-15
 
-### [Service Desk Technician L2](https://ca.indeed.com/viewjob?jk=09a66893d493a0bb) — Milestone Technologies
-- 📍 **Location:** Montréal, QC, CA
-
-### [Technician Onsite Support (Soutien technique sur place)](https://ca.indeed.com/viewjob?jk=b59010e53152da2b) — AVI-SPL
-- 📍 **Location:** Saint-Laurent, QC, CA
-
-### [Technicien en soutien informatique - Niveau 2/Desktop Support Technician - Level 2](https://ca.indeed.com/viewjob?jk=fabba54c2188d3fd) — Unknown
-- 📍 **Location:** Montréal, QC, CA
-
-### [Analyste en soutien technique de niveau II](https://ca.indeed.com/viewjob?jk=c6e43f36d4a06db2) — ALDO Group
-- 📍 **Location:** Montréal, QC, CA
-
-### [Desktop Technician](https://ca.indeed.com/viewjob?jk=ad6104b015500eb9) — TEEMA Group
-- 📍 **Location:** Sainte-Anne-de-Bellevue, QC, CA
-
-### [Advisor, Technical Support L1](https://ca.indeed.com/viewjob?jk=f023334599694768) — LGI healtcare solutions
-- 📍 **Location:** Montréal, QC, CA
-
-### [L2 IT Support - NETE](https://ca.indeed.com/viewjob?jk=a80521cb57414ae5) — WEIR
-- 📍 **Location:** Lasalle, QC, CA
-
-### [Technicien Réseau/Network Technician](https://ca.indeed.com/viewjob?jk=1976c9bedec4585f) — XTL Transport Inc.
-- 📍 **Location:** Vaudreuil-Dorion, QC, CA
-
-### [Network Field Technician](https://ca.indeed.com/viewjob?jk=604d4e15c4da1dc3) — Unknown
-- 📍 **Location:** Montréal, QC, CA
-
-### [IT Technician](https://ca.indeed.com/viewjob?jk=ce4332c9a1b9dd55) — BPA
-- 📍 **Location:** Montréal, QC, CA
-
-### [Field IT Technician (Part-Time / On-Call) – Karmakarah National Technician Program (KNTP)](https://ca.indeed.com/viewjob?jk=2d71e66ce0425ea8) — Karmakarah Technologies Inc.
+### [TECHNICIEN INFORMATIQUE (Sénior)](https://ca.indeed.com/viewjob?jk=e9f15d3dea55bcbe) — CAPTOSEC
 - 📍 **Location:** Quebec City, QC, CA
+- **Work mode:** On-site
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-19
 
-### [TECHNICIEN RÉSEAU ET INFRASTRUCTURE - NETWORK & INFRASTRUCTURE TECHNICIAN](https://ca.indeed.com/viewjob?jk=ead643fa7d1fd8ab) — Transport Bourassa
-- 📍 **Location:** Saint-Jean-sur-Richelieu, QC, CA
-
-### [administrateur de la sécurité/Junior Security Administrator](https://ca.indeed.com/viewjob?jk=102f5eb1484e5510) — MDA
-- 📍 **Location:** Sainte-Anne-de-Bellevue, QC, CA
-
-### [Junior Technician/Designer - Industrial Piping](https://ca.indeed.com/viewjob?jk=94172014e24e161f) — BBA inc.
-- 📍 **Location:** Mont-Saint-Hilaire, QC, CA
-
-### [Surveillant des examens / technicien support informatique](https://ca.indeed.com/viewjob?jk=d63a5ba8cf961fc1) — Alliance Française de Montréal
-- 📍 **Location:** Montréal, QC, CA
-
-### [Level 2 IT Support & Systems Administrator](https://ca.indeed.com/viewjob?jk=d02b28062b2d3a85) — Premiere Executive Suites
-- 📍 **Location:** Montréal, QC, CA
-
-### [Technicienne ou technicien en informatique](https://ca.indeed.com/viewjob?jk=f8e575297750b601) — Englobe
-- 📍 **Location:** Montréal, QC, CA
-
-### [TECHNICIEN INFORMATIQUE (Intermédiaire)](https://ca.indeed.com/viewjob?jk=7ded779d9f0527e0) — CAPTOSEC
+### [Spécialiste au Support Technique - Système de Point de Vente (POS)](https://ca.indeed.com/viewjob?jk=f105194ee8b7709c) — Harris Computer
 - 📍 **Location:** Quebec City, QC, CA
+- **Work mode:** On-site
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-08-26
 
-### [Technicien TI](https://ca.indeed.com/viewjob?jk=bb779938c697fdd0) — BPA
+### [Research Assistant – Synaptic Plasticity and Two-Photon Imaging](https://ca.indeed.com/viewjob?jk=02c031c289e67558) — Unknown
 - 📍 **Location:** Montréal, QC, CA
+- **Work mode:** On-site
+- **Job type:** temporary, fulltime
+- 🕒 **Posted:** 2026-09-22
 
-### [Junior Automation Engineer (EIT)](https://ca.indeed.com/viewjob?jk=de85ce00e2debe80) — BBA inc.
-- 📍 **Location:** Mont-Saint-Hilaire, QC, CA
-
-### [TECHNICIEN INFORMATIQUE – OPÉRATEUR (Junior)](https://ca.indeed.com/viewjob?jk=ea52d21204d63b8d) — CAPTOSEC
-- 📍 **Location:** Quebec City, QC, CA
-
-### [Technicien TI terrain](https://ca.indeed.com/viewjob?jk=7f629e3163737d96) — Unknown
-- 📍 **Location:** Sherbrooke, QC, CA
-
-### [Technicien(ne) informatique - support niveau 1](https://ca.indeed.com/viewjob?jk=f9642dc45bbfddbf) — AQRCB
+### [(Montreal Remote) Bilingual Automotive Accounting Specialist - Training and Implementation](https://ca.indeed.com/viewjob?jk=0f3c3c5ababebdf7) — PBS Systems
 - 📍 **Location:** Montréal, QC, CA
+- **Work mode:** Remote
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-25
 
-### [Technicien (ne) soutien technique T.I II](https://ca.indeed.com/viewjob?jk=1cb17343a924660f) — Groupe Robert
-- 📍 **Location:** Boucherville, QC, CA
-
-### [Technicienne, technicien en informatique (Linux) - T2627-37](https://ca.indeed.com/viewjob?jk=03facbf0cc50d26b) — Université TÉLUQ
-- 📍 **Location:** Quebec City, QC, CA
-
-### [Technicienne / technicien en informatique - Soutien Route](https://ca.indeed.com/viewjob?jk=c2a17972593b5986) — Centre de services scolaire de la Région-de-Sherbrooke
-- 📍 **Location:** Sherbrooke, QC, CA
-
-### [Technicien en soutien technologique de proximité](https://ca.indeed.com/viewjob?jk=b82039a427a6625d) — Groupe Tehora
-- 📍 **Location:** Laval, QC, CA
-
-### [Technicien en soutien technologique de proximité](https://ca.indeed.com/viewjob?jk=0d5a9bce17c49cd3) — Groupe Tehora
+### [Rédacteur(trice) production débutant – Assurance automobile des entreprises](https://ca.indeed.com/viewjob?jk=090d22d9ed7d4c08) — Aviva
 - 📍 **Location:** Montréal, QC, CA
+- **Work mode:** On-site
+- 🕒 **Posted:** 2026-08-31
 
-### [Technicien en soutien technologique de proximité](https://ca.indeed.com/viewjob?jk=bf94a8dd1eda42ce) — Groupe Tehora
-- 📍 **Location:** Quebec City, QC, CA
-
-### [Technicien TI (niveau 2)](https://ca.indeed.com/viewjob?jk=11dd933d12e43023) — QSL
-- 📍 **Location:** Quebec City, QC, CA
-
-### [Technicien(ne) informatique niveau 2](https://ca.indeed.com/viewjob?jk=db61d92f211b0c90) — Medway Division Médicale
-- 📍 **Location:** Lévis, QC, CA
-
-### [Spécialiste du soutien technique](https://ca.indeed.com/viewjob?jk=36dc3408cc3f8b45) — Siemens
+### [Associé(e) de la réception / Hospitality Associate](https://ca.indeed.com/viewjob?jk=fccd71132ef89db8) — Midtown Athletic Club
 - 📍 **Location:** Montréal, QC, CA
+- **Work mode:** On-site
+- 🕒 **Posted:** 2026-09-24
 
-### [Technicienne / technicien en informatique - Soutien à distance](https://ca.indeed.com/viewjob?jk=b26e0778e2a9f390) — Centre de services scolaire de la Région-de-Sherbrooke
-- 📍 **Location:** Sherbrooke, QC, CA
-
-### [Technicien support et formation utilisateurs](https://ca.indeed.com/viewjob?jk=017f251cb8c73889) — Groupe Tehora
-- 📍 **Location:** Laval, QC, CA
-
-### [Technicien support et formation utilisateurs](https://ca.indeed.com/viewjob?jk=91f7cdee7f37e45d) — Groupe Tehora
+### [Associate, Operations – Deposits and Payments](https://ca.indeed.com/viewjob?jk=2cefdd968823f35a) — BMO Financial Group
 - 📍 **Location:** Montréal, QC, CA
+- **Work mode:** Remote
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-14
 
-### [Analyste junior Cybersecurite](https://ca.indeed.com/viewjob?jk=74b6354a3d517f1e) — Pharmascience
-- 📍 **Location:** Montréal, QC, CA
+### [IT Technician (Underground)](https://ca.indeed.com/viewjob?jk=a4b8c9f8c3c0d29f) — Agnico Eagle
+- 📍 **Location:** Cochrane, ON, CA
+- **Work mode:** Remote
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-29
 
-### [AI Support Engineer - Toronto (Weekend Shift)](https://ca.indeed.com/viewjob?jk=499a29b1a860beff) — OpenAI
-- 📍 **Location:** ON, CA
-
-### [IT Support Technician](https://ca.indeed.com/viewjob?jk=eab9c8710b8cb13a) — XENAI
-- 📍 **Location:** Victoria, BC, CA
-
-### [Dedicated Support Engineer - Toronto](https://ca.indeed.com/viewjob?jk=b7dd23a74a888b19) — OpenAI
-- 📍 **Location:** ON, CA
-
-### [IT Service Desk Agent - Corporate Services](https://ca.indeed.com/viewjob?jk=fdb8eb76ec85de3c) — Graham Construction
-- 📍 **Location:** Calgary, AB, CA
-
-### [Service Desk Technician](https://ca.indeed.com/viewjob?jk=09f103e318ab0399) — Hatch
-- 📍 **Location:** Mississauga, ON, CA
-
-### [Technical Support Specialist – Software](https://ca.indeed.com/viewjob?jk=57625e379e39a1ea) — Mobiltex Data Ltd
-- 📍 **Location:** Calgary, AB, CA
-
-### [Technical Support Specialist (Microsoft & End-User Support)](https://ca.indeed.com/viewjob?jk=122dbe505c00a46a) — RebalanceMD
-- 📍 **Location:** Victoria, BC, CA
-
-### [Technical Support Analyst Tier II](https://ca.indeed.com/viewjob?jk=0ec4f4a4d920b472) — University Canada West
-- 📍 **Location:** Vancouver, BC, CA
-
-### [Technical Support Analyst Tier II](https://ca.indeed.com/viewjob?jk=dc331fe4c18169d5) — University Canada West
-- 📍 **Location:** Vancouver, BC, CA
-
-### [User Support Technician](https://ca.indeed.com/viewjob?jk=17cb68a3d6514b2e) — Hy-Tek Computers
-- 📍 **Location:** Rocky Mountain House, AB, CA
-
-### [IT Technician](https://ca.indeed.com/viewjob?jk=7a5c1904ade8379c) — BrightCare
-- 📍 **Location:** Mississauga, ON, CA
-
-### [Helpdesk Support Analyst- 12 Month Contract](https://ca.indeed.com/viewjob?jk=8475a7d25706e4ed) — Compugen Inc
-- 📍 **Location:** Surrey, BC, CA
-
-### [Technology Support Technician - Tier I](https://ca.indeed.com/viewjob?jk=e50d36ccb49c40ab) — TRUDELL MEDICAL LIMITED
-- 📍 **Location:** London, ON, CA
-
-### [Paramedic Logistics Support Technician](https://ca.indeed.com/viewjob?jk=ce0fd05ca581c399) — City of Kawartha Lakes
-- 📍 **Location:** Kawartha Lakes, ON, CA
-
-### [IT Deskside Support Technician](https://ca.indeed.com/viewjob?jk=13e113806cd9a4b0) — JMT Consultants
-- 📍 **Location:** Winnipeg, MB, CA
-
-### [Network Technician](https://ca.indeed.com/viewjob?jk=32fa93df04cf0f74) — Nesda Technologies Ltd
-- 📍 **Location:** Belleville, ON, CA
-
-### [Desktop Support Technician - 1504 - Helpdesk](https://ca.indeed.com/viewjob?jk=8747a57a3c3cf8ec) — Bill Gosling Outsourcing
-- 📍 **Location:** Barrie, ON, CA
-
-### [Enterprise Systems Technologist 1 (SysAdmin) - TFT](https://ca.indeed.com/viewjob?jk=8b8fbbaf31bca604) — E-Comm 9-1-1 | Emergency Communications for British Columbia Incorporated
-- 📍 **Location:** Vancouver, BC, CA
-
-### [Level 1 Help Desk Support Technician - Calgary](https://ca.indeed.com/viewjob?jk=c654c5e7d2a9363a) — CloudOrbis Inc.
-- 📍 **Location:** Rocky View, AB, CA
-
-### [Level 1 Help Desk Support Technician - Leduc](https://ca.indeed.com/viewjob?jk=b7ba639f09011b6c) — CloudOrbis Inc.
-- 📍 **Location:** Leduc, AB, CA
-
-### [IT Desktop Support Technician "Level 2"](https://ca.indeed.com/viewjob?jk=184aa4d13e37113f) — Precision IT
-- 📍 **Location:** Surrey, BC, CA
-
-### [Computer Technician](https://ca.indeed.com/viewjob?jk=7127737cd88f9c85) — Combat Computers
-- 📍 **Location:** Charlottetown, PE, CA
-
-### [IT Technician / Technicien Informatique](https://ca.indeed.com/viewjob?jk=3d72ef79122b7202) — Northern
-- 📍 **Location:** Grand Falls--grand-sault, NB, CA
-
-### [I.T Field Service Technician](https://ca.indeed.com/viewjob?jk=8975397c2419d934) — MBI IT Services
-- 📍 **Location:** Winnipeg, MB, CA
-
-### [IT Support and Systems Analyst](https://ca.indeed.com/viewjob?jk=fd668ab9da5c9b6c) — Liberal Party of Canada
-- 📍 **Location:** Ottawa, ON, CA
-
-### [Cybersecurity Analyst – Tier 2](https://ca.indeed.com/viewjob?jk=2aa24ef0697b1f88) — Vanderlande Industries
-- 📍 **Location:** Vancouver, BC, CA
-
-### [Field Support Engineer](https://ca.indeed.com/viewjob?jk=2c905571785617c7) — Cognizant
-- 📍 **Location:** Toronto, ON, CA
-
-### [Field Support Engineer](https://ca.indeed.com/viewjob?jk=62a2dff380f51f94) — Cognizant
-- 📍 **Location:** Calgary, AB, CA
-
-### [Service Desk Administrator 1](https://ca.indeed.com/viewjob?jk=5bf854d5dc86ed17) — Convergence Networks
-- 📍 **Location:** Winnipeg, MB, CA
-
-### [Service Desk Administrator 1](https://ca.indeed.com/viewjob?jk=a77cdf153323154d) — Convergence Networks
-- 📍 **Location:** Ottawa, ON, CA
-
-### [Field Service Technician - Vancouver Office](https://ca.indeed.com/viewjob?jk=9396864325fc5468) — Jenoptik
-- 📍 **Location:** Mississauga, ON, CA
-
-### [Junior Field Technician-BC M/F](https://ca.indeed.com/viewjob?jk=90365a7bcc438df4) — VINCI
-- 📍 **Location:** Burnaby, BC, CA
-
-### [Computer Systems Analyst (Tier 2 Technician)](https://ca.indeed.com/viewjob?jk=0a808fec882121e5) — Skycomp Solutions Inc.
-- 📍 **Location:** St. Catharines, ON, CA
-
-### [Junior IT Technician](https://ca.indeed.com/viewjob?jk=263e7f94fb71b602) — Franklin Empire
-- 📍 **Location:** Etobicoke, ON, CA
-
-### [Archaeology Field Technician – Levels I to IV](https://ca.indeed.com/viewjob?jk=0340ceea49c9c65c) — AECOM
-- 📍 **Location:** Peterborough, ON, CA
-
-### [Telecommunication Field Service Technician](https://ca.indeed.com/viewjob?jk=3cdc8f8c54225353) — Advanced Communications Solutions
-- 📍 **Location:** Terrace, BC, CA
-
-### [Junior IT Infrastructure Technician](https://ca.indeed.com/viewjob?jk=3a8e376a2cf8e833) — Sync.com
-- 📍 **Location:** Toronto, ON, CA
-
-### [Systems Technician, Controls](https://ca.indeed.com/viewjob?jk=00c72333b4fa7d81) — Houle Electric
-- 📍 **Location:** Burnaby, BC, CA
-
-### [NOC Tier 1 Technician](https://ca.indeed.com/viewjob?jk=a7a27beead82bfe1) — FlexNetworks
-- 📍 **Location:** Saskatoon, SK, CA
-
-### [IT Support Analyst](https://ca.indeed.com/viewjob?jk=d7e84eda5d686f92) — Senators Sports & Entertainment
-- 📍 **Location:** Kanata, ON, CA
-
-### [Junior DevOps Specialist](https://ca.indeed.com/viewjob?jk=8df6184c8e27dee8) — CGI
-- 📍 **Location:** Toronto, ON, CA
-
-### [Support Engineer III](https://ca.indeed.com/viewjob?jk=cb5c1bdc7b252b5a) — Blackpoint Cyber
-- 📍 **Location:** CA
-
-### [Junior Software Developer](https://ca.indeed.com/viewjob?jk=4ed4a66005db88c6) — geoLOGIC Systems
-- 📍 **Location:** Calgary, AB, CA
-
-### [Junior Software Engineer](https://ca.indeed.com/viewjob?jk=99ac1365fc832bcb) — Scotiabank
-- 📍 **Location:** Toronto, ON, CA
-
-### [Junior Data Developer](https://ca.indeed.com/viewjob?jk=f50b8b741f51bcd1) — Vancouver Coastal Health
-- 📍 **Location:** Vancouver, BC, CA
-
-### [Junior Software Engineer](https://ca.indeed.com/viewjob?jk=00b77420702e2d5d) — Notary Pro Canada
-- 📍 **Location:** Ottawa, ON, CA
-
-### [Junior Software Developer](https://ca.indeed.com/viewjob?jk=a3b8778524f862b4) — SRC Can
-- 📍 **Location:** Ottawa, ON, CA
-
-### [Junior Developer (Finance Systems)](https://ca.indeed.com/viewjob?jk=784ad399f4ea8c1c) — Harbor
-- 📍 **Location:** Remote, CA
-
-### [Junior QA Specialist](https://ca.indeed.com/viewjob?jk=c009d1592fb087bd) — DDS WIRELESS INTL INC.
-- 📍 **Location:** Vancouver, BC, CA
-
-### [Junior Software Developer](https://ca.indeed.com/viewjob?jk=57912f6d6daf99da) — Bullet Trade Services
-- 📍 **Location:** Guelph, ON, CA
-
-### [Microbulk Field Service Technician](https://ca.indeed.com/viewjob?jk=d864661c19d0476a) — Linde
+### [Technical Support Specialist – GPS, Telematics & IoT](https://ca.indeed.com/viewjob?jk=dd22ec5a0badcaef) — Trackingme Ltd
 - 📍 **Location:** Brampton, ON, CA
+- **Work mode:** Remote
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-14
 
-### [Junior Scale Technician](https://ca.indeed.com/viewjob?jk=4e391673ff9580d5) — Advatek Systems Inc.
-- 📍 **Location:** Dieppe, NB, CA
+### [Network Deployment Technician, GND-NASA-Deploy](https://ca.indeed.com/viewjob?jk=46486d38a583f387) — Amazon.com
+- 📍 **Location:** Balzac, AB, CA
+- **Work mode:** Remote
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-08
 
-### [IT Field Technician](https://ca.indeed.com/viewjob?jk=60bc514c4b52ef4b) — Graydon Electrical Contracting Inc.
-- 📍 **Location:** Terrace, BC, CA
-
-### [IT Field Technician](https://ca.indeed.com/viewjob?jk=60f5a44604c1a06b) — On Demand IT Solutions Inc.
-- 📍 **Location:** Markham, ON, CA
-
-### [IT Field Technician](https://ca.indeed.com/viewjob?jk=97af77d6f84eede4) — On Demand IT Solutions Inc.
-- 📍 **Location:** Surrey, BC, CA
-
-### [Network Field Technician](https://ca.indeed.com/viewjob?jk=7a98eda7f9a9e3e2) — Unknown
-- 📍 **Location:** Vancouver, BC, CA
-
-### [Field Service Technician (Moncton/Prince Edward Island)](https://ca.indeed.com/viewjob?jk=5fcee538d3511b6c) — BFG Enterprise Services
-- 📍 **Location:** Moncton, NB, CA
-
-### [TECHNICIEN(IENNE) SOUTIEN TECHNIQUE - SIÈGE SOCIAL](https://ca.indeed.com/viewjob?jk=1d718f6f72844c88) — Caisse Alliance
-- 📍 **Location:** North Bay, ON, CA
-
-### [TECHNICIEN(IENNE) SOUTIEN TECHNIQUE - SIÈGE SOCIAL](https://ca.indeed.com/viewjob?jk=d58d66388388fbf1) — Caisse Alliance
-- 📍 **Location:** Verner, ON, CA
-
-### [TECHNICIEN(IENNE) SOUTIEN TECHNIQUE - SIÈGE SOCIAL](https://ca.indeed.com/viewjob?jk=57b8e87fecd89f64) — Caisse Alliance
-- 📍 **Location:** Timmins, ON, CA
-
-### [TECHNICIEN(IENNE) SOUTIEN TECHNIQUE - SIÈGE SOCIAL](https://ca.indeed.com/viewjob?jk=350b481e4feab234) — Caisse Alliance
-- 📍 **Location:** Sturgeon Falls, ON, CA
-
-### [TECHNICIEN(IENNE) SOUTIEN TECHNIQUE - SIÈGE SOCIAL](https://ca.indeed.com/viewjob?jk=4af614f1ed45eaaf) — Caisse Alliance
-- 📍 **Location:** Hearst, ON, CA
-
-### [TECHNICIEN(IENNE) SOUTIEN TECHNIQUE - SIÈGE SOCIAL](https://ca.indeed.com/viewjob?jk=e13b7ccf6b9d765c) — Caisse Alliance
-- 📍 **Location:** North Bay, ON, CA
-
-### [TECHNICIEN(IENNE) SOUTIEN TECHNIQUE - SIÈGE SOCIAL](https://ca.indeed.com/viewjob?jk=49fe16d180e70e2d) — Caisse Alliance
-- 📍 **Location:** Kapuskasing, ON, CA
-
-### [Technicien en informatique](https://ca.indeed.com/viewjob?jk=b28c445eeb939b44) — Conseil scolaire de district catholique des Aurores boréales
-- 📍 **Location:** Thunder Bay, ON, CA
-
-### [Analyste, soutien informatique et systèmes](https://ca.indeed.com/viewjob?jk=c2c3cff114a9b7c0) — Liberal Party of Canada
+### [Field Service Technician](https://ca.indeed.com/viewjob?jk=78d3561ed87b6191) — TFI Canada
 - 📍 **Location:** Ottawa, ON, CA
+- **Work mode:** On-site
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-28
 
+### [Field Service Technician](https://ca.indeed.com/viewjob?jk=9ccce7b5e549c5b0) — TFI Canada
+- 📍 **Location:** Greater Sudbury, ON, CA
+- **Work mode:** On-site
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-24
+
+### [Field Service Technician](https://ca.indeed.com/viewjob?jk=c95c2eb60a05f065) — TFI Canada
+- 📍 **Location:** Sarnia, ON, CA
+- **Work mode:** On-site
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-21
+
+### [Field Service Technician](https://ca.indeed.com/viewjob?jk=3130bf1829db77f7) — TFI Canada
+- 📍 **Location:** Windsor, ON, CA
+- **Work mode:** On-site
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-21
+
+### [Field Service Technician](https://ca.indeed.com/viewjob?jk=967d24afbeb641de) — TFI Canada
+- 📍 **Location:** Oshawa, ON, CA
+- **Work mode:** On-site
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-20
+
+### [Network Field Technician](https://ca.indeed.com/viewjob?jk=8eb1cca2bdc697fb) — Unknown
+- 📍 **Location:** Greater Toronto Area, ON, CA
+- **Work mode:** Remote
+- **Job type:** parttime, contract
+- 🕒 **Posted:** 2026-08-31
+
+### [Network Field Technician](https://ca.indeed.com/viewjob?jk=b7863180f932973c) — Unknown
+- 📍 **Location:** Ottawa, ON, CA
+- **Work mode:** Remote
+- **Job type:** parttime, contract
+- 🕒 **Posted:** 2026-08-31
+
+### [IT Support Technician](https://ca.indeed.com/viewjob?jk=8686818c593a7de8) — Unknown
+- 📍 **Location:** Mississauga, ON, CA
+- **Work mode:** On-site
+- **Job type:** parttime, fulltime
+- 🕒 **Posted:** 2026-09-21
+
+### [Data Migration Specialist](https://ca.indeed.com/viewjob?jk=3a11118bcd0bac88) — ClearRisk
+- 📍 **Location:** St. John's, NL, CA
+- **Work mode:** Remote
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-28
+
+### [IT Operations Technician](https://ca.indeed.com/viewjob?jk=b0a8853eba5d8772) — Key 2 Communications Inc.
+- 📍 **Location:** Woodbridge, ON, CA
+- **Work mode:** On-site
+- **Job type:** temporary, parttime, contract
+- 🕒 **Posted:** 2026-09-28
+
+### [Associate](https://ca.indeed.com/viewjob?jk=f60ed03dbfc7f917) — RBC
+- 📍 **Location:** Toronto, ON, CA
+- **Work mode:** On-site
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-18
+
+### [Low-Voltage Installation Technician](https://ca.indeed.com/viewjob?jk=8b5e1b1be5c982b4) — Onni Group
+- 📍 **Location:** Vancouver, BC, CA
+- **Work mode:** Remote
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-25
+
+### [Client Support Technician](https://ca.indeed.com/viewjob?jk=f5f29f683b74cc9f) — McElhanney
+- 📍 **Location:** Vancouver, BC, CA
+- **Work mode:** Remote
+- 🕒 **Posted:** 2026-09-25
+
+### [1.0 FTE Temp Computer Technician - School Technician](https://ca.indeed.com/viewjob?jk=6b272c98dd2e8b2e) — GRAND ERIE DISTRICT SCHOOL BOARD
+- 📍 **Location:** Brantford, ON, CA
+- **Work mode:** Remote
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-24
+
+### [Tier 2 Support Technician](https://ca.indeed.com/viewjob?jk=9aad57a318e3c88e) — SureFire IT Solutions Inc.
+- 📍 **Location:** Edmonton, AB, CA
+- **Work mode:** Remote
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-24
+
+### [Rodent Associate Study Coordinator - 18 Month Contract](https://ca.indeed.com/viewjob?jk=270eb01b79c1cfd2) — Transpharmation
+- 📍 **Location:** Fergus, ON, CA
+- **Work mode:** On-site
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-10
+
+### [Digital Services Field Support Technician](https://ca.indeed.com/viewjob?jk=8854f2c894fff466) — Bird Construction
+- 📍 **Location:** Edmonton, AB, CA
+- **Work mode:** On-site
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-03
+
+### [Information Systems Technician](https://ca.indeed.com/viewjob?jk=95b4a5fceebf4ff5) — Alpine Aerotech LP
+- 📍 **Location:** Kelowna, BC, CA
+- **Work mode:** Remote
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-08-31
+
+### [IT Technician](https://ca.indeed.com/viewjob?jk=3588ba0a396276eb) — Rubicon Organics Inc.
+- 📍 **Location:** Delta, BC, CA
+- **Work mode:** Remote
+- 🕒 **Posted:** 2026-08-25
+
+### [Junior Help Desk Technician](https://ca.indeed.com/viewjob?jk=ab5ee50cde108d8b) — Thomson Rogers LLP
+- 📍 **Location:** Toronto, ON, CA
+- **Work mode:** Remote
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-08-13
+
+### [Computer Technician - Victoria](https://ca.indeed.com/viewjob?jk=e14f5f2a547e2a6f) — Daxtech IT Solutions
+- 📍 **Location:** Victoria, BC, CA
+- **Work mode:** Remote
+- **Job type:** fulltime
+- 🕒 **Posted:** 2025-04-08
+
+### [Desktop Support Technician](https://ca.indeed.com/viewjob?jk=2bb0c532c680e300) — Teck Resources Limited
+- 📍 **Location:** Vancouver, BC, CA
+- **Work mode:** Remote
+- 🕒 **Posted:** 2026-09-06
+
+### [MSP Network Technician](https://ca.indeed.com/viewjob?jk=9fdf7734fe865cca) — XBASE Technologies
+- 📍 **Location:** Toronto, ON, CA
+- **Work mode:** On-site
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-08-30
+
+### [Technology Deployment & Operations Technician (Information Technology Support C)](https://ca.indeed.com/viewjob?jk=762b9b5c90de8218) — School District #39 (Vancouver)
+- 📍 **Location:** Vancouver, BC, CA
+- **Work mode:** On-site
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-08-18
+
+### [IT Specialist - Endpoint Management](https://ca.indeed.com/viewjob?jk=aeeeb3727dd741aa) — Natural Factors
+- 📍 **Location:** Coquitlam, BC, CA
+- **Work mode:** On-site
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-29
+
+### [IT Support Specialist](https://ca.indeed.com/viewjob?jk=a8101df289e4e09c) — Dentalcorp
+- 📍 **Location:** Toronto, ON, CA
+- **Work mode:** Remote
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-24
+
+### [IT Support Specialist - Bilingual](https://ca.indeed.com/viewjob?jk=570fbd955511c57a) — Dentalcorp
+- 📍 **Location:** Toronto, ON, CA
+- **Work mode:** Remote
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-23
+
+### [Field Support Engineer](https://ca.indeed.com/viewjob?jk=1e44df6b6028ba08) — Cognizant
+- 📍 **Location:** Toronto, ON, CA
+- **Work mode:** Remote
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-22
+
+### [Service Desk Support](https://ca.indeed.com/viewjob?jk=227ddcae39f4b461) — Humber River Health
+- 📍 **Location:** Greater Toronto Area, ON, CA
+- **Work mode:** Remote
+- **Job type:** parttime
+- 🕒 **Posted:** 2026-09-17
+
+### [Cafe & VR Gaming Associate](https://ca.indeed.com/viewjob?jk=6d152c97b862b763) — Unknown
+- 📍 **Location:** Belleville, ON, CA
+- **Work mode:** On-site
+- **Job type:** parttime, fulltime
+- 🕒 **Posted:** 2026-09-23
+
+### [Vending Route and Installation Technician](https://ca.indeed.com/viewjob?jk=2ab3145a5f2f105a) — Unknown
+- 📍 **Location:** Concord, ON, CA
+- **Work mode:** Remote
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-29
+
+### [IT Service Desk Analyst](https://ca.indeed.com/viewjob?jk=b7f60610454671f4) — COAG Management Ltd.
+- 📍 **Location:** Edmonton, AB, CA
+- **Work mode:** On-site
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-25
+
+### [Field Technician, Service (Cabinetry & Millwork)](https://ca.indeed.com/viewjob?jk=34d6438e37292c1f) — Benson Cabinetry & Millwork
+- 📍 **Location:** Victoria, BC, CA
+- **Work mode:** On-site
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-29
+
+### [Field Technician, Utility (Cabinetry & Millwork)](https://ca.indeed.com/viewjob?jk=59141f7c90c2fc69) — Benson Cabinetry & Millwork
+- 📍 **Location:** Victoria, BC, CA
+- **Work mode:** On-site
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-29
+
+### [IT Support & Cloud Technician - Program Reviewer](https://ca.indeed.com/viewjob?jk=17c92105d123be22) — Cappa College
+- 📍 **Location:** Remote, CA
+- **Work mode:** Remote
+- 🕒 **Posted:** 2026-09-29
+
+### [Field Service Technician (Production)](https://ca.indeed.com/viewjob?jk=2ecf58d4abd7c8b6) — Xerox
+- 📍 **Location:** Vancouver, BC, CA
+- **Work mode:** Remote
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-28
+
+### [Field Service Technician - New Westminster](https://ca.indeed.com/viewjob?jk=0d4ffac16677fc45) — IPG
+- 📍 **Location:** Vancouver, BC, CA
+- **Work mode:** On-site
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-28
+
+### [Help Desk Technician](https://ca.indeed.com/viewjob?jk=4519015d882659d0) — Simply Computing
+- 📍 **Location:** Vancouver, BC, CA
+- **Work mode:** Remote
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-28
+
+### [Technical Implementation Specialist II (HL7/DICOM/SQL) - Canada](https://ca.indeed.com/viewjob?jk=1594180457a572dd) — Intelerad
+- 📍 **Location:** Remote, CA
+- **Work mode:** Remote
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-15
+
+### [Smart Home Security and Fiber Optic Installation Technician — NOC 22311](https://ca.indeed.com/viewjob?jk=c4627e271c610772) — A1TEL
+- 📍 **Location:** North York, ON, CA
+- **Work mode:** On-site
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-10
+
+### [Smart Home Security and Fiber Optic Installation Technician — NOC 22311](https://ca.indeed.com/viewjob?jk=d2275af31f3c761f) — A1TEL
+- 📍 **Location:** Brampton, ON, CA
+- **Work mode:** On-site
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-10
+
+### [NOC Analyst I (evenings/overnight)](https://ca.indeed.com/viewjob?jk=c338df2efa9bdbb8) — VC3
+- 📍 **Location:** CA
+- **Work mode:** Remote
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-29
+
+### [Store Associate](https://ca.indeed.com/viewjob?jk=9e17c91a23228251) — Sherwin-Williams
+- 📍 **Location:** Toronto, ON, CA
+- **Work mode:** On-site
+- **Job type:** parttime
+- 🕒 **Posted:** 2026-09-28
+
+### [Junior IT Workplace & Infrastructure Analyst](https://ca.indeed.com/viewjob?jk=04582be532e8323e) — Rexel
+- 📍 **Location:** Mississauga, ON, CA
+- **Work mode:** On-site
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-08-26
+
+### [Assistant to the Associate Deans](https://ca.indeed.com/viewjob?jk=b29e50a30dca2c80) — British Columbia Institute of Technology
+- 📍 **Location:** Burnaby, BC, CA
+- **Work mode:** On-site
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-26
+
+### [Store Associate](https://ca.indeed.com/viewjob?jk=8553bf743dd7f4bd) — SNDL
+- 📍 **Location:** Regina, SK, CA
+- **Work mode:** On-site
+- **Job type:** parttime
+- 🕒 **Posted:** 2026-09-29
+
+### [Associate Financial Analyst (Contract)](https://ca.indeed.com/viewjob?jk=55e5d347e730a32b) — Agricorp
+- 📍 **Location:** Guelph, ON, CA
+- **Work mode:** On-site
+- 🕒 **Posted:** 2026-09-29
+
+### [Retail Support Associate | Metropolis at Metrotown](https://ca.indeed.com/viewjob?jk=432c65f4b6877c97) — Telus
+- 📍 **Location:** Burnaby, BC, CA
+- **Work mode:** On-site
+- 🕒 **Posted:** 2026-09-29
+
+### [Retail Support Associate | Market Mall](https://ca.indeed.com/viewjob?jk=b4dd7413c01618a9) — Telus
+- 📍 **Location:** Calgary, AB, CA
+- **Work mode:** On-site
+- 🕒 **Posted:** 2026-09-29
+
+### [Microsoft Business Central Associate - Fall 2027](https://ca.indeed.com/viewjob?jk=7407c0ed0c2adb59) — RSM
+- 📍 **Location:** Vancouver, BC, CA
+- **Work mode:** On-site
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-28
+
+### [Field Service Technician I - Salisbury](https://ca.indeed.com/viewjob?jk=d1976021c8507536) — NCR
+- 📍 **Location:** Salisbury, NB, CA
+- **Work mode:** On-site
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-22
+
+### [Field Service Technician - Dildo](https://ca.indeed.com/viewjob?jk=5d62df732e9a9cae) — NCR
+- 📍 **Location:** Dildo, NL, CA
+- **Work mode:** On-site
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-22
+
+### [Field Service Technician - Deer Lake](https://ca.indeed.com/viewjob?jk=a840f295c54f6f02) — NCR
+- 📍 **Location:** Deer Lake, NL, CA
+- **Work mode:** On-site
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-22
+
+### [Deployment Consultant, Infusion (ON, QC)](https://ca.indeed.com/viewjob?jk=7305fe28af602255) — BD
+- 📍 **Location:** Mississauga, ON, CA
+- **Work mode:** On-site
+- 🕒 **Posted:** 2026-09-21
+
+### [Social Worker, MSW Standard, Child & Youth Mental Health, Outpatient Psych - BC Children's Hospital](https://ca.indeed.com/viewjob?jk=521898b907cc2f51) — Provincial Health Services Authority (PHSA)
+- 📍 **Location:** Vancouver, BC, CA
+- **Work mode:** Remote
+- **Job type:** temporary, parttime
+- 🕒 **Posted:** 2026-09-28
+
+### [Social Worker, BSW, Oak Tree - BC Women’s Hospital & Health Centre](https://ca.indeed.com/viewjob?jk=ae6152dd750e5b55) — Provincial Health Services Authority (PHSA)
+- 📍 **Location:** Vancouver, BC, CA
+- **Work mode:** Remote
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-28
+
+### [Customer Service Representative, Service BC Help Desk](https://ca.indeed.com/viewjob?jk=93385c3dfe5b0d24) — Maximus
+- 📍 **Location:** Victoria, BC, CA
+- **Work mode:** On-site
+- 🕒 **Posted:** 2026-09-25
+
+### [IT Helpdesk Support (Entry Level)](https://ca.indeed.com/viewjob?jk=3da4910e18616ed7) — Virtual TechPool
+- 📍 **Location:** North York, ON, CA
+- **Work mode:** Remote
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-27
+
+### [IT Support Specialist](https://ca.indeed.com/viewjob?jk=0ae148d19b9ed82e) — Car Connections Inc.
+- 📍 **Location:** Calgary, AB, CA
+- **Work mode:** Remote
+- **Job type:** parttime, fulltime, contract
+- 🕒 **Posted:** 2026-09-24
+
+### [User Support Technician](https://ca.indeed.com/viewjob?jk=bb0e4c18c920ca3f) — Bravo Security Services`
+- 📍 **Location:** Calgary, AB, CA
+- **Work mode:** Remote
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-21
+
+### [Service Desk Technician](https://ca.indeed.com/viewjob?jk=a7cf8868af53771e) — One Kids Place
+- 📍 **Location:** North Bay, ON, CA
+- **Work mode:** Remote
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-18
+
+### [Mobile IT Technician](https://ca.indeed.com/viewjob?jk=89a6329b89cb22c6) — Claridge Homes
+- 📍 **Location:** Ottawa, ON, CA
+- **Work mode:** Remote
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-14
+
+### [IT Technician](https://ca.indeed.com/viewjob?jk=317b7fa50c0a75ff) — Kootenay Computer
+- 📍 **Location:** Cranbrook, BC, CA
+- **Work mode:** Remote
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-14
+
+### [IT Technician](https://ca.indeed.com/viewjob?jk=3c519c9ad997c23b) — Kootenay Computer
+- 📍 **Location:** Cranbrook, BC, CA
+- **Work mode:** Remote
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-14
+
+### [L1 Support Hero](https://ca.indeed.com/viewjob?jk=07f92273b66fa8bb) — GAM Technical Services Inc
+- 📍 **Location:** Toronto, ON, CA
+- **Work mode:** On-site
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-09
+
+### [Technical Support Specialist](https://ca.indeed.com/viewjob?jk=55c5dd2567fd0412) — SITECH EASTERN CANADA
+- 📍 **Location:** Burlington, ON, CA
+- **Work mode:** Remote
+- 🕒 **Posted:** 2026-09-24
+
+### [Desktop & Network Support Engineer](https://ca.indeed.com/viewjob?jk=e3d8a09a30606689) — Streamline I.T. Solutions Inc
+- 📍 **Location:** Sherwood Park, AB, CA
+- **Work mode:** Remote
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-23
+
+### [Small Business Associate](https://ca.indeed.com/viewjob?jk=b93fd8266e580ae5) — TD
+- 📍 **Location:** Windsor, ON, CA
+- **Work mode:** On-site
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-09-29
