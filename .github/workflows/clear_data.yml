@@ -46,6 +46,7 @@ jobs:
               "output/hiringcafe_jobs.json",
               "output/calcareers_jobs.json",
               "output/usajobs_jobs.json",
+              "output/jobbank_jobs.json",
               "output/governmentjobs_jobs.json",
               "output/calopps_jobs.json",
           ]
@@ -76,6 +77,7 @@ jobs:
             output/glassdoor_jobs.json output/ziprecruiter_jobs.json \
             output/google_jobs.json output/hiringcafe_jobs.json \
             output/calcareers_jobs.json output/usajobs_jobs.json \
+            output/jobbank_jobs.json \
             output/governmentjobs_jobs.json output/calopps_jobs.json
           git diff --cached --quiet \
             && echo "Nothing to clear (output already empty)." \

@@ -2184,6 +2184,287 @@ def save_usajobs_results(jobs: list):
 
 
 # ---------------------------------------------------------------------------
+# Job Bank Canada (jobbank.gc.ca) — federal job board with Québec/Canada
+# postings in EN + FR. Public HTML search (no API key / no login).
+#
+# Query: /jobsearch/jobsearch?searchstring=…&locationstring=…&sort=D[&page=N]
+# Optional workplace skills: fskl=15141 (Remote), fskl=100000 (Hybrid).
+# Cards expose title (.noctitle), employer (.business), location, salary,
+# date, and a .telework badge (Remote / Hybrid / On site).
+# robots.txt Crawl-delay: 5 — keep requests polite.
+# ---------------------------------------------------------------------------
+
+JOBBANK_BASE = "https://www.jobbank.gc.ca"
+JOBBANK_SEARCH_URL = f"{JOBBANK_BASE}/jobsearch/jobsearch"
+JOBBANK_TERMS = _cfg("search_terms.job_bank", [])
+JOBBANK_LOCATIONS = _cfg("locations.job_bank", [
+    {"location": "Quebec"},
+    {"location": "Montreal"},
+    {"location": "Canada"},
+])
+JOBBANK_MAX_PAGES = int(_cfg("job_bank.max_pages", 1) or 1)
+JOBBANK_BACKFILL_PAGES = int(_cfg("job_bank.backfill_pages", 3) or 3)
+JOBBANK_PREFER_REMOTE = bool(_cfg("job_bank.prefer_remote", True))
+# Remote / Hybrid workplace filter codes from Job Bank's sidebar checkboxes.
+JOBBANK_FSKL_REMOTE = "15141"
+JOBBANK_FSKL_HYBRID = "100000"
+# robots.txt Crawl-delay: 5 — never go faster than this between requests.
+JOBBANK_REQUEST_DELAY = max(5.0, float(_cfg("job_bank.request_delay", 5.0) or 5.0))
+
+_JOBBANK_MONTHS = {
+    "january": 1, "february": 2, "march": 3, "april": 4, "may": 5, "june": 6,
+    "july": 7, "august": 8, "september": 9, "october": 10, "november": 11,
+    "december": 12,
+    "janvier": 1, "février": 2, "fevrier": 2, "mars": 3, "avril": 4, "mai": 5,
+    "juin": 6, "juillet": 7, "août": 8, "aout": 8, "septembre": 9,
+    "octobre": 10, "novembre": 11, "décembre": 12, "decembre": 12,
+}
+
+
+def _jobbank_clean(text: str) -> str:
+    import html as html_mod
+    return re.sub(r"\s+", " ", html_mod.unescape(re.sub(r"<[^>]+>", " ", text or ""))).strip()
+
+
+def _jobbank_parse_date(raw: str) -> str:
+    """'September 24, 2026' / '24 septembre 2026' → ISO date, else stripped text."""
+    s = _jobbank_clean(raw)
+    m = re.search(
+        r"([A-Za-zÀ-ÿ]+)\s+(\d{1,2}),?\s+(\d{4})", s
+    ) or re.search(
+        r"(\d{1,2})\s+([A-Za-zÀ-ÿ]+)\s+(\d{4})", s
+    )
+    if not m:
+        return s
+    g1, g2, g3 = m.group(1), m.group(2), m.group(3)
+    if g1.isdigit():
+        day, month_name, year = int(g1), g2, g3
+    else:
+        month_name, day, year = g1, int(g2), g3
+    month = _JOBBANK_MONTHS.get(month_name.lower())
+    if not month:
+        return s
+    return f"{year}-{month:02d}-{day:02d}"
+
+
+def _jobbank_posting_url(href: str) -> str:
+    """Normalize /jobsearch/jobposting/<id>;jsessionid=… → clean absolute URL."""
+    href = (href or "").strip()
+    if not href:
+        return ""
+    href = re.sub(r";jsessionid=[^?#]*", "", href, flags=re.I)
+    href = re.sub(r"[?#].*$", "", href)
+    if href.startswith("http"):
+        return href
+    return JOBBANK_BASE + ("/" if not href.startswith("/") else "") + href
+
+
+def _jobbank_telework_fields(badge: str) -> tuple[bool | None, str]:
+    """Map Job Bank .telework badge → (is_remote, work_arrangement label)."""
+    t = (badge or "").strip().lower()
+    if not t:
+        return None, ""
+    if t in ("remote", "télétravail", "teletravail", "virtual", "virtuel"):
+        return True, classify_work_arrangement(t, is_remote=True)
+    if t in ("hybrid", "hybride"):
+        return None, classify_work_arrangement(t)
+    if t in ("on site", "onsite", "sur place", "présentiel", "presentiel"):
+        return False, classify_work_arrangement(t, is_remote=False)
+    return None, classify_work_arrangement(t)
+
+
+def _parse_jobbank_articles(page_html: str) -> list[dict]:
+    """Parse Job Bank search-result <article> cards into job dicts (no filtering)."""
+    if not page_html:
+        return []
+    article_re = re.compile(
+        r'<article[^>]*id=["\']article-(\d+)["\'][^>]*>([\s\S]*?)</article>', re.I
+    )
+    jobs: list[dict] = []
+    for job_id, body in article_re.findall(page_html):
+        href_m = re.search(
+            r'<a[^>]*class=["\'][^"\']*\bresultJobItem\b[^"\']*["\'][^>]*href=["\']([^"\']+)["\']',
+            body, re.I,
+        ) or re.search(r'href=["\']([^"\']*jobposting/\d+[^"\']*)["\']', body, re.I)
+        title_m = re.search(r'class=["\']noctitle["\'][^>]*>([\s\S]*?)</span>', body, re.I)
+        if not title_m:
+            continue
+        title = _jobbank_clean(title_m.group(1))
+        if not title:
+            continue
+        company_m = re.search(r'<li[^>]*class=["\']business["\'][^>]*>([\s\S]*?)</li>', body, re.I)
+        loc_m = re.search(r'<li[^>]*class=["\']location["\'][^>]*>([\s\S]*?)</li>', body, re.I)
+        date_m = re.search(r'<li[^>]*class=["\']date["\'][^>]*>([\s\S]*?)</li>', body, re.I)
+        sal_m = re.search(r'<li[^>]*class=["\']salary["\'][^>]*>([\s\S]*?)</li>', body, re.I)
+        tele_m = re.search(r'<span[^>]*class=["\']telework["\'][^>]*>([\s\S]*?)</span>', body, re.I)
+        salary_raw = _jobbank_clean(sal_m.group(1)) if sal_m else ""
+        salary = re.sub(r"(?i)^salary\s*", "", salary_raw).strip()
+        telework = _jobbank_clean(tele_m.group(1)) if tele_m else ""
+        is_remote, arrangement = _jobbank_telework_fields(telework)
+        location = _jobbank_clean(loc_m.group(1)) if loc_m else ""
+        location = re.sub(r"(?i)^location\s*", "", location).strip()
+        url = _jobbank_posting_url(href_m.group(1) if href_m else f"/jobsearch/jobposting/{job_id}")
+        jobs.append({
+            "company": _jobbank_clean(company_m.group(1)) if company_m else "Employer",
+            "title": title,
+            "location": location,
+            "url": url,
+            "date_posted": _jobbank_parse_date(date_m.group(1) if date_m else ""),
+            "salary": salary,
+            "ats": "JobBank",
+            "is_remote": is_remote,
+            "telework": telework,
+            "work_arrangement": arrangement or classify_work_arrangement(
+                location, telework, is_remote=is_remote
+            ),
+        })
+    return jobs
+
+
+def _jobbank_location_strings() -> list[str]:
+    locs: list[str] = []
+    for entry in JOBBANK_LOCATIONS:
+        if isinstance(entry, dict):
+            name = (entry.get("location") or entry.get("name") or "").strip()
+        else:
+            name = str(entry or "").strip()
+        if name and name not in locs:
+            locs.append(name)
+    return locs or ["Quebec", "Canada"]
+
+
+def _jobbank_build_url(term: str, *, location: str = "", page: int = 1,
+                       fskl: list[str] | None = None, lang: str = "") -> str:
+    params: list[tuple[str, str]] = [
+        ("searchstring", term),
+        ("sort", "D"),
+    ]
+    if location:
+        params.append(("locationstring", location))
+    if page > 1:
+        params.append(("page", str(page)))
+    if lang:
+        params.append(("lang", lang))
+    for code in fskl or []:
+        params.append(("fskl", code))
+    return JOBBANK_SEARCH_URL + "?" + urllib.parse.urlencode(params)
+
+
+def scrape_jobbank_recent(*, max_pages: int | None = None) -> list:
+    """Junior/entry IT roles from Job Bank Canada. Guarded — returns previous
+    results if the board is unreachable or returns nothing parseable."""
+    pages = max_pages if max_pages is not None else JOBBANK_MAX_PAGES
+    pages = max(1, min(pages, 5))  # hard cap — polite + fail-safe
+    terms = list(JOBBANK_TERMS) or [
+        "IT support", "help desk", "technicien informatique", "soutien technique",
+    ]
+    locations = _jobbank_location_strings()
+    print(f"🇨🇦 Scraping Job Bank Canada ({len(terms)} term(s) × "
+          f"{len(locations)} location(s), ≤{pages} page(s), "
+          f"delay {JOBBANK_REQUEST_DELAY:.0f}s)...")
+
+    jobs_by_url: dict[str, dict] = {}
+    scanned = 0
+    fetch_ok = 0
+    blocked = False
+
+    # Query plans: (location, fskl_list, lang). Prefer remote/hybrid as
+    # separate Canada-wide passes — Job Bank's fskl codes are per-checkbox;
+    # combining them can over-constrain results to the empty set.
+    plans: list[tuple[str, list[str], str]] = [
+        (loc, [], "") for loc in locations
+    ]
+    if JOBBANK_PREFER_REMOTE:
+        plans.append(("", [JOBBANK_FSKL_REMOTE], ""))
+        plans.append(("", [JOBBANK_FSKL_HYBRID], ""))
+
+    try:
+        for term in terms:
+            # French terms: hint lang=fra when the query looks French.
+            lang = "fra" if re.search(
+                r"[àâäéèêëïîôùûüç]|technicien|soutien|développeur|developpeur|"
+                r"télétravail|teletravail|informatique",
+                term, re.I,
+            ) else ""
+            for location, fskl, _lang_unused in plans:
+                use_lang = lang
+                for page in range(1, pages + 1):
+                    time.sleep(JOBBANK_REQUEST_DELAY)
+                    url = _jobbank_build_url(
+                        term, location=location, page=page, fskl=fskl, lang=use_lang
+                    )
+                    page_html = fetch(url, retries=2, _base_wait=20.0)
+                    if not page_html:
+                        blocked = True
+                        break
+                    if re.search(r"captcha|access denied|request blocked", page_html, re.I):
+                        print(f"  ⛔ Job Bank possible block on {term!r}; stopping early")
+                        blocked = True
+                        break
+                    fetch_ok += 1
+                    articles = _parse_jobbank_articles(page_html)
+                    scanned += len(articles)
+                    if not articles:
+                        break
+                    kept_on_page = 0
+                    for job in articles:
+                        if not title_matches_keywords(job["title"]):
+                            continue
+                        loc = job.get("location", "")
+                        # Remote/hybrid Canada-wide pass: accept empty/"Canada"/
+                        # remote labels; geo searches still require target loc.
+                        if fskl:
+                            loc_ok = (
+                                is_target_location(loc)
+                                or job.get("is_remote") is True
+                                or bool(re.search(
+                                    r"\b(remote|hybrid|télétravail|teletravail|"
+                                    r"canada|various|plusieurs)\b",
+                                    loc, re.I,
+                                ))
+                                or not loc
+                            )
+                        else:
+                            loc_ok = is_target_location(loc) or job.get("is_remote") is True
+                        if not loc_ok:
+                            continue
+                        if job["url"] in jobs_by_url:
+                            continue
+                        jobs_by_url[job["url"]] = job
+                        kept_on_page += 1
+                    # Stop paging this plan if the page was sparse / exhausted.
+                    if len(articles) < 5:
+                        break
+                if blocked:
+                    break
+            if blocked:
+                break
+    except (URLError, TimeoutError, OSError, ValueError) as e:
+        print(f"  ⛔ Job Bank unreachable ({e}); preserving previous results")
+        return _load_prev_jobs(os.path.join(OUTPUT_DIR, "jobbank_jobs.json"))
+
+    jobs = list(jobs_by_url.values())
+    print(f"  ✅ Job Bank: {len(jobs)} role(s) "
+          f"(from {scanned} cards, {fetch_ok} page fetch(es))")
+    if not jobs and (blocked or fetch_ok == 0 or scanned == 0):
+        print("  ℹ️  Preserving previous Job Bank results (empty/blocked run)")
+        return _load_prev_jobs(os.path.join(OUTPUT_DIR, "jobbank_jobs.json"))
+    return jobs
+
+
+def save_jobbank_results(jobs: list):
+    save_jobs_output(
+        jobs,
+        basename="jobbank_jobs",
+        title=f"🇨🇦 Job Bank — {PROFILE_LABEL} Roles",
+        subtitle="jobbank.gc.ca · Québec / Canada · EN+FR",
+        accent="#c8102e",
+        empty_message="No new Job Bank roles since the last run.",
+        window_label="current Job Bank postings",
+    )
+
+
+# ---------------------------------------------------------------------------
 # GovernmentJobs.com / NEOGOV — state, county & city agencies (air & water
 # districts, county environmental health, etc.). HTML search; keyword-filterable.
 # Post-filtered to CA/OR (the board is nationwide). Source from the OpenPostings
@@ -3692,6 +3973,15 @@ if __name__ == "__main__":
 
     if "--usajobs-only" in sys.argv:
         save_usajobs_results(scrape_usajobs_recent())
+        sys.exit(0)
+
+    if "--jobbank-only" in sys.argv:
+        save_jobbank_results(scrape_jobbank_recent())
+        sys.exit(0)
+
+    if "--jobbank-backfill" in sys.argv:
+        print(f"🔁 Job Bank backfill (≤{JOBBANK_BACKFILL_PAGES} page(s) per query)…")
+        save_jobbank_results(scrape_jobbank_recent(max_pages=JOBBANK_BACKFILL_PAGES))
         sys.exit(0)
 
     if "--governmentjobs-only" in sys.argv:

@@ -209,6 +209,24 @@
       "Deployment Technician",
       "Technicien informatique",
       "Agent de soutien technique"
+    ],
+    "job_bank": [
+      "IT support",
+      "help desk",
+      "service desk",
+      "desktop support",
+      "technical support",
+      "junior IT",
+      "deployment technician",
+      "junior developer",
+      "technicien informatique",
+      "technicien en informatique",
+      "soutien technique",
+      "agent de soutien technique",
+      "technicien support",
+      "développeur junior",
+      "soutien informatique télétravail",
+      "remote IT support"
     ]
   },
 
@@ -240,6 +258,10 @@
       { "location": "Canada", "country": "Canada" }
     ],
     "hiring_cafe": [],
+    "job_bank": [
+      { "location": "Quebec" },
+      { "location": "Canada" }
+    ],
     "linkedin_partitions": {
       "states": [],
       "high_volume": {
@@ -275,6 +297,14 @@
   "hiring_cafe": {
     "_comment": "Disabled for this fork — HiringCafe public route is US-centric.",
     "max_pages": 0
+  },
+
+  "job_bank": {
+    "_comment": "Job Bank Canada (jobbank.gc.ca). robots.txt Crawl-delay: 5. prefer_remote adds a Canada-wide Remote+Hybrid pass (fskl=15141/100000).",
+    "max_pages": 1,
+    "backfill_pages": 3,
+    "prefer_remote": true,
+    "request_delay": 5.0
   },
 
   "employers": {
