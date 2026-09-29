@@ -10,7 +10,15 @@
   },
   "fit_terms": [
     {
-      "pattern": "\\b(junior|entry[- ]?level|d[eé]butant|associate)\\b.*\\b(IT|support|technician|technicien|help\\s*desk|service desk|developer|d[eé]veloppeur|programmeur)\\b|\\b(IT|support|technician|technicien|help\\s*desk|service desk)\\b.*\\b(junior|entry[- ]?level|d[eé]butant|associate)\\b",
+      "pattern": "\\b(deploy(?:ment|ing)?|migration|rollout|d[eé]ploiement|go[- ]?live|software deploy|endpoint (?:manag|deploy)|device provision|Intune|SCCM|\\bPOS\\b|store systems?|scale[- ]?(?:tech|management)|E-?plum|E-?ScaleLink)\\b",
+      "weight": 20
+    },
+    {
+      "pattern": "\\b(VPN|remote desktop|\\bRDP\\b|PowerShell|Active Directory|GlobalProtect)\\b.*\\b(deploy|migration|rollout|install|script|remote)\\b|\\b(deploy|migration|rollout|remote (?:IT|support|technician))\\b.*\\b(VPN|RDP|PowerShell|Active Directory)\\b",
+      "weight": 19
+    },
+    {
+      "pattern": "\\b(junior|entry[- ]?level|d[eé]butant|associate)\\b.*\\b(IT|support|technician|technicien|help\\s*desk|service desk|developer|d[eé]veloppeur|programmeur|deploy|migration)\\b|\\b(IT|support|technician|technicien|help\\s*desk|service desk|deploy|migration)\\b.*\\b(junior|entry[- ]?level|d[eé]butant|associate)\\b",
       "weight": 18
     },
     {
@@ -18,8 +26,8 @@
       "weight": 17
     },
     {
-      "pattern": "\\b(deployment (?:technician|specialist)|migration (?:technician|specialist)|IT deployment|rollout (?:technician|specialist)|implementation technician|technicien (?:de |au )?d[eé]ploiement|technicien migration)\\b",
-      "weight": 16
+      "pattern": "\\b(deployment (?:technician|specialist)|migration (?:technician|specialist|analyst)|IT (?:deployment|rollout)|rollout (?:technician|specialist)|implementation (?:technician|analyst)|technicien (?:de |au )?d[eé]ploiement|technicien (?:migration|terrain|installation)|field IT|POS technician|store systems)\\b",
+      "weight": 17
     },
     {
       "pattern": "\\b(junior systems? admin|junior (?:sysadmin|network|cloud|devops|developer|programmer|software|python|QA|security|SOC)|systems? administrator I|associate (?:network|cloud|software|developer)|network technician|NOC (?:technician|analyst)|administrateur syst[eè]me junior|technicien (?:r[eé]seau|niveau [12]|N[12])|programmeur junior|d[eé]veloppeur junior)\\b",
@@ -35,7 +43,7 @@
     },
     {
       "pattern": "\\b(IT support technician|IT support agent|technical support (?:agent|technician|representative|specialist)|desktop support|help\\s*desk|service desk|endpoint support|technicien informatique|technicien soutien|agent de soutien|agent de support|analyste centre de services)\\b",
-      "weight": 14
+      "weight": 12
     },
     {
       "pattern": "\\b(VPN|remote desktop|\\bRDP\\b|PowerShell|Active Directory|E-?ScaleLink|E-?plum|store server|PLU|CyberArk|GlobalProtect)\\b",
@@ -47,11 +55,11 @@
     },
     {
       "pattern": "\\b(software (?:deployment|update|install)|deploy(?:ed|ing)? (?:software|updates|packages)|validate(?:d|ing)? install|documented (?:technical )?intervention)\\b",
-      "weight": 12
+      "weight": 14
     },
     {
-      "pattern": "\\b(retail IT|POS support|scale[- ]management|grocery|Sobeys|IGA|CompuCom)\\b",
-      "weight": 11
+      "pattern": "\\b(retail IT|POS support|scale[- ]management|grocery|Sobeys|IGA|CompuCom|Empire)\\b",
+      "weight": 14
     },
     {
       "pattern": "\\b(application support|desktop analyst|IT support analyst|support specialist|support agent)\\b",

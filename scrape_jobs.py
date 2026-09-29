@@ -184,15 +184,44 @@ _IT_DOMAIN_SIGNAL_RE = re.compile(
     r"technician|technicien|"
     r"help\s*desk|helpdesk|service\s*desk|centre\s+de\s+services|"
     r"desktop|endpoint|poste\s+de\s+travail|"
-    r"deploy(?:ment|ing)?|d[eé]ploiement|migration|rollout|"
+    r"deploy(?:ment|ing)?|d[eé]ploiement|migration|rollout|go[- ]?live|"
+    r"implementation|provisioning|imaging|sccm|intune|mdm|"
     r"it\s+support|technical\s+support|tech\s+support|"
     r"systems?\s+support|application\s+support|network\s+support|"
     r"soutien\s+technique|support\s+technique|soutien\s+informatique|"
-    r"support\s+engineer|field\s+(?:service\s+)?tech|"
+    r"support\s+engineer|field\s+(?:service\s+)?tech|field\s+IT|"
     r"agent\s+(?:de\s+)?(?:soutien|support)|"
+    r"\bPOS\b|store\s+systems?|retail\s+(?:IT|tech)|"
+    r"installateur|installation|technicien\s+terrain|"
     r"noc"
     r")\b"
 )
+
+# Titles that look like Sobeys/CompuCom-style rollout / junior IT paths even
+# when they don't hit an exact keywords.include phrase (e.g. "Technicien(ne)
+# – déploiement", "Data Migration Analyst", "Device Provisioning Technician").
+_VARIETY_KEEP_RE = re.compile(
+    r"(?i)(?:"
+    r"deploy(?:ment|ing)?|d[eé]ploiement|migration|rollout|go[- ]?live|"
+    r"implementation|implement(?:ation)?|"
+    r"provisioning|imaging|\bSCCM\b|\bIntune\b|\bMDM\b|endpoint\s+manag|"
+    r"device\s+provision|software\s+deploy|package\s+deploy|"
+    r"\bPOS\b|store\s+systems?|retail\s+(?:IT|tech(?:nology)?|systems?)|"
+    r"field\s+(?:IT\s+)?(?:tech|technician)|IT\s+rollout|IT\s+deployment|"
+    r"installateur|installation\s+tech|technicien\s+(?:terrain|d['’]?installation)|"
+    r"commissioning|data\s+conversion|data\s+migration|"
+    r"asset\s+management|scale\s+tech|"
+    r"junior\s+(?:cloud|devops|soc|security|implementation|automation)|"
+    r"cloud\s+support|SOC\s*(?:analyst)?\s*L?[12]?|"
+    r"M365\s+admin|Azure\s+support|AWS\s+(?:support|cloud\s+support)|"
+    r"build\s*(?:&|and)\s*release|release\s+tech|"
+    r"ERP\s+(?:support|implement)|SAP\s+support|"
+    r"technicien.{0,20}d[eé]ploiement|analyste.{0,15}migration|"
+    r"conversion\s+analyst|integration\s+tech"
+    r")"
+)
+
+
 def _has_soft_bypass_signal(title: str) -> bool:
     """Junior/entry cue OR IT-domain support/deployment/technician word."""
     return bool(
@@ -353,13 +382,14 @@ def _title_is_excluded(title: str) -> bool:
 
 
 def title_matches_keywords(title: str) -> bool:
-    """True if a job title matches any keyword in keywords.include and is not
-    excluded by keywords.exclude (with entry-level soft-exclude bypass).
-    This is the config-driven keyword filter used by all non-LinkedIn-partition
-    sources."""
+    """True if a job title is not excluded and matches keywords.include OR a
+    variety IT-domain keep pattern (deployment/migration/field/POS/etc.).
+    """
     if _title_is_excluded(title):
         return False
-    return bool(_KEYWORD_RE.search(title))
+    if _KEYWORD_RE.search(title):
+        return True
+    return bool(_VARIETY_KEEP_RE.search(title or ""))
 
 
 def text_matches_keywords(title: str, *parts: str) -> bool:
@@ -367,7 +397,9 @@ def text_matches_keywords(title: str, *parts: str) -> bool:
     if _title_is_excluded(title or ""):
         return False
     text = " ".join([title or "", *(p or "" for p in parts)])
-    return bool(_KEYWORD_RE.search(text))
+    if _KEYWORD_RE.search(text):
+        return True
+    return bool(_VARIETY_KEEP_RE.search(text))
 
 
 # Geographic scope for the curated/legacy ATS path and the NEOGOV board (which
