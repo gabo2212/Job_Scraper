@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "description": "Deterministic fit scoring for Gabriel Fortin — ENTRY-LEVEL / JUNIOR IT (support L1/L2, deployment, junior dev/automation) from Québec, Canada. Based on gab-cloud.com (CompuCom/Sobeys–IGA, Cirque du Soleil IT support, CDI AI program). No bachelor's; ~1 yr experience.",
+  "description": "Deterministic fit scoring for Gabriel Fortin — ENTRY-LEVEL / JUNIOR IT (support L1/L2, deployment, junior security/ops, junior dev/automation) from Québec, Canada. Based on CV 2026 (CompuCom/Sobeys–IGA, Cirque du Soleil IT support, HTB Mythical Mini Pro Lab + AWS Fortress, CDI AI program). No bachelor's; ~1 yr experience.",
   "settings": {
     "title_multiplier": 3,
     "body_multiplier": 1,
@@ -30,8 +30,12 @@
       "weight": 14
     },
     {
-      "pattern": "\\b(VPN|remote desktop|\\bRDP\\b|PowerShell|Active Directory|E-?ScaleLink|E-?plum|store server|PLU)\\b",
+      "pattern": "\\b(VPN|remote desktop|\\bRDP\\b|PowerShell|Active Directory|E-?ScaleLink|E-?plum|store server|PLU|CyberArk|GlobalProtect)\\b",
       "weight": 13
+    },
+    {
+      "pattern": "\\b(Hack The Box|\\bHTB\\b|Mythical Mini|AWS Fortress|AD\\s*CS|privilege escalation|lateral movement|pentest|PAM|privileged access)\\b",
+      "weight": 10
     },
     {
       "pattern": "\\b(software (?:deployment|update|install)|deploy(?:ed|ing)? (?:software|updates|packages)|validate(?:d|ing)? install|documented (?:technical )?intervention)\\b",
@@ -75,7 +79,8 @@
     "deployment|migration|rollout|d[eé]ploiement",
     "remote desktop|\\bVPN\\b|\\bRDP\\b|PowerShell",
     "service desk|help\\s*desk|desktop support|technicien informatique|agent de soutien",
-    "Microsoft 365|Active Directory|Windows 1[01]",
+    "Microsoft 365|Active Directory|Windows 1[01]|CyberArk|GlobalProtect",
+    "Hack The Box|\\bHTB\\b|pentest|privileged access|\\bPAM\\b",
     "Qu[eé]bec|Montreal|Canada remote|t[eé]l[eé]travail"
   ],
   "poor_fit_terms": [
@@ -140,6 +145,13 @@
       "description": "Level 1 help desk, password resets, M365, remote Canada. Junior or entry level welcome.",
       "expected_score_range": [70, 100],
       "rationale": "L1 service desk remote"
+    },
+    {
+      "title": "Junior SOC Analyst — Entry Level",
+      "company": "Example MSSP",
+      "description": "Junior security analyst. Active Directory, CyberArk, GlobalProtect VPN, Hack The Box experience welcome. Remote from Québec. Entry-level.",
+      "expected_score_range": [70, 100],
+      "rationale": "Junior security + tools/certs from CV"
     },
     {
       "title": "IT Support Technician III",

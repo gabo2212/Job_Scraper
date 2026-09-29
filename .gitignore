@@ -7,6 +7,20 @@ resume.md
 resume.txt
 shortlist.*
 
+# CV / résumé files and extracts — never commit personal documents
+*.pdf
+CV*
+cv*
+resume*
+Resume*
+RESUME*
+cv_text*
+resume_text*
+*_CV_*
+*_cv_*
+CV_*.txt
+resume_*.txt
+
 # ── Fork-owner customization ──────────────────────────────────────────────────
 # Upstream never commits these so pulling upstream never creates merge conflicts.
 # Fork owners: copy from *.example.json, customize, then commit to YOUR fork.
