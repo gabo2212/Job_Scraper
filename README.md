@@ -125,7 +125,7 @@ Without these secrets, notifications are simply off and everything else works.
 
 ## Step 7 — AI résumé fit-scoring (optional, advanced)
 
-`triage_agent.py` can score each role against your résumé with the [**Claude API**](https://www.anthropic.com/api) (paid, \~pennies/run). It needs an `ANTHROPIC_API_KEY` secret plus your profile/résumé in secrets. Entirely optional — leave the `triage.yml` / `evals.yml` workflows **disabled** if you don't use it (**Actions → workflow → ⋯ → Disable**).
+`triage_agent.py` can score each role against your résumé with the **OpenAI** or **Anthropic** API (paid, \~pennies/run). Prefer `OPENAI_API_KEY` (default model `gpt-5.6-luna`) plus profile/résumé secrets; optional Variables `TRIAGE_PROVIDER` / `TRIAGE_MODEL`. Entirely optional — leave the `triage.yml` / `evals.yml` workflows **disabled** if you don't use it (**Actions → workflow → ⋯ → Disable**).
 
 ### Turning sources on / off
 
@@ -456,13 +456,16 @@ Output format:
 
 ### Optional: nightly fit-scoring agent (`triage.yml`)
 
-`triage_agent.py` scores each new role against your profile with the Claude API. It is **optional** and needs three repo secrets (**Settings → Secrets and variables → Actions**):
+`triage_agent.py` scores each new role against your profile (OpenAI by default, Anthropic also supported). It is **optional** and needs repo secrets (**Settings → Secrets and variables → Actions**):
 
-| Secret | Value |
+| Secret / Variable | Value |
 |------------------------------------|------------------------------------|
-| `ANTHROPIC_API_KEY` | Anthropic API key |
+| `OPENAI_API_KEY` | OpenAI API key (preferred when set) |
+| `ANTHROPIC_API_KEY` | Anthropic API key (alternate) |
 | `CANDIDATE_PROFILE` | Short profile text (your background/targets — kept out of the public repo) |
 | `CANDIDATE_RESUME` | Resume / CV text (kept out of the public repo) |
+| `TRIAGE_MODEL` *(Variable)* | Optional model id (default `gpt-5.6-luna` for OpenAI) |
+| `TRIAGE_PROVIDER` *(Variable)* | Optional `openai` or `anthropic` (else auto-detect) |
 
 Paste your CV text into `CANDIDATE_RESUME`. Without these secrets, leave `triage.yml` and `evals.yml` disabled (Actions → ⋯ → Disable workflow) — the scrapers and dashboard work fully without them; `scores.json` is optional.
 
@@ -478,7 +481,7 @@ Paste your CV text into `CANDIDATE_RESUME`. Without these secrets, leave `triage
 ├── triage.html                     # Interactive dashboard (served by GitHub Pages)
 ├── scrape_jobs.py                  # All scraping logic (reads config.json)
 ├── notify.py                       # Pushover notifications (optional)
-├── triage_agent.py                 # Optional nightly fit-scoring agent (Claude API)
+├── triage_agent.py                 # Optional nightly fit-scoring agent (OpenAI/Anthropic)
 ├── eval_triage.py                  # Golden-case evals for the triage agent
 ├── requirements.txt                # python-jobspy (Indeed, Glassdoor, ZipRecruiter, Google Jobs)
 ├── output/                         # Scraped data — gitignored upstream, populated by your CI

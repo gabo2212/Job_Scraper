@@ -32,15 +32,20 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install Anthropic SDK
-        run: pip install anthropic
+      - name: Install model SDKs
+        run: pip install openai anthropic
 
       # Profile/resume arrive as env vars straight from Actions secrets —
       # never written to disk, never committed (the repo is public).
+      # Provider: TRIAGE_PROVIDER (openai|anthropic) or auto-detect from keys
+      # (prefer OpenAI). Model: TRIAGE_MODEL Variable, default gpt-5.6-luna.
       # --limit bounds worst-case daily spend; raise/lower as the cost knob.
       - name: Run triage agent
         env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          TRIAGE_PROVIDER: ${{ vars.TRIAGE_PROVIDER }}
+          TRIAGE_MODEL: ${{ vars.TRIAGE_MODEL }}
           CANDIDATE_PROFILE: ${{ secrets.CANDIDATE_PROFILE }}
           CANDIDATE_RESUME: ${{ secrets.CANDIDATE_RESUME }}
         run: python triage_agent.py --limit 300

@@ -14,7 +14,7 @@ Designed to be forked. No server. No paid services required (AI triage is option
 | `config.example.json` | Documented template. **Do not edit** — kept for upstream sync. |
 | `scoring_profile.json` | AI triage calibration — fit/poor-fit terms. Gitignored upstream. Copy from `scoring_profile.example.json`. |
 | `scrape_jobs.py` | Main scraper. Dispatched by all watcher workflows. |
-| `triage_agent.py` | Claude API fit-scoring agent. Run by `triage.yml`. |
+| `triage_agent.py` | OpenAI/Anthropic fit-scoring agent. Run by `triage.yml`. |
 | `triage.html` | The dashboard. Pure client-side JS; reads `output/*.json` at page-load time. |
 | `output/` | All scraped data (gitignored upstream). `all_jobs.json` = 14-day rolling master. |
 
@@ -23,7 +23,7 @@ Designed to be forked. No server. No paid services required (AI triage is option
 All 18 workflows live in `.github/workflows/`. Pattern:
 - **Watcher workflows** (`*_watch.yml`, `scrape_jobs.yml`) run on cron, call `scrape_jobs.py`, then commit to `output/` when `vars.ENABLE_DATA_COMMITS == 'true'`.
 - **Concurrency group** `job-scraper-commit-push` serializes all commits (prevents push conflicts).
-- **`triage.yml`** scores new roles via Claude API nightly. Disabled by default — requires `ANTHROPIC_API_KEY`, `CANDIDATE_PROFILE`, `CANDIDATE_RESUME` secrets.
+- **`triage.yml`** scores new roles via OpenAI (default) or Anthropic nightly. Disabled by default — requires `OPENAI_API_KEY` (or `ANTHROPIC_API_KEY`), `CANDIDATE_PROFILE`, `CANDIDATE_RESUME` secrets. Optional Variables: `TRIAGE_PROVIDER`, `TRIAGE_MODEL` (default `gpt-5.6-luna`).
 - **`sync_upstream.yml`** rebases the fork weekly on upstream. Safer than GitHub's "Sync fork" button.
 
 ## Required GitHub configuration (for a fork to work)
@@ -34,8 +34,10 @@ All 18 workflows live in `.github/workflows/`. Pattern:
 | Workflow permissions: Read+write | Settings → Actions → General → Workflow permissions | **Yes** |
 | GitHub Pages: main branch, / root | Settings → Pages | Yes (for dashboard) |
 | `PUSHOVER_TOKEN` + `PUSHOVER_USER` secrets | Settings → Secrets | Optional |
-| `ANTHROPIC_API_KEY` secret | Settings → Secrets | Optional (AI triage only) |
+| `OPENAI_API_KEY` secret | Settings → Secrets | Optional (AI triage; preferred) |
+| `ANTHROPIC_API_KEY` secret | Settings → Secrets | Optional (AI triage alternate) |
 | `CANDIDATE_PROFILE` + `CANDIDATE_RESUME` secrets | Settings → Secrets | Optional (AI triage only) |
+| `TRIAGE_MODEL` / `TRIAGE_PROVIDER` variables | Settings → Variables | Optional (default model `gpt-5.6-luna`, provider auto) |
 
 ## Automated setup
 
@@ -66,11 +68,12 @@ python -m http.server 8000
 
 ### Run the triage agent locally
 ```bash
-pip install anthropic
-ANTHROPIC_API_KEY=sk-... \
+pip install openai          # or: pip install anthropic
+OPENAI_API_KEY=sk-... \     # or ANTHROPIC_API_KEY=...
 CANDIDATE_PROFILE="..." \
 CANDIDATE_RESUME="..." \
 python triage_agent.py --limit 50
+# Optional: TRIAGE_PROVIDER=openai|anthropic  TRIAGE_MODEL=gpt-5.6-luna
 ```
 
 ### Run evals for the triage agent

@@ -33,16 +33,19 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install Anthropic SDK
-        run: pip install anthropic
+      - name: Install model SDKs
+        run: pip install openai anthropic
 
-      # ~9 Haiku calls with the prompt-cached profile prefix — pennies per run.
+      # ~9 model calls — pennies per run with gpt-5.6-luna / Haiku.
       # Exit code 1 on any failed case fails the workflow.
       # Skipped silently when CANDIDATE_PROFILE secret is not set (e.g. upstream template).
       - name: Run evals
         if: ${{ env.CANDIDATE_PROFILE != '' }}
         env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          TRIAGE_PROVIDER: ${{ vars.TRIAGE_PROVIDER }}
+          TRIAGE_MODEL: ${{ vars.TRIAGE_MODEL }}
           CANDIDATE_PROFILE: ${{ secrets.CANDIDATE_PROFILE }}
           CANDIDATE_RESUME: ${{ secrets.CANDIDATE_RESUME }}
         run: python eval_triage.py

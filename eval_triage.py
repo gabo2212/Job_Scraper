@@ -238,7 +238,7 @@ def main() -> int:
     ap = argparse.ArgumentParser(description="Golden-case evals for the triage agent.")
     ap.add_argument("--only", default="", help="run only cases whose id contains this")
     ap.add_argument("--runs", type=int, default=1, help="repeat the suite N times")
-    ap.add_argument("--model", default=ta.DEFAULT_MODEL, help="model id for the API path")
+    ap.add_argument("--model", default=None, help="model id for the API path")
     args = ap.parse_args()
 
     profile = ta._read_first("CANDIDATE_PROFILE", "candidate_profile.md")
@@ -261,7 +261,13 @@ def main() -> int:
               f"(have: {', '.join(c['id'] for c in CASES)})")
         return 1
 
-    call_model = ta.make_call_model(args.model)
+    try:
+        provider = ta.resolve_provider()
+        model = ta.resolve_model(provider, args.model)
+        call_model = ta.make_call_model(model, provider)
+    except (ValueError, RuntimeError) as e:
+        print(f"❌ {e}")
+        return 1
     print(f"🧪 {len(cases)} cases × {args.runs} run(s)\n")
 
     passes: dict[str, int] = {c["id"]: 0 for c in cases}

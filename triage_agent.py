@@ -6,11 +6,14 @@ Writes cumulative verdicts to scores.json, which triage.html's Rank tab consumes
 
 The "agent" pattern, concretely: a goal ("is this role worth THIS candidate's
 time?"), context (profile + resume + posting + JD), and a loop (once per unscored
-role). The model backend is pluggable — see call_model():
-  - CI:    Anthropic API (ANTHROPIC_API_KEY + `pip install anthropic`), with the
-           static profile/instructions prefix prompt-cached across calls.
-  - Local: the logged-in `claude` CLI in headless mode (no API key needed),
-           run with NO tools — this script does all fetching; the model only judges.
+role). The model backend is pluggable — see make_call_model():
+  - OpenAI:    OPENAI_API_KEY + `pip install openai` (default provider when set).
+  - Anthropic: ANTHROPIC_API_KEY + `pip install anthropic`, profile prefix cached.
+  - Local:     logged-in `claude` CLI in headless mode (no API key), NO tools —
+               this script does all fetching; the model only judges.
+
+Provider: TRIAGE_PROVIDER=openai|anthropic, or auto-detect from keys (prefer openai).
+Model:    TRIAGE_MODEL / OPENAI_MODEL / --model (defaults per provider below).
 """
 
 import argparse
@@ -31,13 +34,17 @@ ALL_JOBS_PATH = os.path.join(OUTPUT_DIR, "all_jobs.json")
 SCORES_PATH = os.path.join(OUTPUT_DIR, "scores.json")
 SOURCE_FILES = ["jobs.json", "linkedin_jobs.json", "indeed_jobs.json"]
 
-DEFAULT_MODEL = "claude-haiku-4-5-20251001"
+# Official OpenAI ID: https://platform.openai.com/docs/models/gpt-5.6-luna
+DEFAULT_OPENAI_MODEL = "gpt-5.6-luna"
+DEFAULT_ANTHROPIC_MODEL = "claude-haiku-4-5-20251001"
+DEFAULT_MODEL = DEFAULT_OPENAI_MODEL  # fork default: OpenAI
 JD_MAX_CHARS = 6000
 # Direct page-fetch sources. LinkedIn is handled via its guest posting
 # endpoint and Indeed via the description the scraper saves — see fetch_jd().
 JD_FETCHABLE_ATS = {"Greenhouse", "Workday", "Phenom", "Lever", "Ashby"}
 MODEL_TIMEOUT = 120   # seconds per model call (CLI path)
 FETCH_TIMEOUT = 15    # seconds per JD fetch
+MAX_OUTPUT_TOKENS = 700
 
 ROLE_FAMILIES = ("toxicology | risk-exposure-assessment | environmental-science | "
                  "environmental-health-epi | water-quality | chemical-safety-regulatory | "
@@ -261,33 +268,139 @@ def build_job_prompt(job: dict, jd_text: str) -> str:
 # Model backends
 # ---------------------------------------------------------------------------
 
-def make_call_model(model: str):
-    """Returns call_model(static_prefix, job_prompt) -> str, picking the backend."""
-    if os.environ.get("ANTHROPIC_API_KEY"):
+def resolve_provider() -> str:
+    """Return 'openai' | 'anthropic' | 'cli'.
+
+    TRIAGE_PROVIDER wins when set; otherwise auto-detect from API keys
+    (prefer OpenAI when both are present). Falls back to the local claude CLI.
+    """
+    explicit = os.environ.get("TRIAGE_PROVIDER", "").strip().lower()
+    has_openai = bool(os.environ.get("OPENAI_API_KEY", "").strip())
+    has_anthropic = bool(os.environ.get("ANTHROPIC_API_KEY", "").strip())
+
+    if explicit:
+        if explicit not in ("openai", "anthropic"):
+            raise ValueError(
+                f"Unknown TRIAGE_PROVIDER={explicit!r}; use 'openai' or 'anthropic'"
+            )
+        return explicit
+    if has_openai:
+        return "openai"
+    if has_anthropic:
+        return "anthropic"
+    return "cli"
+
+
+def resolve_model(provider: str, cli_arg: str | None = None) -> str:
+    """Pick the model id: --model > TRIAGE_MODEL > OPENAI_MODEL > provider default."""
+    if cli_arg and cli_arg.strip():
+        return cli_arg.strip()
+    env_model = (
+        os.environ.get("TRIAGE_MODEL", "").strip()
+        or os.environ.get("OPENAI_MODEL", "").strip()
+    )
+    if env_model:
+        return env_model
+    if provider == "openai":
+        return DEFAULT_OPENAI_MODEL
+    if provider == "anthropic":
+        return DEFAULT_ANTHROPIC_MODEL
+    return DEFAULT_ANTHROPIC_MODEL  # CLI path; unused by the CLI itself
+
+
+def _safe_api_error(exc: BaseException, provider: str) -> RuntimeError:
+    """Surface rate-limit / auth / model errors without leaking secrets."""
+    name = type(exc).__name__
+    msg = str(exc)
+    # Strip anything that looks like a key fragment if an SDK embeds it.
+    msg = re.sub(r"sk-[A-Za-z0-9_\-]{8,}", "sk-[redacted]", msg)
+    msg = re.sub(r"sk-ant-[A-Za-z0-9_\-]{8,}", "sk-ant-[redacted]", msg)
+    lower = msg.lower()
+    if "rate" in lower and "limit" in lower:
+        return RuntimeError(f"{provider} rate limit exceeded — retry later ({name})")
+    if "not found" in lower or "model" in lower and (
+            "does not exist" in lower or "invalid" in lower or "404" in lower):
+        return RuntimeError(
+            f"{provider} unknown/invalid model — set TRIAGE_MODEL to a valid id ({name}: {msg[:180]})"
+        )
+    if "auth" in lower or "api key" in lower or "unauthorized" in lower or "401" in lower:
+        return RuntimeError(f"{provider} authentication failed — check API key secret ({name})")
+    return RuntimeError(f"{provider} API error ({name}): {msg[:200]}")
+
+
+def _make_openai_caller(model: str):
+    if not os.environ.get("OPENAI_API_KEY", "").strip():
+        raise RuntimeError(
+            "TRIAGE_PROVIDER=openai but OPENAI_API_KEY is not set"
+        )
+    try:
+        from openai import OpenAI
+    except ImportError as e:
+        raise RuntimeError(
+            "OPENAI_API_KEY set but `openai` package not installed "
+            "(pip install openai)"
+        ) from e
+
+    client = OpenAI()
+
+    def call_api(static_prefix: str, job_prompt: str) -> str:
         try:
-            import anthropic
-        except ImportError:
-            print("⚠️  ANTHROPIC_API_KEY set but `anthropic` not installed; "
-                  "falling back to the claude CLI")
-        else:
-            client = anthropic.Anthropic()  # SDK has built-in retries/backoff
+            resp = client.chat.completions.create(
+                model=model,
+                messages=[
+                    {"role": "system", "content": static_prefix},
+                    {"role": "user", "content": job_prompt},
+                ],
+                response_format={"type": "json_object"},
+                max_completion_tokens=MAX_OUTPUT_TOKENS,
+            )
+        except Exception as e:
+            raise _safe_api_error(e, "OpenAI") from e
+        content = (resp.choices[0].message.content or "").strip()
+        if not content:
+            raise RuntimeError("OpenAI returned empty content")
+        return content
 
-            def call_api(static_prefix: str, job_prompt: str) -> str:
-                resp = client.messages.create(
-                    model=model,
-                    max_tokens=700,
-                    system=[{
-                        "type": "text",
-                        "text": static_prefix,
-                        "cache_control": {"type": "ephemeral"},  # billed once
-                    }],
-                    messages=[{"role": "user", "content": job_prompt}],
-                )
-                return resp.content[0].text
+    print(f"🧠 backend: OpenAI API ({model})")
+    return call_api
 
-            print(f"🧠 backend: Anthropic API ({model})")
-            return call_api
 
+def _make_anthropic_caller(model: str):
+    if not os.environ.get("ANTHROPIC_API_KEY", "").strip():
+        raise RuntimeError(
+            "TRIAGE_PROVIDER=anthropic but ANTHROPIC_API_KEY is not set"
+        )
+    try:
+        import anthropic
+    except ImportError as e:
+        raise RuntimeError(
+            "ANTHROPIC_API_KEY set but `anthropic` package not installed "
+            "(pip install anthropic)"
+        ) from e
+
+    client = anthropic.Anthropic()  # SDK has built-in retries/backoff
+
+    def call_api(static_prefix: str, job_prompt: str) -> str:
+        try:
+            resp = client.messages.create(
+                model=model,
+                max_tokens=MAX_OUTPUT_TOKENS,
+                system=[{
+                    "type": "text",
+                    "text": static_prefix,
+                    "cache_control": {"type": "ephemeral"},  # billed once
+                }],
+                messages=[{"role": "user", "content": job_prompt}],
+            )
+        except Exception as e:
+            raise _safe_api_error(e, "Anthropic") from e
+        return resp.content[0].text
+
+    print(f"🧠 backend: Anthropic API ({model})")
+    return call_api
+
+
+def _make_cli_caller():
     def call_cli(static_prefix: str, job_prompt: str) -> str:
         # Headless Claude Code on the user's login. `--tools ""` = NO tools:
         # this script does all fetching; the model must only judge.
@@ -302,6 +415,16 @@ def make_call_model(model: str):
 
     print("🧠 backend: claude CLI (logged-in session, no tools)")
     return call_cli
+
+
+def make_call_model(model: str, provider: str | None = None):
+    """Returns call_model(static_prefix, job_prompt) -> str for the chosen backend."""
+    provider = provider or resolve_provider()
+    if provider == "openai":
+        return _make_openai_caller(model)
+    if provider == "anthropic":
+        return _make_anthropic_caller(model)
+    return _make_cli_caller()
 
 
 # Tech acronyms that are fine to publish — every other 4+ caps token from the
@@ -388,11 +511,19 @@ def main() -> int:
     ap.add_argument("--no-jd", action="store_true", help="skip JD fetches (metadata only)")
     ap.add_argument("--since", type=int, default=0,
                     help="only roles first_seen in the last N days (0 = all unscored)")
-    ap.add_argument("--model", default=DEFAULT_MODEL, help="model id for the API path")
+    ap.add_argument("--model", default=None,
+                    help="model id for the API path (overrides TRIAGE_MODEL / defaults)")
     ap.add_argument("--from-files", action="store_true",
                     help="read the live per-source snapshots instead of all_jobs.json")
     ap.add_argument("--dry-run", action="store_true", help="report only; write nothing")
     args = ap.parse_args()
+
+    try:
+        provider = resolve_provider()
+        model = resolve_model(provider, args.model)
+    except ValueError as e:
+        print(f"❌ {e}")
+        return 1
 
     profile = _read_first("CANDIDATE_PROFILE", "candidate_profile.md")
     if not profile.strip():
@@ -449,7 +580,11 @@ def main() -> int:
         return 0
 
     batch = unscored[:args.limit]
-    call_model = make_call_model(args.model)
+    try:
+        call_model = make_call_model(model, provider)
+    except RuntimeError as e:
+        print(f"❌ {e}")
+        return 1
     print(f"📋 scoring {len(batch)} of {len(unscored)} unscored "
           f"({len(jobs)} total in {source}; {len(scores)} already scored)")
 
@@ -483,7 +618,8 @@ def main() -> int:
         # Save incrementally so an interrupted run keeps its progress.
         data.update({
             "scored_at": verdict["scored_at"],
-            "model": args.model if os.environ.get("ANTHROPIC_API_KEY") else "claude-cli",
+            "model": model if provider != "cli" else "claude-cli",
+            "provider": provider,
         })
         with open(SCORES_PATH, "w") as f:
             json.dump(data, f, separators=(",", ":"))  # compact: dashboard fetches this
