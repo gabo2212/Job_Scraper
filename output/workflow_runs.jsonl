@@ -7,3 +7,4 @@
 {"job_count": 154, "run_attempt": "1", "run_id": "36629042363", "timestamp": "2026-09-29T20:52:03Z", "workflow": "indeed"}
 {"job_count": 21, "run_attempt": "1", "run_id": "36629460461", "timestamp": "2026-09-29T21:10:58Z", "workflow": "jobbank"}
 {"job_count": 0, "run_attempt": "1", "run_id": "36630371976", "timestamp": "2026-09-29T21:11:32Z", "workflow": "google_jobs"}
+{"job_count": 8, "run_attempt": "1", "run_id": "36639447372", "timestamp": "2026-09-29T22:34:38Z", "workflow": "linkedin"}
