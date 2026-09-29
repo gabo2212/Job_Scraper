@@ -139,6 +139,25 @@ def _build_title_re(terms: list) -> re.Pattern:
 
 EXCLUDED_SENIORITY_RE = _build_title_re(_cfg("keywords.exclude", []))
 
+# Soft exclude tokens: dropped by keywords.exclude unless the title also has
+# a clear entry-level / L1-L2 / support-technician signal. Lets us exclude
+# bare "specialist" / "administrator" / "engineer" without killing
+# "Junior IT Specialist" or "IT Support Specialist L1".
+_SOFT_EXCLUDE_RE = re.compile(
+    r"(?i)\b(?:specialist|sp[eé]cialiste|administrator|administrateur|"
+    r"engineer|ing[eé]nieur)\b"
+)
+_ENTRY_LEVEL_SIGNAL_RE = re.compile(
+    r"(?i)\b(?:"
+    r"junior|jr\.?|entry[- ]?level|d[eé]butant|associate|"
+    r"level\s*[12]|niveau\s*[12]|tier\s*[12]|[ln][12]|"
+    r"technician|technicien|agent|"
+    r"help\s*desk|service\s*desk|desktop\s+support|"
+    r"it\s+support|technical\s+support|tech\s+support|"
+    r"support\s+engineer"
+    r")\b"
+)
+
 # Multi-word phrases keep substring semantics; single-word keywords ("mle",
 # "devops") are word-bounded so they can't match inside a word ("Hamlet").
 _KEYWORD_RE = re.compile(
@@ -202,7 +221,7 @@ def role_is_relevant(title: str, company: str = "") -> bool:
     """
     if not title:
         return False
-    if EXCLUDED_SENIORITY_RE.search(title):
+    if _title_is_excluded(title):
         return False
     if not _FUZZY_ENABLED:
         return bool(_KEYWORD_RE.search(title))
@@ -259,18 +278,41 @@ def fetch(url, *, retries=4, _base_wait=30.0):
     return ""
 
 
+def _title_is_excluded(title: str) -> bool:
+    """True if title hits keywords.exclude, with soft-exclude bypass.
+
+    Soft tokens (specialist / administrator / engineer and FR equivalents)
+    are ignored when the title also has a clear entry-level signal
+    (junior, L1/L2, technician, help desk, IT support, etc.). Any other
+    exclude match always drops the title.
+    """
+    if not title:
+        return True
+    soft_spans = {m.span() for m in _SOFT_EXCLUDE_RE.finditer(title)}
+    has_entry = bool(_ENTRY_LEVEL_SIGNAL_RE.search(title))
+    for m in EXCLUDED_SENIORITY_RE.finditer(title):
+        if has_entry and m.span() in soft_spans:
+            continue
+        # Soft token matched via a multi-word exclude phrase — still bypassable.
+        if has_entry and _SOFT_EXCLUDE_RE.fullmatch(m.group(0) or ""):
+            continue
+        return True
+    return False
+
+
 def title_matches_keywords(title: str) -> bool:
     """True if a job title matches any keyword in keywords.include and is not
-    a junior/student posting (keywords.exclude). This is the config-driven
-    keyword filter used by all non-LinkedIn-partition sources."""
-    if EXCLUDED_SENIORITY_RE.search(title):
+    excluded by keywords.exclude (with entry-level soft-exclude bypass).
+    This is the config-driven keyword filter used by all non-LinkedIn-partition
+    sources."""
+    if _title_is_excluded(title):
         return False
     return bool(_KEYWORD_RE.search(title))
 
 
 def text_matches_keywords(title: str, *parts: str) -> bool:
     """Like title_matches_keywords, but allows source-specific summary text to carry the signal."""
-    if EXCLUDED_SENIORITY_RE.search(title or ""):
+    if _title_is_excluded(title or ""):
         return False
     text = " ".join([title or "", *(p or "" for p in parts)])
     return bool(_KEYWORD_RE.search(text))

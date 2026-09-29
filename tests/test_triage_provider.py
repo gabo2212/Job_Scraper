@@ -94,11 +94,58 @@ def test_parse_verdict_fenced_and_clamped():
     raw = "```json\n{\"score\": 150, \"verdict\": \"nope\"}\n```"
     v = ta.parse_verdict(raw)
     assert v["score"] == 100
-    assert v["verdict"] == "maybe"
+    assert v["verdict"] == "strong"  # derived from clamped score
 
 
 def test_parse_verdict_garbage():
     assert ta.parse_verdict("not json at all") is None
+
+
+def test_parse_verdict_derives_bands_and_clears_skip_opener():
+    skip = ta.parse_verdict(
+        '{"score": 22, "verdict": "strong", "outreach_opener": "hello"}'
+    )
+    assert skip["verdict"] == "skip"
+    assert skip["outreach_opener"] == ""
+    maybe = ta.parse_verdict('{"score": 72, "verdict": "skip"}')
+    assert maybe["verdict"] == "maybe"
+    strong = ta.parse_verdict('{"score": 85, "verdict": "maybe"}')
+    assert strong["verdict"] == "strong"
+
+
+def test_role_families_are_it_not_toxicology():
+    assert "it-support" in ta.ROLE_FAMILIES
+    assert "deployment-migration" in ta.ROLE_FAMILIES
+    assert "toxicology" not in ta.ROLE_FAMILIES
+
+
+def test_build_static_prefix_calibrated_for_junior_it():
+    prefix = ta.build_static_prefix("Junior IT tech in Québec.", "")
+    assert "junior/entry-level remote IT" in prefix
+    assert "Québec" in prefix or "Quebec" in prefix
+    assert "strong≥80" in prefix
+    assert "us-only" in prefix
+    assert "VPN/RDP" in prefix
+    assert "bachelor" in prefix.lower()
+    assert "CANDIDATE PROFILE" in prefix
+    assert "Junior IT tech in Québec." in prefix
+    assert "toxicology" not in prefix.lower()
+    assert "medical-imaging" not in prefix.lower()
+
+
+def test_redact_private_flags_list():
+    tokens = ["Gabriel", "Sobeys"]
+    verdict = {
+        "why": "Good fit for Gabriel",
+        "seniority_fit": "appropriate",
+        "outreach_opener": "I used Sobeys tools",
+        "flags": ["strong-support-match", "worked-at-Sobeys"],
+    }
+    out = ta.redact_private(verdict, tokens)
+    assert "[redacted]" in out["why"]
+    assert "[redacted]" in out["outreach_opener"]
+    assert any("[redacted]" in f for f in out["flags"])
+    assert "strong-support-match" in out["flags"]
 
 
 # ---------------------------------------------------------------------------

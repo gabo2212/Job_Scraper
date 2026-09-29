@@ -1,7 +1,0 @@
-
-{"job_count": 1, "run_attempt": "1", "run_id": "36510524500", "timestamp": "2026-09-29T03:38:02Z", "workflow": "linkedin"}
-{"job_count": 0, "run_attempt": "1", "run_id": "36534751198", "timestamp": "2026-09-29T07:07:29Z", "workflow": "ziprecruiter"}
-{"job_count": 1, "run_attempt": "1", "run_id": "36535582191", "timestamp": "2026-09-29T07:42:05Z", "workflow": "linkedin"}
-{"job_count": 45, "run_attempt": "1", "run_id": "36537114324", "timestamp": "2026-09-29T07:42:54Z", "workflow": "indeed"}
-{"job_count": 1, "run_attempt": "1", "run_id": "36543637174", "timestamp": "2026-09-29T08:47:42Z", "workflow": "linkedin"}
-{"job_count": 143, "run_attempt": "1", "run_id": "36608100709", "timestamp": "2026-09-29T17:55:07Z", "workflow": "indeed"}
