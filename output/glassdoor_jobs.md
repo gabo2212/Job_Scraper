@@ -1,3 +1,6 @@
-# Cleared 2026-09-29 18:44 UTC
+# 🟩 Glassdoor — Gabriel Fortin — Junior / Entry-Level IT (Québec) Roles
+*Last updated: 2026-09-29 20:11 UTC*
 
-No jobs.
+**0 new role(s)** since last run · 0 total in last 24h
+
+No new roles since the last run.
