@@ -3186,7 +3186,7 @@ ALL_JOBS_PRUNE_DAYS = 30
 # LinkedIn's guest API reliably supports ~30 days via f_TPR. Prefer 14 for
 # this fork (full 30-day × many terms hangs on GHA). Override with env
 # LINKEDIN_BACKFILL_DAYS when needed.
-LINKEDIN_BACKFILL_DAYS = int(os.environ.get("LINKEDIN_BACKFILL_DAYS", "14") or "14")
+LINKEDIN_BACKFILL_DAYS = int(os.environ.get("LINKEDIN_BACKFILL_DAYS", "7") or "7")
 
 
 def _merge_into_all_jobs(new_jobs: list) -> int:
