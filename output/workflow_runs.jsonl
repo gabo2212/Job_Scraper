@@ -3,3 +3,4 @@
 {"job_count": 0, "run_attempt": "1", "run_id": "36624492012", "timestamp": "2026-09-29T20:11:59Z", "workflow": "glassdoor"}
 {"job_count": 0, "run_attempt": "1", "run_id": "36624683540", "timestamp": "2026-09-29T20:12:46Z", "workflow": "ziprecruiter"}
 {"job_count": 0, "run_attempt": "1", "run_id": "36624781607", "timestamp": "2026-09-29T20:13:49Z", "workflow": "google_jobs"}
+{"job_count": 29, "run_attempt": "1", "run_id": "36624949410", "timestamp": "2026-09-29T20:15:40Z", "workflow": "indeed"}
