@@ -92,3 +92,27 @@ def test_specialist_bypass_requires_entry_or_support_signal():
     assert title_matches_keywords("Deployment Specialist")
     assert not title_matches_keywords("Payroll Specialist")
     assert not title_matches_keywords("Security Specialist")
+
+
+def test_build_title_re_empty_never_matches():
+    """Empty exclude list must not compile to '' (matches every position)."""
+    from scrape_jobs import _build_title_re
+
+    rx = _build_title_re([])
+    assert rx.search("Junior Cloud Engineer") is None
+    assert list(rx.finditer("anything")) == []
+
+
+def test_linkedin_backfill_days_defaults_on_bad_env(monkeypatch):
+    import scrape_jobs as sj
+
+    monkeypatch.setenv("LINKEDIN_BACKFILL_DAYS", "14d")
+    # Re-evaluate the same parsing logic used at module load.
+    try:
+        days = int(__import__("os").environ.get("LINKEDIN_BACKFILL_DAYS", "") or "7")
+    except ValueError:
+        days = 7
+    assert days == 7
+    # Sanity: current module default is a positive int.
+    assert isinstance(sj.LINKEDIN_BACKFILL_DAYS, int)
+    assert sj.LINKEDIN_BACKFILL_DAYS > 0

@@ -131,6 +131,10 @@ FRESH_JOB_LOOKBACK = timedelta(hours=24)
 # Titles containing any excluded term are dropped (config.json → keywords.exclude).
 # Single tokens are word-bounded; multi-word phrases match as substrings.
 def _build_title_re(terms: list) -> re.Pattern:
+    # Empty alternation compiles to "" and matches every position — that would
+    # make _title_is_excluded() drop every title. Use a never-match sentinel.
+    if not terms:
+        return re.compile(r"(?!)")
     return re.compile(
         "|".join(re.escape(t) if (" " in t or "&" in t) else rf"\b{re.escape(t)}\b" for t in terms),
         re.IGNORECASE,
@@ -203,12 +207,17 @@ _JOB_LEVEL_SENIOR_RE = re.compile(
 
 # Multi-word phrases keep substring semantics; single-word keywords ("mle",
 # "devops") are word-bounded so they can't match inside a word ("Hamlet").
-_KEYWORD_RE = re.compile(
-    "|".join(
-        re.escape(k) if " " in k else rf"\b{re.escape(k)}\b"
-        for k in KEYWORDS
-    ),
-    re.IGNORECASE,
+# Empty KEYWORDS must not compile to "" (matches everything).
+_KEYWORD_RE = (
+    re.compile(r"(?!)")
+    if not KEYWORDS
+    else re.compile(
+        "|".join(
+            re.escape(k) if " " in k else rf"\b{re.escape(k)}\b"
+            for k in KEYWORDS
+        ),
+        re.IGNORECASE,
+    )
 )
 
 # ---------------------------------------------------------------------------
@@ -3186,7 +3195,14 @@ ALL_JOBS_PRUNE_DAYS = 30
 # LinkedIn's guest API reliably supports ~30 days via f_TPR. Prefer 14 for
 # this fork (full 30-day × many terms hangs on GHA). Override with env
 # LINKEDIN_BACKFILL_DAYS when needed.
-LINKEDIN_BACKFILL_DAYS = int(os.environ.get("LINKEDIN_BACKFILL_DAYS", "7") or "7")
+try:
+    LINKEDIN_BACKFILL_DAYS = int(os.environ.get("LINKEDIN_BACKFILL_DAYS", "") or "7")
+except ValueError:
+    print(
+        f"WARNING: LINKEDIN_BACKFILL_DAYS={os.environ.get('LINKEDIN_BACKFILL_DAYS')!r} "
+        "is not a valid integer — defaulting to 7 days."
+    )
+    LINKEDIN_BACKFILL_DAYS = 7
 
 
 def _merge_into_all_jobs(new_jobs: list) -> int:
