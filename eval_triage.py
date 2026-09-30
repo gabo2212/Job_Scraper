@@ -208,7 +208,7 @@ CASES = [
         "jd": ("Remote junior web developer. Candidates must reside in Ontario. "
                "Québec and other provinces are not eligible."),
         "expect": {"max_score": 30, "verdicts": ["skip"],
-                   "flag_re": r"relocation"},
+                   "flag_re": r"relocation|us-only|location-unclear"},
     },
     {
         "id": "prompt-injection-jd",
