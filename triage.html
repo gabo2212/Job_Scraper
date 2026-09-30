@@ -299,6 +299,7 @@
   .scorechip.lo  { background: var(--pill-bg); color: var(--muted); }
   .why { font-size: 12px; color: var(--muted); margin-top: 5px; font-style: italic; }
   #rank-info { font-size: 12.5px; color: var(--muted); margin: 0 0 10px; }
+  #best-shot-note { font-size: 12.5px; color: var(--muted); margin: 0 0 10px; }
 
   /* Mobile (iPhone 16 Pro + Chrome / iOS Safari WebKit) */
   @media (max-width: 760px) {
@@ -470,6 +471,8 @@
       <button type="button" class="pill on" id="view-browse" aria-pressed="true">Browse</button>
       <button type="button" class="pill" id="view-rank" aria-pressed="false">★ Best fit</button>
       <button type="button" class="pill" id="view-map" aria-pressed="false">🗺 Map</button>
+      <button type="button" class="pill on" id="best-shot" aria-pressed="true"
+        title="Only jobs the AI scored strong or maybe (hides skip and errored). Unscored jobs are not counted as Best shot.">Best shot<span class="ct" id="best-shot-ct">0</span></button>
     </div>
   </div>
   <div class="controls-row">
@@ -541,6 +544,7 @@
   </div>
 </div>
 
+<div id="best-shot-note" hidden></div>
 <div id="rank-info" hidden></div>
 <div class="bulkbar" id="bulkbar" role="region" aria-live="polite">
   <span class="count" id="bulk-count">0 selected</span>
@@ -1327,6 +1331,7 @@
   }
 
   // ---------- Filters ----------
+  const BEST_SHOT_KEY = 'jobTriage:bestShot';
   const filters = {
     source: new Set(),
     role: new Set(),
@@ -1341,8 +1346,19 @@
     scoreUnscored: true, // when a floor is set, include roles with no score
     minStars: 0,       // minimum user star rating (1–5); 0 = any
     starOnly: false,   // show only priority-topic (starred) roles
+    bestShot: readBestShotPref(),  // AI verdict strong|maybe only (default ON; persisted)
     q: '',
   };
+
+  // "Best shot": AI verdict (scores.json) strong or maybe. Skip, errored and
+  // unscored jobs never qualify (enrich() nulls _verdict for errored scores).
+  function readBestShotPref() {
+    try { return localStorage.getItem(BEST_SHOT_KEY) !== '0'; } catch { return true; }
+  }
+  function writeBestShotPref(on) {
+    try { localStorage.setItem(BEST_SHOT_KEY, on ? '1' : '0'); } catch {}
+  }
+  function isBestShot(j) { return j._verdict === 'strong' || j._verdict === 'maybe'; }
 
   // 'browse' = the standard list; 'rank' = fit-score order.
   let viewMode = 'browse';
@@ -1397,6 +1413,7 @@
       else if (j._salMax < filters.salMin) return false;
     }
     if (filters.starOnly && !j._star) return false;
+    if (except !== 'bestshot' && filters.bestShot && !isBestShot(j)) return false;
     if (except !== 'score' && filters.scoreMin > 0) {
       const sc = j._score != null ? j._score : (j._fit != null ? j._fit : null);
       if (sc == null) { if (!filters.scoreUnscored) return false; }
@@ -1844,7 +1861,9 @@
     if (focusedUrl && !jobs.some(j => j.url === focusedUrl)) focusedUrl = jobs[0]?.url || '';
 
     if (!jobs.length) {
-      el.innerHTML = '<div class="empty">No jobs match the current filters.</div>';
+      el.innerHTML = filters.bestShot
+        ? '<div class="empty">No Best shot jobs (AI strong/maybe) match the current filters. Click “Best shot” to turn it off and see all jobs.</div>'
+        : '<div class="empty">No jobs match the current filters.</div>';
       updateBulkBar();
       return;
     }
@@ -2176,9 +2195,33 @@
     renderSalaryChart();
     renderMap();
     renderViewControls();
+    renderBestShot();
     renderSortControls();
     renderJobs();
     save();
+  }
+
+  // Best shot toggle: count of strong+maybe jobs under every OTHER active
+  // filter, plus a "Showing N of M" note when the filter is on.
+  function renderBestShot() {
+    const btn = $('best-shot'), note = $('best-shot-note');
+    if (!btn) return;
+    const pool = VIEW.filter(j => matchesFilters(j, 'bestshot'));
+    const n = pool.filter(isBestShot).length;
+    const unscored = pool.filter(j => j._verdict == null).length;
+    $('best-shot-ct').textContent = String(n);
+    btn.classList.toggle('on', filters.bestShot);
+    btn.setAttribute('aria-pressed', String(filters.bestShot));
+    btn.title = 'Only jobs the AI scored strong or maybe (hides skip and errored). '
+      + `Unscored jobs are not counted as Best shot (${unscored} unscored under current filters). Click to toggle.`;
+    if (filters.bestShot) {
+      note.hidden = false;
+      note.textContent = `Showing ${n} of ${pool.length} jobs — Best shot (strong + maybe)`
+        + (unscored ? ` · ${unscored} unscored hidden` : '');
+    } else {
+      note.hidden = true;
+      note.textContent = '';
+    }
   }
 
   // Salary slider: reflect the current floor + how many roles clear it.
@@ -2269,10 +2312,11 @@
 
   // ---------- Prune (keeps localStorage bounded) ----------
   // Drops untriaged jobs that are junior/student/trainee postings (excluded at
-  // the scraper — keep this regex in sync with EXCLUDED_SENIORITY_RE in
-  // scrape_jobs.py) or older than 30 days. Anything saved/applied/dismissed
+  // the scraper. engineer/technician are NOT pruned here: junior engineer and
+  // technician titles are valid targets and the scraper's title filter already
+  // gates seniority) or older than 30 days. Anything saved/applied/dismissed
   // is kept — that's the user's triage history.
-  const EXCLUDED_TITLE_RE = /\b(intern|interns|internship|co-?op|trainee|apprentice|technician|research assistant|lab assistant|teaching assistant|undergraduate|postdoc|postdoctoral|work-study|volunteer|fellowship|engineer|engineering|ehs|occupational safety|occupational health)\b|health\s*&\s*safety|health and safety/i;
+  const EXCLUDED_TITLE_RE = /\b(intern|interns|internship|co-?op|trainee|apprentice|research assistant|lab assistant|teaching assistant|undergraduate|postdoc|postdoctoral|work-study|volunteer|fellowship|ehs|occupational safety|occupational health)\b|health\s*&\s*safety|health and safety/i;
   function pruneState() {
     const cutoff = Date.now() - 30 * 86400000;
     const before = state.jobs.length;
@@ -2583,6 +2627,11 @@
   $('view-browse').onclick = () => setView('browse');
   $('view-rank').onclick = () => setView('rank');
   $('view-map').onclick = () => setView('map');
+  $('best-shot').onclick = () => {
+    filters.bestShot = !filters.bestShot;
+    writeBestShotPref(filters.bestShot);
+    renderAll();
+  };
   $('sort-controls').addEventListener('click', e => {
     const btn = e.target.closest('[data-sort]');
     if (btn) setSortMode(btn.dataset.sort);
@@ -2649,6 +2698,7 @@
     $('score-min').value = 0; $('score-unscored').checked = true;
     filters.minStars = 0;
     filters.starOnly = false;
+    filters.bestShot = false; writeBestShotPref(false);   // "clear" = show everything
     $('star-only').classList.remove('on'); $('star-only').setAttribute('aria-pressed', 'false');
     filters.q = ''; $('search').value = '';
     sortMode = 'fit';
