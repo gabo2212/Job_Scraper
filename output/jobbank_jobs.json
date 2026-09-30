@@ -1,56 +1,8 @@
 {
-  "scraped_at": "2026-09-29 21:10 UTC",
-  "total": 21,
+  "scraped_at": "2026-09-29 23:22 UTC",
+  "total": 20,
   "new_count": 2,
   "jobs": [
-    {
-      "company": "PRINCE LOGISTIC SERVICES",
-      "title": "information technology (IT) support technician",
-      "location": "Saint-Antoine-Abbé (QC)",
-      "url": "https://www.jobbank.gc.ca/jobsearch/jobposting/50358156",
-      "date_posted": "2026-09-24",
-      "salary": "$36.00 hourly",
-      "ats": "JobBank",
-      "is_remote": false,
-      "telework": "On site",
-      "work_arrangement": "On-site"
-    },
-    {
-      "company": "ProServeIT Corporation",
-      "title": "service desk analyst",
-      "location": "Mississauga, ON",
-      "url": "https://www.jobbank.gc.ca/jobsearch/jobposting/50291756",
-      "date_posted": "2026-09-15",
-      "salary": "$50,000.00 annually",
-      "ats": "JobBank",
-      "is_remote": true,
-      "telework": "Remote",
-      "work_arrangement": "Remote"
-    },
-    {
-      "company": "FOP EXPERTS CONSEILS INC.",
-      "title": "analyst, systems technical support",
-      "location": "Brossard (QC)",
-      "url": "https://www.jobbank.gc.ca/jobsearch/jobposting/50391147",
-      "date_posted": "2026-09-29",
-      "salary": "$60,000.00 annually",
-      "ats": "JobBank",
-      "is_remote": null,
-      "telework": "",
-      "work_arrangement": ""
-    },
-    {
-      "company": "FOP EXPERTS CONSEILS INC.",
-      "title": "technical support analyst",
-      "location": "Brossard (QC)",
-      "url": "https://www.jobbank.gc.ca/jobsearch/jobposting/50391187",
-      "date_posted": "2026-09-29",
-      "salary": "$60,000.00 annually",
-      "ats": "JobBank",
-      "is_remote": null,
-      "telework": "",
-      "work_arrangement": ""
-    },
     {
       "company": "MFG Technologies",
       "title": "technical support agent",
@@ -64,40 +16,28 @@
       "work_arrangement": "Remote"
     },
     {
-      "company": "GRASS VALLEY CANADA",
-      "title": "technical support representative",
-      "location": "Saint-Laurent (QC)",
-      "url": "https://www.jobbank.gc.ca/jobsearch/jobposting/50241331",
-      "date_posted": "2026-09-08",
-      "salary": "$67,000.00 annually",
+      "company": "Micropeerconnect",
+      "title": "structured cabling technician",
+      "location": "Richmond Hill, ON",
+      "url": "https://www.jobbank.gc.ca/jobsearch/jobposting/50292417",
+      "date_posted": "2026-09-15",
+      "salary": "$25.00 to $35.00 hourly (to be negotiated)",
       "ats": "JobBank",
-      "is_remote": null,
-      "telework": "",
-      "work_arrangement": ""
+      "is_remote": true,
+      "telework": "Remote",
+      "work_arrangement": "Remote"
     },
     {
-      "company": "Les Entreprises MRA Paysagistes inc.",
-      "title": "user support technician",
-      "location": "Québec (QC)",
-      "url": "https://www.jobbank.gc.ca/jobsearch/jobposting/50365035",
-      "date_posted": "2026-09-25",
-      "salary": "$30.77 hourly",
+      "company": "ProServeIT Corporation",
+      "title": "service desk analyst",
+      "location": "Mississauga, ON",
+      "url": "https://www.jobbank.gc.ca/jobsearch/jobposting/50291756",
+      "date_posted": "2026-09-15",
+      "salary": "$50,000.00 annually",
       "ats": "JobBank",
-      "is_remote": false,
-      "telework": "On site",
-      "work_arrangement": "On-site"
-    },
-    {
-      "company": "VILLE DE BAIE-COMEAU",
-      "title": "computer technician",
-      "location": "Baie-Comeau (QC)",
-      "url": "https://www.jobbank.gc.ca/jobsearch/jobposting/50357262",
-      "date_posted": "2026-09-24",
-      "salary": "$32.81 hourly",
-      "ats": "JobBank",
-      "is_remote": null,
-      "telework": "",
-      "work_arrangement": ""
+      "is_remote": true,
+      "telework": "Remote",
+      "work_arrangement": "Remote"
     },
     {
       "company": "Beeye",
@@ -196,6 +136,18 @@
       "work_arrangement": "On-site"
     },
     {
+      "company": "VILLE DE BAIE-COMEAU",
+      "title": "computer technician",
+      "location": "Baie-Comeau (QC)",
+      "url": "https://www.jobbank.gc.ca/jobsearch/jobposting/50357262",
+      "date_posted": "2026-09-24",
+      "salary": "$32.81 hourly",
+      "ats": "JobBank",
+      "is_remote": null,
+      "telework": "",
+      "work_arrangement": ""
+    },
+    {
       "company": "École secondaire Saint-Joseph de St-Hyacinthe",
       "title": "computer technician",
       "location": "Saint-Hyacinthe (QC)",
@@ -232,6 +184,42 @@
       "work_arrangement": "On-site"
     },
     {
+      "company": "Entrepôt de la Lunette",
+      "title": "computer technician",
+      "location": "Trois-Rivières (QC)",
+      "url": "https://www.jobbank.gc.ca/jobsearch/jobposting/50041440",
+      "date_posted": "2026-08-09",
+      "salary": "$25.00 to $30.00 hourly (to be negotiated)",
+      "ats": "JobBank",
+      "is_remote": false,
+      "telework": "On site",
+      "work_arrangement": "On-site"
+    },
+    {
+      "company": "FOP EXPERTS CONSEILS INC.",
+      "title": "analyst, systems technical support",
+      "location": "Brossard (QC)",
+      "url": "https://www.jobbank.gc.ca/jobsearch/jobposting/50391147",
+      "date_posted": "2026-09-29",
+      "salary": "$60,000.00 annually",
+      "ats": "JobBank",
+      "is_remote": null,
+      "telework": "",
+      "work_arrangement": ""
+    },
+    {
+      "company": "FOP EXPERTS CONSEILS INC.",
+      "title": "technical support analyst",
+      "location": "Brossard (QC)",
+      "url": "https://www.jobbank.gc.ca/jobsearch/jobposting/50391187",
+      "date_posted": "2026-09-29",
+      "salary": "$60,000.00 annually",
+      "ats": "JobBank",
+      "is_remote": null,
+      "telework": "",
+      "work_arrangement": ""
+    },
+    {
       "company": "ALIEN INFORMATIQUE INC.",
       "title": "deskside support technician",
       "location": "Saint-Georges (QC)",
@@ -244,38 +232,38 @@
       "work_arrangement": ""
     },
     {
-      "company": "Invera Inc",
-      "title": "application support analyst",
-      "location": "Westmount (QC)",
-      "url": "https://www.jobbank.gc.ca/jobsearch/jobposting/49896725",
-      "date_posted": "2026-07-13",
-      "salary": "$36.00 hourly",
+      "company": "GRASS VALLEY CANADA",
+      "title": "technical support representative",
+      "location": "Saint-Laurent (QC)",
+      "url": "https://www.jobbank.gc.ca/jobsearch/jobposting/50241331",
+      "date_posted": "2026-09-08",
+      "salary": "$67,000.00 annually",
       "ats": "JobBank",
-      "is_remote": false,
-      "telework": "On site",
-      "work_arrangement": "On-site"
+      "is_remote": null,
+      "telework": "",
+      "work_arrangement": ""
     }
   ],
   "new_jobs": [
     {
-      "company": "Axsera Inc.",
-      "title": "computer network technician",
-      "location": "Lachine (QC)",
-      "url": "https://www.jobbank.gc.ca/jobsearch/jobposting/49690386",
-      "date_posted": "2026-06-10",
-      "salary": "$73,000.00 annually",
+      "company": "Micropeerconnect",
+      "title": "structured cabling technician",
+      "location": "Richmond Hill, ON",
+      "url": "https://www.jobbank.gc.ca/jobsearch/jobposting/50292417",
+      "date_posted": "2026-09-15",
+      "salary": "$25.00 to $35.00 hourly (to be negotiated)",
       "ats": "JobBank",
-      "is_remote": false,
-      "telework": "On site",
-      "work_arrangement": "On-site"
+      "is_remote": true,
+      "telework": "Remote",
+      "work_arrangement": "Remote"
     },
     {
-      "company": "Invera Inc",
-      "title": "application support analyst",
-      "location": "Westmount (QC)",
-      "url": "https://www.jobbank.gc.ca/jobsearch/jobposting/49896725",
-      "date_posted": "2026-07-13",
-      "salary": "$36.00 hourly",
+      "company": "Entrepôt de la Lunette",
+      "title": "computer technician",
+      "location": "Trois-Rivières (QC)",
+      "url": "https://www.jobbank.gc.ca/jobsearch/jobposting/50041440",
+      "date_posted": "2026-08-09",
+      "salary": "$25.00 to $30.00 hourly (to be negotiated)",
       "ats": "JobBank",
       "is_remote": false,
       "telework": "On site",

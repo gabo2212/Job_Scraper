@@ -209,7 +209,8 @@ _VARIETY_KEEP_RE = re.compile(
     r"device\s+provision|software\s+deploy|package\s+deploy|"
     r"\bPOS\b|store\s+systems?|retail\s+(?:IT|tech(?:nology)?|systems?)|"
     r"field\s+(?:IT\s+)?(?:tech|technician)|IT\s+rollout|IT\s+deployment|"
-    r"\binstallateur\b|installation\s+tech|technicien\s+(?:terrain|d['’]?installation)|"
+    r"\binstallateur\b(?=.{0,40}(?:informatique|IT|r[eé]seau|telecom|fibre|fiber|c[aâ]bl|POS|terminal))|"
+    r"installation\s+tech|technicien\s+(?:terrain|d['’]?installation)|"
     r"\bcommissioning\b|data\s+conversion|data\s+migration|"
     r"asset\s+management|scale\s+tech|"
     r"junior\s+(?:cloud|devops|soc|security|implementation|automation)|"
@@ -224,10 +225,30 @@ _VARIETY_KEEP_RE = re.compile(
 
 
 def _has_soft_bypass_signal(title: str) -> bool:
-    """Junior/entry cue OR IT-domain support/deployment/technician word."""
-    return bool(
-        _JUNIOR_ENTRY_SIGNAL_RE.search(title) or _IT_DOMAIN_SIGNAL_RE.search(title)
-    )
+    """Junior/entry cue OR IT-domain support/deployment/technician word.
+
+    Bare engineers need a junior cue (except 'support engineer'). Administrators
+    may bypass with a clear service-desk / help-desk / NOC context, but not
+    with deployment alone ('Ingénieur de déploiement' stays out).
+    """
+    if _JUNIOR_ENTRY_SIGNAL_RE.search(title):
+        return True
+    if not _IT_DOMAIN_SIGNAL_RE.search(title):
+        return False
+    if re.search(r"(?i)\b(?:engineer|ing[eé]nieur)\b", title or "") and not re.search(
+        r"(?i)support\s+engineer|support\s+ing[eé]nieur", title or ""
+    ):
+        return False
+    if re.search(r"(?i)\b(?:administrator|administrateur)\b", title or ""):
+        return bool(
+            re.search(
+                r"(?i)help\s*desk|service\s*desk|desktop|endpoint|NOC|"
+                r"support\s+admin|admin(?:istrator)?\s*1\b",
+                title or "",
+            )
+        )
+    return True
+
 
 
 # JobSpy / board seniority fields — drop only when clearly senior+.
@@ -360,6 +381,15 @@ def fetch(url, *, retries=4, _base_wait=30.0):
     return ""
 
 
+# Tier suffixes after soft nouns are always hard (not soft-bypassable).
+# re.finditer won't see "specialist ii" after matching word-bounded "specialist".
+_HARD_TIER_SUFFIX_RE = re.compile(
+    r"(?i)\b(?:specialist|sp[eé]cialiste|analyst|analyste|technician|technicien|"
+    r"administrator|administrateur|engineer|ing[eé]nieur|consultant|"
+    r"coordinator|coordonnateur)\s+(?:II|III|IV|V)\b"
+)
+
+
 def _title_is_excluded(title: str) -> bool:
     """True if title hits keywords.exclude, with soft-exclude bypass.
 
@@ -367,8 +397,11 @@ def _title_is_excluded(title: str) -> bool:
     coordinator / developer / officer and FR equivalents) are ignored when the
     title also has a junior/entry cue OR an IT-domain support/deployment/
     technician word. Hard excludes (senior, manager, architect, …) always drop.
+    Tier suffixes (Specialist II/III/…) are always hard.
     """
     if not title:
+        return True
+    if _HARD_TIER_SUFFIX_RE.search(title):
         return True
     soft_spans = {m.span() for m in _SOFT_EXCLUDE_RE.finditer(title)}
     can_bypass = _has_soft_bypass_signal(title)

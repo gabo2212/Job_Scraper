@@ -428,7 +428,16 @@
       "project mgr",
       "gestionnaire de projets",
       "client service associate",
-      "customer service associate"
+      "customer service associate",
+      "meuble",
+      "furniture",
+      "agricole",
+      "clôture",
+      "cloture",
+      "piscine",
+      "fence",
+      "vending",
+      "équipement agricole"
     ],
     "fuzzy_seniority": [],
     "fuzzy_domain": [],

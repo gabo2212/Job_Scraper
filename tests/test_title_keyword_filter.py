@@ -114,6 +114,13 @@ def test_variety_keep_sobeys_like_titles():
         assert title_matches_keywords(title), f"should keep: {title}"
 
 
+def test_hard_tier_suffix_not_soft_bypassed():
+    assert _title_is_excluded("Technical Implementation Specialist II")
+    assert not title_matches_keywords("Technical Implementation Specialist II")
+    assert not title_matches_keywords("Housekeeping Associate")
+    assert not title_matches_keywords("Retail Associate")
+
+
 def test_build_title_re_empty_never_matches():
     """Empty exclude list must not compile to '' (matches every position)."""
     from scrape_jobs import _build_title_re

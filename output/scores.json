@@ -245,22 +245,6 @@
       "jd": "read",
       "scored_at": "2026-09-29 20:16 UTC"
     },
-    "https://ca.indeed.com/viewjob?jk=bb9bdfe019fb0de0": {
-      "score": 28,
-      "verdict": "skip",
-      "role_family": "help-desk-service-desk",
-      "seniority_fit": "appropriate",
-      "why": "The duties strongly match the candidate’s support and deployment experience, but the role is based in Cambridge, Ontario with no remote option stated, making its location unsuitable without relocation.",
-      "flags": [
-        "strong-support-match",
-        "relocation",
-        "location-unclear",
-        "learnable-tool-gap"
-      ],
-      "outreach_opener": "",
-      "jd": "read",
-      "scored_at": "2026-09-29 20:16 UTC"
-    },
     "https://ca.indeed.com/viewjob?jk=bb0dde9e61198f64": {
       "score": 28,
       "verdict": "skip",
@@ -531,21 +515,6 @@
       "jd": "read",
       "scored_at": "2026-09-29 20:17 UTC"
     },
-    "https://ca.indeed.com/viewjob?jk=ccebbe58a53c2c79": {
-      "score": 18,
-      "verdict": "skip",
-      "role_family": "field-it",
-      "seniority_fit": "too-senior",
-      "why": "This onsite fly-in/fly-out role requires camp experience and extensive infrastructure expertise, including five-plus years and strong Fortinet, server, virtualization, and wireless skills, while the candidate is Québec-based and junior.",
-      "flags": [
-        "experience-gap",
-        "relocation",
-        "networking-match"
-      ],
-      "outreach_opener": "",
-      "jd": "read",
-      "scored_at": "2026-09-29 20:17 UTC"
-    },
     "https://ca.indeed.com/viewjob?jk=e50d36ccb49c40ab": {
       "score": 30,
       "verdict": "skip",
@@ -667,20 +636,6 @@
       "flags": [
         "networking-match",
         "location-unclear"
-      ],
-      "outreach_opener": "",
-      "jd": "metadata-only",
-      "scored_at": "2026-09-29 20:17 UTC"
-    },
-    "https://ca.indeed.com/viewjob?jk=0ec4f4a4d920b472": {
-      "score": 24,
-      "verdict": "skip",
-      "role_family": "help-desk-service-desk",
-      "seniority_fit": "unclear",
-      "why": "Tier II technical support aligns with the candidate’s support background, but the posting is located in Vancouver with no remote or Québec eligibility stated, making location a major barrier.",
-      "flags": [
-        "location-unclear",
-        "relocation"
       ],
       "outreach_opener": "",
       "jd": "metadata-only",
@@ -1174,20 +1129,6 @@
       "jd": "metadata-only",
       "scored_at": "2026-09-29 20:19 UTC"
     },
-    "https://ca.indeed.com/viewjob?jk=0a808fec882121e5": {
-      "score": 18,
-      "verdict": "skip",
-      "role_family": "it-support",
-      "seniority_fit": "unclear",
-      "why": "The Tier 2 title suggests relevant technical support, but there are no duty or qualification details and the role is located in Ontario with no remote or Québec eligibility stated.",
-      "flags": [
-        "location-unclear",
-        "relocation"
-      ],
-      "outreach_opener": "",
-      "jd": "metadata-only",
-      "scored_at": "2026-09-29 20:19 UTC"
-    },
     "https://www.jobbank.gc.ca/jobsearch/jobposting/50328021": {
       "score": 50,
       "verdict": "skip",
@@ -1439,19 +1380,6 @@
       "jd": "metadata-only",
       "scored_at": "2026-09-29 20:19 UTC"
     },
-    "https://ca.indeed.com/viewjob?jk=5bf854d5dc86ed17": {
-      "score": 44,
-      "verdict": "skip",
-      "role_family": "help-desk-service-desk",
-      "seniority_fit": "unclear",
-      "why": "The title suggests a relevant entry-level service desk role, but no duties, requirements, or remote eligibility are provided and the listed location is Winnipeg, which is outside the candidate’s preferred Québec area.",
-      "flags": [
-        "location-unclear"
-      ],
-      "outreach_opener": "",
-      "jd": "metadata-only",
-      "scored_at": "2026-09-29 20:19 UTC"
-    },
     "https://www.jobbank.gc.ca/jobsearch/jobposting/50291756": {
       "score": 52,
       "verdict": "skip",
@@ -1530,20 +1458,6 @@
         "location-unclear"
       ],
       "outreach_opener": "I’m interested in the Help Desk Agent role in Laval, which aligns with my experience supporting users and troubleshooting IT issues. I’d welcome the chance to learn more about the team’s support needs and how I could contribute.",
-      "jd": "metadata-only",
-      "scored_at": "2026-09-29 20:19 UTC"
-    },
-    "https://ca.indeed.com/viewjob?jk=a77cdf153323154d": {
-      "score": 48,
-      "verdict": "skip",
-      "role_family": "help-desk-service-desk",
-      "seniority_fit": "unclear",
-      "why": "The service desk title fits the candidate’s support background, but there is no description to confirm duties or eligibility, and the listed Ottawa location is not a remote or Québec location.",
-      "flags": [
-        "strong-support-match",
-        "location-unclear"
-      ],
-      "outreach_opener": "",
       "jd": "metadata-only",
       "scored_at": "2026-09-29 20:19 UTC"
     },
@@ -2089,21 +2003,6 @@
       "jd": "read",
       "scored_at": "2026-09-29 22:36 UTC"
     },
-    "https://ca.indeed.com/viewjob?jk=2aa24ef0697b1f88": {
-      "score": 18,
-      "verdict": "skip",
-      "role_family": "cybersecurity",
-      "seniority_fit": "too-senior",
-      "why": "This Tier 2 SOC escalation role requires substantial cybersecurity/SOC experience, advanced SIEM and forensic expertise, and leadership beyond the candidate’s lab-based security exposure, and it is located in Vancouver rather than Québec.",
-      "flags": [
-        "relocation",
-        "experience-gap",
-        "senior-title"
-      ],
-      "outreach_opener": "",
-      "jd": "read",
-      "scored_at": "2026-09-29 22:36 UTC"
-    },
     "https://ca.indeed.com/viewjob?jk=99ac1365fc832bcb": {
       "score": 25,
       "verdict": "skip",
@@ -2173,24 +2072,6 @@
       "flags": [
         "experience-gap",
         "relocation"
-      ],
-      "outreach_opener": "",
-      "jd": "read",
-      "scored_at": "2026-09-29 22:36 UTC"
-    },
-    "https://ca.indeed.com/viewjob?jk=cb5c1bdc7b252b5a": {
-      "score": 45,
-      "verdict": "skip",
-      "role_family": "application-support",
-      "seniority_fit": "too-senior",
-      "why": "The remote-Canada software support role aligns with the candidate’s API, Docker, scripting, and troubleshooting skills, but requires substantial support experience, advanced escalation ownership, Zendesk workflow expertise, and mentoring beyond their junior background.",
-      "flags": [
-        "remote-canada",
-        "experience-gap",
-        "senior-title",
-        "learnable-tool-gap",
-        "powershell-match",
-        "networking-match"
       ],
       "outreach_opener": "",
       "jd": "read",
