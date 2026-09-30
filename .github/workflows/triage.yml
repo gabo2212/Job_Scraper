@@ -1,27 +1,77 @@
 name: Nightly Job Triage
 
+# Scores every not-yet-scored role in output/all_jobs.json with the AI triage
+# agent and commits output/scores.json (the dashboard's "Best shot" filter and
+# Rank tab read it).
+#
+# Triggers
+#   * workflow_run - right after ANY watcher workflow finishes successfully, so
+#     newly committed jobs are scored within minutes instead of waiting for the
+#     nightly run. (workflow_run is used instead of `push` because pushes made
+#     with GITHUB_TOKEN never trigger push workflows.)
+#   * schedule     - nightly safety net (covers skipped/failed triggers).
+#   * workflow_dispatch - manual.
+#
+# Loop safety
+#   * This workflow is NOT in the `workflow_run.workflows` list below, so its own
+#     completion can never re-trigger it. It also never touches all_jobs.json.
+#   * scores.json commits are made with GITHUB_TOKEN (no push-triggered runs).
+#   * No unscored roles => the job stops after a stdlib-only count (seconds, no
+#     SDK install, no model call, no commit).
+#   * Runs are serialized in their own group (`triage-score`, at most one running
+#     + one pending), so a burst of watcher completions collapses into one run.
+#
+# The model call runs OUTSIDE the shared `job-scraper-commit-push` group so a
+# multi-minute scoring run never blocks (or evicts pending) watcher runs; only the
+# short commit job joins that group so pushes stay serialized.
+
 on:
   schedule:
-    # 09:00 UTC ≈ 1–2am PT — safely after the day's last scrapes (the biotech
-    # digest actually lands ~07:00 UTC under GH cron delay; LinkedIn's last
-    # hourly run is ~04:17 UTC). Exact timing isn't critical: the agent scores
-    # every not-yet-scored role in all_jobs.json, so stragglers from a delayed
-    # scrape simply roll into the next night's run.
+    # 09:00 UTC - nightly safety net after the day's last scrapes.
     - cron: "0 9 * * *"
 
   workflow_dispatch:
 
-concurrency:
-  group: job-scraper-commit-push
-  cancel-in-progress: false
+  workflow_run:
+    workflows:
+      - "LinkedIn Watcher"
+      - "LinkedIn Backfill (Parallel)"
+      - "Indeed Watcher"
+      - "Glassdoor Watcher"
+      - "ZipRecruiter Watcher"
+      - "Google Jobs Watcher"
+      - "HiringCafe Watcher"
+      - "Job Bank Watcher"
+      - "Remote Boards Watcher"
+      - "USAJOBS Watcher"
+      - "CalCareers Watcher"
+      - "CSU Careers Watcher"
+      - "Local & State Gov Watcher (NEOGOV + CalOpps)"
+      - "Priority Employer Digest"
+    types: [completed]
+    branches: [main]
 
 jobs:
-  triage:
+  score:
     name: Score new roles vs candidate profile
+    # workflow_run also fires for failed/cancelled/skipped watcher runs - only
+    # react to successful ones. (Self-trigger guard is belt-and-braces.)
+    if: >-
+      github.event_name != 'workflow_run' ||
+      (github.event.workflow_run.conclusion == 'success' &&
+       github.event.workflow_run.name != github.workflow)
     runs-on: ubuntu-latest
+    timeout-minutes: 30
 
     permissions:
-      contents: write
+      contents: read
+
+    concurrency:
+      group: triage-score
+      cancel-in-progress: false
+
+    outputs:
+      scored: ${{ steps.stage.outputs.scored }}
 
     steps:
       - name: Checkout repo
@@ -32,15 +82,23 @@ jobs:
         with:
           python-version: "3.11"
 
+      # Cheap no-op gate: stdlib only, no secrets, no network.
+      - name: Count unscored roles
+        id: count
+        run: python scripts/count_unscored.py
+
       - name: Install model SDKs
+        if: steps.count.outputs.unscored != '0'
         run: pip install openai anthropic
 
-      # Profile/resume arrive as env vars straight from Actions secrets —
+      # Profile/resume arrive as env vars straight from Actions secrets -
       # never written to disk, never committed (the repo is public).
       # Provider: TRIAGE_PROVIDER (openai|anthropic) or auto-detect from keys
       # (prefer OpenAI). Model: TRIAGE_MODEL Variable, default gpt-6-luna.
-      # --limit bounds worst-case daily spend; raise/lower as the cost knob.
+      # --limit bounds worst-case spend per run: 100 for event-driven runs (a
+      # handful of new jobs per watcher), 300 for nightly/manual catch-up.
       - name: Run triage agent
+        if: steps.count.outputs.unscored != '0'
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -48,14 +106,61 @@ jobs:
           TRIAGE_MODEL: ${{ vars.TRIAGE_MODEL }}
           CANDIDATE_PROFILE: ${{ secrets.CANDIDATE_PROFILE }}
           CANDIDATE_RESUME: ${{ secrets.CANDIDATE_RESUME }}
-        run: python triage_agent.py --limit 300
+          TRIAGE_LIMIT: ${{ github.event_name == 'workflow_run' && '100' || '300' }}
+        run: python triage_agent.py --limit "$TRIAGE_LIMIT"
+
+      - name: Stage scores for commit
+        id: stage
+        if: steps.count.outputs.unscored != '0'
+        run: |
+          if [ -f output/scores.json ]; then echo "scored=true" >> "$GITHUB_OUTPUT"; fi
+
+      - name: Upload scores
+        if: steps.stage.outputs.scored == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: triage-scores
+          path: output/scores.json
+          retention-days: 1
+
+  commit:
+    name: Commit scores
+    needs: score
+    if: needs.score.outputs.scored == 'true' && vars.ENABLE_DATA_COMMITS == 'true'
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    # Same group as every watcher so pushes to main stay serialized.
+    concurrency:
+      group: job-scraper-commit-push
+      cancel-in-progress: false
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Download scores
+        uses: actions/download-artifact@v4
+        with:
+          name: triage-scores
+          path: output
 
       - name: Commit scores to repo
-        if: vars.ENABLE_DATA_COMMITS == 'true'
         run: |
           git config user.name  "${{ github.actor }}"
           git config user.email "${{ github.actor }}@users.noreply.github.com"
           git add -f output/scores.json
-          git diff --cached --quiet || git commit -m "chore: update fit scores [$(date -u '+%Y-%m-%d %H:%MZ')]"
-          git pull --rebase -X ours origin main
-          git push
+          if git diff --cached --quiet; then
+            echo "No score changes to commit."
+            exit 0
+          fi
+          git commit -m "chore: update fit scores [$(date -u '+%Y-%m-%d %H:%MZ')]"
+          for attempt in 1 2 3; do
+            git pull --rebase -X ours origin main
+            if git push; then exit 0; fi
+            echo "push attempt $attempt failed; retrying"
+            sleep $((attempt * 5))
+          done
+          exit 1

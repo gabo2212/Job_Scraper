@@ -80,7 +80,7 @@ HEADERS = {
 def load_jobs(from_files: bool) -> list[dict]:
     """All candidate roles, deduped by URL. Prefers the cumulative master."""
     if not from_files and os.path.exists(ALL_JOBS_PATH):
-        with open(ALL_JOBS_PATH) as f:
+        with open(ALL_JOBS_PATH, encoding="utf-8") as f:
             return list(json.load(f).get("jobs", []))
 
     # Fallback for local testing before all_jobs.json exists: union the live
@@ -102,12 +102,28 @@ def load_jobs(from_files: bool) -> list[dict]:
 
 def load_scores() -> dict:
     try:
-        with open(SCORES_PATH) as f:
+        with open(SCORES_PATH, encoding="utf-8") as f:
             data = json.load(f)
             data.setdefault("scores", {})
             return data
     except (FileNotFoundError, json.JSONDecodeError):
         return {"scores": {}}
+
+
+def find_unscored(jobs: list[dict], scores: dict) -> list[dict]:
+    """Roles still needing a verdict, freshest first.
+
+    A stored "error" verdict is a failed call, not a judgment - it is retried.
+    Shared by main() and scripts/count_unscored.py (the workflow's cheap
+    no-op check) so both always agree on what "unscored" means."""
+    unscored = [
+        j for j in jobs
+        if j.get("url")
+        and (j["url"] not in scores
+             or scores[j["url"]].get("verdict") == "error")
+    ]
+    unscored.sort(key=lambda j: j.get("date_posted") or "", reverse=True)
+    return unscored
 
 
 def _read_first(env_var: str, *filenames: str) -> str:
@@ -208,6 +224,11 @@ def fetch_jd(job: dict) -> str:
         markup = re.search(
             r'show-more-less-html__markup[^>]*>(.*?)</div>', html, re.DOTALL)
         return _extract_text(markup.group(1) if markup else "")
+    # Sources that already saved the plain-text JD on the record (remote-job
+    # boards ship it in their API/RSS) - no page fetch needed or allowed.
+    inline = (job.get("description") or "").strip()
+    if inline:
+        return inline[:JD_MAX_CHARS]
     if ats not in JD_FETCHABLE_ATS:
         return ""
     return _extract_text(_http_get(job["url"]))
@@ -642,14 +663,7 @@ def main() -> int:
 
     data = load_scores()
     scores = data["scores"]
-    # A stored "error" verdict is a failed call, not a judgment — retry it.
-    unscored = [
-        j for j in jobs
-        if j.get("url")
-        and (j["url"] not in scores
-             or scores[j["url"]].get("verdict") == "error")
-    ]
-    unscored.sort(key=lambda j: j.get("date_posted") or "", reverse=True)  # freshest first
+    unscored = find_unscored(jobs, scores)
 
     if args.dry_run:
         print(f"unscored = {len(unscored)} of {len(jobs)} in {source} "

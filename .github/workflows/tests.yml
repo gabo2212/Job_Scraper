@@ -4,11 +4,19 @@ on:
   push:
     paths:
       - "scrape_jobs.py"
+      - "remote_boards.py"
+      - "remote_geo.py"
+      - "triage_agent.py"
+      - "scripts/**"
       - "tests/**"
       - ".github/workflows/tests.yml"
   pull_request:
     paths:
       - "scrape_jobs.py"
+      - "remote_boards.py"
+      - "remote_geo.py"
+      - "triage_agent.py"
+      - "scripts/**"
       - "tests/**"
   workflow_dispatch:
 
