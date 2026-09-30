@@ -10,7 +10,7 @@ This fork is tuned for **junior / entry-level remote work**: it filters out seni
 
 ## Contents
 
-[Credits and what changed](#credits-and-what-changed) · [How it works](#how-it-works) · [Setup](#setup) · [Make it yours](#make-it-yours-ai-agent-prompt) · [Troubleshooting and FAQ](#troubleshooting-and-faq) · [License](#license)
+[Credits and what changed](#credits-and-what-changed) · [How it works](#how-it-works) · [Setup](#setup) · [Sync across tabs and devices](#sync-across-tabs-and-devices) · [Make it yours](#make-it-yours-ai-agent-prompt) · [Troubleshooting and FAQ](#troubleshooting-and-faq) · [License](#license)
 
 ---
 
@@ -88,6 +88,7 @@ Skipped on purpose (see `remote_boards` in `config.json`): Wellfound (anti-bot w
 | `remote_boards.py`, `remote_geo.py` | Remote-board fetchers/parsers and the geo/seniority/scam screens. |
 | `triage_agent.py` | AI fit-scoring agent (prompt, providers, redaction). `eval_triage.py` holds golden-case evals. |
 | `triage.html` | The dashboard. |
+| `tracker-sync.js` | Pure merge/sync logic for your Saved/Applied/notes tracking (unit-tested in `tests/js`). |
 | `notify.py` | Optional Pushover notifications and weekly digest. |
 | `output/` | Scraped data. `all_jobs.json` is the master; `scores.json` holds AI verdicts. |
 | `docs/AGENT_README.md` | Deep dive on the triage agent. `docs/cv-to-config-prompt.md` is the lightweight chatbot variant of the prompt below. |
@@ -189,6 +190,21 @@ Windows: set env vars with `$env:OPENAI_API_KEY = "..."` (never paste a key into
 - `CANDIDATE_PROFILE` / `CANDIDATE_RESUME` exist only as Actions secrets (env vars at runtime); the agent never writes them to disk. `.gitignore` blocks `resume*`, `cv*`, `*.pdf`, `candidate_profile.md` and similar - do not override it.
 - The triage prompt forbids names, employers, schools, dates and resume numbers in the public fields, and `triage_agent.py` additionally strips derived private tokens (`redact_private`) before writing `scores.json`. Job-description text is treated as untrusted input.
 - Stay polite to boards: keep the request delays in `config.json`, do not lower them.
+
+### Sync across tabs and devices
+
+Your tracking (Saved / Applied / Interview / Offer, star ratings, notes, logged events, blocked companies) is stored in the browser, not in the repo.
+
+- **Tabs in the same browser** stay in sync automatically (`BroadcastChannel`, with the `storage` event as a fallback). Every write is applied as a diff on top of the latest stored data, so a stale tab can no longer overwrite another tab's edits. Open tabs update within about a second and on focus.
+- **Phone / other computers** are opt-in via the **Sync** button in the header. The data goes into a **secret GitHub Gist in your own account** (one file, `job-tracker-state.json`, description `job-tracker-sync`):
+  1. [Create a classic token with ONLY the `gist` scope](https://github.com/settings/tokens/new?scopes=gist&description=job-tracker-sync) (nothing else ticked; pick an expiry).
+  2. Desktop: Sync → paste the token → **Connect**. The dashboard finds or creates the gist and merges what it finds.
+  3. Sync → **Copy phone setup link**, open it once on your phone. The link holds the token in the URL fragment (`#sync=…`; fragments are never sent to a server) and the page strips it from the address bar right after importing. Don't save or share that link.
+- Merge rule: per field, the newest edit wins (by timestamp); logged events are merged as a union, deletions are tombstones, so two devices editing offline converge without losing each other's work. Keep device clocks correct. Default is **Off**; the dashboard works the same with no network.
+
+**Privacy and trade-offs.** A *secret* gist is unlisted but **not access-controlled**: anyone with its URL can read it, so don't put anything in notes you would not be OK with that. The state never goes to this repo. The token is kept in `localStorage` on each connected device (readable by anything that runs on that origin and by anyone with the device), is only ever sent to `api.github.com`, and is never logged or committed; revoke it at <https://github.com/settings/tokens> if a device is lost. Sync errors (expired token, missing `gist` scope, rate limit, offline) are shown in the panel. Sturdier alternatives, if you outgrow this: a Cloudflare Worker + KV endpoint with your own auth, or a private repo file behind a fine-grained token.
+
+Tests: `node --test tests/js` (merge logic, mocked Gist API; also run by pytest) and `tests/local/browser_verify_sync.py` (manual Playwright check with a mocked API).
 
 ### Stay in sync with upstream
 

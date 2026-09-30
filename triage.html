@@ -286,6 +286,31 @@
     box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 100; }
   .toast.show { opacity: 1; }
 
+  /* Sync control + panel */
+  #sync-btn .sync-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+    background: var(--muted); margin-right: 6px; vertical-align: baseline; }
+  #sync-btn[data-sync="idle"] .sync-dot { background: #22c55e; }
+  #sync-btn[data-sync="syncing"] .sync-dot { background: #f59e0b; animation: syncpulse 1s infinite; }
+  #sync-btn[data-sync="error"] .sync-dot { background: #ef4444; }
+  #sync-btn[data-sync="offline"] .sync-dot { background: #f59e0b; }
+  @keyframes syncpulse { 50% { opacity: .3; } }
+  @media (prefers-reduced-motion: reduce) { #sync-btn[data-sync="syncing"] .sync-dot { animation: none; } }
+  #sync-panel { max-width: 520px; width: calc(100% - 32px); background: var(--panel); color: var(--ink);
+    border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; box-shadow: 0 12px 40px rgba(0,0,0,.35); }
+  #sync-panel::backdrop { background: rgba(0,0,0,.55); }
+  #sync-panel h2 { margin: 0 0 4px; font-size: 16px; }
+  #sync-panel p, #sync-panel li { font-size: 13px; line-height: 1.5; margin: 6px 0; }
+  #sync-panel ol { padding-left: 20px; margin: 6px 0; }
+  #sync-panel a { color: var(--accent); }
+  #sync-panel input[type="password"], #sync-panel input[type="text"] { width: 100%; box-sizing: border-box;
+    background: var(--bg); color: var(--ink); border: 1px solid var(--line); border-radius: 8px;
+    padding: 8px 10px; font-size: 13px; font-family: ui-monospace, monospace; }
+  #sync-panel .row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+  #sync-panel .warn { border: 1px solid #b45309; background: rgba(245,158,11,.12); border-radius: 8px; padding: 8px 10px; font-size: 12px; }
+  #sync-panel .sync-status { font-weight: 600; }
+  #sync-panel .sync-status.err { color: #ef4444; }
+  #sync-panel .small { font-size: 12px; color: var(--muted); }
+
 
   .empty { text-align: center; padding: 40px; color: var(--muted); font-style: italic;
     background: var(--panel); border: 1px dashed var(--line); border-radius: 10px; }
@@ -412,6 +437,7 @@
     <button type="button" data-theme-mode="dark" title="Use dark mode">Dark</button>
     <button type="button" data-theme-mode="light" title="Use white mode">White</button>
   </div>
+  <button type="button" class="iconbtn" id="sync-btn" data-sync="off" title="Sync your tracking (saved / applied / notes) across tabs and devices" aria-haspopup="dialog"><span class="sync-dot" aria-hidden="true"></span><span id="sync-btn-text">Sync: Off</span></button>
   <button type="button" class="iconbtn" id="refresh-btn" title="Re-fetch all sources">↻ Refresh</button>
   <a class="iconbtn" id="clear-data-link" href="https://github.com/ScottCoffin/Job_Scraper/actions/workflows/clear_data.yml" target="_blank" rel="noopener" title="Clear all accumulated job data (opens Actions → Run workflow)">🗑 Clear jobs</a>
   <a class="iconbtn" id="repo-link" href="https://github.com/ScottCoffin/Job_Scraper" target="_blank" rel="noopener" title="View source repo">⌥ Repo</a>
@@ -576,7 +602,42 @@
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
+<dialog id="sync-panel" aria-labelledby="sync-title">
+  <h2 id="sync-title">Sync across tabs and devices</h2>
+  <p class="sync-status" id="sync-status-line" role="status" aria-live="polite">Off</p>
 
+  <div id="sync-off-view">
+    <p>Tabs in this browser already stay in sync automatically. To also sync your phone and other computers, your
+    tracking data (Saved / Applied / Interview / Offer, ratings, notes, logged events, blocked companies) is stored in a
+    <strong>secret GitHub Gist in your own account</strong>.</p>
+    <ol>
+      <li><a id="sync-token-link" href="https://github.com/settings/tokens/new?scopes=gist&amp;description=job-tracker-sync" target="_blank" rel="noopener noreferrer">Create a classic token with ONLY the <code>gist</code> scope</a> (tick nothing else; set an expiry you are comfortable with).</li>
+      <li>Paste it here and press Connect. The token is saved <strong>only in this browser</strong> (localStorage). It is never put in the repo and only ever sent to <code>api.github.com</code>.</li>
+      <li>Then use “Copy phone setup link” and open it once on your phone.</li>
+    </ol>
+    <label for="sync-token-input" class="small">GitHub token (gist scope)</label>
+    <input id="sync-token-input" type="password" autocomplete="off" spellcheck="false" placeholder="ghp_…" aria-describedby="sync-privacy">
+    <div class="row"><button type="button" class="btn" id="sync-connect">Connect</button>
+      <button type="button" class="btn ghost" data-sync-close>Close</button></div>
+  </div>
+
+  <div id="sync-on-view" hidden>
+    <div class="row">
+      <button type="button" class="btn" id="sync-now">Sync now</button>
+      <button type="button" class="btn ghost" id="sync-copy-link">Copy phone setup link</button>
+      <button type="button" class="btn ghost" id="sync-disconnect">Disconnect</button>
+      <button type="button" class="btn ghost" data-sync-close>Close</button>
+    </div>
+    <p class="warn" id="sync-link-warn">The phone setup link <strong>contains your token</strong>. Open it once on your phone, then delete it from chat/notes/clipboard. Don’t share it. (The token sits in the URL fragment, which browsers don’t send to servers, and this page removes it from the address bar right after importing.)</p>
+    <p class="small">Disconnect only removes the token from this browser; the gist stays in your GitHub account (delete it at gist.github.com if you want the data gone).</p>
+  </div>
+
+  <p class="small" id="sync-privacy">Privacy: notes and statuses go to a <em>secret</em> gist — unlisted, but anyone who has its URL can read it (secret ≠ access-controlled). They are never written to this repo. The token lives in localStorage on each connected device, so treat those devices accordingly and revoke the token at github.com/settings/tokens if one is lost. Edits are merged per field, newest edit wins, so keep device clocks correct.</p>
+</dialog>
+
+
+
+<script src="tracker-sync.js"></script>
 <script>
   // ---------- Sources ----------
   const SOURCES = [
@@ -616,6 +677,87 @@
   state.timeline = state.timeline || {};
   state.blockedCompanies = state.blockedCompanies || [];
   state.jobs = state.jobs || [];
+
+  // ---------- Tracker store (per-job tracking, shared by all tabs) ----------
+  // Root cause of the old lag/lost-edit bug: every tab kept the whole state in
+  // memory and save() overwrote the ONE localStorage blob, so a stale tab
+  // silently reverted other tabs' edits and nothing told tabs to re-read.
+  // Now: tracking lives in JOB_TRACKER (per-job entries, per-field timestamps,
+  // tombstones — see tracker-sync.js). A write diffs this tab's edits against
+  // what it last saw and applies ONLY that diff onto the latest stored tracker.
+  // state.triage/notes/stars/timeline/blockedCompanies remain the in-memory
+  // view so all existing readers are unchanged, and are still mirrored into
+  // jobTriage:v3 for backward compatibility.
+  const TSYNC = window.TrackerSync || null;
+  const TRACKER_KEY = 'jobTriage:tracker:v1';
+  const TAB_ID = Math.random().toString(36).slice(2) + Date.now().toString(36);
+  let tracker = null;        // this tab's last-known tracker
+  let baselineView = null;   // view as of the last commit/adopt (diff base)
+  let lastRaw = null;        // last tracker JSON string this tab wrote/adopted
+  const cloneJson = o => JSON.parse(JSON.stringify(o));
+  function currentView() {
+    return { triage: state.triage, notes: state.notes, stars: state.stars,
+             timeline: state.timeline, blockedCompanies: state.blockedCompanies };
+  }
+  function adoptView(v) {
+    state.triage = cloneJson(v.triage); state.notes = cloneJson(v.notes);
+    state.stars = cloneJson(v.stars); state.timeline = cloneJson(v.timeline);
+    state.blockedCompanies = cloneJson(v.blockedCompanies);
+    baselineView = cloneJson(v);
+  }
+  function readStoredRaw() { try { return localStorage.getItem(TRACKER_KEY); } catch { return null; } }
+  function parseTrackerRaw(raw) {
+    try { return raw ? TSYNC.normalizeTracker(JSON.parse(raw)) : null; } catch { return null; }
+  }
+  function writeTrackerRaw(tr) {
+    const raw = JSON.stringify(tr);
+    try { localStorage.setItem(TRACKER_KEY, raw); } catch (e) { console.warn('[tracker] write failed:', e.message); return null; }
+    return raw;
+  }
+  let trackerChan = null;
+  try { trackerChan = typeof BroadcastChannel === 'function' ? new BroadcastChannel('jobTriage:tracker') : null; } catch { trackerChan = null; }
+  function broadcastTracker() { try { trackerChan && trackerChan.postMessage({ from: TAB_ID, at: Date.now() }); } catch {} }
+
+  // Returns true when another tab/device changed tracking data that this tab
+  // has now adopted (caller should re-render). Safe to call any time.
+  let onOwnWrite = () => {};
+  function commitTracker() {
+    if (!TSYNC) return false;
+    const cur = currentView();
+    const dirty = !TSYNC.viewsEqual(baselineView, cur);
+    const raw = readStoredRaw();
+    if (!dirty && raw === lastRaw) return false;
+    const latest = parseTrackerRaw(raw) || tracker;
+    const foreignWrite = raw !== lastRaw;
+    const now = Date.now();
+    const next = dirty ? TSYNC.applyViewChanges(latest, baselineView, cur, now) : latest;
+    let foreign = false;
+    if (foreignWrite) {
+      const own = dirty ? TSYNC.applyViewChanges(tracker || TSYNC.emptyTracker(), baselineView, cur, now) : (tracker || TSYNC.emptyTracker());
+      foreign = !TSYNC.viewsEqual(TSYNC.materialize(next), TSYNC.materialize(own));
+    }
+    tracker = next;
+    if (dirty) {
+      const w = writeTrackerRaw(next);
+      if (w) { lastRaw = w; broadcastTracker(); }
+      onOwnWrite();
+    } else {
+      lastRaw = raw;
+    }
+    adoptView(TSYNC.materialize(next));
+    return foreign;
+  }
+  if (TSYNC) {
+    // Load: stored tracker (if any) + anything still only in the legacy v3 blob
+    // (legacy entries are stamped oldest, so any real edit always wins). This
+    // migrates existing saved/applied data and also rescues writes from an old
+    // cached page that only knows the v3 format.
+    const stored = parseTrackerRaw(readStoredRaw());
+    tracker = TSYNC.mergeTrackerState(stored || TSYNC.emptyTracker(), TSYNC.migrateLegacy(state));
+    adoptView(TSYNC.materialize(tracker));
+    if (!stored || !TSYNC.viewsEqual(stored, tracker)) { lastRaw = writeTrackerRaw(tracker); broadcastTracker(); }
+    else lastRaw = readStoredRaw();   // unchanged: don't rewrite (avoids storage-event storms across tabs)
+  }
   const selectedUrls = new Set();
   let focusedUrl = '';
   let RENDERED = [];
@@ -2182,6 +2324,7 @@
   }
 
   function renderAll() {
+    commitTracker();             // adopt other tabs'/devices' edits before drawing
     VIEW = dedupe(state.jobs);   // collapse cross-posted (LinkedIn↔Indeed) dupes
     renderFilterGroup('filter-source', 'source', ['LinkedIn', 'Priority', 'Indeed', 'Glassdoor', 'ZipRecruiter', 'GoogleJobs', 'HiringCafe', 'CalCareers', 'CSUCareers', 'USAJOBS', 'JobBank', 'RemoteBoards', 'NEOGOV', 'CalOpps']);
     renderFilterGroup('filter-role', 'role', ROLE_NAMES);   // from config.json → role_categories
@@ -2289,7 +2432,7 @@
       return `<li class="tl-entry">`
         + `<span class="tl-ts">${ds}</span>`
         + `<span class="tl-text">${escape(ev.text)}</span>`
-        + `<button type="button" class="tl-del" data-tl-del="${i}" title="Remove">✕</button>`
+        + `<button type="button" class="tl-del" data-tl-del="${i}" data-tl-id="${escape(ev.id || '')}" title="Remove">✕</button>`
         + `</li>`;
     }).join('');
     return (entries ? `<ul class="tl-entries">${entries}</ul>` : '')
@@ -2307,11 +2450,16 @@
     return o;
   }
   function save() {
+    // Commit tracking edits as a diff onto the latest shared tracker FIRST, so
+    // the v3 mirror below reflects merged state and never a stale overwrite.
+    const foreign = commitTracker();
     try {
       const slim = { ...state, jobs: state.jobs.map(slimJob) };
       localStorage.setItem(STORAGE_KEY, JSON.stringify(slim));
     }
     catch (e) { console.warn('[save] localStorage write failed:', e.message); }
+    if (foreign) scheduleRemoteRender();
+    return foreign;
   }
 
   // ---------- Prune (keeps localStorage bounded) ----------
@@ -2334,10 +2482,8 @@
     if (state.jobs.length < before) {
       console.info(`[pruneState] dropped ${before - state.jobs.length} stale/excluded job(s)`);
     }
-    const live = new Set(state.jobs.map(j => j.url));
-    Object.keys(state.notes).forEach(url => { if (!live.has(url) && !state.triage[url]) delete state.notes[url]; });
-    Object.keys(state.stars).forEach(url => { if (!live.has(url) && !state.triage[url]) delete state.stars[url]; });
-    Object.keys(state.timeline).forEach(url => { if (!live.has(url) && !state.triage[url]) delete state.timeline[url]; });
+    // Notes/stars/timeline are intentionally NOT pruned here: a deletion would
+    // become a synced tombstone and erase the entry on every other device.
   }
 
   // ---------- Refresh flow ----------
@@ -2427,8 +2573,10 @@
     if (tlDelBtn) {
       const tlWrap = tlDelBtn.closest('[data-tl]');
       const url = tlWrap?.dataset.tl;
-      const idx = Number(tlDelBtn.dataset.tlDel);
-      if (url && state.timeline[url]) {
+      const evId = tlDelBtn.dataset.tlId || '';
+      let idx = evId && state.timeline[url] ? state.timeline[url].findIndex(ev => ev.id === evId) : -1;
+      if (idx < 0) idx = Number(tlDelBtn.dataset.tlDel);   // legacy/no-id fallback
+      if (url && state.timeline[url] && state.timeline[url][idx]) {
         state.timeline[url].splice(idx, 1);
         if (!state.timeline[url].length) delete state.timeline[url];
         save();
@@ -2740,6 +2888,208 @@
   document.addEventListener('visibilitychange', () => {
     if (!document.hidden && Date.now() - (state._lastLoaded || 0) > 5 * 60 * 1000) refresh();
   });
+
+  // ---------- Cross-tab refresh ----------
+  // Re-render after another tab/device changed tracking data, but never yank
+  // the DOM out from under a note/log field the user is typing in.
+  let remoteRenderTimer = null, remoteRenderPending = false;
+  function scheduleRemoteRender() {
+    clearTimeout(remoteRenderTimer);
+    remoteRenderTimer = setTimeout(() => {
+      const ae = document.activeElement;
+      if (ae && ae.closest && ae.closest('#jobs') && /^(TEXTAREA|INPUT)$/.test(ae.tagName)) { remoteRenderPending = true; return; }
+      remoteRenderPending = false;
+      renderAll();
+    }, 120);
+  }
+  $('jobs').addEventListener('focusout', () => { if (remoteRenderPending) setTimeout(scheduleRemoteRender, 60); });
+  function onTrackerMayHaveChanged() { if (commitTracker()) scheduleRemoteRender(); }
+  if (trackerChan) trackerChan.onmessage = ev => { if (!ev.data || ev.data.from !== TAB_ID) onTrackerMayHaveChanged(); };
+  window.addEventListener('storage', ev => { if (ev.key === TRACKER_KEY) onTrackerMayHaveChanged(); });
+  window.addEventListener('focus', onTrackerMayHaveChanged);
+
+  // ---------- Optional device sync via a secret GitHub Gist ----------
+  // Off by default. {token, gistId} lives ONLY in this device's localStorage.
+  const SYNC_CFG_KEY = 'jobTriage:sync:v1';
+  const SYNC_PUSH_DELAY_MS = 2000, SYNC_POLL_MS = 60000, SYNC_BACKOFF_MAX_MS = 300000;
+  let syncCfg = null;
+  try { const c = JSON.parse(localStorage.getItem(SYNC_CFG_KEY)); if (TSYNC && TSYNC.validConfig(c)) syncCfg = { token: c.token, gistId: c.gistId }; } catch {}
+  let syncState = 'off', syncAt = null, syncMsg = '';
+  let syncRunning = false, syncQueued = false, syncDirty = true;
+  let syncPushTimer = null, syncBackoffMs = 0, syncBlockedUntil = 0, syncHalted = false;
+  // Hard timeout so a hung connection can never wedge the sync loop.
+  const syncFetch = (u, i) => {
+    const ac = new AbortController(), timer = setTimeout(() => ac.abort(), 20000);
+    return fetch(u, { ...i, cache: 'no-store', credentials: 'omit', referrerPolicy: 'no-referrer', signal: ac.signal })
+      .finally(() => clearTimeout(timer));
+  };
+  const hhmm = d => `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`;
+
+  function renderSyncUi() {
+    const btn = $('sync-btn'); if (!btn) return;
+    let label;
+    if (!TSYNC) label = 'Sync: n/a';
+    else if (!syncCfg) label = 'Sync: Off';
+    else if (syncState === 'syncing') label = 'Syncing…';
+    else if (syncState === 'error') label = 'Sync error';
+    else if (syncState === 'offline') label = 'Sync offline';
+    else label = syncAt ? `Synced ${hhmm(syncAt)}` : 'Sync: On';
+    btn.dataset.sync = syncCfg ? syncState : 'off';
+    $('sync-btn-text').textContent = label;
+    const line = $('sync-status-line');
+    line.classList.toggle('err', syncState === 'error' && !!syncCfg);
+    line.textContent = !syncCfg ? 'Off — this browser only (tabs stay in sync automatically).'
+      : syncState === 'error' ? `Error: ${syncMsg}`
+      : syncState === 'offline' ? `Offline — changes are saved locally and will sync when you’re back online.`
+      : syncState === 'syncing' ? 'Syncing…'
+      : syncAt ? `Synced at ${hhmm(syncAt)}` : 'Connected — waiting for first sync…';
+    $('sync-off-view').hidden = !!syncCfg;
+    $('sync-on-view').hidden = !syncCfg;
+  }
+  function setSync(state, msg) { syncState = state; syncMsg = msg || ''; renderSyncUi(); }
+  function saveSyncCfg(cfg) {
+    syncCfg = cfg ? { token: cfg.token, gistId: cfg.gistId } : null;
+    try {
+      if (cfg) localStorage.setItem(SYNC_CFG_KEY, JSON.stringify(syncCfg));
+      else localStorage.removeItem(SYNC_CFG_KEY);
+    } catch (e) { console.warn('[sync] could not persist config'); }
+  }
+  function syncFail(err) {
+    if (err.kind === 'network') {
+      setSync('offline', err.message);
+    } else setSync('error', err.message);
+    if (err.retry) {
+      syncBackoffMs = Math.min(SYNC_BACKOFF_MAX_MS, Math.max(err.waitMs || 0, syncBackoffMs ? syncBackoffMs * 2 : 5000));
+      syncBlockedUntil = Date.now() + syncBackoffMs;
+      clearTimeout(syncPushTimer);
+      syncPushTimer = setTimeout(() => runSync(), syncBackoffMs + 50);
+    } else {
+      syncHalted = true;   // needs the user (bad token / missing gist / corrupt file)
+    }
+  }
+  function queuePush() {
+    if (!TSYNC || !syncCfg || syncHalted) return;
+    syncDirty = true;
+    clearTimeout(syncPushTimer);
+    syncPushTimer = setTimeout(() => runSync(), SYNC_PUSH_DELAY_MS);
+  }
+  onOwnWrite = queuePush;
+
+  // Merge a tracker from the remote into local storage (re-merging against the
+  // latest local so edits made while the request was in flight survive).
+  function adoptMerged(merged) {
+    commitTracker();   // flush this tab's own pending edits first
+    const curRaw = readStoredRaw();
+    const cur = parseTrackerRaw(curRaw) || tracker;
+    const final = TSYNC.mergeTrackerState(cur, merged);
+    if (TSYNC.stableStringify(final) !== TSYNC.stableStringify(cur)) {
+      writeTrackerRaw(final);        // lastRaw left stale on purpose → commitTracker adopts it as "foreign"
+      broadcastTracker();
+    }
+    if (TSYNC.stableStringify(final) !== TSYNC.stableStringify(merged)) syncDirty = true;   // local has more than remote
+    if (commitTracker()) scheduleRemoteRender();
+  }
+
+  async function runSync({ manual = false } = {}) {
+    if (!TSYNC || !syncCfg) return;
+    if (syncRunning) { syncQueued = true; return; }
+    if (!manual && (syncHalted || Date.now() < syncBlockedUntil)) return;
+    if (navigator.onLine === false) { setSync('offline', 'Offline'); return; }
+    if (manual) { syncHalted = false; syncBlockedUntil = 0; syncBackoffMs = 0; }
+    syncRunning = true; setSync('syncing');
+    try {
+      const client = TSYNC.createGistClient(syncFetch, syncCfg.token);
+      const r = await client.getTracker(syncCfg.gistId, null);
+      if (!r.ok) return syncFail(r.error);
+      commitTracker();
+      const local = parseTrackerRaw(readStoredRaw()) || tracker;
+      let merged = local, remote = null;
+      if (!r.notModified) { remote = r.tracker; merged = TSYNC.mergeTrackerState(local, remote); }
+      const needPush = syncDirty || (remote && TSYNC.stableStringify(merged) !== TSYNC.stableStringify(remote));
+      if (needPush) {
+        const wasDirty = syncDirty; syncDirty = false;
+        const p = await client.putTracker(syncCfg.gistId, merged);
+        if (!p.ok) { syncDirty = wasDirty || true; return syncFail(p.error); }
+      }
+      if (remote) adoptMerged(merged);
+      syncBackoffMs = 0; syncAt = new Date();
+      setSync('idle');
+    } catch (e) {
+      setSync('error', 'Unexpected sync error');
+    } finally {
+      syncRunning = false;
+      if (syncQueued) { syncQueued = false; setTimeout(() => runSync(), 50); }
+      else if (syncDirty && syncState === 'idle') queuePush();   // local had more than remote after merge
+    }
+  }
+
+  async function connectSync(token) {
+    token = String(token || '').trim();
+    if (!TSYNC) return;
+    const line = $('sync-status-line');
+    if (!/^[A-Za-z0-9_\-]{20,255}$/.test(token)) { setSync('off'); line.textContent = 'That doesn’t look like a GitHub token.'; return; }
+    const client = TSYNC.createGistClient(syncFetch, token);
+    line.classList.remove('err'); line.textContent = 'Connecting…';
+    let found = await client.findGist();
+    if (!found.ok) { line.classList.add('err'); line.textContent = `Error: ${found.error.message}`; return; }
+    let gistId = found.gist && found.gist.id;
+    if (!gistId) {
+      commitTracker();
+      const created = await client.createGist(parseTrackerRaw(readStoredRaw()) || tracker);
+      if (!created.ok) { line.classList.add('err'); line.textContent = `Error: ${created.error.message}`; return; }
+      gistId = created.gist.id;
+    }
+    saveSyncCfg({ token, gistId });
+    syncDirty = true; syncHalted = false; syncBlockedUntil = 0; syncBackoffMs = 0;
+    $('sync-token-input').value = '';
+    setSync('idle');
+    await runSync({ manual: true });
+    toast('Sync connected');
+  }
+  function disconnectSync() {
+    saveSyncCfg(null);
+    clearTimeout(syncPushTimer);
+    syncAt = null; syncHalted = false; syncDirty = true;
+    setSync('off');
+    toast('Sync disconnected');
+  }
+  function setupLink() {
+    if (!syncCfg) return '';
+    let path = location.pathname; if (path.endsWith('/')) path += 'triage.html';
+    return location.origin + path + TSYNC.makeSetupFragment(syncCfg);
+  }
+
+  // Phone setup link import: #sync=… → localStorage, then scrubbed from the URL.
+  (function importSetupFragment() {
+    if (!TSYNC || !/(?:^#|[#&])sync=/.test(location.hash)) return;
+    const cfg = TSYNC.parseSetupFragment(location.hash);
+    try { history.replaceState(null, '', location.pathname + location.search); } catch {}
+    if (cfg) {
+      saveSyncCfg(cfg); syncDirty = true;
+      setTimeout(() => toast('Sync connected'), 400);
+    } else setTimeout(() => toast('Invalid sync link'), 400);
+  })();
+
+  // Panel wiring
+  const syncPanel = $('sync-panel');
+  $('sync-btn').onclick = () => { renderSyncUi(); if (syncPanel.showModal && !syncPanel.open) syncPanel.showModal(); else syncPanel.setAttribute('open', ''); };
+  syncPanel.querySelectorAll('[data-sync-close]').forEach(b => { b.onclick = () => syncPanel.close ? syncPanel.close() : syncPanel.removeAttribute('open'); });
+  $('sync-connect').onclick = () => connectSync($('sync-token-input').value);
+  $('sync-token-input').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); connectSync(e.target.value); } });
+  $('sync-now').onclick = () => runSync({ manual: true });
+  $('sync-disconnect').onclick = disconnectSync;
+  $('sync-copy-link').onclick = async () => {
+    const link = setupLink(); if (!link) return;
+    try { await navigator.clipboard.writeText(link); toast('Setup link copied — contains your token'); }
+    catch { toast('Copy failed'); }
+  };
+  window.addEventListener('online', () => runSync());
+  window.addEventListener('offline', () => { if (syncCfg) setSync('offline', 'Offline'); });
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) { onTrackerMayHaveChanged(); runSync(); } });
+  window.addEventListener('focus', () => runSync());
+  setInterval(() => { if (!document.hidden) runSync(); }, SYNC_POLL_MS);
+  renderSyncUi();
+  if (TSYNC && syncCfg) runSync();
 
   // ---------- Initial load ----------
   applyTheme(themeMode);
