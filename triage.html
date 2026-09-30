@@ -337,6 +337,7 @@
   .src.calcareers { background: rgba(180,83,9,0.18); color: #fbbf24; }
   .src.usajobs { background: rgba(29,78,216,0.18); color: #93c5fd; }
   .src.jobbank { background: rgba(200,16,46,0.18); color: #fca5a5; }
+  .src.remoteboards { background: rgba(124,58,237,0.18); color: #c4b5fd; }
   .src.neogov { background: rgba(14,116,144,0.20); color: #67e8f9; }
   .src.calopps { background: rgba(21,128,61,0.20); color: #86efac; }
   .src.csucareers { background: rgba(30,64,175,0.20); color: #93c5fd; }
@@ -590,6 +591,7 @@
     { name: 'output/csucareers_jobs.json', src: 'CSUCareers' },
     { name: 'output/usajobs_jobs.json',  src: 'USAJOBS'    },
     { name: 'output/jobbank_jobs.json',  src: 'JobBank'    },
+    { name: 'output/remoteboards_jobs.json', src: 'RemoteBoards' },
     { name: 'output/governmentjobs_jobs.json', src: 'NEOGOV' },
     { name: 'output/calopps_jobs.json',  src: 'CalOpps'    },
     // Cumulative master kept by the scrapers (the rolling files above only hold
@@ -730,9 +732,11 @@
     if (/\bassociate\b|\bi\b|\bii\b|\bjunior\b|\bjr\.?\b/.test(t)) return 'Associate';
     return 'Mid';
   }
+  const REMOTE_BOARD_ATS = new Set(['Remotive', 'RemoteOK', 'WeWorkRemotely', 'Himalayas', 'Jobicy', 'WorkingNomads', 'Arbeitnow', 'HNHiring']);
   function classifySource(j) {
     if (j.ats === 'USAJOBS' || (j.url || '').includes('usajobs.gov')) return 'USAJOBS';
     if (j.ats === 'JobBank' || (j.url || '').includes('jobbank.gc.ca') || (j.url || '').includes('guichetemplois.gc.ca')) return 'JobBank';
+    if (REMOTE_BOARD_ATS.has(j.ats)) return 'RemoteBoards';
     if (j.ats === 'NEOGOV' || (j.url || '').includes('governmentjobs.com')) return 'NEOGOV';
     if (j.ats === 'CalOpps' || (j.url || '').includes('calopps.org')) return 'CalOpps';
     if (j.ats === 'CalCareers' || (j.url || '').includes('calcareers.ca.gov')) return 'CalCareers';
@@ -2179,7 +2183,7 @@
 
   function renderAll() {
     VIEW = dedupe(state.jobs);   // collapse cross-posted (LinkedIn↔Indeed) dupes
-    renderFilterGroup('filter-source', 'source', ['LinkedIn', 'Priority', 'Indeed', 'Glassdoor', 'ZipRecruiter', 'GoogleJobs', 'HiringCafe', 'CalCareers', 'CSUCareers', 'USAJOBS', 'JobBank', 'NEOGOV', 'CalOpps']);
+    renderFilterGroup('filter-source', 'source', ['LinkedIn', 'Priority', 'Indeed', 'Glassdoor', 'ZipRecruiter', 'GoogleJobs', 'HiringCafe', 'CalCareers', 'CSUCareers', 'USAJOBS', 'JobBank', 'RemoteBoards', 'NEOGOV', 'CalOpps']);
     renderFilterGroup('filter-role', 'role', ROLE_NAMES);   // from config.json → role_categories
     renderFilterGroup('filter-sen', 'sen',
       ['Director+', 'Principal', 'Staff', 'Senior', 'Mid', 'Associate']);
