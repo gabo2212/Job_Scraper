@@ -2,7 +2,7 @@
 
 ## What this project is
 
-GitHub Actions pipelines that scrape job boards (LinkedIn, Indeed, Glassdoor, ZipRecruiter, Google Jobs, HiringCafe, USAJOBS, CalCareers, NEOGOV/CalOpps) on a schedule, commit results to the repo, and serve them through a filterable triage dashboard (`triage.html`) hosted on GitHub Pages.
+GitHub Actions pipelines that scrape job boards (LinkedIn, Indeed, Glassdoor, ZipRecruiter, Google Jobs, HiringCafe, Job Bank Canada, remote boards such as Remotive/RemoteOK/Himalayas, USAJOBS, CalCareers, NEOGOV/CalOpps) on a schedule, commit results to the repo, and serve them through a filterable triage dashboard (`triage.html`) hosted on GitHub Pages.
 
 Designed to be forked. No server. No paid services required (AI triage is optional).
 
@@ -20,7 +20,7 @@ Designed to be forked. No server. No paid services required (AI triage is option
 
 ## Workflow architecture
 
-All 18 workflows live in `.github/workflows/`. Pattern:
+All workflows live in `.github/workflows/`. Pattern:
 - **Watcher workflows** (`*_watch.yml`, `scrape_jobs.yml`) run on cron, call `scrape_jobs.py`, then commit to `output/` when `vars.ENABLE_DATA_COMMITS == 'true'`.
 - **Concurrency group** `job-scraper-commit-push` serializes all commits (prevents push conflicts).
 - **`triage.yml`** scores new roles via OpenAI (default) or Anthropic nightly. Disabled by default — requires `OPENAI_API_KEY` (or `ANTHROPIC_API_KEY`), `CANDIDATE_PROFILE`, `CANDIDATE_RESUME` secrets. Optional Variables: `TRIAGE_PROVIDER`, `TRIAGE_MODEL` (default `gpt-6-luna`).
@@ -56,7 +56,9 @@ Verify everything is configured:
 pip install -r requirements.txt        # only for Indeed/Glassdoor/ZipRecruiter/Google
 python scrape_jobs.py --linkedin-only
 python scrape_jobs.py --indeed-only
-python scrape_jobs.py --hiringcafe
+python scrape_jobs.py --hiringcafe-only
+python scrape_jobs.py --jobbank-only
+python scrape_jobs.py --remoteboards-only
 python scrape_jobs.py --usajobs
 ```
 

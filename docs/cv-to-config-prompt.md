@@ -5,6 +5,13 @@ Copy **everything in the box below**, paste it into your favorite chatbot
 a line about **where you want to work**. The model returns a finished
 `config.json` — save it over the `config.json` in your repo and commit it.
 
+> This is the **lightweight, chatbot-only** path (it only produces `config.json`).
+> For the full personalization - scoring profile, AI-triage prompt calibration,
+> secrets, evals and GitHub setup - use the agent prompt in the
+> [README](../README.md#make-it-yours-ai-agent-prompt) inside Cursor / Claude Code / Codex.
+> After saving `config.json`, also fill `location_filter.terms` (see
+> `config.example.json`) - the prompt below does not generate it.
+
 > Tip: also tell it anything special, e.g. "only senior roles", "no startups",
 > "exclude pharma", "I also do data science", "remote only".
 

@@ -23,7 +23,7 @@ identical locally and in CI — only the "call the model" line differs.
 ```
 scrapers (all day) ──commit──► all_jobs.json  (cumulative master, first_seen, ~14d)
                                + 3 rolling source JSONs
-triage.yml (nightly 09:00 UTC) ─reads master─► scores every UNSCORED role ─commits─► scores.json
+triage.yml (after every watcher run + nightly 09:00 UTC) ─reads master─► scores every UNSCORED role ─commits─► scores.json
 triage.html (GitHub Pages) ────fetches all_jobs.json + scores.json ──► ★ Rank tab
 ```
 
@@ -59,7 +59,7 @@ outright. Every verdict is tagged `jd: read` or `jd: metadata-only`.
 
 ## Running in CI (the nightly ranking)
 
-`.github/workflows/triage.yml` runs daily at 09:00 UTC (≈1–2am PT, after the day's last
+`.github/workflows/triage.yml` runs automatically after every watcher workflow finishes successfully (`workflow_run`; it stops early when no role is unscored), daily at 09:00 UTC as a safety net (≈1–2am PT, after the day's last
 scrapes) and on manual dispatch (**Actions → Nightly Job Triage → Run workflow**).
 
 Required repo secrets / variables (Settings → Secrets and variables → Actions):
