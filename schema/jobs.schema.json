@@ -25,7 +25,7 @@
     },
     "ats": {
       "type": "string",
-      "description": "Source label: LinkedIn, Indeed, Glassdoor, ZipRecruiter, GoogleJobs, HiringCafe, CalCareers, CSUCareers, USAJOBS, NEOGOV, CalOpps, Greenhouse, Workday, Priority.",
+      "description": "Source label: LinkedIn, Indeed, Glassdoor, ZipRecruiter, GoogleJobs, HiringCafe, CalCareers, CSUCareers, USAJOBS, NEOGOV, CalOpps, Greenhouse, Workday, Priority, JobBank, and the remote boards (Remotive, RemoteOK, WeWorkRemotely, Himalayas, Jobicy, WorkingNomads, Arbeitnow, HNHiring).",
       "enum": [
         "LinkedIn",
         "Indeed",
@@ -40,7 +40,16 @@
         "CalOpps",
         "Greenhouse",
         "Workday",
-        "Priority"
+        "Priority",
+        "JobBank",
+        "Remotive",
+        "RemoteOK",
+        "WeWorkRemotely",
+        "Himalayas",
+        "Jobicy",
+        "WorkingNomads",
+        "Arbeitnow",
+        "HNHiring"
       ]
     },
     "first_seen": {

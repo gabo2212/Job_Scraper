@@ -1,0 +1,71 @@
+{
+ "jobCount": 3,
+ "jobs": [
+  {
+   "id": 154244,
+   "url": "https://jobicy.com/jobs/154244-software-engineer-new-grad-machine-learning-platform-quora",
+   "jobSlug": "154244-software-engineer-new-grad-machine-learning-platform-quora",
+   "jobTitle": "Software Engineer New Grad, Machine Learning Platform - Quora",
+   "companyName": "Quora",
+   "jobIndustry": [
+    "Software Engineering"
+   ],
+   "jobType": [
+    "Full-Time"
+   ],
+   "jobGeo": "Canada,  UK,  USA",
+   "jobLevel": "Senior",
+   "jobExcerpt": "[Quora is a privately held, \"remote-first\" company. This position can be performed remotely from anywhere in Canada or the United States. Please visit careers.quora.com/eligible-countries for details ",
+   "jobDescription": "<p><em>[</em><a href=\"https://www.quora.com/q/quora/Remote-First-at-Quora\" rel=\"nofollow ugc noopener\" target=\"_blank\"><em><strong>Quora is a privately held, \"remote-first\" company</strong></em></a><em><strong>. </strong>This position can be performed remotely from anywhere in Canada or the United States. Please visit </em><a href=\"http://careers.quora.com/eligible-countries\" rel=\"nofollow ugc noopener\" target=\"_blank\"><em>careers.quora.com/eligible-countries</em></a><em> for details regarding employment eligibility by country.]</em></p>\r\n\r\n<h3><strong>About <a href=\"https://jobicy.com/company/quora\" target=\"_blank\" rel=\"noopener\">Quora</a>:</strong></h3>\r\n<p>Quora’s mission is to grow the world's collective intelligence. To do so, we have two platforms:</p>\r\n<ul>\r\n<li>\r\n<p><a href=\"http://quora.com\" rel=\"nofollow ugc noopener\" target=\"_blank\">Quora</a>: a global knowledge sharing platfo",
+   "pubDate": "2026-09-30T08:00:11+00:00",
+   "salaryMin": 97600,
+   "salaryMax": 139000,
+   "salaryCurrency": "USD",
+   "salaryPeriod": "yearly"
+  },
+  {
+   "id": 151986,
+   "url": "https://jobicy.com/jobs/151986-software-developer",
+   "jobSlug": "151986-software-developer",
+   "jobTitle": "Software Developer",
+   "companyName": "D2L",
+   "jobIndustry": [
+    "Software Engineering"
+   ],
+   "jobType": [
+    "Full-Time"
+   ],
+   "jobGeo": "Canada",
+   "jobLevel": "Any",
+   "jobExcerpt": "D2L is a cloud company that is modernizing education and building the Future of Work. The old models of teaching and learning are in the midst of the largest transformation in history, and D2L is at t",
+   "jobDescription": "<p><a href=\"https://jobicy.com/company/d2l\" target=\"_blank\" rel=\"noopener\">D2L</a> is a cloud company that is modernizing education and building the Future of Work. The old models of teaching and learning are in the midst of the largest transformation in history, and D2L is at the heart of that fundamental shift. </p>\n<p>New models of teaching and learning enable a personalized, student-centric experience – and deliver improved retention, engagement, satisfaction, and results for learners of all ages – in schools, campuses, and companies.</p>\n<p>D2L is disrupting the way the world learns, by providing the next generation learning environment and solutions to engage and inspire learners. And most importantly, by giving customers a platform that is easy, flexible, and smart. No other company provides a solution as robust and innovative as D2L.</p>\n<p>D2L has had a singular mission for 25 y",
+   "pubDate": "2026-09-29T03:30:42+00:00",
+   "salaryMin": 70000,
+   "salaryMax": 105000,
+   "salaryCurrency": "CAD",
+   "salaryPeriod": "yearly"
+  },
+  {
+   "id": 154222,
+   "url": "https://jobicy.com/jobs/154222-canada-principal-ml-system-engineer",
+   "jobSlug": "154222-canada-principal-ml-system-engineer",
+   "jobTitle": "(Canada) Principal ML System Engineer",
+   "companyName": "PointClickCare",
+   "jobIndustry": [
+    "DevOps & Infrastructure"
+   ],
+   "jobType": [
+    "Full-Time"
+   ],
+   "jobGeo": "Canada",
+   "jobLevel": "Senior",
+   "jobExcerpt": "At PointClickCare our mission is simple: to help providers deliver exceptional care. And that starts with our people. As a leading health tech company that’s founder-led and privately held, we empower",
+   "jobDescription": "<p>At <a href=\"https://jobicy.com/company/pointclickcare\" target=\"_blank\" rel=\"noopener\">PointClickCare</a> our mission is simple: to help providers deliver exceptional care. And that starts with our people. As a leading health tech company that’s founder-led and privately held, we empower our employees to push boundaries, innovate, and shape the future of healthcare. </p>\n\n<p>With the largest long-term and post-acute care dataset and a Marketplace of 400+ integrated partners, our platform serves over 30,000 provider organizations, making a real difference in millions of lives. We also reinvest a significant percentage of our revenue back into research and development, ensuring our employees have the resources to innovate and make a lasting impact. Recognized by Forbes as a top private cloud company and honored as one of Canada’s Most Admired Corporate Cultures, we offer flexibility, gro",
+   "pubDate": "2026-09-29T15:42:46+00:00",
+   "salaryMin": 158000,
+   "salaryMax": 198000,
+   "salaryCurrency": "CAD",
+   "salaryPeriod": "yearly"
+  }
+ ]
+}

@@ -371,6 +371,24 @@
   },
   "search_terms": {
     "_comment": "Junior remote independent paths + AI-assisted coding. No help-desk queries.",
+    "remote_boards": [
+      "developer",
+      "software engineer",
+      "python",
+      "full stack",
+      "frontend",
+      "backend",
+      ".net",
+      "qa",
+      "test automation",
+      "data analyst",
+      "automation",
+      "ai",
+      "devops",
+      "security",
+      "programmeur",
+      "technical writer"
+    ],
     "linkedin": [
       "Junior Python Developer",
       "Junior .NET Developer",
@@ -658,6 +676,24 @@
   "hiring_cafe": {
     "_comment": "Disabled for this fork — HiringCafe public route is US-centric.",
     "max_pages": 0
+  },
+  "remote_boards": {
+    "_comment": "Remote-first boards (remote_boards.py). One request per endpoint per run (daily cron); honest User-Agent; link back + credit to each board. Skipped after evaluation: Wellfound (anti-bot 303), Remote.co (timeouts, no feed), JustRemote (JS-only, no API/RSS), Dynamite Jobs (RSS is a blog, not jobs).",
+    "boards": ["remotive", "remoteok", "weworkremotely", "himalayas", "jobicy", "workingnomads", "arbeitnow", "hnhiring"],
+    "max_age_days": 45,
+    "request_delay": 2.0,
+    "himalayas": {
+      "max_pages": 1,
+      "backfill_pages": 3,
+      "country": "CA"
+    },
+    "jobicy": {
+      "geos": ["canada", "anywhere"],
+      "count": 100
+    },
+    "weworkremotely": {
+      "feeds": ["remote-programming-jobs", "remote-devops-sysadmin-jobs", "remote-jobs"]
+    }
   },
   "job_bank": {
     "_comment": "Job Bank Canada (jobbank.gc.ca). robots.txt Crawl-delay: 5. prefer_remote adds a Canada-wide Remote+Hybrid pass (fskl=15141/100000).",

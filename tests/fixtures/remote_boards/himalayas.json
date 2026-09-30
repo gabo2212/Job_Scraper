@@ -1,0 +1,243 @@
+{
+ "totalCount": 6,
+ "jobs": [
+  {
+   "title": "Online Tutor Extra Income - Voice Recordings, English & Chinese - AI trainer",
+   "excerpt": "This is a project-based opportunity on an AI training platform.",
+   "companyName": "Toloka AI",
+   "companySlug": "toloka-ai",
+   "employmentType": "Contractor",
+   "minSalary": 30,
+   "maxSalary": 30,
+   "salaryPeriod": "hourly",
+   "seniority": [
+    "Entry-level"
+   ],
+   "currency": "USD",
+   "locationRestrictions": [
+    "Canada"
+   ],
+   "timezoneRestrictions": [
+    -8,
+    -7,
+    -6,
+    -5,
+    -4,
+    -3.5
+   ],
+   "categories": [
+    "Voice-Actor",
+    "AI-Trainer",
+    "Linguist",
+    "Data-Annotator",
+    "Freelancer",
+    "Freelance-Multilingual-AI-Tutor",
+    "Entry-Level-AI-Tutor-(Chinese)",
+    "Chinese-Language-AI-Tutoring",
+    "Freelance-AI-Language-Tutor",
+    "AI-Voice-Trainer",
+    "Online-English-Trainer",
+    "Freelance-English-AI-Trainer",
+    "Online-Tutor",
+    "Education"
+   ],
+   "parentCategories": [
+    "Data Science",
+    "Education"
+   ],
+   "description": "<p>This is a project-based opportunity on an AI training platform. No fixed hours, no commitment beyond what fits your schedule. You talk, you get paid.</p><h3>About the Role</h3><p>We're looking for bilingual speakers to record short, casual voice clips where they naturally mix English with Chinese - the way they'd actually talk in real life. No script, no scenarios, just you talking about your day, your opinions, whatever comes naturally.</p><p>Do you switch between English and Chinese mid-sentence without even thinking about it? Rant about your day, discuss your favorite show, think out loud with different languages - say it exactly how you'd say it to a friend. What if you could get paid just for recording it?</p><h3>Responsibilities:</h3><ul>\n<li>Record 1-2 minute voice clips responding to a prompt or reacting to a short video</li>\n<li>Speak naturally, switching between English and ",
+   "pubDate": 1790564883,
+   "expiryDate": 1795748882,
+   "applicationLink": "https://himalayas.app/companies/toloka-ai/jobs/online-tutor-extra-income-voice-recordings-english-chinese-ai-trainer-6883322647",
+   "guid": "https://himalayas.app/companies/toloka-ai/jobs/online-tutor-extra-income-voice-recordings-english-chinese-ai-trainer-6883322647"
+  },
+  {
+   "title": "AI Engineer",
+   "excerpt": "NUWAVE POSITION SUMMARY NUWAVE is a market leader in unified communications as a service and enterprise voice for Microsoft Teams.",
+   "companyName": "Nuwave Communications, Inc.",
+   "companySlug": "nuwave-communications-inc",
+   "employmentType": "Full Time",
+   "minSalary": null,
+   "maxSalary": null,
+   "salaryPeriod": "annual",
+   "seniority": [
+    "Senior"
+   ],
+   "currency": null,
+   "locationRestrictions": [
+    "United States"
+   ],
+   "timezoneRestrictions": [
+    -10,
+    -9,
+    -8,
+    -7,
+    -6,
+    -5,
+    14
+   ],
+   "categories": [
+    "AI-Engineer",
+    "Machine-Learning-Engineer",
+    "Software-Engineer",
+    "Python-Developer",
+    "Cloud-Engineer",
+    "Artificial-Intelligence-Engineer",
+    "AI-ML-Engineer",
+    "AI-Engineering-Specialist",
+    "AI-Engineering",
+    "Artificial-Intelligence-Engineering",
+    "Python-AI-Engineer",
+    "AI-Engineering-Jobs",
+    "AI-Agent-Engineer"
+   ],
+   "parentCategories": [
+    "Data Science",
+    "Developer"
+   ],
+   "description": "<strong>NUWAVE POSITION SUMMARY</strong><br>NUWAVE is a market leader in unified communications as a service and enterprise voice for Microsoft Teams. <br>We deliver carrier-grade communications to enterprises and service providers worldwide. Our platforms are <br>backed by BSI-certified management systems, including ISO/IEC 42001 for AI governance.<br>We are looking for an AI Engineer for a full-time, U.S.-remote role helping build and operate Nebula, <br>NUWAVE's governed conversational AI workspace. Nebula combines a GraphRAG knowledge engine, business <br>applications, and agent workflows across the web and Microsoft Teams.<br>This role works closely with the Director of AI Infrastructure to turn Jira issues into verified production <br>changes. You will use AI coding agents as part of the daily engineering workflow while remaining accountable <br>for system design, code review, test",
+   "pubDate": 1790793295,
+   "expiryDate": 1795977294,
+   "applicationLink": "https://himalayas.app/companies/nuwave-communications-inc/jobs/ai-engineer",
+   "guid": "https://himalayas.app/companies/nuwave-communications-inc/jobs/ai-engineer"
+  },
+  {
+   "companySlug": "acme",
+   "employmentType": "Full Time",
+   "minSalary": 55000,
+   "maxSalary": 70000,
+   "salaryPeriod": "annual",
+   "currency": "CAD",
+   "timezoneRestrictions": [
+    -8,
+    -7,
+    -6,
+    -5,
+    -4
+   ],
+   "categories": [
+    "Software-Engineer"
+   ],
+   "parentCategories": [
+    "Developer"
+   ],
+   "pubDate": 1790779973,
+   "expiryDate": 1799963972,
+   "title": "Junior Full-Stack Developer",
+   "excerpt": "Learn with us",
+   "companyName": "Acme Apps",
+   "seniority": [
+    "Entry-level"
+   ],
+   "locationRestrictions": [
+    "Canada"
+   ],
+   "description": "<p>Junior developer role. <b>0-2 years</b> of experience. Python and React.</p>",
+   "applicationLink": "https://himalayas.app/companies/acme/jobs/junior-full-stack-developer",
+   "guid": "https://himalayas.app/companies/acme/jobs/junior-full-stack-developer"
+  },
+  {
+   "companySlug": "acme",
+   "employmentType": "Full Time",
+   "minSalary": 55000,
+   "maxSalary": 70000,
+   "salaryPeriod": "annual",
+   "currency": "CAD",
+   "timezoneRestrictions": [
+    -8,
+    -7,
+    -6,
+    -5,
+    -4
+   ],
+   "categories": [
+    "Software-Engineer"
+   ],
+   "parentCategories": [
+    "Developer"
+   ],
+   "pubDate": 1790779973,
+   "expiryDate": 1799963972,
+   "title": "Backend Developer",
+   "excerpt": "Build APIs",
+   "companyName": "Beta Co",
+   "seniority": [
+    "Senior"
+   ],
+   "locationRestrictions": [],
+   "description": "<p>Build APIs at scale.</p>",
+   "applicationLink": "https://himalayas.app/companies/beta/jobs/backend-developer",
+   "guid": "https://himalayas.app/companies/beta/jobs/backend-developer"
+  },
+  {
+   "companySlug": "acme",
+   "employmentType": "Full Time",
+   "minSalary": 55000,
+   "maxSalary": 70000,
+   "salaryPeriod": "annual",
+   "currency": "CAD",
+   "timezoneRestrictions": [
+    1,
+    2,
+    3
+   ],
+   "categories": [
+    "Software-Engineer"
+   ],
+   "parentCategories": [
+    "Developer"
+   ],
+   "pubDate": 1790779973,
+   "expiryDate": 1799963972,
+   "title": "Junior QA Automation Engineer",
+   "excerpt": "Test things",
+   "companyName": "Gamma",
+   "seniority": [
+    "Entry-level"
+   ],
+   "locationRestrictions": [],
+   "description": "<p>Junior QA. Entry-level welcome.</p>",
+   "applicationLink": "https://himalayas.app/companies/gamma/jobs/junior-qa",
+   "guid": "https://himalayas.app/companies/gamma/jobs/junior-qa"
+  },
+  {
+   "companySlug": "acme",
+   "employmentType": "Full Time",
+   "minSalary": 55000,
+   "maxSalary": 70000,
+   "salaryPeriod": "annual",
+   "currency": "CAD",
+   "timezoneRestrictions": [
+    -8,
+    -7,
+    -6,
+    -5,
+    -4
+   ],
+   "categories": [
+    "Software-Engineer"
+   ],
+   "parentCategories": [
+    "Developer"
+   ],
+   "pubDate": 1790779973,
+   "expiryDate": 1700000000,
+   "title": "Junior Data Analyst",
+   "excerpt": "SQL",
+   "companyName": "Delta",
+   "seniority": [
+    "Entry-level"
+   ],
+   "locationRestrictions": [
+    {
+     "alpha2": "CA",
+     "name": "Canada",
+     "slug": "canada"
+    }
+   ],
+   "description": "<p>SQL and dashboards. Junior.</p>",
+   "applicationLink": "https://himalayas.app/companies/delta/jobs/junior-data-analyst",
+   "guid": "https://himalayas.app/companies/delta/jobs/junior-data-analyst"
+  }
+ ]
+}

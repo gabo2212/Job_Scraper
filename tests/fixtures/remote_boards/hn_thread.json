@@ -1,0 +1,47 @@
+{
+ "id": 49522897,
+ "children": [
+  {
+   "id": 49522903,
+   "author": "thelastofthelas",
+   "created_at": "2026-09-01T15:01:54.000Z",
+   "text": "Modash.io | Senior Product Engineer | Remote (Europe) | Full-time | €75k–110k | <a href=\"https:&#x2F;&#x2F;modash.io\" rel=\"nofollow\">https:&#x2F;&#x2F;modash.io</a><p>Modash helps brands find, manage, and pay creators - and helps creators earn a living.<p>The product looks simple on the surface. Underneath, we index 380M+ public creator profiles across Instagram, TikTok, and YouTube so that 1,700+ brands search, evaluate, manage, and pay creators without drowning in spreadsheets and tabs.<p>We&#x27;re looking for Senior Product Engineers who like owning ambiguous problems end-to-end. No perfectly shaped tickets. You talk to customers, understand messy workflows, make product decisions, ship, and own whether it actually works.<p>The problems we care about:<p>- How do you make a 380M-profile dataset feel fast, trustworthy, and easy to explore?<p>- How do you turn chaotic influencer marketing workflows into product that feels obvious?<p>- How do you build tools that work for both small teams and brands like Stanley, Sennheiser, Birkenstock, and NordVPN??<p>We&#x27;re 85 people, raised an €11M Series A, and ARR is doubling every year. HQ is in Tallinn, engineering is fully remote across Europe.\nNo ticket factory. No seven layers of approval. Small teams, real ownership, hard product problems.<p>Engineering blog: <a href=\"https:&#x2F;&#x2F;modash.io&#x2F;engineering\" rel=\"nofollow\">https:&#x2F;&#x2F;modash.io&#x2F;engineering</a><p>Apply: <a href=\"https:&#x2F;&#x2F;apply.workable.com&#x2F;modash&#x2F;j&#x2F;C1507B65C3\" rel=\"nofollow\">https:&#x2F;&#x2F;apply.workable.com&#x2F;mod",
+   "children": []
+  },
+  {
+   "id": 49525548,
+   "author": "samcheng",
+   "created_at": "2026-09-01T18:05:30.000Z",
+   "text": "RINSE | REMOTE or San Francisco, Los Angeles, Chicago, Boston, New York City, New Jersey, Seattle, Austin, Toronto, or Washington DC | Software Engineer | Full-Time | Salary: $80k-$200k USD | <a href=\"https:&#x2F;&#x2F;www.rinse.com\" rel=\"nofollow\">https:&#x2F;&#x2F;www.rinse.com</a><p>Rinse provides dry cleaning and laundry delivery services to customers in twelve metropolitan areas in the US and Canada. We have sophisticated logistics optimization software, a polished consumer product, and firm business fundamentals. We&#x27;re now over a decade old - this is a stable, yet consistently growing and innovating, company.<p>Our engineering team is distributed across the United States and internationally, and has been entirely remote for years now, but a desk can be provided in the above cities if you&#x27;d prefer.<p>We&#x27;re open to both newly-graduated engineers or more senior engineers, provided they meet our bar. We&#x27;re particularly interested in true full-stack engineers, with strong React &#x2F; Typescript &#x2F; CSS skills to complement comfort in a Python &#x2F; Django environment. We&#x27;re also seeking engineers with experience leveraging AI to automate complex operational processes.<p>This season, we&#x27;re particularly interested in new grads or junior engineers, to round out the team.<p>You will join a high-caliber team where collaboration, honesty, and open communication are at the core of everything we do.<p>Search term bingo: Logistics, Django, Python, Optimization, React, React Native, Postgres, Mobile Engineer, Automation, Delivery, OR-tools, Forecas",
+   "children": []
+  },
+  {
+   "id": 49528044,
+   "author": "sassmore",
+   "created_at": "2026-09-01T20:52:34.000Z",
+   "text": "Biobase | Senior Technical Product Engineer, Technical Product Engineer (Early Career) | REMOTE (US, Canada) | Full-time | $150–230k &#x2F; $90–170k + equity<p>Biobase has grand ambitions. We broker biospecimens, whole slide images, and the clinical metadata  attached to them, on a supply-chain backbone that we&#x27;re steadily automating. We’re building healthcare-data-focused agents on top of the datasets that we’re assembling, too.<p>We&#x27;d rather build the thing that removes the work than throw people at it. Two roles, one team, both reporting to the CPO:<p>Senior Technical Product Engineer ($150–230k + meaningful equity).\nThe product team&#x27;s technical interface. Architecture decisions and code review on the platform (Python&#x2F;FastAPI, TypeScript&#x2F;React, Postgres, Azure); the data pipeline and informatics that take specimen, slide, and clinical data in from suppliers and labs; and product ownership of the internal platform that builds our agents (permissions, evals, cost control, guardrails for sensitive data). You&#x27;ve been the reviewer of record somewhere, you&#x27;ve operated what you shipped, and you think in business problems before tickets.<p>Technical Product Engineer, early career ($90–170k + equity).\nSame territory at an earlier stage: the platform, the data pipeline and informatics, and the agents we run against our own operations — with a senior product engineer and our lead engineer reviewing your work and pairing when it helps. Open on background – self-taught, bootcamp, degree, research lab, a career you&#x27;re leaving – selective on the ",
+   "children": []
+  },
+  {
+   "id": 49531439,
+   "author": "fitmatealex",
+   "created_at": "2026-09-02T03:40:27.000Z",
+   "text": "FitMate | Frontend Engineer (Junior) | REMOTE (US) | $80-120k + bonus<p>We are building a scalable 1-1 coaching platform to help people achieve their fitness goals. We already have a working nutrition product with a rapidly growing user base and are hoping to branch out into other areas of fitness this quarter.<p>Our product aims to hook people up with a qualified human coach at an affordable price. We have a client facing mobile app and web app that allows our users to track their nutrition and training, and a coach facing app that allows our coaches to get insights into their clients and communicate with them over SMS or video call.<p>We&#x27;re a small, lean, mission-driven team and the role is a great opportunity for someone starting out in their career who wants to learn quickly in a fast paced environment.<p>We use React Native and Expo for our mobile app and Astro and Svelte for our web apps.<p>* Applicants must be based in the US, we are unable to sponsor visas.<p>Apply here: <a href=\"https:&#x2F;&#x2F;careers.fitmatecoach.com&#x2F;roles&#x2F;junior-frontend-developer\" rel=\"nofollow\">https:&#x2F;&#x2F;careers.fitmatecoach.com&#x2F;roles&#x2F;junior-frontend-devel...</a>",
+   "children": []
+  },
+  {
+   "id": 49540773,
+   "author": "lemontheme",
+   "created_at": "2026-09-02T18:58:19.000Z",
+   "text": "Klassif.ai | ML&#x2F;AI Engineer | Hybrid (Leuven, Belgium; remote 3 days&#x2F;week)<p>We started off naively as just another intelligent document processing SaaS. Years of experience have shown us where the real pain points and value lies. Join my AI team and be horrified by how many critical business processes rely on email. Then help me execute on our ambitious roadmap!<p>If you find yourself nodding along with the following statements, you may be a good fit:<p>- You enjoy getting your work into the hands of users<p>- You’re okay debugging a stray tensor in the morning and designing services in the afternoon<p>- You care about the field of AI and interact with its community<p>- You can ‘sense’ when a loss curve is doomed<p>- You’ve fine-tuned LLMs, even just for fun<p>- You’ve been thinking a lot about agents lately, for some reason<p>- You don’t mind the odd bit of customer support (it’s where we get our best insights!)<p>All credentials welcome, including recent graduates. We’ll shape the role around you. What matters is creativity and visible engagement with the field.<p>Who may apply: EU citizens or holders of a Belgian work permit. (Everything else is more admin than we have time for.)<p><a href=\"https:&#x2F;&#x2F;klassif.ai&#x2F;careers&#x2F;ai-ml-engineer\" rel=\"nofollow\">https:&#x2F;&#x2F;klassif.ai&#x2F;careers&#x2F;ai-ml-engineer</a>",
+   "children": []
+  },
+  {
+   "id": 49571280,
+   "author": "24f3uh3",
+   "created_at": "2026-09-04T23:12:32.000Z",
+   "text": "Deeter Analytics | ML Engineer | REMOTE (WORLDWIDE) | Full-time<p>Small private investment firm trading its own capital. One junior ML engineer to work directly with our senior technical lead on an AI system for our own trading. No finance background needed — we hire on fundamentals and side projects you actually shipped. Apply at <a href=\"https:&#x2F;&#x2F;jobs.ashbyhq.com&#x2F;deeter-analytics&#x2F;2c12339b-d302-427c-9a73-d825b4b942b0\" rel=\"nofollow\">https:&#x2F;&#x2F;jobs.ashbyhq.com&#x2F;deeter-analytics&#x2F;2c12339b-d302-427c...</a>",
+   "children": []
+  }
+ ]
+}

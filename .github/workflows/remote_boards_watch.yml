@@ -1,0 +1,95 @@
+name: Remote Boards Watcher
+
+on:
+  # Daily. Remotive (24h-delayed data, asks for <=4 req/day), Himalayas (cache
+  # refreshed every 24h) and the other remote-first boards don't change faster
+  # than this, and every board asks not to be polled aggressively. 11:23 UTC is
+  # offset from Job Bank (16:07), USAJOBS (:37) and Indeed (:47).
+  schedule:
+    - cron: "23 11 * * *"
+  workflow_dispatch:
+    inputs:
+      backfill:
+        description: "One-time backfill: walk deeper Himalayas pages (still polite, 2s apart)"
+        required: false
+        type: boolean
+        default: false
+
+concurrency:
+  group: job-scraper-commit-push
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    name: Remote boards scrape
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # Remotive, RemoteOK, We Work Remotely, Himalayas, Jobicy, Working Nomads,
+      # Arbeitnow and the HN "Who is hiring?" thread. Stdlib only - no pip install.
+      # One request per endpoint; Canada-eligible + junior filtering is applied
+      # in remote_boards.py using the same title rules as every other source.
+      - name: Scrape remote-first boards (junior, Canada-eligible)
+        run: |
+          if [ "${{ github.event.inputs.backfill }}" = "true" ]; then
+            python scrape_jobs.py --remoteboards-backfill
+          else
+            python scrape_jobs.py --remoteboards-only
+          fi
+        env:
+          PUSHOVER_TOKEN: ${{ secrets.PUSHOVER_TOKEN }}
+          PUSHOVER_USER: ${{ secrets.PUSHOVER_USER }}
+          NOTIFY_MIN_FIT: ${{ vars.NOTIFY_MIN_FIT }}
+
+      - name: Record workflow run
+        run: |
+          python - <<'EOF'
+          import json
+          import os
+          from datetime import datetime, timezone
+
+          path = "output/remoteboards_jobs.json"
+          try:
+              with open(path, encoding="utf-8") as f:
+                  data = json.load(f)
+              job_count = int(data.get("total", 0))
+          except (FileNotFoundError, json.JSONDecodeError, OSError, TypeError, ValueError):
+              job_count = 0
+
+          entry = {
+              "workflow": "remoteboards",
+              "timestamp": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+              "job_count": job_count,
+              "run_id": os.environ.get("GITHUB_RUN_ID", ""),
+              "run_attempt": os.environ.get("GITHUB_RUN_ATTEMPT", ""),
+          }
+
+          with open("output/workflow_runs.jsonl", "a", encoding="utf-8") as f:
+              f.write(json.dumps(entry, sort_keys=True) + "\n")
+          EOF
+
+      - name: Commit results to repo
+        if: vars.ENABLE_DATA_COMMITS == 'true'
+        run: |
+          git config user.name  "${{ github.actor }}"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
+          git add -f output/remoteboards_jobs.json output/remoteboards_jobs.md output/remoteboards_jobs.html output/workflow_runs.jsonl output/all_jobs.json output/notified.json
+          git diff --cached --quiet || git commit -m "chore: update remote boards listings [$(date -u '+%Y-%m-%d %H:%MZ')]"
+          for attempt in 1 2 3; do
+            git pull --rebase -X ours origin main
+            if git push; then exit 0; fi
+            echo "push attempt $attempt failed; retrying"
+            sleep $((attempt * 5))
+          done
+          exit 1

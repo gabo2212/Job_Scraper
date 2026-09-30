@@ -26,6 +26,8 @@ from datetime import datetime, timedelta, timezone
 from urllib.request import urlopen, Request
 from urllib.error import HTTPError, URLError
 
+import remote_boards as _rb
+
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     sys.stderr.reconfigure(encoding="utf-8", errors="replace")
@@ -406,7 +408,7 @@ def _requires_too_many_years(*parts: str) -> bool:
         return False
 
 
-def _title_is_excluded(title: str) -> bool:
+def _title_is_excluded(title: str, *, force_soft_bypass: bool = False) -> bool:
     """True if title hits keywords.exclude, with soft-exclude bypass.
 
     Soft tokens need an explicit junior/entry cue. Consultant/specialist/
@@ -429,6 +431,11 @@ def _title_is_excluded(title: str) -> bool:
     variety_ok = bool(_VARIETY_KEEP_RE.search(title))
     always_needs_junior = bool(_REQUIRES_JUNIOR_ALWAYS_RE.search(title))
     can_bypass = has_junior or (variety_ok and not always_needs_junior)
+    # force_soft_bypass: caller already proved the title is a plain dev/QA/data
+    # role (remote boards use bare titles like "Backend Developer"); soft nouns
+    # still never bypass for specialist/consultant/coordinator-style titles.
+    if force_soft_bypass and not always_needs_junior:
+        can_bypass = True
     for m in EXCLUDED_SENIORITY_RE.finditer(title):
         if can_bypass and m.span() in soft_spans:
             continue
@@ -527,6 +534,10 @@ def is_target_location(location: str) -> bool:
     # Prefer configured location terms first so Canada/Québec/international
     # forks can accept their target geography (and "remote"/"hybrid").
     if any(place in loc for place in TARGET_LOCATIONS):
+        return True
+    # Worldwide / Anywhere / Americas / North-America style labels (remote-first
+    # boards) are eligible for a Canada-targeted fork; US-only / EU-only are not.
+    if _config_targets_non_us() and _rb.classify_location(location)[0] == "eligible":
         return True
     # US-state shortcut only for US-centric configs. Without this gate, a
     # Canada-focused fork would keep every US state posting that slipped
@@ -1304,6 +1315,8 @@ WORK_ARRANGEMENTS = {
     "remote_in_state": "Remote",
     "remote_out_of_state": "Remote (geo-restricted)",
     "telecommute": "Hybrid",
+    # Remote-first boards whose posting never says where the hire must live.
+    "remote_geo_unclear": "Remote (geo-unclear)",
 }
 
 
@@ -1313,6 +1326,8 @@ def classify_work_arrangement(*parts, is_remote=None) -> str:
     text = re.sub(r"[\s\-_]+", " ", text).strip().lower()
     if not text and is_remote is None:
         return ""
+    if re.search(r"\bgeo unclear\b", text):
+        return WORK_ARRANGEMENTS["remote_geo_unclear"]
     if re.search(r"\b(out of state|out state|out of state eligible|remote out of state)\b", text):
         return WORK_ARRANGEMENTS["remote_out_of_state"]
     if re.search(r"\b(in state|instate|in site|remote in state|remote in site)\b", text):
@@ -2655,6 +2670,106 @@ def save_jobbank_results(jobs: list):
         accent="#c8102e",
         empty_message="No new Job Bank roles since the last run.",
         window_label="current Job Bank postings",
+    )
+
+
+# ---------------------------------------------------------------------------
+# Remote-first boards (Remotive, RemoteOK, We Work Remotely, Himalayas, Jobicy,
+# Working Nomads, Arbeitnow, HN "Who is hiring"). Fetch/normalize/geo screens
+# live in remote_boards.py; here we plug in the SAME title/seniority filters
+# as every other source. One request per endpoint per run, daily cron.
+# ---------------------------------------------------------------------------
+
+def _remote_boards_config() -> dict:
+    """remote_boards config (copy) with search_terms.remote_boards wired into Himalayas queries."""
+    cfg = json.loads(json.dumps(_cfg("remote_boards", {}) or {}))
+    terms = _cfg("search_terms.remote_boards", [])
+    him = cfg.setdefault("himalayas", {})
+    if terms and not him.get("queries"):
+        him["queries"] = list(terms)
+    return cfg
+
+
+REMOTE_BOARDS_CFG = _remote_boards_config()
+REMOTE_BOARDS_ENABLED = [
+    str(b) for b in (REMOTE_BOARDS_CFG.get("boards") or _rb.DEFAULT_BOARDS)
+]
+REMOTE_BOARDS_MAX_AGE_DAYS = int(
+    REMOTE_BOARDS_CFG.get("max_age_days", _rb.DEFAULT_MAX_AGE_DAYS) or _rb.DEFAULT_MAX_AGE_DAYS)
+
+# Bare dev/QA/data/AI-eval titles typical of remote boards ("Backend Developer",
+# "QA Engineer", "AI Trainer"). Seniority is judged later from structured level
+# and JD text, so these may bypass the soft "developer/engineer" exclusion.
+_REMOTE_PLAIN_ROLE_RE = re.compile(
+    r"(?i)\b(?:"
+    r"(?:software|web|application|app|frontend|front[- ]end|backend|back[- ]end|full[- ]?stack|"
+    r"python|\.?net|php|java(?:script)?|typescript|node(?:\.?js)?|react|vue|ruby|rails|golang|"
+    r"mobile|ios|android|api|integration|automation|scripting|qa|quality assurance|test|"
+    r"data|etl|bi|sql|ml|ai|llm|prompt|cloud|devops|platform|security|soc)"
+    r"\s+(?:developer|engineer|programmer|analyst|tester|scientist)|"
+    r"(?:ai|data|llm|model|code|coding)\s+(?:trainer|annotator|labeler|evaluator|rater|reviewer)|"
+    r"prompt\s+engineer|qa\s+tester|quality\s+assurance"
+    r")\b"
+)
+
+
+def remote_board_title_ok(title: str) -> bool:
+    """Same junior/help-desk title screens as other sources, plus bare dev-role titles."""
+    if title_matches_keywords(title):
+        return True
+    if not _REMOTE_PLAIN_ROLE_RE.search(title or ""):
+        return False
+    return not _title_is_excluded(title, force_soft_bypass=True)
+
+
+def scrape_remoteboards_recent(*, boards: list[str] | None = None,
+                               get=None, sleep=time.sleep) -> list:
+    """Remote-first boards -> junior + Canada-eligible remote roles.
+
+    ``get`` / ``sleep`` are injectable for tests. Boards that fail keep their
+    previously saved rows so one flaky board doesn't erase its history."""
+    enabled = [b for b in (boards or REMOTE_BOARDS_ENABLED)]
+    print(f"🌍 Scraping remote boards ({', '.join(enabled)}); "
+          f"1 request/endpoint, max age {REMOTE_BOARDS_MAX_AGE_DAYS}d...")
+    raw, errors = _rb.fetch_boards(enabled, REMOTE_BOARDS_CFG, get=get, sleep=sleep)
+    stats = _rb.ScreenStats()
+    jobs = _rb.screen_jobs(
+        raw, title_ok=remote_board_title_ok, max_age_days=REMOTE_BOARDS_MAX_AGE_DAYS,
+        stats=stats)
+    print("  Remote boards - raw vs kept:")
+    for line in stats.report():
+        print(line)
+    for key, samples in sorted(stats.samples.items()):
+        print(f"    drop[{key}]: " + " || ".join(samples[:2]))
+    if errors:
+        print("  Board issues: " + "; ".join(f"{b}: {e}" for b, e in errors.items()))
+
+    prev = _load_prev_jobs(os.path.join(OUTPUT_DIR, "remoteboards_jobs.json"))
+    failed = {b.lower() for b in errors if errors[b] != "unknown board"}
+    if failed and prev:
+        label_for = {n.lower(): n for n in _rb.BOARD_SITES}
+        failed_labels = {label_for.get(b, b) for b in failed}
+        kept_urls = {j["url"] for j in jobs}
+        carried = [j for j in prev if j.get("ats") in failed_labels and j["url"] not in kept_urls]
+        if carried:
+            print(f"  Carried over {len(carried)} previous row(s) from boards that returned nothing")
+            jobs.extend(carried)
+    if not jobs and not raw:
+        print("  ⚠️  Preserving previous remote-board results (all boards empty/blocked)")
+        return prev
+    print(f"  ✅ Remote boards: {len(jobs)} role(s) kept of {len(raw)} raw")
+    return jobs
+
+
+def save_remoteboards_results(jobs: list):
+    save_jobs_output(
+        jobs,
+        basename="remoteboards_jobs",
+        title=f"🌍 Remote boards - {PROFILE_LABEL} Roles",
+        subtitle="Remotive · RemoteOK · We Work Remotely · Himalayas · Jobicy · Working Nomads · HN · Canada-eligible",
+        accent="#10b981",
+        empty_message="No new remote-board roles since the last run.",
+        window_label="current remote-board postings",
     )
 
 
@@ -4183,6 +4298,21 @@ if __name__ == "__main__":
     if "--jobbank-backfill" in sys.argv:
         print(f"🔁 Job Bank backfill (≤{JOBBANK_BACKFILL_PAGES} page(s) per query)…")
         save_jobbank_results(scrape_jobbank_recent(max_pages=JOBBANK_BACKFILL_PAGES))
+        sys.exit(0)
+
+    if "--remoteboards-backfill" in sys.argv:
+        # One-time deeper Himalayas walk (still polite: 2s between requests).
+        him = REMOTE_BOARDS_CFG.setdefault("himalayas", {})
+        him["max_pages"] = int(him.get("backfill_pages", 3) or 3)
+        print(f"🔁 Remote boards backfill (Himalayas ≤{him['max_pages']} page(s) per query)…")
+        save_remoteboards_results(scrape_remoteboards_recent())
+        sys.exit(0)
+
+    if "--remoteboards-only" in sys.argv or any(a.startswith("--remoteboard=") for a in sys.argv):
+        # Optional: --remoteboard=himalayas,jobicy restricts to named boards.
+        picked = next((a.split("=", 1)[1] for a in sys.argv if a.startswith("--remoteboard=")), "")
+        names = [b.strip() for b in picked.split(",") if b.strip()] or None
+        save_remoteboards_results(scrape_remoteboards_recent(boards=names))
         sys.exit(0)
 
     if "--governmentjobs-only" in sys.argv:
