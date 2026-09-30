@@ -113,22 +113,30 @@ def test_parse_verdict_derives_bands_and_clears_skip_opener():
     assert strong["verdict"] == "strong"
 
 
-def test_role_families_are_it_not_toxicology():
-    assert "it-support" in ta.ROLE_FAMILIES
+def test_role_families_are_independent_junior_not_helpdesk():
+    assert "software-development" in ta.ROLE_FAMILIES
+    assert "ai-assisted-dev" in ta.ROLE_FAMILIES
+    assert "ai-training-annotation" in ta.ROLE_FAMILIES
     assert "deployment-migration" in ta.ROLE_FAMILIES
+    assert "customer-facing-support" in ta.ROLE_FAMILIES
+    assert "help-desk-service-desk" not in ta.ROLE_FAMILIES
     assert "toxicology" not in ta.ROLE_FAMILIES
+    assert "ai-assisted-dev" in ta.FLAG_TAGS
+    assert "customer-facing-support" in ta.FLAG_TAGS
+    assert "independent-work" in ta.FLAG_TAGS
 
 
-def test_build_static_prefix_calibrated_for_junior_it():
-    prefix = ta.build_static_prefix("Junior IT tech in Québec.", "")
+def test_build_static_prefix_calibrated_for_junior_independent():
+    prefix = ta.build_static_prefix("Junior remote developer in Québec.", "")
     assert "junior/entry-level remote IT" in prefix
     assert "Québec" in prefix or "Quebec" in prefix
     assert "strong≥80" in prefix
     assert "us-only" in prefix
-    assert "VPN/RDP" in prefix
+    assert "ai-assisted" in prefix.lower()
+    assert "help desk" in prefix.lower() or "customer-facing-support" in prefix
     assert "bachelor" in prefix.lower()
     assert "CANDIDATE PROFILE" in prefix
-    assert "Junior IT tech in Québec." in prefix
+    assert "Junior remote developer in Québec." in prefix
     assert "toxicology" not in prefix.lower()
     assert "medical-imaging" not in prefix.lower()
 
@@ -139,13 +147,13 @@ def test_redact_private_flags_list():
         "why": "Good fit for Gabriel",
         "seniority_fit": "appropriate",
         "outreach_opener": "I used Sobeys tools",
-        "flags": ["strong-support-match", "worked-at-Sobeys"],
+        "flags": ["strong-dev-match", "worked-at-Sobeys"],
     }
     out = ta.redact_private(verdict, tokens)
     assert "[redacted]" in out["why"]
     assert "[redacted]" in out["outreach_opener"]
     assert any("[redacted]" in f for f in out["flags"])
-    assert "strong-support-match" in out["flags"]
+    assert "strong-dev-match" in out["flags"]
 
 
 # ---------------------------------------------------------------------------
