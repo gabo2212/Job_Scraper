@@ -47,19 +47,22 @@ FETCH_TIMEOUT = 15    # seconds per JD fetch
 MAX_OUTPUT_TOKENS = 700
 
 ROLE_FAMILIES = (
-    "it-support | help-desk-service-desk | desktop-endpoint-support | "
-    "deployment-migration | application-support | systems-administration | "
-    "network-infrastructure | cloud-m365 | cybersecurity | software-development | "
-    "automation-ai | field-it | other"
+    "software-development | automation-scripting | qa-testing | data-analytics | "
+    "ai-training-annotation | ai-assisted-dev | cloud-devops | cybersecurity | "
+    "deployment-migration | systems-administration | technical-writing | "
+    "customer-facing-support | other"
 )
 SENIORITY_FITS = (
     "excellent | appropriate | stretch | too-senior | too-junior | unclear"
 )
 FLAG_TAGS = (
-    "remote-canada | remote-quebec | montreal-hybrid | strong-support-match | "
-    "strong-deployment-match | bilingual-asset | linux-match | powershell-match | "
-    "networking-match | learnable-tool-gap | experience-gap | degree-required | "
-    "degree-preferred | senior-title | us-only | relocation | location-unclear"
+    "remote-canada | remote-quebec | montreal-hybrid | independent-work | "
+    "project-based | ai-assisted-dev | ai-training | strong-dev-match | "
+    "strong-automation-match | strong-deployment-match | bilingual-asset | "
+    "linux-match | powershell-match | networking-match | learnable-tool-gap | "
+    "experience-gap | degree-required | degree-preferred | senior-title | "
+    "us-only | relocation | location-unclear | customer-facing-support | "
+    "ai-tools-banned"
 )
 
 HEADERS = {
@@ -229,12 +232,24 @@ def build_static_prefix(profile: str, resume: str) -> str:
         f'"flags": [zero+ of {{{FLAG_TAGS}}}], '
         '"outreach_opener": "<2 tailored sentences, or empty string if skip>"}',
         "",
-        "Target tiers (prefer lower tier when duties match):",
-        "T1: IT support, help/service desk, desktop/endpoint, "
-        "deployment/migration, technical & application support.",
-        "T2: junior sysadmin, infra/network support, cloud/M365 support, "
-        "tech ops, entry-level security.",
-        "T3: junior Python/.NET, automation, AI tooling.",
+        "Target tiers (prefer lower # when duties match):",
+        "T1: remote independent junior software/web/backend/full-stack/Python/"
+        ".NET/PHP/JS, automation/scripting/RPA/low-code, QA/test automation, "
+        "data analyst/ETL, AI training/annotation/prompt/LLM/coding evaluation, "
+        "AI-assisted/AI-native/vibe-coding/Copilot/Cursor-friendly product work, "
+        "and remote junior deployment/migration/endpoint project tasks "
+        "(project-based — NOT ticket queues).",
+        "T2: junior cloud/DevOps/IaC, junior sysadmin-automation, junior "
+        "security (vuln scan / GRC / remote SOC L1 alerts only if not "
+        "customer ticket support), technical writing/documentation.",
+        "T3: any other clearly junior remote IT that is independent/"
+        "project-based.",
+        "",
+        "OUT OF SCOPE (cap≈45, verdict skip, flag customer-facing-support) "
+        "unless the SAME posting is clearly independent project work: help "
+        "desk, service desk, tech/IT/desktop support agent/rep/analyst, "
+        "call-center/chat support, L1/L2 ticket queues, customer service, "
+        "soutien technique / agent de soutien / centre de services.",
         "",
         "Scoring weights (sum≈100): role/duty match 30, skills/experience 25, "
         "seniority/education 20, location/remote 15, transferable/bonus 10.",
@@ -242,36 +257,50 @@ def build_static_prefix(profile: str, resume: str) -> str:
         "borderline, 40-59 weak, 0-39 poor.",
         "Verdict from score: strong≥80, maybe 60-79, skip<60.",
         "",
-        "Duty benchmark: remote technical work on client/store environments "
-        "(VPN/RDP, software migration/deployment, validation, troubleshooting, "
-        "documented procedures, multi-site Windows endpoints) is a STRONG "
-        "role-fit boost even if the title is generic.",
+        "AI-assisted coding: postings that mention or encourage AI tools "
+        "(Copilot, Cursor, Claude Code, LLM, AI-assisted, AI-first, vibe "
+        "coding, agentic, prompt tooling) for DEV/AUTOMATION roles are a "
+        "STRONG plus — flag ai-assisted-dev. Postings that BAN AI tools or "
+        "require heavy whiteboard/algorithm/CS-fundamentals interviews or "
+        "deep years of pro engineering are a minus — flag ai-tools-banned. "
+        "Candidate is HONESTLY junior and builds with AI assistance; do NOT "
+        "claim senior engineering depth.",
+        "",
+        "Specialist / consultant / implementation / coordinator / engineer "
+        "titles WITHOUT an explicit junior/entry/0-2yrs/associate signal, OR "
+        "mandatory 3+ years → cap≤40, often skip (flag senior-title or "
+        "experience-gap).",
+        "",
+        "Duty boosts: independent heads-down project/task work, scripting/"
+        "automation, remote deployment/migration/validation (not queues), "
+        "documentation, bilingual FR/EN. Flag independent-work / "
+        "project-based / ai-training when applicable.",
         "",
         "Requirements: distinguish mandatory vs preferred. Bachelor's "
         "mandatory with no equivalence → strong penalty (cap≈55) + "
         "degree-required; preferred / 'or equivalent' / college diploma OK → "
         "little/no penalty + degree-preferred if noted. NEVER claim the "
-        "candidate has a bachelor's. Experience: 1-2 yrs OK; 2-3 preferred "
+        "candidate has a bachelor's. Experience: 0-2 yrs OK; 2-3 preferred "
         "OK; strict 3 yrs → moderate penalty; 4-5+ required → strong penalty.",
-        "Missing common tools (ServiceNow, Jira, SCCM, Intune, RMM, ticketing) "
-        "= learnable minor gap for junior roles — judge core function, not "
-        "every keyword (flag learnable-tool-gap).",
-        "Transferable skills (Linux, PowerShell/Python, TCP/IP, APIs/.NET, "
-        "Docker, protocol/hardware troubleshooting) count as evidence; do NOT "
-        "inflate project work into years of professional experience.",
+        "Missing common tools = learnable minor gap for junior roles "
+        "(flag learnable-tool-gap). Transferable skills (Linux, PowerShell/"
+        "Python, TCP/IP, APIs/.NET, Docker) count; do NOT inflate projects "
+        "into years of professional experience.",
         "",
         "Location (Québec-based candidate): best = fully remote explicitly "
         "open to Québec/Canada; strong = Canada-wide remote; acceptable = "
         "Montréal/Greater Montréal hybrid; weaker = Montréal on-site; hard "
-        "penalty = far on-site / other-province residency / relocation / "
-        "frequent travel (cap≤30, flag relocation); near-automatic skip = "
-        "US-resident-only / US work auth (cap≤20, flag us-only). Never assume "
-        "plain 'remote' accepts Québec — if unstated, flag location-unclear. "
-        "Bilingual FR/EN requirements are a positive (bilingual-asset).",
+        "penalty = far on-site / other-province residency / relocation "
+        "(cap≤30, flag relocation); near-automatic skip = US-resident-only "
+        "(cap≤20, flag us-only). Never assume plain 'remote' accepts Québec "
+        "— if unstated, flag location-unclear. Bilingual FR/EN = positive "
+        "(bilingual-asset).",
         "",
-        "Hard caps: US-only ≤20; senior/lead/staff/principal ≤35 unless duties "
-        "clearly junior (flag senior-title); mandatory 5+ years ≤40; "
-        "mandatory bachelor's w/o alternative ≈55; relocation outside Québec ≤30.",
+        "Hard caps: US-only ≤20; senior/lead/staff/principal ≤35 unless "
+        "duties clearly junior (flag senior-title); specialist/consultant "
+        "w/o junior cue or mandatory 3+ yrs ≤40; help-desk/support queues "
+        "≤45 + skip; mandatory 5+ years ≤40; mandatory bachelor's w/o "
+        "alternative ≈55; relocation outside Québec ≤30.",
         "",
         "Profile vs resume: BOTH verified. Profile may include newer facts "
         "absent from the resume — do not discard them. If they conflict, "

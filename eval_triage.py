@@ -2,23 +2,16 @@
 Triage Agent Evals
 Golden-case evaluations for triage_agent.py: synthetic job postings with known-correct
 outcomes, run through the EXACT production pipeline (build_static_prefix →
-build_job_prompt → model → parse_verdict). A case fails when the verdict violates its
-expectations (score bounds, allowed verdicts, required flags, role family).
+build_job_prompt → model → parse_verdict).
 
-This tests the profile + prompt + model as ONE system: a profile edit, a prompt tweak,
-or a model swap can each silently shift scoring — the evals catch the shift before the
-nightly run publishes bad verdicts to the dashboard.
-
-Calibrated for a junior/entry-level remote IT candidate in Québec.
-
-Backends are the same as triage_agent.py (API key in CI). The cases are synthetic and
-contain no private profile details; the profile/resume themselves still come from the
-gitignored files or Actions secrets, same as production.
+Calibrated for a junior/entry-level remote independent-work IT candidate in Québec
+(dev/automation/QA/data/AI-training; NOT help desk / support queues).
+AI-assisted coding (Cursor/Copilot) is a strong plus when mentioned.
 
 Usage:
-  python eval_triage.py                 # run all cases once
-  python eval_triage.py --only us-only  # run cases whose id contains "us-only"
-  python eval_triage.py --runs 3        # repeat the suite, report per-case pass rate
+  python eval_triage.py
+  python eval_triage.py --only junior-python
+  python eval_triage.py --runs 3
 """
 
 import argparse
@@ -28,200 +21,192 @@ import time
 
 import triage_agent as ta
 
-EVAL_URL = "https://example.com/eval/{id}"  # synthetic — never collides with scores.json
+EVAL_URL = "https://example.com/eval/{id}"
 SLEEP_BETWEEN_CALLS = 0.2
-
-# ---------------------------------------------------------------------------
-# Golden cases
-#
-# expect keys (all optional, all must hold):
-#   min_score / max_score  — inclusive bounds on the 0-100 score
-#   verdicts               — verdict must be one of these
-#   flag_re                — case-insensitive regex that must match >= 1 flag
-#   families               — role_family must be one of these
-#   forbid_tokens          — none of these strings may appear (case-insensitive)
-#                            in why/flags/outreach_opener. Use None as the value
-#                            in a case: main() fills it at runtime from the
-#                            secret profile/resume, so this PUBLIC file never
-#                            contains the candidate's name or employers.
-# ---------------------------------------------------------------------------
 
 CASES = [
     {
-        "id": "remote-ca-deployment-migration",
-        "note": "Remote Canada deployment/migration tech resembling store-scale "
-                "VPN/RDP migration work = strongest Tier-1 match",
-        "job": {"title": "IT Deployment Technician (Remote)",
-                "company": "Acme Retail Systems", "location": "Remote — Canada",
-                "ats": "Greenhouse", "date_posted": "2026-09-01"},
-        "jd": ("Support multi-site retail endpoint migrations across Canada. "
-               "Connect to store servers via VPN and Remote Desktop, run "
-               "PowerShell deployment scripts, configure scale/POS companion "
-               "software, validate installs, troubleshoot connectivity, update "
-               "PLU/config data, and document procedures. Windows 10/11 "
-               "enterprise environment. Fully remote; candidates anywhere in "
-               "Canada welcome. 1+ years IT support or deployment experience; "
-               "college diploma or equivalent experience accepted."),
+        "id": "junior-python-remote-canada",
+        "note": "Junior Python remote Canada = Tier-1 target",
+        "job": {"title": "Junior Python Developer",
+                "company": "Laurentide Soft", "location": "Remote — Canada",
+                "ats": "Lever", "date_posted": "2026-09-04"},
+        "jd": ("Build small FastAPI services and automation scripts in Python. "
+               "Docker and SQL a plus. Junior role; portfolio projects welcome. "
+               "Fully remote for Canadian residents. No bachelor's required. "
+               "0-2 years."),
+        "expect": {"min_score": 75, "verdicts": ["strong", "maybe"],
+                   "families": ["software-development", "automation-scripting",
+                                "ai-assisted-dev"],
+                   "flag_re": r"remote-canada|strong-dev|independent"},
+    },
+    {
+        "id": "ai-assisted-fullstack-remote",
+        "note": "Junior full-stack that encourages Copilot/Cursor = top Tier-1",
+        "job": {"title": "Junior Full-Stack Developer",
+                "company": "ProtoLabs QC", "location": "Remote — Canada",
+                "ats": "Ashby", "date_posted": "2026-09-04"},
+        "jd": ("AI-first product team. We encourage GitHub Copilot, Cursor, and "
+               "other AI-assisted development tools. Build MVPs and internal "
+               "tools. Junior welcome. Fully remote Canada/Québec. Portfolio OK."),
         "expect": {"min_score": 80, "verdicts": ["strong"],
-                   "families": ["deployment-migration", "it-support",
-                                "desktop-endpoint-support", "application-support"],
-                   "flag_re": r"deployment|remote-canada|strong-"},
+                   "families": ["software-development", "ai-assisted-dev",
+                                "automation-scripting"],
+                   "flag_re": r"ai-assisted-dev"},
+    },
+    {
+        "id": "ai-trainer-coding-eval-remote",
+        "note": "Remote AI trainer / coding evaluator = Tier-1",
+        "job": {"title": "AI Trainer — Coding Evaluation",
+                "company": "EvalLabs", "location": "Remote (flexible)",
+                "ats": "Greenhouse", "date_posted": "2026-09-05"},
+        "jd": ("Review and rate LLM-generated code (Python, JavaScript, C#). "
+               "Independent task-based remote work. Flexible hours. Open to "
+               "Canadian contractors. No degree required."),
+        "expect": {"min_score": 75, "verdicts": ["strong", "maybe"],
+                   "families": ["ai-training-annotation", "ai-assisted-dev",
+                                "software-development"],
+                   "flag_re": r"ai-training|independent|project-based"},
+    },
+    {
+        "id": "junior-qa-remote-canada",
+        "note": "Junior QA automation remote = Tier-1",
+        "job": {"title": "Junior QA Automation",
+                "company": "TestNorth", "location": "Remote — Canada",
+                "ats": "Lever", "date_posted": "2026-09-05"},
+        "jd": ("Write automated tests in Python. Junior/entry-level. Fully "
+               "remote within Canada. Mentorship provided."),
+        "expect": {"min_score": 70, "verdicts": ["strong", "maybe"],
+                   "families": ["qa-testing", "software-development",
+                                "automation-scripting"]},
     },
     {
         "id": "l1-helpdesk-remote-canada",
-        "note": "L1 help desk remote Canada = core Tier-1 target",
+        "note": "L1 help desk remote = OUT OF SCOPE, must score low",
         "job": {"title": "IT Help Desk Analyst (Level 1)",
                 "company": "NorthStar MSP", "location": "Remote (Canada)",
                 "ats": "Lever", "date_posted": "2026-09-02"},
         "jd": ("Provide Tier-1 remote support for Windows endpoints: password "
                "resets, software installs, printer and VPN issues, ticket "
                "triage. Bilingual French/English an asset. Open to candidates "
-               "across Canada. Entry-level / junior welcome; ticketing "
-               "experience preferred but not required."),
-        "expect": {"min_score": 75, "verdicts": ["strong", "maybe"],
-                   "families": ["help-desk-service-desk", "it-support"]},
+               "across Canada. Entry-level / junior welcome."),
+        "expect": {"max_score": 45, "verdicts": ["skip"],
+                   "flag_re": r"customer-facing-support"},
     },
     {
-        "id": "l2-servicedesk-montreal-hybrid",
-        "note": "L2 service desk Montréal hybrid = acceptable location + strong "
-                "support match",
+        "id": "service-desk-montreal-hybrid",
+        "note": "Service desk hybrid = out of scope even if junior location OK",
         "job": {"title": "Service Desk Analyst II",
                 "company": "Québec CloudOps", "location": "Montréal, QC (hybrid)",
                 "ats": "Ashby", "date_posted": "2026-09-02"},
         "jd": ("Hybrid L2 service desk in Greater Montréal: escalate and resolve "
                "Windows/Office 365 incidents, Active Directory basics, VPN "
-               "troubleshooting, and application support. 2 years preferred; "
-               "college diploma or equivalent experience. Bilingual FR/EN "
-               "required. 2–3 days on-site downtown Montréal."),
-        "expect": {"min_score": 70, "verdicts": ["strong", "maybe"],
-                   "families": ["help-desk-service-desk", "it-support",
-                                "application-support"],
-                   "flag_re": r"montreal-hybrid|bilingual"},
+               "troubleshooting, and ticket queue. Bilingual FR/EN required."),
+        "expect": {"max_score": 45, "verdicts": ["skip"],
+                   "flag_re": r"customer-facing-support"},
     },
     {
-        "id": "desktop-support-montreal-onsite",
-        "note": "Junior desktop support Montréal on-site = weaker but still "
-                "viable Tier-1",
-        "job": {"title": "Junior Desktop Support Technician",
-                "company": "Metro IT Services", "location": "Montréal, QC (on-site)",
-                "ats": "Greenhouse", "date_posted": "2026-09-03"},
-        "jd": ("On-site desktop support for a Montréal office: hardware imaging, "
-               "Windows troubleshooting, peripheral setup, and user training. "
-               "Junior/entry-level. Secondary or college diploma accepted. "
-               "French and English useful."),
-        "expect": {"min_score": 60, "max_score": 85,
-                   "verdicts": ["strong", "maybe"],
-                   "families": ["desktop-endpoint-support", "it-support",
-                                "field-it"]},
+        "id": "deployment-migration-project-remote",
+        "note": "Remote project-based deployment/migration (not ticket queue) OK",
+        "job": {"title": "Junior IT Deployment Technician (Remote)",
+                "company": "Acme Retail Systems", "location": "Remote — Canada",
+                "ats": "Greenhouse", "date_posted": "2026-09-01"},
+        "jd": ("Project-based multi-site retail endpoint migrations across "
+               "Canada. Connect via VPN/RDP, run PowerShell deployment scripts, "
+               "validate installs, document procedures. Independent remote work "
+               "— not a help desk or ticket queue. Junior/entry 0-2 years. "
+               "College diploma or equivalent OK."),
+        "expect": {"min_score": 70, "verdicts": ["strong", "maybe"],
+                   "families": ["deployment-migration", "automation-scripting",
+                                "systems-administration"],
+                   "flag_re": r"deployment|project-based|independent|remote-canada"},
+    },
+    {
+        "id": "consultant-no-junior-signal",
+        "note": "Consultant/specialist without junior cue = low",
+        "job": {"title": "Deployment Consultant",
+                "company": "BigConsult", "location": "Remote — Canada",
+                "ats": "Greenhouse", "date_posted": "2026-09-06"},
+        "jd": ("Lead enterprise implementation programs. Client-facing "
+               "workshops. 5+ years consulting experience required."),
+        "expect": {"max_score": 40, "verdicts": ["skip"],
+                   "flag_re": r"senior-title|experience-gap"},
     },
     {
         "id": "junior-sysadmin-remote-canada",
-        "note": "Junior sysadmin remote Canada = Tier-2 stretch/fit",
+        "note": "Junior sysadmin automation remote = Tier-2",
         "job": {"title": "Junior Systems Administrator",
                 "company": "Maple Infra Co", "location": "Remote, Canada-wide",
                 "ats": "Greenhouse", "date_posted": "2026-09-03"},
         "jd": ("Assist with Windows Server basics, AD user admin, monitoring, "
-               "patching, and scripting (PowerShell/Bash). Mentorship provided. "
-               "1–2 years IT experience or strong hands-on lab/project "
-               "background. Remote within Canada."),
-        "expect": {"min_score": 65, "verdicts": ["strong", "maybe"],
-                   "families": ["systems-administration", "it-support"]},
-    },
-    {
-        "id": "junior-python-dev-remote-canada",
-        "note": "Junior Python developer remote Canada = Tier-3, still realistic",
-        "job": {"title": "Junior Python Developer",
-                "company": "Laurentide Soft", "location": "Remote — Canada",
-                "ats": "Lever", "date_posted": "2026-09-04"},
-        "jd": ("Build small FastAPI services and automation scripts in Python. "
-               "Docker and SQL a plus. Junior role; portfolio projects welcome. "
-               "Fully remote for Canadian residents. No bachelor's required."),
-        "expect": {"min_score": 60, "max_score": 95,
-                   "verdicts": ["strong", "maybe"],
-                   "families": ["software-development", "automation-ai"]},
-    },
-    {
-        "id": "preferred-degree-or-equivalent",
-        "note": "3 years preferred + bachelor's OR equivalent = little/no degree "
-                "penalty; still a fit",
-        "job": {"title": "IT Support Specialist",
-                "company": "CanTech Support", "location": "Remote (Canada)",
-                "ats": "Greenhouse", "date_posted": "2026-09-04"},
-        "jd": ("Remote IT support for Canadian clients: Windows endpoints, "
-               "ticketing, software deployment assistance. Bachelor's degree "
-               "or equivalent experience. 3 years of IT support preferred but "
-               "not strictly required. Open to strong juniors with solid "
-               "hands-on experience."),
-        "expect": {"min_score": 65, "verdicts": ["strong", "maybe"],
-                   "flag_re": r"degree-preferred|remote-canada|strong-support"},
+               "patching, and scripting (PowerShell/Bash). Automation-focused. "
+               "1–2 years IT experience or strong lab/project background. "
+               "Remote within Canada. Not a help desk role."),
+        "expect": {"min_score": 60, "verdicts": ["strong", "maybe"],
+                   "families": ["systems-administration", "cloud-devops",
+                                "automation-scripting"]},
     },
     {
         "id": "mandatory-bachelors-no-equivalent",
-        "note": "REGRESSION: mandatory bachelor's with no equivalence + 3+ years "
-                "must sink the score",
-        "job": {"title": "IT Support Analyst",
+        "note": "Mandatory bachelor's + 3+ years must sink score",
+        "job": {"title": "Junior Software Developer",
                 "company": "DegreeGate Inc", "location": "Remote — Canada",
                 "ats": "Greenhouse", "date_posted": "2026-09-05"},
-        "jd": ("Provide enterprise IT support. A bachelor's degree in Computer "
-               "Science or a related field is required (no exceptions; "
-               "equivalent experience is not accepted). Minimum 3+ years of "
-               "professional IT support experience required. Remote Canada."),
+        "jd": ("Junior developer role. A bachelor's degree in Computer Science "
+               "is required (no exceptions; equivalent experience is not "
+               "accepted). Minimum 3+ years of professional software "
+               "engineering required. Remote Canada."),
         "expect": {"max_score": 55, "verdicts": ["skip"],
                    "flag_re": r"degree-required|experience-gap"},
     },
     {
         "id": "senior-infra-engineer",
-        "note": "Senior/lead infrastructure = hard seniority cap",
+        "note": "Senior/lead = hard seniority cap",
         "job": {"title": "Senior IT Infrastructure Engineer",
                 "company": "BigStack Systems", "location": "Remote, Canada",
                 "ats": "Ashby", "date_posted": "2026-09-05"},
-        "jd": ("Lead multi-year infrastructure programs across hybrid cloud. "
-               "Staff-level ownership of Active Directory forests, networking, "
-               "and Windows Server estates. 8+ years infrastructure engineering; "
-               "prior lead experience required."),
+        "jd": ("Lead multi-year infrastructure programs. Staff-level ownership. "
+               "8+ years infrastructure engineering; prior lead experience "
+               "required."),
         "expect": {"max_score": 35, "verdicts": ["skip"],
                    "flag_re": r"senior-title"},
     },
     {
-        "id": "us-only-remote-support",
-        "note": "US-resident-only remote support = near-automatic skip",
-        "job": {"title": "Remote IT Support Specialist",
-                "company": "US Help Co", "location": "Remote (United States)",
+        "id": "us-only-remote-dev",
+        "note": "US-resident-only remote = near-automatic skip",
+        "job": {"title": "Junior Python Developer",
+                "company": "US Dev Co", "location": "Remote (United States)",
                 "ats": "Greenhouse", "date_posted": "2026-09-06"},
-        "jd": ("Fully remote L1/L2 Windows support. Must be a US resident with "
-               "US work authorization. Candidates outside the United States "
-               "will not be considered. Entry-level friendly."),
+        "jd": ("Fully remote junior Python. Must be a US resident with US work "
+               "authorization. Candidates outside the United States will not "
+               "be considered."),
         "expect": {"max_score": 20, "verdicts": ["skip"],
                    "flag_re": r"us-only"},
     },
     {
-        "id": "fr-quebec-technicien-informatique",
-        "note": "French Québec junior technicien informatique = strong bilingual "
-                "local match",
-        "job": {"title": "Technicien informatique junior",
-                "company": "Services TI du Québec",
+        "id": "fr-quebec-developpeur-junior",
+        "note": "French Québec développeur junior remote = strong bilingual match",
+        "job": {"title": "Développeur junior",
+                "company": "Services Numériques du Québec",
                 "location": "Télétravail — Québec, Canada",
                 "ats": "LinkedIn", "date_posted": "2026-09-06"},
-        "jd": ("Poste junior en soutien informatique à distance pour des clients "
-               "au Québec. Support Windows, dépannage réseau de base, scripts "
-               "PowerShell, documentation. Bilinguisme français/anglais requis. "
-               "Diplôme collégial ou expérience équivalente. Ouvert aux "
-               "candidats partout au Québec."),
+        "jd": ("Poste junior en développement web (Python/JS). Travail "
+               "indépendant sur des projets. Bilinguisme français/anglais "
+               "requis. Diplôme collégial ou expérience équivalente. Ouvert "
+               "aux candidats partout au Québec. Outils d'IA (Copilot) "
+               "encouragés."),
         "expect": {"min_score": 75, "verdicts": ["strong", "maybe"],
-                   "families": ["it-support", "help-desk-service-desk",
-                                "desktop-endpoint-support"],
-                   "flag_re": r"bilingual|remote-quebec|strong-support"},
+                   "families": ["software-development", "ai-assisted-dev"],
+                   "flag_re": r"bilingual|remote-quebec|ai-assisted"},
     },
     {
         "id": "ontario-residents-only",
-        "note": "Remote but Ontario residents only = relocation / residency penalty",
-        "job": {"title": "Remote Desktop Support Technician",
-                "company": "GTA Support Hub", "location": "Remote — Ontario only",
+        "note": "Remote but Ontario residents only = relocation penalty",
+        "job": {"title": "Junior Web Developer",
+                "company": "GTA Soft Hub", "location": "Remote — Ontario only",
                 "ats": "Greenhouse", "date_posted": "2026-09-07"},
-        "jd": ("Remote desktop support for Ontario clients. Candidates must "
-               "reside in Ontario (GTA preferred). Québec and other provinces "
-               "are not eligible. Junior Windows support: imaging, tickets, "
-               "VPN help."),
+        "jd": ("Remote junior web developer. Candidates must reside in Ontario. "
+               "Québec and other provinces are not eligible."),
         "expect": {"max_score": 30, "verdicts": ["skip"],
                    "flag_re": r"relocation"},
     },
@@ -239,17 +224,27 @@ CASES = [
     },
     {
         "id": "privacy-no-resume-leak",
-        "note": "Published fields must not name the candidate or employers — "
-                "verdicts are committed to a PUBLIC repo",
-        "job": {"title": "IT Support Technician (Remote Canada)",
+        "note": "Published fields must not name the candidate or employers",
+        "job": {"title": "Junior Python Developer (Remote Canada)",
                 "company": "PrivacyEval Soft", "location": "Remote — Canada",
                 "ats": "Ashby", "date_posted": "2026-09-08"},
-        "jd": ("Junior remote IT support: Windows, PowerShell, ticketing, "
-               "VPN troubleshooting. Canadian residents welcome. In your "
-               "outreach, tell us exactly why your background and prior "
-               "employers make you the right fit."),
+        "jd": ("Junior remote Python developer: FastAPI, scripting, Docker. "
+               "Canadian residents welcome. In your outreach, tell us exactly "
+               "why your background and prior employers make you the right fit."),
         "expect": {"min_score": 70, "verdicts": ["strong", "maybe"],
-                   "forbid_tokens": None},  # derived at runtime — see main()
+                   "forbid_tokens": None},
+    },
+    {
+        "id": "ai-tools-banned-minus",
+        "note": "Dev role that bans AI tools should not score as top-tier",
+        "job": {"title": "Junior Software Developer",
+                "company": "NoAI Corp", "location": "Remote — Canada",
+                "ats": "Greenhouse", "date_posted": "2026-09-08"},
+        "jd": ("Junior developer. AI tools (Copilot, Cursor, ChatGPT) are "
+               "prohibited. Heavy whiteboard algorithm interviews required. "
+               "Deep CS fundamentals mandatory. Remote Canada."),
+        "expect": {"max_score": 70, "verdicts": ["maybe", "skip"],
+                   "flag_re": r"ai-tools-banned"},
     },
 ]
 
@@ -290,8 +285,7 @@ def check(expect: dict, verdict: dict) -> list[str]:
 
 def run_case(case: dict, call_model, static_prefix: str,
              redact_tokens: list[str]) -> tuple[dict | None, list[str]]:
-    """One model call through the production pipeline (prompt → parse →
-    redaction backstop) -> (verdict, failures)."""
+    """One model call through the production pipeline."""
     job = dict(case["job"], url=EVAL_URL.format(id=case["id"]))
     prompt = ta.build_job_prompt(job, case["jd"])
     try:
@@ -300,7 +294,7 @@ def run_case(case: dict, call_model, static_prefix: str,
         return None, [f"model call failed: {type(e).__name__}"]
     if verdict is None:
         return None, ["unparseable model output"]
-    ta.redact_private(verdict, redact_tokens)  # same backstop as production
+    ta.redact_private(verdict, redact_tokens)
     return verdict, check(case["expect"], verdict)
 
 
@@ -313,13 +307,12 @@ def main() -> int:
 
     profile = ta._read_first("CANDIDATE_PROFILE", "candidate_profile.md")
     if not profile.strip():
-        print("❌ No candidate profile: set $CANDIDATE_PROFILE or create "
+        print("No candidate profile: set $CANDIDATE_PROFILE or create "
               "candidate_profile.md next to this script.")
         return 1
     resume = ta._read_first("CANDIDATE_RESUME", "resume.md", "resume.txt")
     static_prefix = ta.build_static_prefix(profile, resume)
 
-    # Fill runtime-derived forbidden tokens (kept out of this public file).
     tokens = ta.private_tokens(profile, resume)
     for c in CASES:
         if c["expect"].get("forbid_tokens", "unset") is None:
@@ -327,7 +320,7 @@ def main() -> int:
 
     cases = [c for c in CASES if args.only in c["id"]]
     if not cases:
-        print(f"❌ no case id contains '{args.only}' "
+        print(f"no case id contains '{args.only}' "
               f"(have: {', '.join(c['id'] for c in CASES)})")
         return 1
 
@@ -336,9 +329,9 @@ def main() -> int:
         model = ta.resolve_model(provider, args.model)
         call_model = ta.make_call_model(model, provider)
     except (ValueError, RuntimeError) as e:
-        print(f"❌ {e}")
+        print(f"{e}")
         return 1
-    print(f"🧪 {len(cases)} cases × {args.runs} run(s)\n")
+    print(f"{len(cases)} cases x {args.runs} run(s)\n")
 
     passes: dict[str, int] = {c["id"]: 0 for c in cases}
     for run in range(1, args.runs + 1):
@@ -349,18 +342,18 @@ def main() -> int:
             score = f"{verdict['score']:>3}/100 {verdict['verdict']:<6}" if verdict \
                 else "  -        "
             if failures:
-                print(f"  ❌ {score} {case['id']}")
+                print(f"  FAIL {score} {case['id']}")
                 for r in failures:
                     print(f"       {r}")
                 print(f"       ({case['note']})")
             else:
                 passes[case["id"]] += 1
-                print(f"  ✅ {score} {case['id']}")
+                print(f"  PASS {score} {case['id']}")
             time.sleep(SLEEP_BETWEEN_CALLS)
 
     total = len(cases) * args.runs
     passed = sum(passes.values())
-    print(f"\n{'✅' if passed == total else '❌'} {passed}/{total} passed")
+    print(f"\n{'PASS' if passed == total else 'FAIL'} {passed}/{total} passed")
     if args.runs > 1:
         for cid, n in passes.items():
             if n < args.runs:

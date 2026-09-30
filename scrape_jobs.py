@@ -143,10 +143,8 @@ def _build_title_re(terms: list) -> re.Pattern:
 
 EXCLUDED_SENIORITY_RE = _build_title_re(_cfg("keywords.exclude", []))
 
-# Soft exclude tokens: ambiguous role nouns that stay in keywords.exclude but
-# are bypassed when the title also has a junior/entry signal OR an IT-domain
-# support/deployment/technician word. Bare "Cloud Engineer" / "Consultant"
-# still drop; "Deployment Specialist" / "Junior Network Engineer" pass.
+# Soft exclude tokens: ambiguous role nouns bypassed ONLY with an explicit
+# junior/entry signal (not bare IT-domain words). Bare Specialist/Consultant drop.
 _SOFT_EXCLUDE_RE = re.compile(
     r"(?i)\b(?:"
     r"specialist|sp[eé]cialiste|"
@@ -159,101 +157,105 @@ _SOFT_EXCLUDE_RE = re.compile(
     r"officer|"
     r"advisor|adviser|"
     r"expert|"
-    r"integrator"
+    r"integrator|"
+    r"implementation"
     r")\b"
 )
-# Explicit junior / entry-level cues (including Roman "I" after a role noun).
 _JUNIOR_ENTRY_SIGNAL_RE = re.compile(
     r"(?i)(?:"
     r"\b(?:"
     r"junior|jr\.?|entry[- ]?level|d[eé]butant|associate|"
     r"graduate|new\s*grad|apprenti|"
-    r"level\s*[12]|niveau\s*[12]|tier\s*[12]|[ln][12]"
+    r"level\s*[12]|niveau\s*[12]|tier\s*[12]|[ln][12]|"
+    r"0[-–]?2\s*(?:years?|ans)|no\s+experience"
     r")\b"
     r"|(?:"
     r"administrator|administrateur|specialist|sp[eé]cialiste|"
     r"analyst|analyste|engineer|ing[eé]nieur|technician|technicien|"
-    r"developer|d[eé]veloppeur|coordinator|coordonnateur"
+    r"developer|d[eé]veloppeur|coordinator|coordonnateur|consultant"
     r")\s+I\b"
     r")"
 )
-# IT-domain words that make an ambiguous noun entry-level-applyable
-# (Deployment Specialist, IT Support Consultant, Spécialiste soutien technique).
-_IT_DOMAIN_SIGNAL_RE = re.compile(
-    r"(?i)\b(?:"
-    r"technician|technicien|"
+
+# Ticket-queue / customer-facing support — hard exclude unless clearly
+# an independent junior path (dev/automation/QA/data) in the same title.
+_HARD_SUPPORT_QUEUE_RE = re.compile(
+    r"(?i)(?:"
     r"help\s*desk|helpdesk|service\s*desk|centre\s+de\s+services|"
-    r"desktop|endpoint|poste\s+de\s+travail|"
-    r"deploy(?:ment|ing)?|d[eé]ploiement|migration|rollout|go[- ]?live|"
-    r"implementation|provisioning|imaging|sccm|intune|mdm|"
-    r"it\s+support|technical\s+support|tech\s+support|"
-    r"systems?\s+support|application\s+support|network\s+support|"
+    r"technical\s+support|tech\s+support|it\s+support|"
     r"soutien\s+technique|support\s+technique|soutien\s+informatique|"
-    r"support\s+engineer|field\s+(?:service\s+)?tech|field\s+IT|"
     r"agent\s+(?:de\s+)?(?:soutien|support)|"
-    r"\bPOS\b|store\s+systems?|retail\s+(?:IT|tech)|"
-    r"installateur|installation|technicien\s+terrain|"
-    r"noc"
+    r"support\s+(?:agent|representative|rep\b|analyst|specialist|technician|engineer)|"
+    r"customer\s+support|customer\s+service|call\s*cent(?:er|re)|"
+    r"chat\s+support|contact\s+cent(?:er|re)|"
+    r"desktop\s+support|endpoint\s+support"
+    r")"
+)
+_INDEPENDENT_JUNIOR_OVERRIDE_RE = re.compile(
+    r"(?i)\b(?:"
+    r"junior|jr\.?|entry[- ]?level|d[eé]butant|associate|"
+    r"developer|d[eé]veloppeur|programmer|programmeur|"
+    r"automation|scripting|devops|"
+    r"\bQA\b|test\s+automat|data\s+analyst|data\s+engineer|"
+    r"python|\.NET|fastapi|full[- ]?stack"
     r")\b"
 )
 
-# Titles that look like Sobeys/CompuCom-style rollout / junior IT paths even
-# when they don't hit an exact keywords.include phrase (e.g. "Technicien(ne)
-# – déploiement", "Data Migration Analyst", "Device Provisioning Technician").
+# Soft nouns that ALWAYS need an explicit junior/entry signal (no variety bypass).
+_REQUIRES_JUNIOR_ALWAYS_RE = re.compile(
+    r"(?i)\b(?:"
+    r"specialist|sp[eé]cialiste|consultant|coordinator|coordonnateur|"
+    r"implementation|officer|advisor|adviser|expert|integrator"
+    r")\b"
+)
+
+# Independent junior paths (dev/automation/QA/data/AI/cloud) without exact include.
 _VARIETY_KEEP_RE = re.compile(
     r"(?i)(?:"
-    r"\b(?:deploy(?:ment|ing)?|d[eé]ploiement|migration|rollout)\b|"
-    r"go[- ]?live|"
-    r"\b(?:implementation|implement(?:ation)?)\b|"
-    r"\b(?:provisioning|imaging)\b|\bSCCM\b|\bIntune\b|\bMDM\b|endpoint\s+manag|"
-    r"device\s+provision|software\s+deploy|package\s+deploy|"
-    r"\bPOS\b|store\s+systems?|retail\s+(?:IT|tech(?:nology)?|systems?)|"
-    r"field\s+(?:IT\s+)?(?:tech|technician)|IT\s+rollout|IT\s+deployment|"
-    r"\binstallateur\b(?=.{0,40}(?:informatique|IT|r[eé]seau|telecom|fibre|fiber|c[aâ]bl|POS|terminal))|"
-    r"installation\s+tech|technicien\s+(?:terrain|d['’]?installation)|"
-    r"\bcommissioning\b|data\s+conversion|data\s+migration|"
-    r"asset\s+management|scale\s+tech|"
-    r"junior\s+(?:cloud|devops|soc|security|implementation|automation)|"
-    r"cloud\s+support|\bSOC\b(?:\s*analyst)?(?:\s*L?[12])?|"
-    r"M365\s+admin|Azure\s+support|AWS\s+(?:support|cloud\s+support)|"
-    r"build\s*(?:&|and)\s*release|release\s+tech|"
-    r"ERP\s+(?:support|implement)|SAP\s+support|"
-    r"technicien.{0,20}d[eé]ploiement|analyste.{0,15}migration|"
-    r"conversion\s+analyst|integration\s+tech"
+    r"junior\s+(?:software|web|backend|frontend|full[- ]?stack|python|\.?NET|php|"
+    r"javascript|devops|cloud|QA|test|data|automation|security|SOC|sysadmin|"
+    r"developer|d[eé]veloppeur|programmeur|analyst|analyste|AI|ML)|"
+    r"(?:software|web|backend|frontend|full[- ]?stack|python|\.?NET|php|javascript)\s+"
+    r"(?:developer|engineer|d[eé]veloppeur)(?!.{0,20}\b(?:senior|sr\.?|lead|principal|staff)\b)|"
+    r"test\s+automation|QA\s+automat|software\s+tester|manual\s+tester|"
+    r"\bRPA\b|low[- ]?code|no[- ]?code|Power\s*Automate|Zapier|\bn8n\b|\bMake\b|"
+    r"workflow\s+automation|automation\s+builder|"
+    r"data\s+(?:analyst|engineer|migration|conversion|annotation|label|entry)|"
+    r"\bETL\b|BI\s+analyst|SQL\s+developer|"
+    r"AI[- ]?(?:assisted|native|first)\b|"
+    r"AI\s+(?:train|annotat|engineer|developer|automation|agent|native|assisted|tools)|"
+    r"systems?\s+administrator\s+I\b|administrator\s+I\b|"
+    r"data\s+annotat|prompt\s+(?:engineer|eval)|LLM\s+(?:eval|application)|"
+    r"model\s+eval|coding\s+eval|vibe\s+coding|"
+    r"\bCopilot\b|\bCursor\b|Claude\s+Code|agentic|"
+    r"internal\s+tools?\s+(?:developer|engineer)|rapid\s+prototyp|"
+    r"technical\s+writer|documentation\s+(?:writer|specialist)|"
+    r"cloud\s+support\s+associate|junior\s+(?:azure|aws|terraform)|"
+    r"infrastructure\s+as\s+code|build\s*(?:&|and)\s*release|"
+    r"junior\s+(?:deploy|migration|implementation)|"
+    r"remote\s+(?:device\s+)?(?:provision|imaging|deploy|migration)|"
+    r"programmeur\s+junior|d[eé]veloppeur\s+junior|"
+    r"programmeur(?:\s+\w+){0,3}\s+junior|"
+    r"d[eé]veloppeur(?:\s+\w+){0,3}\s+junior|"
+    r"analyste\s+(?:donn[eé]es|QA|test)\s+junior|"
+    r"associate\s+(?:cloud|software|network|developer|engineer|devops)|"
+    r"MVP\s+(?:developer|engineer)|startup\s+(?:developer|engineer)"
     r")"
 )
 
 
 def _has_soft_bypass_signal(title: str) -> bool:
-    """Junior/entry cue OR IT-domain support/deployment/technician word.
-
-    Bare engineers need a junior cue (except 'support engineer'). Administrators
-    may bypass with a clear service-desk / help-desk / NOC context, but not
-    with deployment alone ('Ingénieur de déploiement' stays out).
-    """
-    if _JUNIOR_ENTRY_SIGNAL_RE.search(title):
-        return True
-    if not _IT_DOMAIN_SIGNAL_RE.search(title):
-        return False
-    if re.search(r"(?i)\b(?:engineer|ing[eé]nieur)\b", title or "") and not re.search(
-        r"(?i)support\s+engineer|support\s+ing[eé]nieur", title or ""
-    ):
-        return False
-    if re.search(r"(?i)\b(?:administrator|administrateur)\b", title or ""):
-        return bool(
-            re.search(
-                r"(?i)help\s*desk|service\s*desk|desktop|endpoint|NOC|"
-                r"support\s+admin|admin(?:istrator)?\s*1\b",
-                title or "",
-            )
-        )
-    return True
+    """Soft nouns bypass ONLY with an explicit junior/entry cue."""
+    return bool(_JUNIOR_ENTRY_SIGNAL_RE.search(title or ""))
 
 
-
-# JobSpy / board seniority fields — drop only when clearly senior+.
 _JOB_LEVEL_SENIOR_RE = re.compile(
-    r"(?i)\b(?:senior|director|executive|mid[-_ ]?senior|vp|chief|principal)\b"
+    r"(?i)\b(?:senior|director|executive|mid[-_ ]?senior|mid[-_ ]?level|"
+    r"intermediate|vp|chief|principal|staff)\b"
+)
+_YEARS_REQUIRED_RE = re.compile(
+    r"(?i)(?:(?:minimum|at\s+least|min(?:imum)?|requis|required)\s+)?"
+    r"([3-9]|1\d)\+?\s*(?:years?|ans)\b"
 )
 
 # Multi-word phrases keep substring semantics; single-word keywords ("mle",
@@ -390,25 +392,46 @@ _HARD_TIER_SUFFIX_RE = re.compile(
 )
 
 
+def _requires_too_many_years(*parts: str) -> bool:
+    """True when text clearly requires 3+ years (junior target is 0-2)."""
+    blob = " ".join(p or "" for p in parts)
+    if not blob:
+        return False
+    m = _YEARS_REQUIRED_RE.search(blob)
+    if not m:
+        return False
+    try:
+        return int(m.group(1)) >= 3
+    except (TypeError, ValueError):
+        return False
+
+
 def _title_is_excluded(title: str) -> bool:
     """True if title hits keywords.exclude, with soft-exclude bypass.
 
-    Soft tokens (specialist / administrator / engineer / analyst / consultant /
-    coordinator / developer / officer and FR equivalents) are ignored when the
-    title also has a junior/entry cue OR an IT-domain support/deployment/
-    technician word. Hard excludes (senior, manager, architect, …) always drop.
-    Tier suffixes (Specialist II/III/…) are always hard.
+    Soft tokens need an explicit junior/entry cue. Consultant/specialist/
+    coordinator/implementation NEVER bypass without that cue. Developer/
+    engineer/analyst/admin may also bypass when the title matches an
+    independent junior variety-keep path. Hard excludes always drop.
+    Ticket-queue / customer-facing support titles are hard-excluded unless
+    the same title clearly signals independent junior dev/automation/QA work.
     """
     if not title:
         return True
     if _HARD_TIER_SUFFIX_RE.search(title):
         return True
+    if _HARD_SUPPORT_QUEUE_RE.search(title):
+        if not (_INDEPENDENT_JUNIOR_OVERRIDE_RE.search(title)
+                and _JUNIOR_ENTRY_SIGNAL_RE.search(title)):
+            return True
     soft_spans = {m.span() for m in _SOFT_EXCLUDE_RE.finditer(title)}
-    can_bypass = _has_soft_bypass_signal(title)
+    has_junior = _has_soft_bypass_signal(title)
+    variety_ok = bool(_VARIETY_KEEP_RE.search(title))
+    always_needs_junior = bool(_REQUIRES_JUNIOR_ALWAYS_RE.search(title))
+    can_bypass = has_junior or (variety_ok and not always_needs_junior)
     for m in EXCLUDED_SENIORITY_RE.finditer(title):
         if can_bypass and m.span() in soft_spans:
             continue
-        # Soft token matched via a multi-word exclude phrase — still bypassable.
         if can_bypass and _SOFT_EXCLUDE_RE.fullmatch(m.group(0) or ""):
             continue
         return True
@@ -417,7 +440,7 @@ def _title_is_excluded(title: str) -> bool:
 
 def title_matches_keywords(title: str) -> bool:
     """True if a job title is not excluded and matches keywords.include OR a
-    variety IT-domain keep pattern (deployment/migration/field/POS/etc.).
+    independent junior variety-keep pattern (dev/QA/data/AI/automation/…).
     """
     if _title_is_excluded(title):
         return False
@@ -429,6 +452,8 @@ def title_matches_keywords(title: str) -> bool:
 def text_matches_keywords(title: str, *parts: str) -> bool:
     """Like title_matches_keywords, but allows source-specific summary text to carry the signal."""
     if _title_is_excluded(title or ""):
+        return False
+    if _requires_too_many_years(title, *parts):
         return False
     text = " ".join([title or "", *(p or "" for p in parts)])
     if _KEYWORD_RE.search(text):
@@ -1331,6 +1356,9 @@ def _ingest_jobspy_df(df, *, label: str, jobs_by_id: dict[str, dict]) -> int:
             row.get("job_level", "") or row.get("experience_level", "") or ""
         )
         if job_level and _JOB_LEVEL_SENIOR_RE.search(job_level):
+            continue
+        desc = str(row.get("description", "") or "")
+        if _requires_too_many_years(title, job_level, desc):
             continue
         url = str(row.get("job_url", "") or "")
         if not url:
