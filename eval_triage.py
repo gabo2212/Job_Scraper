@@ -148,7 +148,7 @@ CASES = [
     },
     {
         "id": "mandatory-bachelors-no-equivalent",
-        "note": "Mandatory bachelor's + 3+ years must sink score",
+        "note": "Strict bachelor's + 3+ yrs pro experience = degree cap AND experience gap",
         "job": {"title": "Junior Software Developer",
                 "company": "DegreeGate Inc", "location": "Remote — Canada",
                 "ats": "Greenhouse", "date_posted": "2026-09-05"},
@@ -156,7 +156,7 @@ CASES = [
                "is required (no exceptions; equivalent experience is not "
                "accepted). Minimum 3+ years of professional software "
                "engineering required. Remote Canada."),
-        "expect": {"max_score": 55, "verdicts": ["skip"],
+        "expect": {"max_score": 60, "verdicts": ["skip", "maybe"],
                    "flag_re": r"degree-required|experience-gap"},
     },
     {
@@ -246,6 +246,92 @@ CASES = [
         "expect": {"max_score": 70, "verdicts": ["maybe", "skip"],
                    "flag_re": r"ai-tools-banned"},
     },
+    # ---- Graded bachelor's rule (candidate has no bachelor's) -------------
+    {
+        "id": "degree-asset-only",
+        "note": "Bachelor's only an 'asset' = tiny deduction (-3..-6), still strong",
+        "job": {"title": "Junior Python Developer",
+                "company": "AssetDegree Labs", "location": "Remote — Canada",
+                "ats": "Lever", "date_posted": "2026-09-09"},
+        "jd": ("Junior Python/FastAPI developer building internal tools and "
+               "automation. Docker and SQL a plus. We encourage Copilot and "
+               "Cursor. 0-2 years. Fully remote across Canada. A bachelor's "
+               "degree is an asset."),
+        "expect": {"min_score": 78, "verdicts": ["strong", "maybe"],
+                   "families": ["software-development", "automation-scripting",
+                                "ai-assisted-dev"],
+                   "flag_re": r"degree-preferred|degree-or-equivalent"},
+    },
+    {
+        "id": "degree-or-equivalent-experience",
+        "note": "'Bachelor's OR equivalent experience / college diploma' = -6..-10",
+        "job": {"title": "Junior Python Developer",
+                "company": "EquivDegree Labs", "location": "Remote — Canada",
+                "ats": "Lever", "date_posted": "2026-09-09"},
+        "jd": ("Junior Python/FastAPI developer building internal tools and "
+               "automation. Docker and SQL a plus. We encourage Copilot and "
+               "Cursor. 0-2 years. Fully remote across Canada. Bachelor's "
+               "degree or equivalent experience; a college diploma (DEC/AEC) "
+               "in computer science is also accepted."),
+        "expect": {"min_score": 70, "max_score": 92,
+                   "verdicts": ["strong", "maybe"],
+                   "flag_re": r"degree-or-equivalent|degree-preferred"},
+    },
+    {
+        "id": "degree-required-with-equivalent",
+        "note": "Required but 'or equivalent' accepted = -10..-15, usually maybe/strong",
+        "job": {"title": "Junior Python Developer",
+                "company": "ReqEquivDegree Labs", "location": "Remote — Canada",
+                "ats": "Lever", "date_posted": "2026-09-09"},
+        "jd": ("Junior Python/FastAPI developer building internal tools and "
+               "automation. Docker and SQL a plus. We encourage Copilot and "
+               "Cursor. 0-2 years. Fully remote across Canada. A bachelor's "
+               "degree in Computer Science is required, or an equivalent "
+               "combination of education and experience."),
+        "expect": {"min_score": 62, "max_score": 90,
+                   "verdicts": ["strong", "maybe"],
+                   "flag_re": r"degree-or-equivalent|degree-required|degree-preferred"},
+    },
+    {
+        "id": "degree-strict-strong-match",
+        "note": "Strictly required, NO alternative, but perfect junior remote fit "
+                "with matching stack: capped at 65 -> maybe, never strong, not skip",
+        "job": {"title": "Junior Full-Stack Developer (AI-assisted)",
+                "company": "StrictDegree Labs", "location": "Remote — Canada",
+                "ats": "Ashby", "date_posted": "2026-09-09"},
+        "jd": ("Junior full-stack developer on an AI-first team: Python/FastAPI, "
+               "Docker, SQL, AWS with Terraform. Copilot and Cursor encouraged. "
+               "0-2 years. Fully remote across Canada, independent project work. "
+               "A bachelor's degree in Computer Science is required; no "
+               "alternatives are accepted."),
+        "expect": {"min_score": 58, "max_score": 66, "verdicts": ["maybe", "skip"],
+                   "flag_re": r"degree-required"},
+    },
+    {
+        "id": "degree-strict-weak-match",
+        "note": "Strictly required degree AND only loosely matching duties = low "
+                "(compensation must not apply to a weak match)",
+        "job": {"title": "Junior Business Intelligence Analyst",
+                "company": "BIStrict Corp", "location": "Remote — Canada",
+                "ats": "Greenhouse", "date_posted": "2026-09-09"},
+        "jd": ("Junior BI analyst: build Excel and Tableau dashboards, "
+               "statistical reporting for the finance team, SAS and R. 0-2 "
+               "years. Remote across Canada. A bachelor's degree in statistics, "
+               "finance or economics is strictly required; equivalent "
+               "experience is not accepted."),
+        "expect": {"max_score": 58, "verdicts": ["skip"],
+                   "flag_re": r"degree-required"},
+    },
+    {
+        "id": "degree-unknown-no-jd",
+        "note": "No JD text: never guess a degree requirement (no degree flags)",
+        "job": {"title": "Junior Python Developer",
+                "company": "NoJD Labs", "location": "Remote — Canada",
+                "ats": "LinkedIn", "date_posted": "2026-09-09"},
+        "jd": "",
+        "expect": {"min_score": 60, "verdicts": ["strong", "maybe"],
+                   "forbid_flag_re": r"^degree-"},
+    },
 ]
 
 
@@ -267,6 +353,11 @@ def check(expect: dict, verdict: dict) -> list[str]:
         flags = [str(f) for f in verdict.get("flags", [])]
         if not any(re.search(expect["flag_re"], f, re.IGNORECASE) for f in flags):
             reasons.append(f"no flag matches /{expect['flag_re']}/i in {flags}")
+    if "forbid_flag_re" in expect:
+        bad = [str(f) for f in verdict.get("flags", [])
+               if re.search(expect["forbid_flag_re"], str(f), re.IGNORECASE)]
+        if bad:
+            reasons.append(f"forbidden flag(s) present: {bad}")
     if "families" in expect and verdict.get("role_family") not in expect["families"]:
         reasons.append(f"role_family '{verdict.get('role_family')}' "
                        f"not in {expect['families']}")

@@ -60,7 +60,8 @@ FLAG_TAGS = (
     "project-based | ai-assisted-dev | ai-training | strong-dev-match | "
     "strong-automation-match | strong-deployment-match | bilingual-asset | "
     "linux-match | powershell-match | networking-match | learnable-tool-gap | "
-    "experience-gap | degree-required | degree-preferred | senior-title | "
+    "experience-gap | degree-required | degree-or-equivalent | "
+    "degree-preferred | senior-title | "
     "us-only | relocation | location-unclear | customer-facing-support | "
     "ai-tools-banned"
 )
@@ -297,12 +298,30 @@ def build_static_prefix(profile: str, resume: str) -> str:
         "documentation, bilingual FR/EN. Flag independent-work / "
         "project-based / ai-training when applicable.",
         "",
-        "Requirements: distinguish mandatory vs preferred. Bachelor's "
-        "mandatory with no equivalence → strong penalty (cap≈55) + "
-        "degree-required; preferred / 'or equivalent' / college diploma OK → "
-        "little/no penalty + degree-preferred if noted. NEVER claim the "
-        "candidate has a bachelor's. Experience: 0-2 yrs OK; 2-3 preferred "
-        "OK; strict 3 yrs → moderate penalty; 4-5+ required → strong penalty.",
+        "Bachelor's degree (candidate has NONE — college AI program, partial "
+        "CS Cégep, Secondary V, plus real IT contract work, portfolio "
+        "projects and HTB labs; NEVER claim a bachelor's). GRADED deduction, "
+        "applied ONLY when the JD text actually mentions a bachelor's/"
+        "baccalauréat/university degree (no mention, or no JD text → no "
+        "deduction; never guess a degree requirement): "
+        "(a) only an asset/preferred/nice-to-have mention → -3 to -6, flag "
+        "degree-preferred; "
+        "(b) 'bachelor's OR equivalent experience / college diploma (DEC/AEC/"
+        "DCS) / combination of education and experience / degree or relevant "
+        "certifications' → -6 to -10, flag degree-or-equivalent; "
+        "(c) listed as required but alternatives or 'or equivalent' accepted "
+        "→ -10 to -15, flag degree-or-equivalent; "
+        "(d) strictly required with NO stated alternative → -20 to -30 and "
+        "hard cap 65, flag degree-required: an otherwise perfect junior "
+        "remote fit may stay 'maybe' (60-65) but never 'strong', and a "
+        "degree alone never forces skip. "
+        "COMPENSATION: give back +5 to +10 (within the same caps, never "
+        "erasing the whole deduction) when the candidate's projects/"
+        "portfolio, college program, HTB labs or real contract experience "
+        "directly match the posting's core duties/stack; if the match is "
+        "weak, give back nothing. The degree never changes role_family.",
+        "Experience: 0-2 yrs OK; 2-3 preferred OK; strict 3 yrs → moderate "
+        "penalty; 4-5+ required → strong penalty.",
         "Missing common tools = learnable minor gap for junior roles "
         "(flag learnable-tool-gap). Transferable skills (Linux, PowerShell/"
         "Python, TCP/IP, APIs/.NET, Docker) count; do NOT inflate projects "
@@ -320,8 +339,8 @@ def build_static_prefix(profile: str, resume: str) -> str:
         "Hard caps: US-only ≤20; senior/lead/staff/principal ≤35 unless "
         "duties clearly junior (flag senior-title); specialist/consultant "
         "w/o junior cue or mandatory 3+ yrs ≤40; help-desk/support queues "
-        "≤45 + skip; mandatory 5+ years ≤40; mandatory bachelor's w/o "
-        "alternative ≈55; relocation outside Québec ≤30.",
+        "≤45 + skip; mandatory 5+ years ≤40; strictly required bachelor's w/o "
+        "alternative ≤65 (never auto-skip); relocation outside Québec ≤30.",
         "",
         "Profile vs resume: BOTH verified. Profile may include newer facts "
         "absent from the resume — do not discard them. If they conflict, "

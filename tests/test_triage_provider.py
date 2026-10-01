@@ -223,3 +223,31 @@ def test_make_call_model_openai_path(monkeypatch):
         fn = ta.make_call_model("gpt-6-luna")
         assert fn("s", "j") == "{}"
         m.assert_called_once_with("gpt-6-luna")
+
+def test_flag_tags_include_degree_tiers():
+    for tag in ("degree-required", "degree-or-equivalent", "degree-preferred"):
+        assert tag in ta.FLAG_TAGS
+
+
+def test_prefix_has_graded_degree_rule():
+    prefix = ta.build_static_prefix("Junior dev.", "")
+    assert "GRADED" in prefix
+    assert "-3 to -6" in prefix
+    assert "-6 to -10" in prefix
+    assert "-10 to -15" in prefix
+    assert "-20 to -30" in prefix
+    assert "cap 65" in prefix
+    assert "COMPENSATION" in prefix
+    assert "never guess a degree requirement" in prefix
+    assert "NEVER claim a bachelor's" in prefix
+    # old blunt rule is gone
+    assert "cap≈55" not in prefix
+    assert "bachelor's w/o alternative ≈55" not in prefix
+    assert "≤65 (never auto-skip)" in prefix
+
+
+def test_degree_or_equivalent_flag_survives_redaction():
+    v = {"why": "ok", "seniority_fit": "appropriate", "outreach_opener": "",
+         "flags": ["degree-or-equivalent", "degree-required"]}
+    out = ta.redact_private(v, ["Gabriel", "Sobeys"])
+    assert out["flags"] == ["degree-or-equivalent", "degree-required"]

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "description": "Deterministic fit scoring for Gabriel Fortin — JUNIOR remote independent project-based work (dev/automation/QA/data/AI-training/cloud). AI-assisted coding (Cursor/Copilot/Claude) is a strong plus. Help desk / service desk / customer-facing support queues are heavily penalized. Specialist/consultant without junior signal penalized. From CV 2026 (CompuCom/Sobeys migration contract, Cirque du Soleil, HTB labs, CDI AI). No bachelor's; ~1 yr experience.",
+  "description": "Deterministic fit scoring for Gabriel Fortin — JUNIOR remote independent project-based work (dev/automation/QA/data/AI-training/cloud). AI-assisted coding (Cursor/Copilot/Claude) is a strong plus. Help desk / service desk / customer-facing support queues are heavily penalized. Specialist/consultant without junior signal penalized. From CV 2026 (CompuCom/Sobeys migration contract, Cirque du Soleil, HTB labs, CDI AI). No bachelor's (graded degree penalty: asset -3, or-equivalent -6, required-with-alt -9, strictly required -15 raw, x1.6); ~1 yr experience.",
   "settings": {
     "title_multiplier": 3,
     "body_multiplier": 1,
@@ -108,8 +108,24 @@
       "penalty": 35
     },
     {
-      "pattern": "\\b(bachelor'?s?(?:\\s+degree)?\\s+required|baccalaur[eé]at\\s+requis|degree required|master'?s degree required|phd|ph\\.d|CS\\s+fundamentals\\s+required|whiteboard\\s+interview|算法|LeetCode|no\\s+AI\\s+tools|AI\\s+tools?\\s+(?:banned|prohibited|not\\s+allowed)|must\\s+not\\s+use\\s+AI)\\b",
+      "pattern": "\\b(master'?s degree required|phd|ph\\.d|CS\\s+fundamentals\\s+required|whiteboard\\s+interview|算法|LeetCode|no\\s+AI\\s+tools|AI\\s+tools?\\s+(?:banned|prohibited|not\\s+allowed)|must\\s+not\\s+use\\s+AI)\\b",
       "penalty": 30
+    },
+    {
+      "pattern": "^(?![\\s\\S]*(?:no\\s+(?:bachelor['\\u2019]?s?|university|college)?\\s*(?:degree\\s+)?(?:is\\s+)?required|(?:bachelor['\\u2019]?s?|degree)[^.\\n]{0,30}not\\s+(?:required|necessary|needed)|sans\\s+baccalaur))(?=[\\s\\S]*\\b(?:bachelor['\\u2019]?s?|baccalaur[e\\u00e9]at|university\\s+degree|undergraduate\\s+degree|4[- ]year\\s+degree|b\\.?sc\\b|(?:a\\s+)?degree\\s+required))",
+      "penalty": 3
+    },
+    {
+      "pattern": "^(?![\\s\\S]*(?:no\\s+(?:bachelor['\\u2019]?s?|university|college)?\\s*(?:degree\\s+)?(?:is\\s+)?required|(?:bachelor['\\u2019]?s?|degree)[^.\\n]{0,30}not\\s+(?:required|necessary|needed)|sans\\s+baccalaur))(?=[\\s\\S]*\\b(?:bachelor['\\u2019]?s?|baccalaur[e\\u00e9]at|university\\s+degree|undergraduate\\s+degree|4[- ]year\\s+degree|b\\.?sc\\b|(?:a\\s+)?degree\\s+required))(?=[\\s\\S]*(?:or\\s+equivalent|equivalent\\s+(?:experience|education|combination|work)|combination\\s+of\\s+(?:education|experience|studies)|or\\s+(?:relevant|related)\\s+(?:experience|certifications?)|college\\s+diploma|\\b(?:dec|aec|dcs)\\b\\s*(?:\\)|/|,|or\\b|ou\\b|diploma|dipl[o\\u00f4]me|in\\b|en\\b)|ou\\s+[e\\u00e9]quivalen|exp[e\\u00e9]rience\\s+[e\\u00e9]quivalente|[e\\u00e9]quivalence))",
+      "penalty": 3
+    },
+    {
+      "pattern": "^(?![\\s\\S]*(?:no\\s+(?:bachelor['\\u2019]?s?|university|college)?\\s*(?:degree\\s+)?(?:is\\s+)?required|(?:bachelor['\\u2019]?s?|degree)[^.\\n]{0,30}not\\s+(?:required|necessary|needed)|sans\\s+baccalaur))(?=[\\s\\S]*(?:\\b(?:bachelor['\\u2019]?s?|baccalaur[e\\u00e9]at|university\\s+degree|undergraduate\\s+degree|4[- ]year\\s+degree|b\\.?sc\\b|(?:a\\s+)?degree\\s+required)[^.\\n]{0,60}\\b(?:required|must\\s+(?:have|hold|possess)|minimum|mandatory|requis|exig[e\\u00e9]|obligatoire)|\\b(?:required|must\\s+(?:have|hold|possess)|minimum|mandatory|requis|exig[e\\u00e9]|obligatoire)[^.\\n]{0,60}\\b(?:bachelor['\\u2019]?s?|baccalaur[e\\u00e9]at|university\\s+degree|undergraduate\\s+degree|4[- ]year\\s+degree|b\\.?sc\\b|(?:a\\s+)?degree\\s+required)))",
+      "penalty": 3
+    },
+    {
+      "pattern": "^(?![\\s\\S]*(?:no\\s+(?:bachelor['\\u2019]?s?|university|college)?\\s*(?:degree\\s+)?(?:is\\s+)?required|(?:bachelor['\\u2019]?s?|degree)[^.\\n]{0,30}not\\s+(?:required|necessary|needed)|sans\\s+baccalaur))(?=[\\s\\S]*(?:\\b(?:bachelor['\\u2019]?s?|baccalaur[e\\u00e9]at|university\\s+degree|undergraduate\\s+degree|4[- ]year\\s+degree|b\\.?sc\\b|(?:a\\s+)?degree\\s+required)[^.\\n]{0,60}\\b(?:required|must\\s+(?:have|hold|possess)|minimum|mandatory|requis|exig[e\\u00e9]|obligatoire)|\\b(?:required|must\\s+(?:have|hold|possess)|minimum|mandatory|requis|exig[e\\u00e9]|obligatoire)[^.\\n]{0,60}\\b(?:bachelor['\\u2019]?s?|baccalaur[e\\u00e9]at|university\\s+degree|undergraduate\\s+degree|4[- ]year\\s+degree|b\\.?sc\\b|(?:a\\s+)?degree\\s+required)))(?![\\s\\S]*(?:or\\s+equivalent|equivalent\\s+(?:experience|education|combination|work)|combination\\s+of\\s+(?:education|experience|studies)|or\\s+(?:relevant|related)\\s+(?:experience|certifications?)|college\\s+diploma|\\b(?:dec|aec|dcs)\\b\\s*(?:\\)|/|,|or\\b|ou\\b|diploma|dipl[o\\u00f4]me|in\\b|en\\b)|ou\\s+[e\\u00e9]quivalen|exp[e\\u00e9]rience\\s+[e\\u00e9]quivalente|[e\\u00e9]quivalence))",
+      "penalty": 9
     },
     {
       "pattern": "\\b(US only|United States only|must be (?:located|based) in the (?:US|USA|United States)|requires US (?:citizenship|work authorization|residency)|no candidates outside the US)\\b",
