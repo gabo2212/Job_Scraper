@@ -146,7 +146,31 @@
       "low code",
       "no code",
       "analyste données junior",
-      "ingénieur données junior"
+      "ingénieur données junior",
+      "junior c#",
+      "junior c sharp",
+      "c# developer junior",
+      ".NET developer junior",
+      "junior software engineer",
+      "entry level software",
+      "entry-level software",
+      "new grad software",
+      "new graduate software",
+      "graduate software developer",
+      "junior API",
+      "junior SQL",
+      "junior linux",
+      "junior backend developer",
+      "junior ai automation",
+      "automation engineer junior",
+      "ai automation engineer",
+      "développeur .NET junior",
+      "développeur logiciel junior",
+      "developpeur logiciel junior",
+      "analyste programmeur junior",
+      "programmeur-analyste junior",
+      "développeur backend junior",
+      "développeur full stack junior"
     ],
     "_exclude_comment": "Soft nouns (specialist/consultant/coordinator/implementation/…) need explicit junior/entry signal. Help desk / service desk / tech support / customer-facing queues are hard-excluded (no soft bypass). Non-IT exclusions kept.",
     "exclude": [
@@ -387,7 +411,17 @@
       "devops",
       "security",
       "programmeur",
-      "technical writer"
+      "technical writer",
+      "junior software engineer",
+      "entry level developer",
+      "c#",
+      "sql",
+      "linux",
+      "api developer",
+      "backend developer",
+      "full stack developer",
+      "ai automation",
+      "new grad"
     ],
     "linkedin": [
       "Junior Python Developer",
@@ -398,17 +432,17 @@
       "Junior DevOps",
       "Junior Data Analyst",
       "AI Trainer remote",
-      "Prompt Engineer junior",
+      "Développeur logiciel junior télétravail",
       "AI-assisted developer",
       "GitHub Copilot developer",
-      "Low-code developer",
+      "Junior Software Engineer remote",
       "RPA developer junior",
-      "Technical Writer IT junior",
+      "Junior Automation Engineer AI",
       "Développeur junior",
       "Programmeur junior",
       "Automatisation junior",
       "Testeur logiciel junior",
-      "Annotateur données IA",
+      "Junior C# Developer",
       "Développeur IA junior"
     ],
     "indeed": [
@@ -461,7 +495,22 @@
       "Annotateur de données",
       "Évaluateur LLM",
       "Junior AI Engineer remote",
-      "Prototype developer AI tools"
+      "Prototype developer AI tools",
+      "Junior Software Developer AI-assisted",
+      "Junior Software Engineer remote Canada",
+      "Junior C# developer remote Canada",
+      ".NET full stack developer remote Canada",
+      "Junior backend developer Python Linux remote",
+      "Junior automation engineer n8n HubSpot",
+      "Junior AI automation engineer",
+      "Software developer Cursor Claude Code encouraged",
+      "Associate software developer remote Canada",
+      "Entry level software developer Canada remote",
+      "New grad software engineer Canada",
+      "Junior SQL developer remote Canada",
+      "Développeur .NET junior télétravail",
+      "Développeur logiciel junior télétravail",
+      "Analyste programmeur junior télétravail"
     ],
     "glassdoor": [
       "Junior Python Developer",
@@ -539,7 +588,15 @@
       "évaluation modèles IA",
       "WordPress junior",
       "migration de données junior",
-      "cloud junior"
+      "cloud junior",
+      "junior software engineer",
+      "junior C# developer",
+      "junior .NET developer",
+      "junior backend developer",
+      "junior API developer",
+      "analyste programmeur junior",
+      "développeur .NET",
+      "automatisation IA"
     ]
   },
   "locations": {
@@ -679,7 +736,7 @@
   },
   "remote_boards": {
     "_comment": "Remote-first boards (remote_boards.py). One request per endpoint per run (daily cron); honest User-Agent; link back + credit to each board. Skipped after evaluation: Wellfound (anti-bot 303), Remote.co (timeouts, no feed), JustRemote (JS-only, no API/RSS), Dynamite Jobs (RSS is a blog, not jobs).",
-    "boards": ["remotive", "remoteok", "weworkremotely", "himalayas", "jobicy", "workingnomads", "arbeitnow", "hnhiring"],
+    "boards": ["remotive", "remoteok", "weworkremotely", "himalayas", "jobicy", "workingnomads", "arbeitnow", "hnhiring", "companyboards"],
     "max_age_days": 45,
     "request_delay": 2.0,
     "himalayas": {
@@ -693,6 +750,64 @@
     },
     "weworkremotely": {
       "feeds": ["remote-programming-jobs", "remote-devops-sysadmin-jobs", "remote-jobs"]
+    },
+    "companyboards": {
+      "_comment": "Curated public career boards (Greenhouse/Lever/Ashby JSON APIs; each verified to exist 2026-10-01). One request per company, 0.6s apart. Only remote postings with an explicit junior/entry signal are kept.",
+      "company_delay": 0.6,
+      "companies": [
+        {"name": "Hootsuite", "ats": "greenhouse", "slug": "hootsuite"},
+        {"name": "Jobber", "ats": "ashby", "slug": "jobber"},
+        {"name": "Float", "ats": "ashby", "slug": "float"},
+        {"name": "Clearco", "ats": "ashby", "slug": "clearco"},
+        {"name": "Ritual", "ats": "greenhouse", "slug": "ritual"},
+        {"name": "Neo Financial", "ats": "ashby", "slug": "neofinancial"},
+        {"name": "Later", "ats": "greenhouse", "slug": "later"},
+        {"name": "Unbounce", "ats": "greenhouse", "slug": "unbounce"},
+        {"name": "Procurify", "ats": "ashby", "slug": "procurify"},
+        {"name": "Trulioo", "ats": "ashby", "slug": "trulioo"},
+        {"name": "1Password", "ats": "ashby", "slug": "1password"},
+        {"name": "Faire", "ats": "greenhouse", "slug": "faire"},
+        {"name": "Lightspeed", "ats": "ashby", "slug": "lightspeed"},
+        {"name": "D2L", "ats": "greenhouse", "slug": "d2l"},
+        {"name": "Tulip", "ats": "greenhouse", "slug": "tulip"},
+        {"name": "Benevity", "ats": "ashby", "slug": "benevity"},
+        {"name": "Hopper", "ats": "ashby", "slug": "hopper"},
+        {"name": "Achievers", "ats": "lever", "slug": "achievers"},
+        {"name": "Wattpad", "ats": "lever", "slug": "wattpad"},
+        {"name": "Mejuri", "ats": "greenhouse", "slug": "mejuri"},
+        {"name": "Loopio", "ats": "ashby", "slug": "loopio"},
+        {"name": "Miovision", "ats": "ashby", "slug": "miovision"},
+        {"name": "Shakepay", "ats": "greenhouse", "slug": "shakepay"},
+        {"name": "Koho", "ats": "ashby", "slug": "koho"},
+        {"name": "Jane App", "ats": "ashby", "slug": "jane"},
+        {"name": "Geotab", "ats": "greenhouse", "slug": "geotab"},
+        {"name": "Caseware", "ats": "lever", "slug": "caseware"},
+        {"name": "BlueCat", "ats": "lever", "slug": "bluecatnetworks"},
+        {"name": "7shifts", "ats": "greenhouse", "slug": "7shifts"},
+        {"name": "Tucows", "ats": "greenhouse", "slug": "tucows"},
+        {"name": "Cohere", "ats": "ashby", "slug": "cohere"},
+        {"name": "Mozilla", "ats": "greenhouse", "slug": "mozilla"},
+        {"name": "GitLab", "ats": "greenhouse", "slug": "gitlab"},
+        {"name": "Zapier", "ats": "ashby", "slug": "zapier"},
+        {"name": "PostHog", "ats": "ashby", "slug": "posthog"},
+        {"name": "Supabase", "ats": "ashby", "slug": "supabase"},
+        {"name": "Vercel", "ats": "greenhouse", "slug": "vercel"},
+        {"name": "Netlify", "ats": "greenhouse", "slug": "netlify"},
+        {"name": "Buffer", "ats": "ashby", "slug": "buffer"},
+        {"name": "Close", "ats": "ashby", "slug": "close"},
+        {"name": "Remote", "ats": "greenhouse", "slug": "remote"},
+        {"name": "Oyster", "ats": "ashby", "slug": "oyster"},
+        {"name": "Mattermost", "ats": "greenhouse", "slug": "mattermost"},
+        {"name": "Tailscale", "ats": "greenhouse", "slug": "tailscale"},
+        {"name": "Grafana Labs", "ats": "greenhouse", "slug": "grafanalabs"},
+        {"name": "Elastic", "ats": "greenhouse", "slug": "elastic"},
+        {"name": "Wikimedia Foundation", "ats": "greenhouse", "slug": "wikimedia"},
+        {"name": "FullStory", "ats": "ashby", "slug": "fullstory"},
+        {"name": "Linear", "ats": "ashby", "slug": "linear"},
+        {"name": "Airtable", "ats": "greenhouse", "slug": "airtable"},
+        {"name": "Notion", "ats": "ashby", "slug": "notion"},
+        {"name": "Rewind", "ats": "ashby", "slug": "rewind"}
+      ]
     }
   },
   "job_bank": {
@@ -781,39 +896,39 @@
     "terms": [
       [
         "AI-Assisted Dev",
-        "AI[- ]?assisted|AI[- ]?native|AI[- ]?first|vibe\\\\s+coding|\\\\bCopilot\\\\b|\\\\bCursor\\\\b|Claude\\\\s+Code|LLM|agentic|prompt\\\\s+engineer|AI\\\\s+tools?"
+        "AI[- ]?assisted|AI[- ]?native|AI[- ]?first|vibe\\s+coding|\\bCopilot\\b|\\bCursor\\b|Claude\\s+Code|LLM|agentic|prompt\\s+engineer|AI\\s+tools?"
       ],
       [
         "Junior / Entry Level",
-        "junior|entry[- ]?level|d[eé]butant|associate|0[-–]?2\\\\s*(?:years?|ans)|no\\\\s+experience"
+        "junior|entry[- ]?level|d[eé]butant|associate|0[-–]?2\\s*(?:years?|ans)|no\\s+experience"
       ],
       [
         "Remote independent",
-        "\\\\bremote\\\\b|t[eé]l[eé]travail|teletravail|work from home|project[- ]based|contract"
+        "\\bremote\\b|t[eé]l[eé]travail|teletravail|work from home|project[- ]based|contract"
       ],
       [
         "Junior Dev / Web",
-        "junior\\\\s+(?:software|web|backend|frontend|full[- ]?stack|python|\\\\.?NET|php)|d[eé]veloppeur junior|programmeur junior"
+        "junior\\s+(?:software|web|backend|frontend|full[- ]?stack|python|\\.?NET|php)|d[eé]veloppeur junior|programmeur junior"
       ],
       [
         "Automation / Scripting",
-        "automation|scripting|\\\\bRPA\\\\b|PowerShell|Python|low[- ]?code|Zapier|\\\\bn8n\\\\b|workflow"
+        "automation|scripting|\\bRPA\\b|PowerShell|Python|low[- ]?code|Zapier|\\bn8n\\b|workflow"
       ],
       [
         "QA / Testing",
-        "\\\\bQA\\\\b|test automation|software tester|testeur"
+        "\\bQA\\b|test automation|software tester|testeur"
       ],
       [
         "Data / Analyst",
-        "data\\\\s+(?:analyst|engineer|migration|annotation)|\\\\bETL\\\\b|BI\\\\s+analyst"
+        "data\\s+(?:analyst|engineer|migration|annotation)|\\bETL\\b|BI\\s+analyst"
       ],
       [
         "AI Training / Annotation",
-        "AI\\\\s+train|data\\\\s+annotat|prompt\\\\s+eval|LLM\\\\s+eval|model\\\\s+eval|coding\\\\s+eval"
+        "AI\\s+train|data\\s+annotat|prompt\\s+eval|LLM\\s+eval|model\\s+eval|coding\\s+eval"
       ],
       [
         "Cloud / DevOps (Junior)",
-        "junior\\\\s+(?:devops|cloud)|terraform|infrastructure as code|azure|aws"
+        "junior\\s+(?:devops|cloud)|terraform|infrastructure as code|azure|aws"
       ]
     ]
   },
@@ -822,43 +937,43 @@
     "terms": [
       [
         "AI-Assisted Dev",
-        "AI[- ]?assisted|AI[- ]?native|AI[- ]?first|vibe\\\\s+coding|\\\\bCopilot\\\\b|\\\\bCursor\\\\b|Claude\\\\s+Code|LLM\\\\s+app|agentic|prompt\\\\s+engineer|AI\\\\s+(?:tools?|automation|agents?)"
+        "AI[- ]?assisted|coding\\s+assistants?|AI[- ]?native|AI[- ]?first|vibe\\s+coding|\\bCopilot\\b|\\bCursor\\b|Claude\\s+Code|LLM\\s+app|agentic|prompt\\s+engineer|AI\\s+(?:tools?|automation|agents?)"
       ],
       [
         "Junior Dev / Web",
-        "junior\\\\s+(?:software|web|backend|frontend|full[- ]?stack|python|\\\\.?NET|php|javascript|developer|programmer)|d[eé]veloppeur junior|programmeur junior|WordPress|Shopify|associate\\\\s+(?:developer|software)"
+        "junior\\s+(?:software|web|backend|frontend|full[- ]?stack|python|\\.?NET|php|javascript|developer|programmer)|d[eé]veloppeur junior|programmeur junior|WordPress|Shopify|associate\\s+(?:developer|software)"
       ],
       [
         "Automation & Scripting",
-        "automation|scripting|\\\\bRPA\\\\b|low[- ]?code|no[- ]?code|Power\\\\s*Automate|Zapier|\\\\bn8n\\\\b|workflow\\\\s+automation|PowerShell|internal tools"
+        "automation|scripting|\\bRPA\\b|low[- ]?code|no[- ]?code|Power\\s*Automate|Zapier|\\bn8n\\b|workflow\\s+automation|PowerShell|internal tools"
       ],
       [
         "QA / Testing",
-        "\\\\bQA\\\\b|test automation|software tester|testeur|manual test|localization test|bilingual QA"
+        "\\bQA\\b|test automation|software tester|testeur|manual test|localization test|bilingual QA"
       ],
       [
         "Data / Analyst",
-        "data\\\\s+(?:analyst|engineer|migration|conversion|cleanup|entry)|\\\\bETL\\\\b|BI\\\\s+analyst|SQL\\\\s+developer|analyste donn"
+        "data\\s+(?:analyst|engineer|migration|conversion|cleanup|entry)|\\bETL\\b|BI\\s+analyst|SQL\\s+developer|analyste donn"
       ],
       [
         "AI Training / Annotation",
-        "AI\\\\s+train|data\\\\s+annotat|data\\\\s+label|prompt\\\\s+eval|LLM\\\\s+eval|model\\\\s+eval|coding\\\\s+eval|annotateur|Outlier|DataAnnotation|Appen|Scale AI|Mercor"
+        "AI\\s+train|data\\s+annotat|data\\s+label|prompt\\s+eval|LLM\\s+eval|model\\s+eval|coding\\s+eval|annotateur|Outlier|DataAnnotation|Appen|Scale AI|Mercor"
       ],
       [
         "Cloud / DevOps (Junior)",
-        "junior\\\\s+(?:devops|cloud)|cloud support associate|terraform|infrastructure as code|build\\\\s*(?:&|and)\\\\s*release|junior\\\\s+(?:azure|aws)"
+        "junior\\s+(?:devops|cloud)|cloud support associate|terraform|infrastructure as code|build\\s*(?:&|and)\\s*release|junior\\s+(?:azure|aws)"
       ],
       [
         "Security (Junior)",
-        "junior\\\\s+security|SOC\\\\s*(?:analyst\\\\s*)?L1|GRC\\\\s+junior|vulnerability|cyber|analyste s[eé]curit"
+        "junior\\s+security|SOC\\s*(?:analyst\\s*)?L1|GRC\\s+junior|vulnerability|cyber|analyste s[eé]curit"
       ],
       [
         "Deployment / Migration (Junior)",
-        "junior\\\\s+(?:deploy|migration|implementation)|remote\\\\s+(?:device\\\\s+)?(?:provision|imaging|deploy|migration)|data\\\\s+migration|endpoint\\\\s+imaging"
+        "junior\\s+(?:deploy|migration|implementation)|remote\\s+(?:device\\s+)?(?:provision|imaging|deploy|migration)|data\\s+migration|endpoint\\s+imaging"
       ],
       [
         "Other Remote IT",
-        "technical\\\\s+writer|documentation|junior\\\\s+sysadmin|IT operations associate|sysadmin\\\\s+automation|API\\\\s+integration"
+        "technical\\s+writer|documentation|junior\\s+sysadmin|IT operations associate|sysadmin\\s+automation|API\\s+integration"
       ]
     ]
   },
