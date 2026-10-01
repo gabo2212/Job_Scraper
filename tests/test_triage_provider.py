@@ -251,3 +251,13 @@ def test_degree_or_equivalent_flag_survives_redaction():
          "flags": ["degree-or-equivalent", "degree-required"]}
     out = ta.redact_private(v, ["Gabriel", "Sobeys"])
     assert out["flags"] == ["degree-or-equivalent", "degree-required"]
+
+def test_eval_check_below_and_forbid_flag():
+    import eval_triage as ev
+    rule = {"below": {"ref": "a", "min_delta": 3}}
+    assert ev.check_below(rule, {"score": 90}, {"a": 95}) == []
+    assert ev.check_below(rule, {"score": 94}, {"a": 95})  # too close
+    assert ev.check_below(rule, {"score": 99}, {}) == []   # ref not run
+    reasons = ev.check({"forbid_flag_re": r"^degree-"},
+                       {"score": 80, "verdict": "strong", "flags": ["degree-required"]})
+    assert reasons

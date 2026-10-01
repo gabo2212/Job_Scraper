@@ -248,6 +248,19 @@ CASES = [
     },
     # ---- Graded bachelor's rule (candidate has no bachelor's) -------------
     {
+        "id": "degree-none-control",
+        "note": "CONTROL for the graded-degree chain: same JD, no degree mentioned "
+                "= no deduction",
+        "job": {"title": "Junior Python Developer",
+                "company": "ControlDegree Labs", "location": "Remote — Canada",
+                "ats": "Lever", "date_posted": "2026-09-09"},
+        "jd": ("Junior Python/FastAPI developer building internal tools and "
+               "automation. Docker and SQL a plus. We encourage Copilot and "
+               "Cursor. 0-2 years. Fully remote across Canada."),
+        "expect": {"min_score": 80, "verdicts": ["strong"],
+                   "forbid_flag_re": r"^degree-"},
+    },
+    {
         "id": "degree-asset-only",
         "note": "Bachelor's only an 'asset' = tiny deduction (-3..-6), still strong",
         "job": {"title": "Junior Python Developer",
@@ -260,7 +273,8 @@ CASES = [
         "expect": {"min_score": 78, "verdicts": ["strong", "maybe"],
                    "families": ["software-development", "automation-scripting",
                                 "ai-assisted-dev"],
-                   "flag_re": r"degree-preferred|degree-or-equivalent"},
+                   "flag_re": r"degree-preferred|degree-or-equivalent",
+                   "below": {"ref": "degree-none-control", "min_delta": 2}},
     },
     {
         "id": "degree-or-equivalent-experience",
@@ -275,7 +289,8 @@ CASES = [
                "in computer science is also accepted."),
         "expect": {"min_score": 70, "max_score": 92,
                    "verdicts": ["strong", "maybe"],
-                   "flag_re": r"degree-or-equivalent|degree-preferred"},
+                   "flag_re": r"degree-or-equivalent|degree-preferred",
+                   "below": {"ref": "degree-asset-only", "min_delta": 1}},
     },
     {
         "id": "degree-required-with-equivalent",
@@ -290,7 +305,25 @@ CASES = [
                "combination of education and experience."),
         "expect": {"min_score": 62, "max_score": 90,
                    "verdicts": ["strong", "maybe"],
-                   "flag_re": r"degree-or-equivalent|degree-required|degree-preferred"},
+                   "flag_re": r"degree-or-equivalent|degree-required|degree-preferred",
+                   "below": {"ref": "degree-or-equivalent-experience",
+                             "min_delta": 1}},
+    },
+    {
+        "id": "degree-strict-same-jd",
+        "note": "Same JD but degree strictly required, no alternative: capped 65, "
+                "maybe not strong, strictly below the 'or equivalent' variant",
+        "job": {"title": "Junior Python Developer",
+                "company": "StrictSameDegree Labs", "location": "Remote — Canada",
+                "ats": "Lever", "date_posted": "2026-09-09"},
+        "jd": ("Junior Python/FastAPI developer building internal tools and "
+               "automation. Docker and SQL a plus. We encourage Copilot and "
+               "Cursor. 0-2 years. Fully remote across Canada. A bachelor's "
+               "degree in Computer Science is required; equivalent experience "
+               "is not accepted."),
+        "expect": {"min_score": 55, "max_score": 66, "verdicts": ["maybe", "skip"],
+                   "flag_re": r"degree-required",
+                   "below": {"ref": "degree-required-with-equivalent", "min_delta": 10}},
     },
     {
         "id": "degree-strict-strong-match",
@@ -374,6 +407,20 @@ def check(expect: dict, verdict: dict) -> list[str]:
     return reasons
 
 
+def check_below(expect: dict, verdict: dict | None, scores: dict) -> list[str]:
+    """Graded-rule monotonicity: score must be >= min_delta below a reference
+    case run earlier in the same pass (skipped if the ref was not run)."""
+    rule = expect.get("below")
+    if not rule or not verdict or rule["ref"] not in scores:
+        return []
+    ref = scores[rule["ref"]]
+    delta = rule.get("min_delta", 1)
+    if verdict.get("score", 0) > ref - delta:
+        return [f"score {verdict.get('score')} not >= {delta} below "
+                f"'{rule['ref']}' ({ref})"]
+    return []
+
+
 def run_case(case: dict, call_model, static_prefix: str,
              redact_tokens: list[str]) -> tuple[dict | None, list[str]]:
     """One model call through the production pipeline."""
@@ -425,11 +472,15 @@ def main() -> int:
     print(f"{len(cases)} cases x {args.runs} run(s)\n")
 
     passes: dict[str, int] = {c["id"]: 0 for c in cases}
+    last_scores: dict[str, int] = {}
     for run in range(1, args.runs + 1):
         if args.runs > 1:
             print(f"--- run {run}/{args.runs} ---")
         for case in cases:
             verdict, failures = run_case(case, call_model, static_prefix, tokens)
+            failures = failures + check_below(case["expect"], verdict, last_scores)
+            if verdict:
+                last_scores[case["id"]] = verdict.get("score", 0)
             score = f"{verdict['score']:>3}/100 {verdict['verdict']:<6}" if verdict \
                 else "  -        "
             if failures:
