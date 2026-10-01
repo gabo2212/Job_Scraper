@@ -1,10 +1,6 @@
 # 🟦 Indeed — Gabriel Fortin — Junior Remote Dev / Automation / AI (Québec) Roles
-*Last updated: 2026-10-01 06:24 UTC*
+*Last updated: 2026-10-01 06:35 UTC*
 
-**1 new role(s)** since last run · 7 total in last 24h
+**0 new role(s)** since last run · 6 total in last 24h
 
-### [Software Developer I](https://ca.indeed.com/viewjob?jk=485d209fe25f4516) — Walmart
-- 📍 **Location:** Mississauga, ON, CA
-- **Work mode:** On-site
-- **Job type:** fulltime
-- 🕒 **Posted:** 2026-09-29
+No new roles since the last run.
