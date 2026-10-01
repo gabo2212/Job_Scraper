@@ -211,8 +211,12 @@ def fetch_jd(job: dict) -> str:
     ats = job.get("ats")
     if ats == "Indeed":
         # Indeed blocks page fetches, but the scraper already saved the JD.
-        # Roles that aged out of the 24h window fall back to metadata-only.
-        return _indeed_jds().get(job.get("url", ""), "")[:JD_MAX_CHARS]
+        # Roles that aged out of the 24h snapshot fall back to the description
+        # persisted on the all_jobs.json record (so degree/location rules still
+        # see the real JD), then to metadata-only.
+        saved = _indeed_jds().get(job.get("url", "")) \
+            or (job.get("description") or "").strip()
+        return saved[:JD_MAX_CHARS]
     if ats == "LinkedIn":
         # The guest posting endpoint serves the JD unauthenticated — the same
         # public surface the scraper's search uses. Fail-soft if blocked.

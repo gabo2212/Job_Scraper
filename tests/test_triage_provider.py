@@ -261,3 +261,11 @@ def test_eval_check_below_and_forbid_flag():
     reasons = ev.check({"forbid_flag_re": r"^degree-"},
                        {"score": 80, "verdict": "strong", "flags": ["degree-required"]})
     assert reasons
+
+def test_fetch_jd_indeed_falls_back_to_persisted_description(monkeypatch):
+    monkeypatch.setattr(ta, "_INDEED_JDS", {})  # aged out of the 24h snapshot
+    job = {"ats": "Indeed", "url": "https://x/1", "description": "Bachelor's required."}
+    assert ta.fetch_jd(job) == "Bachelor's required."
+    monkeypatch.setattr(ta, "_INDEED_JDS", {"https://x/1": "snapshot jd"})
+    assert ta.fetch_jd(job) == "snapshot jd"
+    assert ta.fetch_jd({"ats": "Indeed", "url": "https://x/2"}) == ""
