@@ -874,7 +874,7 @@
     if (/\bassociate\b|\bi\b|\bii\b|\bjunior\b|\bjr\.?\b/.test(t)) return 'Associate';
     return 'Mid';
   }
-  const REMOTE_BOARD_ATS = new Set(['Remotive', 'RemoteOK', 'WeWorkRemotely', 'Himalayas', 'Jobicy', 'WorkingNomads', 'Arbeitnow', 'HNHiring']);
+  const REMOTE_BOARD_ATS = new Set(['Remotive', 'RemoteOK', 'WeWorkRemotely', 'Himalayas', 'Jobicy', 'WorkingNomads', 'Arbeitnow', 'HNHiring', 'CompanyBoards']);
   function classifySource(j) {
     if (j.ats === 'USAJOBS' || (j.url || '').includes('usajobs.gov')) return 'USAJOBS';
     if (j.ats === 'JobBank' || (j.url || '').includes('jobbank.gc.ca') || (j.url || '').includes('guichetemplois.gc.ca')) return 'JobBank';

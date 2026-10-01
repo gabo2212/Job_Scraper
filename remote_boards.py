@@ -53,7 +53,14 @@ BOARD_SITES = {
     "WorkingNomads": "https://www.workingnomads.com",
     "Arbeitnow": "https://www.arbeitnow.com",
     "HNHiring": "https://news.ycombinator.com",
+    # Curated company career boards read through the public Greenhouse / Lever /
+    # Ashby job-board JSON APIs (the jobs link back to each company's own board).
+    "CompanyBoards": "https://boards.greenhouse.io",
 }
+
+# Company-board postings stay open for months, so they get a longer freshness window.
+COMPANY_MAX_AGE_DAYS = 120
+COMPANY_DELAY = 0.6
 
 from remote_geo import (  # noqa: F401  (re-exported for callers/tests)
     _JUNIOR_SIGNAL_RE, assess_seniority, classify_location, description_geo_restriction,
@@ -378,6 +385,95 @@ def parse_hn_thread(payload: dict) -> list[dict]:
 # Fetchers (one polite request per endpoint; ``get`` is injectable)
 # ---------------------------------------------------------------------------
 
+_REMOTE_WORD_RE = re.compile(r"\b(?:remote|anywhere|work from home|distributed)\b", re.I)
+
+
+def _company_record(company: str, ats_name: str, *, title, url, location, date_posted,
+                    description_html="", description_text="", remote: bool, department="",
+                    job_type="") -> dict:
+    rec = _record(
+        "CompanyBoards", title=title, company=company, url=url, location=location,
+        date_posted=date_posted, description_html=description_html or html_mod.escape(description_text or ""),
+        tags=[ats_name, department], job_type=job_type)
+    if description_text and not description_html:
+        rec["description"] = html_to_text(html_mod.escape(description_text))
+    rec["_not_remote"] = not remote
+    rec["_max_age_days"] = COMPANY_MAX_AGE_DAYS
+    rec["_company_ats"] = ats_name
+    return rec
+
+
+def parse_greenhouse_board(payload: dict, company: str) -> list[dict]:
+    """boards-api.greenhouse.io/v1/boards/<slug>/jobs?content=true.
+
+    Greenhouse has no remote flag: a posting counts as remote only when its
+    location label says so (e.g. "Remote - Canada")."""
+    out = []
+    for j in (payload or {}).get("jobs", []) or []:
+        loc = ((j.get("location") or {}).get("name") or "").strip()
+        content = html_mod.unescape(j.get("content") or "")  # content is entity-escaped HTML
+        dept = ", ".join(d.get("name", "") for d in j.get("departments") or [] if d.get("name"))
+        out.append(_company_record(
+            company, "Greenhouse", title=j.get("title"), url=j.get("absolute_url"), location=loc,
+            date_posted=parse_date(j.get("first_published") or j.get("updated_at")),
+            description_html=content, remote=bool(_REMOTE_WORD_RE.search(loc)), department=dept))
+    return out
+
+
+def parse_lever_board(payload: list, company: str) -> list[dict]:
+    """api.lever.co/v0/postings/<slug>?mode=json - workplaceType says remote/hybrid/on-site."""
+    out = []
+    for j in payload or []:
+        cats = j.get("categories") or {}
+        loc = (cats.get("location") or "").strip()
+        country = (j.get("country") or "").strip().upper()
+        if country == "CA" and "canada" not in loc.lower():
+            loc = f"{loc}, Canada" if loc else "Canada"
+        parts = [j.get("descriptionPlain") or "", ]
+        for lst in j.get("lists") or []:
+            parts.append(f"{lst.get('text', '')}\n" + html_to_text(lst.get("content", ""), limit=2000))
+        parts.append(j.get("additionalPlain") or "")
+        remote = str(j.get("workplaceType") or "").lower() == "remote"
+        out.append(_company_record(
+            company, "Lever", title=j.get("text"), url=j.get("hostedUrl"), location=loc,
+            date_posted=parse_date(j.get("createdAt")), description_text="\n".join(p for p in parts if p),
+            remote=remote, department=cats.get("team") or cats.get("department") or "",
+            job_type=cats.get("commitment") or ""))
+    return out
+
+
+def parse_ashby_board(payload: dict, company: str) -> list[dict]:
+    """api.ashbyhq.com/posting-api/job-board/<slug> - workplaceType + isRemote."""
+    out = []
+    for j in (payload or {}).get("jobs", []) or []:
+        if j.get("isListed") is False:
+            continue
+        wtype = str(j.get("workplaceType") or "").lower()
+        remote = wtype == "remote" if wtype else bool(j.get("isRemote"))
+        loc = (j.get("location") or "").strip()
+        country = (((j.get("address") or {}).get("postalAddress") or {}).get("addressCountry") or "").strip()
+        sec = [s.get("location", "") for s in j.get("secondaryLocations") or [] if s.get("location")]
+        label = ", ".join(x for x in [loc] + sec if x)
+        if country and country.lower() not in label.lower():
+            label = f"{label}, {country}" if label else country
+        comp = (j.get("compensation") or {}).get("compensationTierSummary") or ""
+        out.append(_company_record(
+            company, "Ashby", title=j.get("title"), url=j.get("jobUrl"), location=label,
+            date_posted=parse_date(j.get("publishedAt")), description_html=j.get("descriptionHtml") or "",
+            description_text=j.get("descriptionPlain") or "", remote=remote,
+            department=j.get("department") or j.get("team") or "", job_type=j.get("employmentType") or ""))
+        if comp:
+            out[-1]["salary"] = str(comp)[:80]
+    return out
+
+
+_COMPANY_ENDPOINTS = {
+    "greenhouse": ("https://boards-api.greenhouse.io/v1/boards/{slug}/jobs?content=true", parse_greenhouse_board),
+    "lever": ("https://api.lever.co/v0/postings/{slug}?mode=json", parse_lever_board),
+    "ashby": ("https://api.ashbyhq.com/posting-api/job-board/{slug}?includeCompensation=true", parse_ashby_board),
+}
+
+
 def _json(text: str):
     try:
         return json.loads(text) if text else None
@@ -467,6 +563,32 @@ def fetch_hn_hiring(get: GetFn, cfg: dict, *, sleep=time.sleep, now: datetime | 
     return []
 
 
+def fetch_companyboards(get: GetFn, cfg: dict, *, sleep=time.sleep) -> list[dict]:
+    """Curated company boards: cfg["companies"] = [{"name", "ats", "slug"}, ...].
+
+    One request per company, ``company_delay`` seconds apart; a missing/renamed
+    board is skipped quietly. Only verified-public boards belong in the list."""
+    delay = float(cfg.get("company_delay", COMPANY_DELAY) or COMPANY_DELAY)
+    out: list[dict] = []
+    for i, entry in enumerate(cfg.get("companies") or []):
+        ats = str(entry.get("ats", "")).lower()
+        slug = str(entry.get("slug", "")).strip()
+        name = str(entry.get("name") or slug)
+        spec = _COMPANY_ENDPOINTS.get(ats)
+        if not spec or not re.fullmatch(r"[A-Za-z0-9_.-]+", slug):
+            print(f"  companyboards: skipping invalid entry {entry!r}")
+            continue
+        if i:
+            sleep(delay)
+        url_t, parser = spec
+        payload = _json(get(url_t.format(slug=slug)))
+        if payload is None:
+            print(f"  companyboards: {name} ({ats}/{slug}) returned nothing")
+            continue
+        out.extend(parser(payload, name))
+    return out
+
+
 FETCHERS: dict[str, Callable[..., list[dict]]] = {
     "remotive": fetch_remotive,
     "remoteok": fetch_remoteok,
@@ -476,6 +598,7 @@ FETCHERS: dict[str, Callable[..., list[dict]]] = {
     "workingnomads": fetch_workingnomads,
     "arbeitnow": fetch_arbeitnow,
     "hnhiring": fetch_hn_hiring,
+    "companyboards": fetch_companyboards,
 }
 DEFAULT_BOARDS = tuple(FETCHERS)
 
@@ -530,7 +653,12 @@ def screen_jobs(jobs: Iterable[dict], *, title_ok: Callable[[str], bool],
             continue
         seen_urls.add(job["url"])
 
-        if is_stale(job.get("date_posted", ""), max_age_days=max_age_days, now=now):
+        if job.get("_not_remote"):
+            stats.drop(board, "not-remote", job)
+            continue
+
+        if is_stale(job.get("date_posted", ""),
+                    max_age_days=int(job.get("_max_age_days") or max_age_days), now=now):
             stats.drop(board, "stale", job)
             continue
 
@@ -571,7 +699,9 @@ def screen_jobs(jobs: Iterable[dict], *, title_ok: Callable[[str], bool],
         if level == "senior":
             stats.drop(board, "seniority", job)
             continue
-        if board == "HNHiring" and level != "junior":
+        # HN threads and company career pages are not pre-filtered to entry level,
+        # so a bare "Software Engineer" must show an explicit junior/entry signal.
+        if board in ("HNHiring", "CompanyBoards") and level != "junior":
             stats.drop(board, "no-junior-signal", job)
             continue
 

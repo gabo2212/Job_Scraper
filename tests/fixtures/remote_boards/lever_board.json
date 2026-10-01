@@ -1,0 +1,8 @@
+[
+ {"id": "a1", "text": "Junior Automation Engineer", "hostedUrl": "https://jobs.lever.co/acme/a1", "workplaceType": "remote", "country": "CA", "createdAt": 1789000000000,
+  "categories": {"location": "Montreal", "team": "Operations", "commitment": "Full-time"},
+  "descriptionPlain": "Entry level role. Build n8n workflows and API integrations. You will use Cursor and Claude to write JavaScript.",
+  "lists": [{"text": "Requirements", "content": "<li>Curiosity</li><li>0-2 years experience</li>"}], "additionalPlain": "Remote friendly."},
+ {"id": "a2", "text": "Junior Automation Engineer", "hostedUrl": "https://jobs.lever.co/acme/a2", "workplaceType": "hybrid", "country": "CA", "createdAt": 1789000000000,
+  "categories": {"location": "Montreal"}, "descriptionPlain": "Hybrid.", "lists": [], "additionalPlain": ""}
+]

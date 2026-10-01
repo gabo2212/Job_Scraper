@@ -1,0 +1,10 @@
+{"apiVersion": "1", "jobs": [
+ {"id": "x1", "title": "Associate Software Developer", "jobUrl": "https://jobs.ashbyhq.com/acme/x1", "location": "Canada", "isRemote": true, "workplaceType": "Remote", "isListed": true, "publishedAt": "2026-09-22T12:00:00.000+00:00",
+  "department": "Engineering", "employmentType": "FullTime", "secondaryLocations": [], "address": {"postalAddress": {"addressCountry": "Canada"}},
+  "descriptionHtml": "<p>Early-career developer (0-2 years). C#, .NET, SQL. AI-assisted development is encouraged.</p>", "descriptionPlain": "Early-career developer (0-2 years). C#, .NET, SQL. AI-assisted development is encouraged.",
+  "compensation": {"compensationTierSummary": "CAD 70K - 85K"}},
+ {"id": "x2", "title": "Associate Software Developer", "jobUrl": "https://jobs.ashbyhq.com/acme/x2", "location": "Edmonton", "isRemote": true, "workplaceType": "Hybrid", "isListed": true, "publishedAt": "2026-09-22T12:00:00.000+00:00",
+  "department": "Engineering", "secondaryLocations": [], "address": {"postalAddress": {"addressCountry": "Canada"}}, "descriptionHtml": "<p>Hybrid.</p>", "descriptionPlain": "Hybrid."},
+ {"id": "x3", "title": "Junior Developer", "jobUrl": "https://jobs.ashbyhq.com/acme/x3", "location": "Remote", "workplaceType": "Remote", "isListed": false, "publishedAt": "2026-09-22T12:00:00.000+00:00",
+  "secondaryLocations": [], "descriptionHtml": "<p>Unlisted.</p>", "descriptionPlain": "Unlisted."}
+]}

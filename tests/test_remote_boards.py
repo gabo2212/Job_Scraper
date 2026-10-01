@@ -425,3 +425,90 @@ def test_triage_fetch_jd_uses_inline_description_without_network(monkeypatch):
     assert jd.startswith("Junior role.") and len(jd) <= triage_agent.JD_MAX_CHARS
     # sources without a stored description still return '' (metadata-only)
     assert triage_agent.fetch_jd({"ats": "JobBank", "url": "https://www.jobbank.gc.ca/x"}) == ""
+
+
+# --------------------------------------------------------------------------- company career boards (Greenhouse / Lever / Ashby)
+
+def _company_rows():
+    return (rb.parse_greenhouse_board(_json("greenhouse_board.json"), "Acme GH")
+            + rb.parse_lever_board(_json("lever_board.json"), "Acme Lever")
+            + rb.parse_ashby_board(_json("ashby_board.json"), "Acme Ashby"))
+
+
+def test_parse_greenhouse_unescapes_content_and_flags_remote_by_location():
+    rows = rb.parse_greenhouse_board(_json("greenhouse_board.json"), "Acme GH")
+    by_id = {r["url"].rsplit("/", 1)[1]: r for r in rows}
+    ok = by_id["1001"]
+    assert ok["ats"] == "CompanyBoards" and ok["company"] == "Acme GH"
+    assert ok["date_posted"] == "2026-09-20" and "Greenhouse" in ok["tags"] and "Engineering" in ok["tags"]
+    assert "<" not in ok["description"] and "AI-assisted coding tools" in ok["description"]
+    assert ok["_not_remote"] is False and by_id["1002"]["_not_remote"] is True
+
+
+def test_parse_lever_uses_workplace_type_country_and_lists():
+    rows = {r["url"].rsplit("/", 1)[1]: r for r in rb.parse_lever_board(_json("lever_board.json"), "Acme Lever")}
+    assert rows["a1"]["_not_remote"] is False and rows["a2"]["_not_remote"] is True
+    assert rows["a1"]["location"] == "Montreal, Canada"
+    assert "Cursor and Claude" in rows["a1"]["description"] and "0-2 years experience" in rows["a1"]["description"]
+    assert rows["a1"]["job_type"] == "Full-time" and rows["a1"]["date_posted"].startswith("2026-")
+
+
+def test_parse_ashby_prefers_workplace_type_and_skips_unlisted():
+    rows = rb.parse_ashby_board(_json("ashby_board.json"), "Acme Ashby")
+    assert [r["url"].rsplit("/", 1)[1] for r in rows] == ["x1", "x2"]  # x3 is unlisted
+    assert rows[0]["_not_remote"] is False and rows[1]["_not_remote"] is True  # isRemote ignored when workplaceType set
+    assert rows[0]["salary"] == "CAD 70K - 85K" and rows[0]["location"] == "Canada"
+
+
+def test_company_board_screening_requires_remote_and_explicit_junior_signal():
+    stats = rb.ScreenStats()
+    kept = rb.screen_jobs(_company_rows(), title_ok=sj.remote_board_title_ok, now=NOW, stats=stats)
+    kept_ids = {j["url"].rsplit("/", 1)[1] for j in kept}
+    assert kept_ids == {"1001", "a1", "x1"}  # remote + junior + Canada-eligible
+    drops = stats.dropped["CompanyBoards"]
+    assert drops["not-remote"] == 3          # 1002, a2, x2
+    assert drops["stale"] == 1               # 1006 is >120 days old
+    assert drops["seniority"] >= 1           # 1003: 5+ years
+    assert drops["no-junior-signal"] >= 1    # 1004: bare Software Engineer, no junior cue
+    assert any(k.startswith("geo:") for k in drops)  # 1005: Remote - US
+    assert all(j["ats"] == "CompanyBoards" and j["work_arrangement"] in ("Remote", "Remote (geo-unclear)") for j in kept)
+    assert all(not k.startswith("_") for j in kept for k in j)
+
+
+def test_company_boards_use_longer_freshness_window_than_other_boards():
+    row = _company_rows()[0]
+    row["date_posted"] = "2026-07-15"  # 77 days old: stale for a 45d board, fresh for company boards
+    assert rb.screen_jobs([dict(row)], title_ok=lambda t: True, max_age_days=45, now=NOW)
+    other = dict(row, ats="Remotive")
+    other.pop("_max_age_days")
+    assert rb.screen_jobs([other], title_ok=lambda t: True, max_age_days=45, now=NOW) == []
+
+
+def test_fetch_companyboards_one_request_per_company_with_delay_and_validation():
+    calls, sleeps = [], []
+    get = _router({
+        "https://boards-api.greenhouse.io/v1/boards/acme/jobs?content=true": _text("greenhouse_board.json"),
+        "https://api.lever.co/v0/postings/acme?mode=json": _text("lever_board.json"),
+        "https://api.ashbyhq.com/posting-api/job-board/acme?includeCompensation=true": _text("ashby_board.json"),
+    }, calls)
+    cfg = {"company_delay": 0.5, "companies": [
+        {"name": "Acme GH", "ats": "greenhouse", "slug": "acme"},
+        {"name": "Acme Lever", "ats": "lever", "slug": "acme"},
+        {"name": "Acme Ashby", "ats": "ashby", "slug": "acme"},
+        {"name": "Gone", "ats": "greenhouse", "slug": "does-not-exist"},
+        {"name": "Evil", "ats": "greenhouse", "slug": "../../etc/passwd"},
+        {"name": "Unknown ATS", "ats": "workable", "slug": "acme"},
+    ]}
+    rows = rb.fetch_companyboards(get, cfg, sleep=sleeps.append)
+    assert len(calls) == 4                       # 3 hits + 1 missing board; invalid entries make no request
+    assert sleeps == [0.5, 0.5, 0.5]             # a pause before every request except the first
+    assert {r["company"] for r in rows} == {"Acme GH", "Acme Lever", "Acme Ashby"}
+    assert all(c.startswith("https://") for c in calls)
+
+
+def test_fetch_boards_wires_companyboards_with_config_subsection():
+    calls = []
+    get = _router({"https://boards-api.greenhouse.io/": _text("greenhouse_board.json")}, calls)
+    rows, errors = rb.fetch_boards(["companyboards"], {"companyboards": {"companies": [
+        {"name": "Acme", "ats": "greenhouse", "slug": "acme"}]}}, get=get, sleep=lambda s: None)
+    assert rows and not errors and "CompanyBoards" in rb.BOARD_SITES
