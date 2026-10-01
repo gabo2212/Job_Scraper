@@ -1,27 +1,45 @@
 # 🌍 Remote boards - Gabriel Fortin — Junior Remote Dev / Automation / AI (Québec) Roles
-*Last updated: 2026-10-01 17:26 UTC*
+*Last updated: 2026-10-01 22:58 UTC*
 
-**4 new role(s)** since last run · 44 total in current remote-board postings
+**7 new role(s)** since last run · 51 total in current remote-board postings
 
-### [AI Data Annotator - Remote](https://weworkremotely.com/remote-jobs/argos-multilingual-inc-ai-data-annotator-remote) — Argos Multilingual Inc.
-- 📍 **Location:** Remote - Anywhere in the World
-- **Work mode:** Remote
-- **Job type:** Contract
-- 🕒 **Posted:** 2026-08-28
-
-### [AI Data Annotator - French (Canada)](https://himalayas.app/companies/welo-global/jobs/ai-data-annotator-french-canada) — Welo Global
+### [Agentic AI Project Experience Program](https://himalayas.app/companies/sapsol-technologies-inc/jobs/agentic-ai-project-experience-program) — SAPSOL Technologies Inc.
 - 📍 **Location:** Remote - Canada
 - **Work mode:** Remote
-- **Job type:** Contractor
-- 🕒 **Posted:** 2026-09-30
+- **Job type:** Intern
+- 🕒 **Posted:** 2026-09-03
 
-### [IT Security Analyst I (Evening Shift)](https://himalayas.app/companies/vc3/jobs/it-security-analyst-i-evening-shift) — VC3
-- 📍 **Location:** Remote - Canada
+### [Junior Software Engineer - Cross-platform C++ - Multipass](https://himalayas.app/companies/canonical/jobs/junior-software-engineer-cross-platform-c-multipass) — Canonical
+- 📍 **Location:** Remote - Australia, Canada, Germany, India, United Kingdom, United States
 - **Work mode:** Remote
 - **Job type:** Full Time
-- 🕒 **Posted:** 2026-10-01
+- 🕒 **Posted:** 2026-09-09
 
-### [Quality Assurance Rater - Spanish (ES)](https://www.workingnomads.com/job/go/1906010/) — TELUS Digital
-- 📍 **Location:** Remote - Global
+### [Junior Linux Kernel Engineer - Ubuntu](https://himalayas.app/companies/canonical/jobs/junior-linux-kernel-engineer-ubuntu) — Canonical
+- 📍 **Location:** Remote - Worldwide
+- **Work mode:** Remote
+- **Job type:** Full Time
+- 🕒 **Posted:** 2026-09-19
+
+### [Data Analyst](https://himalayas.app/companies/talent-sam/jobs/data-analyst-4665501015) — Talent Sam
+- 📍 **Location:** Remote - Worldwide
+- **Work mode:** Remote
+- **Job type:** Full Time
+- 🕒 **Posted:** 2026-09-21
+
+### [Software Engineer](https://news.ycombinator.com/item?id=49927692) — RINSE
+- 📍 **Location:** REMOTE (US or Canada) or San Francisco, Los Angeles, Chicago, Boston, New York City, New Jersey, Seattle, Austin, Toronto, or Washington DC
 - **Work mode:** Remote
 - 🕒 **Posted:** 2026-10-01
+
+### [Member of Technical Staff, Agentic Environments](https://jobs.ashbyhq.com/cohere/8878b0d0-7d88-4ee9-bc17-b0dd237e39a0) — Cohere
+- 📍 **Location:** Remote - Europe, Canada, New York, European Union
+- 💰 **Salary:** CA$250K – CA$535K • Offers Equity • Multiple Ranges
+- **Work mode:** Remote
+- **Job type:** FullTime
+- 🕒 **Posted:** 2026-08-13
+
+### [Backend Engineer, Control Plane](https://job-boards.greenhouse.io/tailscale/jobs/4733177005) — Tailscale
+- 📍 **Location:** Remote (Canada)
+- **Work mode:** Remote
+- 🕒 **Posted:** 2026-09-11
