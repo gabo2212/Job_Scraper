@@ -1,7 +1,29 @@
 {
-  "scraped_at": "2026-10-02 07:09 UTC",
-  "total": 0,
-  "new_count": 0,
-  "jobs": [],
-  "new_jobs": []
+  "scraped_at": "2026-10-02 20:10 UTC",
+  "total": 1,
+  "new_count": 1,
+  "jobs": [
+    {
+      "company": "System Soft Technologies",
+      "title": "Agentic AI Software Engineer",
+      "location": "Montreal, Quebec, Canada",
+      "url": "https://www.linkedin.com/jobs/view/4475014516/",
+      "date_posted": "2026-10-02",
+      "salary": "",
+      "ats": "LinkedIn",
+      "description": "Software Developer, AI Solutions\n📍 Remote | Montreal (must be a Permanent Resident - PR)\nBuild production-grade Agentic AI systems, not proofs of concept.\n\nWe are seeking a hands-on Software Developer\nto design, build, and deploy enterprise-scale AI solutions that solve real business problems. This is a software engineering role focused on creating production-ready agentic systems using context, memory, guardrails, tool calling, orchestration, and AI-driven development workflows. NOTE: this is a not ML Engineer or Data Scientist\n\nWhat You'll Do\nDesign and build enterprise-grade Agentic AI solutions and AI-powered applications.\nDevelop scalable backend services using Python\n(and ideally Go or Rust).\nArchitect systems that integrate with multiple internal services while optimizing performance and latency.\nLeverage agentic coding tools such as Claude Code, Codex, and Copilot\nto accelerate development.\nGuide, validate, and improve AI-generated outputs, ensuring reliability, security, and production readiness.\nEvaluate emerging AI technologies and drive AI adoption across the SDLC.\n\nWhat We're Looking For\n✅ 7+ years of software engineering experience\n✅ 3-5+ years building and deploying AI solutions in production environments\n✅ Strong Python development experience\n✅ Experience building Agentic AI systems\nand enterprise-scale GenAI solutions\n✅ Strong system design and software architecture skills\n✅ Proven track record delivering highly available, production-grade applications\n✅ Daily user of AI development tools such as Claude Code, Copilot, or Codex\n\nNice to Have\nGo or Rust development experience\nExperience modernizing SDLC processes with AI agents\nLangChain, LlamaIndex, CrewAI, MCP, or agent orchestration frameworks\nKubernetes and cloud platforms (AWS, Azure, or GCP)\n\nShow more\n\nShow less\n\nSeniority level\n\nMid-Senior level\n\nEmployment type\n\nFull-time\n\nIndustries\n\nIT Services and IT Consulting"
+    }
+  ],
+  "new_jobs": [
+    {
+      "company": "System Soft Technologies",
+      "title": "Agentic AI Software Engineer",
+      "location": "Montreal, Quebec, Canada",
+      "url": "https://www.linkedin.com/jobs/view/4475014516/",
+      "date_posted": "2026-10-02",
+      "salary": "",
+      "ats": "LinkedIn",
+      "description": "Software Developer, AI Solutions\n📍 Remote | Montreal (must be a Permanent Resident - PR)\nBuild production-grade Agentic AI systems, not proofs of concept.\n\nWe are seeking a hands-on Software Developer\nto design, build, and deploy enterprise-scale AI solutions that solve real business problems. This is a software engineering role focused on creating production-ready agentic systems using context, memory, guardrails, tool calling, orchestration, and AI-driven development workflows. NOTE: this is a not ML Engineer or Data Scientist\n\nWhat You'll Do\nDesign and build enterprise-grade Agentic AI solutions and AI-powered applications.\nDevelop scalable backend services using Python\n(and ideally Go or Rust).\nArchitect systems that integrate with multiple internal services while optimizing performance and latency.\nLeverage agentic coding tools such as Claude Code, Codex, and Copilot\nto accelerate development.\nGuide, validate, and improve AI-generated outputs, ensuring reliability, security, and production readiness.\nEvaluate emerging AI technologies and drive AI adoption across the SDLC.\n\nWhat We're Looking For\n✅ 7+ years of software engineering experience\n✅ 3-5+ years building and deploying AI solutions in production environments\n✅ Strong Python development experience\n✅ Experience building Agentic AI systems\nand enterprise-scale GenAI solutions\n✅ Strong system design and software architecture skills\n✅ Proven track record delivering highly available, production-grade applications\n✅ Daily user of AI development tools such as Claude Code, Copilot, or Codex\n\nNice to Have\nGo or Rust development experience\nExperience modernizing SDLC processes with AI agents\nLangChain, LlamaIndex, CrewAI, MCP, or agent orchestration frameworks\nKubernetes and cloud platforms (AWS, Azure, or GCP)\n\nShow more\n\nShow less\n\nSeniority level\n\nMid-Senior level\n\nEmployment type\n\nFull-time\n\nIndustries\n\nIT Services and IT Consulting"
+    }
+  ]
 }

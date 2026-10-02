@@ -1,6 +1,8 @@
 # 🔥 LinkedIn — Gabriel Fortin — Junior Remote Dev / Automation / AI (Québec) Roles
-*Last updated: 2026-10-02 07:09 UTC*
+*Last updated: 2026-10-02 20:10 UTC*
 
-**0 new role(s)** since last run · 0 total in last 1h
+**1 new role(s)** since last run · 1 total in last 1h
 
-No new roles since the last run.
+### [Agentic AI Software Engineer](https://www.linkedin.com/jobs/view/4475014516/) — System Soft Technologies
+- 📍 **Location:** Montreal, Quebec, Canada
+- 🕒 **Posted:** 2026-10-02
