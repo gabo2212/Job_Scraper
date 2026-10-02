@@ -1,6 +1,6 @@
 {
   "scraped_at": "2026-10-01 22:58 UTC",
-  "total": 51,
+  "total": 47,
   "new_count": 7,
   "jobs": [
     {
@@ -742,57 +742,6 @@
       "work_arrangement": "Remote"
     },
     {
-      "company": "Canonical",
-      "title": "Junior Software Engineer - Cross-platform C++ - Multipass",
-      "location": "Remote - Australia, Canada, Germany, India, United Kingdom, United States",
-      "url": "https://himalayas.app/companies/canonical/jobs/junior-software-engineer-cross-platform-c-multipass",
-      "date_posted": "2026-09-09",
-      "salary": "",
-      "ats": "Himalayas",
-      "is_remote": true,
-      "telework": "Remote",
-      "job_type": "Full Time",
-      "description": "Use your deep C++ skills on Windows and MacOS to build an amazing open source developer experience with Multipass, the workstation mini-cloud at your fingertips which provides Ubuntu and appliance VMs on demand for build, test and prototyping. The Multipass team is hiring a Software Engineer to join our distributed team. We greatly value quality in our code, and great user experience.\nMultipass is published for macOS, Windows, and also Linux. Think of it as a workstation mini-cloud. At its simplest you can simply say multipass launch and you will get a new VM on your workstation. You can feed that VM data, just as you would on a public cloud like AWS, Azure or GCP.\nThe goal is not to be a full cloud of course. The goal is to give developers a local cloud on their workstation, which they can use to run builds in the background, or to try cloud appliances, or to test their own cloud deployments and cloud-init scripts, free of charge. People sometimes use it as a build farm on a shared server, for example.\nAs a Software Engineer you are expected to play a leadership role designing, mentoring, reviewing and of course coding.\nLocation: This is a remote position available in the EMEA region only.\nWhat you will focus on\nEnsure Multipass is easy and intuitive to use\nArchitect new features and design the user experience\nWrite high-quality code to create new features and fix bugs\nReview code and architecture as part of Canonical’s engineering process\nCollaborate proactively with a distributed team\nDebug, track down and fix issues encountered by our users\nFoster the open source community and support customers when needed\nTravel internationally for up to two weeks, twice a year, for company events\nWhat we are looking for in you\nCross-platform development experience on macOS and/or Windows\nExpertise in modern C++ development (C++14 minimum)\nExperience with software testing and test-driven development\nExtremely high personal standards for code quality, testing and design\nKnowledge of hypervisor technologies such as Hyper-V, VirtualBox, KVM, and QEMU\nOpen source experience and involvement\nKnowledge of CI systems a plus\nCapacity to learn quickly about new systems and techniques\nExcellent communication skills in English - both verbal and written\nBachelor’s or equivalent in Computer Science, STEM or similar degree\nWhat we offer you\nWe consider geographical location, experience, and performance in shaping compensation worldwide. We revisit compensation annually (and more often for graduates and associates) to ensure we recognise outstanding performance. In addition to base pay, we offer a performance-driven annual bonus. We provide all team members with additional benefits, which reflect our values and ideals. We balance our programs to meet local needs and ensure fairness globally.\nDistributed work environment with twice-yearly team sprints in person\nPersonal learning and development budget of USD 2,000 per year\nAnnual compensation review\nRecognition rewards\nAnnua",
-      "tags": [
-        "Software-Engineer",
-        "C-Development",
-        "Virtualization",
-        "Junior-Software-Engineer",
-        "Mid-Level-C++-Developer"
-      ],
-      "source_site": "https://himalayas.app",
-      "geo_scope": "canada-friendly",
-      "seniority_signal": "junior",
-      "work_arrangement": "Remote"
-    },
-    {
-      "company": "Canonical",
-      "title": "Junior Linux Kernel Engineer - Ubuntu",
-      "location": "Remote - Worldwide",
-      "url": "https://himalayas.app/companies/canonical/jobs/junior-linux-kernel-engineer-ubuntu",
-      "date_posted": "2026-09-19",
-      "salary": "",
-      "ats": "Himalayas",
-      "is_remote": true,
-      "telework": "Remote",
-      "job_type": "Full Time",
-      "description": "Canonical is a leading provider of open source software and operating systems to the global enterprise and technology markets. Our platform, Ubuntu, is very widely used in breakthrough enterprise initiatives such as public cloud, data science, AI, engineering innovation, and IoT. Our customers include the world's leading public cloud and silicon providers, and industry leaders in many sectors. The company is a pioneer of global distributed collaboration, with 1200+ colleagues in 75+ countries and very few office-based roles. Teams meet two to four times yearly in person, in interesting locations around the world, to align on strategy and execution.\nThe company is founder-led, profitable, and growing.\nEvery year we select new junior professionals into the Canonical Kernel Team, to work on the Linux kernel for Ubuntu. If you’ve enjoyed operating systems in your coursework or current role, you are confident in your ability to write high quality C and possibly Rust, and are ready to take the plunge and see how it all works, then this would be a great place to pursue your next career stage. We are a global team working to ship the world's most widely used Linux kernel, across the very latest silicon and cloud, where you can apply and grow your software engineering skills.\nThe Canonical Kernel Team builds and maintains all supported Ubuntu Linux kernels for a variety of platforms and architectures from small embedded devices to standard desktop/server systems to large-scale cloud environments. In your first year you will tackle serious initiatives, which include but are not limited to:\nOptimized solutions for key Silicon and Cloud partner platforms\nDeveloper platforms such as Raspberry Pi and RISC-V\nEnabling Ubuntu on a wide range of embedded systems\nSecurity hardening and exploit mitigation\nThird-party driver integration and distribution, such as graphics\nExpanded driver support for bleeding-edge PC platforms\nWe select candidates that are recent university graduates or early career professionals who are enthusiastic to develop kernel-level software in multiple areas including security updates, patching, and testing. The successful candidate will have a background in software engineering, be motivated to work in a distributed team and willing and able to travel globally twice a year for company engineering events.\nThese are full-time positions available to prospective or recently graduated students.\nLocation: We have home-based Kernel Teams in every timezone.\nThe role entails\nCollaborate regularly and proactively with a globally distributed team\nLearn from senior mentors to demystify the inner workings of the Linux kernel and how it is distributed\nWork closely with external silicon, cloud, or hardware manufacturer delivery teams on bleeding-edge platforms\nDiagnose and resolve issues in the kernel reported by customers, the community, and discovered by your own rigorous testing\nTake personal responsibility for the delivery of various flavors of the Ubun",
-      "tags": [
-        "Devices-Engineering",
-        "Kernel-Development",
-        "Linux-Engineering",
-        "Systems-Programming",
-        "Embedded-Software",
-        "Linux-Kernel-Engineer",
-        "Linux-Kernel-Engineering",
-        "Linux-Software-Engineer"
-      ],
-      "source_site": "https://himalayas.app",
-      "geo_scope": "worldwide",
-      "seniority_signal": "junior",
-      "work_arrangement": "Remote"
-    },
-    {
       "company": "Mechanical Orchard",
       "title": "Software Engineer [New Grads Welcome]",
       "location": "Remote - Canada",
@@ -1230,48 +1179,6 @@
       "tags": [],
       "source_site": "https://news.ycombinator.com",
       "geo_scope": "canada-friendly",
-      "seniority_signal": "junior",
-      "work_arrangement": "Remote"
-    },
-    {
-      "company": "Cohere",
-      "title": "Member of Technical Staff, Agentic Environments",
-      "location": "Remote - Europe, Canada, New York, European Union",
-      "url": "https://jobs.ashbyhq.com/cohere/8878b0d0-7d88-4ee9-bc17-b0dd237e39a0",
-      "date_posted": "2026-08-13",
-      "salary": "CA$250K – CA$535K • Offers Equity • Multiple Ranges",
-      "ats": "CompanyBoards",
-      "is_remote": true,
-      "telework": "Remote",
-      "job_type": "FullTime",
-      "description": "Who are we?\nCohere is the leading security-first enterprise AI company. We build cutting-edge foundation AI models and end-to-end products that are designed to solve real-world business problems.\nWe’re training and deploying frontier models for enterprises who are building AI systems. We believe that our work is instrumental to the widespread adoption of AI and we are looking for folks that want to be part of that.\nWe obsess over what we build. Each one of us is responsible for contributing to increasing the capabilities of our models and the value they drive for our customers. Cohere is a team of researchers, engineers, designers, and more, who are all passionate about their craft.\nWe are a global technology company headquartered in Toronto with key offices in London, New York City, San Francisco, Montreal, Paris, Berlin and Seoul. Join us!\nRole Overview:\nAt Cohere, we're pushing the boundaries of what these technologies can achieve for production environments, and we're seeking a senior engineer who understands the practical challenges of making AI systems work at scale. This role demands deep technical expertise in production environments and the ability to bridge research concepts with real-world implementations.\nThis position is hands-on and engineering-driven. You'll focus on production systems, experiment with frontier models, and collaborate with talented engineers to build scalable, production ready solutions. We strive for excellence in both engineering and science by meticulously designing experiments and design docs. We blend engineering and research seamlessly. Everyone contributes to both, depending on organizational needs. We provide access to world class compute resources, data, and talent to ensure you can do your best work. This role is perfect for you if you:\nHave a deep passion for quality work.\nEnjoy tuning and optimising large LLM models.\nComfortable working with people with different levels of software engineering skills, from beginner to more advanced.\nComfortable diving into complex ML codebases to identify and resolve issues, ensuring the smooth operation of our systems.\nThrive in a fast-paced, technically challenging environment, where you can contribute your innovative ideas and solutions.\nKey responsibilities:\nDesign and write high-performing and scalable software for training models.\nDevelop new tools to support and accelerate research and LLM training.\nCoordinate with other engineering teams (Infrastructure, Efficiency, Serving) and the scientific teams (Agent, Multimodal, Multilingual, etc.).\nResearch, implement, and experiment with ideas on our cluster and data infrastructure.\nCollaborate, Collaborate, and Collaborate with other scientists, engineers, and teams!\nQualifications:\nExtremely strong software engineering skills.\nValue test-driven development methods, clean code, and strive to reduce technical debts at all levels.\nProficiency in Python and related ML frameworks such as JAX, Pytorch and/or XLA/MLIR.\nExper",
-      "tags": [
-        "Ashby",
-        "Modeling"
-      ],
-      "source_site": "https://boards.greenhouse.io",
-      "geo_scope": "canada-friendly",
-      "seniority_signal": "junior",
-      "work_arrangement": "Remote"
-    },
-    {
-      "company": "Tailscale",
-      "title": "Backend Engineer, Control Plane",
-      "location": "Remote (Canada)",
-      "url": "https://job-boards.greenhouse.io/tailscale/jobs/4733177005",
-      "date_posted": "2026-09-11",
-      "salary": "",
-      "ats": "CompanyBoards",
-      "is_remote": true,
-      "telework": "Remote",
-      "job_type": "",
-      "description": "Thank you for considering Tailscale. If this job description resonates with you, please apply. Frequently cited statistics show that people who identify with historically marginalized groups are likely to apply to jobs only if they meet 100% of the qualifications. We encourage you to help us break that statistic!\nAbout Tailscale\nTailscale is making safe connection effortless by delivering software that makes it easy to securely interconnect people and their devices, no matter where they are. From hobbyists to multinational corporations, teams of every size use Tailscale each day to protect their networks, share access to internal tools, and more. We're building a future for the Internet that's easy, sensible, and safe, like it used to be. Founded in 2019 and fully distributed, we're backed by Accel, CRV, Insight, Heavybit, and Uncork Capital.\nJob Description\nWe’re seeking a skilled and diligent full-time Software Engineer to join our growing Control Plane Team. You will work as part of the engineering team to:\nDevelop the Tailscale product, contributing to both open source client code and related backend services;\nTake ownership of the entire product lifecycle, from writing code to product ideation and strategic decision-making;\nWork closely with UX/UI designers and product managers to shape features.\nBecause we’re an early-stage and fully remote company, we’re looking for a strongly motivated individual who can help move the product forward at crucial intersections of the technology and organization: in this case, the control plane and the various services it comprises and supports. The ability to think on your feet, collaborate with highly technical teams, and comfort working asynchronously are essential.\nKey Responsibilities\nWork as part of a team of engineers to design, build, test, and document core software components.\nDevelop product features in areas that include our control plane, our relay infrastructure, and our identity integrations.\nExhibit ownership over the running services that comprise Tailscale’s product by building for observability, participating in incident response, and fielding customer support escalations.\nAnalyze and improve efficiency, scalability, and stability of various system resources.\nBring a security-first mindset to both design and implementation.\nWhat We Are Looking For\nExperience with distributed systems\nExperience with the Go programming language\nExperience with one or more SQL databases\nFamiliarity with networking (IP addressing, routing, etc.)\nAbility to give and process constructive feedback, as well as work independently\nFlexibility to adjust to the dynamic nature of a startup\nExcellent written and verbal communication skills\nAs a company, we strive to maintain fair and equitable compensation practices within our team across all roles and all levels. Tailscale's compensation package includes base salary, equity, and comprehensive benefits. The salary range displayed on each job posting represents the targe",
-      "tags": [
-        "Greenhouse",
-        "Engineering"
-      ],
-      "source_site": "https://boards.greenhouse.io",
-      "geo_scope": "canada",
       "seniority_signal": "junior",
       "work_arrangement": "Remote"
     }

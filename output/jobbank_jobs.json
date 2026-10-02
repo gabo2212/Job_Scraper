@@ -1,6 +1,6 @@
 {
   "scraped_at": "2026-10-01 23:26 UTC",
-  "total": 131,
+  "total": 113,
   "new_count": 60,
   "jobs": [
     {
@@ -268,18 +268,6 @@
       "work_arrangement": ""
     },
     {
-      "company": "Vaisesika Consulting Inc.",
-      "title": "software developer",
-      "location": "Toronto (ON)",
-      "url": "https://www.jobbank.gc.ca/jobsearch/jobposting/50368572",
-      "date_posted": "2026-09-25",
-      "salary": "$62.50 hourly",
-      "ats": "JobBank",
-      "is_remote": false,
-      "telework": "On site",
-      "work_arrangement": "On-site"
-    },
-    {
       "company": "Maarut",
       "title": "software developer",
       "location": "Toronto (ON)",
@@ -310,18 +298,6 @@
       "url": "https://www.jobbank.gc.ca/jobsearch/jobposting/50353113",
       "date_posted": "2026-09-23",
       "salary": "$55,000.00 to $60,000.00 annually",
-      "ats": "JobBank",
-      "is_remote": null,
-      "telework": "",
-      "work_arrangement": ""
-    },
-    {
-      "company": "RemoteJobsOne",
-      "title": "software developer",
-      "location": "Toronto (ON)",
-      "url": "https://www.jobbank.gc.ca/jobsearch/jobposting/50347858",
-      "date_posted": "2026-09-23",
-      "salary": "$30.00 to $50.00 hourly",
       "ats": "JobBank",
       "is_remote": null,
       "telework": "",
@@ -415,18 +391,6 @@
       "company": "McCain Foods",
       "title": "software developer",
       "location": "Toronto (ON)",
-      "url": "https://www.jobbank.gc.ca/jobsearch/jobposting/50330546",
-      "date_posted": "2026-09-21",
-      "salary": "$102,700.00 to $137,000.00 annually",
-      "ats": "JobBank",
-      "is_remote": null,
-      "telework": "",
-      "work_arrangement": ""
-    },
-    {
-      "company": "McCain Foods",
-      "title": "software developer",
-      "location": "Toronto (ON)",
       "url": "https://www.jobbank.gc.ca/jobsearch/jobposting/50330608",
       "date_posted": "2026-09-21",
       "salary": "$67,200.00 to $89,600.00 annually",
@@ -466,18 +430,6 @@
       "url": "https://www.jobbank.gc.ca/jobsearch/jobposting/50337399",
       "date_posted": "2026-09-21",
       "salary": "$86.90 hourly",
-      "ats": "JobBank",
-      "is_remote": null,
-      "telework": "",
-      "work_arrangement": ""
-    },
-    {
-      "company": "YO AI Labs",
-      "title": "software developer",
-      "location": "Toronto (ON)",
-      "url": "https://www.jobbank.gc.ca/jobsearch/jobposting/50353077",
-      "date_posted": "2026-09-21",
-      "salary": "$80.00 to $120.00 hourly",
       "ats": "JobBank",
       "is_remote": null,
       "telework": "",
@@ -856,18 +808,6 @@
       "work_arrangement": ""
     },
     {
-      "company": "Bluth Company",
-      "title": "Web developer",
-      "location": "Toronto (ON)",
-      "url": "https://www.jobbank.gc.ca/jobsearch/jobposting/50248459",
-      "date_posted": "2026-09-08",
-      "salary": "$60,000.00 to $110,000.00 annually",
-      "ats": "JobBank",
-      "is_remote": null,
-      "telework": "",
-      "work_arrangement": ""
-    },
-    {
       "company": "Control Gap Inc.",
       "title": "full stack developer",
       "location": "Toronto (ON)",
@@ -902,18 +842,6 @@
       "is_remote": null,
       "telework": "Hybrid",
       "work_arrangement": "Hybrid"
-    },
-    {
-      "company": "QuoteMedia Ltd.",
-      "title": "front-end Web developer",
-      "location": "Vancouver (BC)",
-      "url": "https://www.jobbank.gc.ca/jobsearch/jobposting/49752584",
-      "date_posted": "2026-06-19",
-      "salary": "$80,000.00 annually",
-      "ats": "JobBank",
-      "is_remote": false,
-      "telework": "On site",
-      "work_arrangement": "On-site"
     },
     {
       "company": "Richard et Levesque",
@@ -1204,18 +1132,6 @@
       "work_arrangement": "Hybrid"
     },
     {
-      "company": "Wisedocs",
-      "title": "data analyst - informatics and systems",
-      "location": "Toronto (ON)",
-      "url": "https://www.jobbank.gc.ca/jobsearch/jobposting/50248638",
-      "date_posted": "2026-09-08",
-      "salary": "$24.00 to $58.00 hourly",
-      "ats": "JobBank",
-      "is_remote": null,
-      "telework": "",
-      "work_arrangement": ""
-    },
-    {
       "company": "Astra North Infoteck Inc.",
       "title": "prompt engineer",
       "location": "Toronto (ON)",
@@ -1423,141 +1339,9 @@
       "company": "Roadpost",
       "title": "software engineer",
       "location": "Toronto (ON)",
-      "url": "https://www.jobbank.gc.ca/jobsearch/jobposting/50387425",
-      "date_posted": "2026-09-29",
-      "salary": "$130,000.00 to $150,000.00 annually",
-      "ats": "JobBank",
-      "is_remote": null,
-      "telework": "",
-      "work_arrangement": ""
-    },
-    {
-      "company": "Roadpost",
-      "title": "software engineer",
-      "location": "Toronto (ON)",
       "url": "https://www.jobbank.gc.ca/jobsearch/jobposting/50385727",
       "date_posted": "2026-09-28",
       "salary": "$130,000.00 to $150,000.00 annually",
-      "ats": "JobBank",
-      "is_remote": null,
-      "telework": "",
-      "work_arrangement": ""
-    },
-    {
-      "company": "Daoai Robotics Inc",
-      "title": "software engineer",
-      "location": "Vancouver (BC)",
-      "url": "https://www.jobbank.gc.ca/jobsearch/jobposting/50349648",
-      "date_posted": "2026-09-23",
-      "salary": "$55.00 to $62.50 hourly (to be negotiated)",
-      "ats": "JobBank",
-      "is_remote": null,
-      "telework": "Hybrid",
-      "work_arrangement": "Hybrid"
-    },
-    {
-      "company": "RemoteJobsOne",
-      "title": "software engineer",
-      "location": "Toronto (ON)",
-      "url": "https://www.jobbank.gc.ca/jobsearch/jobposting/50344708",
-      "date_posted": "2026-09-22",
-      "salary": "$50.00 to $70.00 hourly",
-      "ats": "JobBank",
-      "is_remote": null,
-      "telework": "",
-      "work_arrangement": ""
-    },
-    {
-      "company": "Fiscal.ai",
-      "title": "software engineer",
-      "location": "Toronto (ON)",
-      "url": "https://www.jobbank.gc.ca/jobsearch/jobposting/50338204",
-      "date_posted": "2026-09-22",
-      "salary": "$100,000.00 to $220,000.00 annually",
-      "ats": "JobBank",
-      "is_remote": null,
-      "telework": "",
-      "work_arrangement": ""
-    },
-    {
-      "company": "Bell Canada",
-      "title": "software engineer",
-      "location": "Montréal (QC)",
-      "url": "https://www.jobbank.gc.ca/jobsearch/jobposting/50394422",
-      "date_posted": "2026-09-15",
-      "salary": "$35.00 to $91.35 hourly",
-      "ats": "JobBank",
-      "is_remote": null,
-      "telework": "",
-      "work_arrangement": ""
-    },
-    {
-      "company": "Remarcable, Inc.",
-      "title": "software engineer",
-      "location": "Vancouver (BC)",
-      "url": "https://www.jobbank.gc.ca/jobsearch/jobposting/50299008",
-      "date_posted": "2026-09-10",
-      "salary": "$125,128.44 annually",
-      "ats": "JobBank",
-      "is_remote": null,
-      "telework": "",
-      "work_arrangement": ""
-    },
-    {
-      "company": "Chexy Inc.",
-      "title": "software engineer",
-      "location": "Toronto (ON)",
-      "url": "https://www.jobbank.gc.ca/jobsearch/jobposting/50248574",
-      "date_posted": "2026-09-08",
-      "salary": "$31.00 to $82.00 hourly",
-      "ats": "JobBank",
-      "is_remote": null,
-      "telework": "",
-      "work_arrangement": ""
-    },
-    {
-      "company": "Micromart",
-      "title": "software engineer",
-      "location": "Toronto (ON)",
-      "url": "https://www.jobbank.gc.ca/jobsearch/jobposting/50248903",
-      "date_posted": "2026-09-08",
-      "salary": "$31.00 to $82.00 hourly",
-      "ats": "JobBank",
-      "is_remote": null,
-      "telework": "Hybrid",
-      "work_arrangement": "Hybrid"
-    },
-    {
-      "company": "Nord Quantique",
-      "title": "embedded software engineer",
-      "location": "Sherbrooke (QC)",
-      "url": "https://www.jobbank.gc.ca/jobsearch/jobposting/50227329",
-      "date_posted": "2026-09-05",
-      "salary": "$123,115.00 to $143,000.00 annually",
-      "ats": "JobBank",
-      "is_remote": null,
-      "telework": "",
-      "work_arrangement": ""
-    },
-    {
-      "company": "Tao Digital ULC",
-      "title": "software engineer",
-      "location": "Toronto (ON)",
-      "url": "https://www.jobbank.gc.ca/jobsearch/jobposting/49980120",
-      "date_posted": "2026-07-30",
-      "salary": "$57.00 hourly",
-      "ats": "JobBank",
-      "is_remote": null,
-      "telework": "Hybrid",
-      "work_arrangement": "Hybrid"
-    },
-    {
-      "company": "Sapsol Technologies Inc",
-      "title": "software developer",
-      "location": "Montréal (QC)",
-      "url": "https://www.jobbank.gc.ca/jobsearch/jobposting/50363564",
-      "date_posted": "2026-09-17",
-      "salary": "$100,000.00 to $110,000.00 annually",
       "ats": "JobBank",
       "is_remote": null,
       "telework": "",
