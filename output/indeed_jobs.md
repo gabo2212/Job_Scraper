@@ -1,6 +1,10 @@
 # 🟦 Indeed — Gabriel Fortin — Junior Remote Dev / Automation / AI (Québec) Roles
-*Last updated: 2026-10-02 20:12 UTC*
+*Last updated: 2026-10-03 00:03 UTC*
 
-**0 new role(s)** since last run · 2 total in last 24h
+**1 new role(s)** since last run · 1 total in last 24h
 
-No new roles since the last run.
+### [Junior AI Engineer](https://ca.indeed.com/viewjob?jk=13481826c8555ff4) — Citco
+- 📍 **Location:** Halifax, NS, CA
+- **Work mode:** On-site
+- **Job type:** fulltime
+- 🕒 **Posted:** 2026-10-02
