@@ -1,8 +1,26 @@
 {
-  "scraped_at": "2026-10-03 05:47 UTC",
-  "total": 2,
-  "new_count": 0,
+  "scraped_at": "2026-10-03 18:52 UTC",
+  "total": 3,
+  "new_count": 1,
   "jobs": [
+    {
+      "company": "Unknown",
+      "title": "Backend Engineer",
+      "location": "Remote, CA",
+      "url": "https://ca.indeed.com/viewjob?jk=8702e6e264845b51",
+      "direct_url": "http://ca.indeed.com/job/backend-engineer-8702e6e264845b51",
+      "company_url": "https://ca.indeed.comNone",
+      "date_posted": "2026-10-03",
+      "description": "**About the Role**\n\nAvenrix Services is hiring a Backend Engineer to work on an active enterprise client project involving backend services, data processing, search, and AI-assisted workflows.\n\nThe role is primarily focused on **Node.js/TypeScript development, PostgreSQL, APIs, data synchronization, production troubleshooting, and reliability**.\n\nYou’ll work with an existing production system and collaborate with engineers across backend, data, search, and AI-related areas.\n\n**Responsibilities**\n\n* Develop and maintain backend services using **Node.js and TypeScript**\n* Build and maintain REST APIs and backend integrations\n* Work with **PostgreSQL and SQL**\n* Debug database queries and backend performance issues\n* Support ETL, data pipelines, and synchronization between systems\n* Investigate data inconsistencies, failed jobs, and production issues\n* Help improve application reliability and data consistency\n* Work with AWS-based services and environments\n* Write automated tests and participate in code reviews\n* Use logs, metrics, and tracing to troubleshoot issues\n* Collaborate with engineers working on search, data, and AI-related functionality\n* Participate in technical meetings and provide clear updates on your work, blockers, and technical decisions\n\n**Required Skills**\n\n* **2+ years of professional software development experience** or equivalent strong practical experience\n* Good experience with **JavaScript / TypeScript**\n* Backend development experience with **Node.js**\n* Good knowledge of **SQL and relational databases**\n* Experience with **PostgreSQL** or a similar database\n* Experience developing or integrating REST APIs\n* Familiarity with Git and standard development workflows\n* Good debugging and problem-solving skills\n* Ability to understand and work within an existing codebase\n* Ability to work independently on assigned tasks\n* Good written and spoken English for technical communication\n* Reliable, receptive to feedback, and willing to learn unfamiliar technologies\n\n**Preferred Skills**\n\nExperience with any of the following is helpful but not required:\n\n* AWS\n* ETL or data pipelines\n* Kafka or other event/messaging systems\n* OpenTelemetry\n* Datadog, Prometheus, Grafana, Splunk, or similar observability tools\n* OpenSearch / Elasticsearch\n* Docker\n* Python\n* GitHub Actions or other CI/CD tools\n* Distributed systems\n* RAG / LLM applications\n* AI or data-science workflows\n\n**AI-Assisted Development**\n\nExperience using tools such as GitHub Copilot, Claude, ChatGPT, Cursor, or similar AI coding tools is welcome.\n\nCandidates should still be able to understand, test, debug, and clearly explain the code they submit.\n\n**What We Value**\n\nWe’re looking for someone who:\n\n* Takes responsibility for their work\n* Learns quickly\n* Is comfortable receiving technical feedback\n* Communicates problems and blockers clearly\n* Investigates issues instead of guessing\n* Can explain why they chose a particular implementation\n* Is willing to suggest improvements when they see a better approach\n\n**About Avenrix Services**\n\nAvenrix Services supports businesses through project-based engineering and technology delivery across software, data, cloud, and AI-related initiatives.\n\nFor this engagement, you’ll contribute to an active enterprise technology project while working with engineering and project leadership.\n\nPay: $16.00-$24.00 per hour\n\nWork Location: Remote",
+      "salary": "$16–$24/hr",
+      "salary_source": "direct_data",
+      "salary_currency": "CAD",
+      "job_type": "fulltime, contract",
+      "is_remote": true,
+      "work_arrangement": "Remote",
+      "emails": "",
+      "ats": "Indeed"
+    },
     {
       "company": "Citco",
       "title": "Junior AI Engineer",
@@ -40,5 +58,24 @@
       "ats": "Indeed"
     }
   ],
-  "new_jobs": []
+  "new_jobs": [
+    {
+      "company": "Unknown",
+      "title": "Backend Engineer",
+      "location": "Remote, CA",
+      "url": "https://ca.indeed.com/viewjob?jk=8702e6e264845b51",
+      "direct_url": "http://ca.indeed.com/job/backend-engineer-8702e6e264845b51",
+      "company_url": "https://ca.indeed.comNone",
+      "date_posted": "2026-10-03",
+      "description": "**About the Role**\n\nAvenrix Services is hiring a Backend Engineer to work on an active enterprise client project involving backend services, data processing, search, and AI-assisted workflows.\n\nThe role is primarily focused on **Node.js/TypeScript development, PostgreSQL, APIs, data synchronization, production troubleshooting, and reliability**.\n\nYou’ll work with an existing production system and collaborate with engineers across backend, data, search, and AI-related areas.\n\n**Responsibilities**\n\n* Develop and maintain backend services using **Node.js and TypeScript**\n* Build and maintain REST APIs and backend integrations\n* Work with **PostgreSQL and SQL**\n* Debug database queries and backend performance issues\n* Support ETL, data pipelines, and synchronization between systems\n* Investigate data inconsistencies, failed jobs, and production issues\n* Help improve application reliability and data consistency\n* Work with AWS-based services and environments\n* Write automated tests and participate in code reviews\n* Use logs, metrics, and tracing to troubleshoot issues\n* Collaborate with engineers working on search, data, and AI-related functionality\n* Participate in technical meetings and provide clear updates on your work, blockers, and technical decisions\n\n**Required Skills**\n\n* **2+ years of professional software development experience** or equivalent strong practical experience\n* Good experience with **JavaScript / TypeScript**\n* Backend development experience with **Node.js**\n* Good knowledge of **SQL and relational databases**\n* Experience with **PostgreSQL** or a similar database\n* Experience developing or integrating REST APIs\n* Familiarity with Git and standard development workflows\n* Good debugging and problem-solving skills\n* Ability to understand and work within an existing codebase\n* Ability to work independently on assigned tasks\n* Good written and spoken English for technical communication\n* Reliable, receptive to feedback, and willing to learn unfamiliar technologies\n\n**Preferred Skills**\n\nExperience with any of the following is helpful but not required:\n\n* AWS\n* ETL or data pipelines\n* Kafka or other event/messaging systems\n* OpenTelemetry\n* Datadog, Prometheus, Grafana, Splunk, or similar observability tools\n* OpenSearch / Elasticsearch\n* Docker\n* Python\n* GitHub Actions or other CI/CD tools\n* Distributed systems\n* RAG / LLM applications\n* AI or data-science workflows\n\n**AI-Assisted Development**\n\nExperience using tools such as GitHub Copilot, Claude, ChatGPT, Cursor, or similar AI coding tools is welcome.\n\nCandidates should still be able to understand, test, debug, and clearly explain the code they submit.\n\n**What We Value**\n\nWe’re looking for someone who:\n\n* Takes responsibility for their work\n* Learns quickly\n* Is comfortable receiving technical feedback\n* Communicates problems and blockers clearly\n* Investigates issues instead of guessing\n* Can explain why they chose a particular implementation\n* Is willing to suggest improvements when they see a better approach\n\n**About Avenrix Services**\n\nAvenrix Services supports businesses through project-based engineering and technology delivery across software, data, cloud, and AI-related initiatives.\n\nFor this engagement, you’ll contribute to an active enterprise technology project while working with engineering and project leadership.\n\nPay: $16.00-$24.00 per hour\n\nWork Location: Remote",
+      "salary": "$16–$24/hr",
+      "salary_source": "direct_data",
+      "salary_currency": "CAD",
+      "job_type": "fulltime, contract",
+      "is_remote": true,
+      "work_arrangement": "Remote",
+      "emails": "",
+      "ats": "Indeed"
+    }
+  ]
 }
