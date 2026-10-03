@@ -1,7 +1,7 @@
 {
-  "scraped_at": "2026-10-03 05:37 UTC",
+  "scraped_at": "2026-10-03 05:47 UTC",
   "total": 2,
-  "new_count": 1,
+  "new_count": 0,
   "jobs": [
     {
       "company": "Citco",
@@ -40,24 +40,5 @@
       "ats": "Indeed"
     }
   ],
-  "new_jobs": [
-    {
-      "company": "Vancouver Visual Art Foundation",
-      "title": "Junior Web Developer",
-      "location": "Vancouver, BC, CA",
-      "url": "https://ca.indeed.com/viewjob?jk=7a12fdc5e7b36ad5",
-      "direct_url": "http://ca.indeed.com/job/junior-web-developer-7a12fdc5e7b36ad5",
-      "company_url": "https://ca.indeed.com/cmp/Vancouver-Visual-Art-Foundation-1",
-      "date_posted": "2026-10-03",
-      "description": "**Must be enrolled in a post secondary educational institution.**\n\nArt Vancouver is seeking a motivated Junior Web Developer & Automation Intern to support the migration and rebuild of our website on Wix, alongside back-end workflow automation setup. This is a hands-on role ideal for a student or recent graduate looking to gain real-world experience in web development, digital operations, and non-profit arts administration.\n\nResponsibilities\n\n**Website Migration & Development**\n\n* Assist in transferring existing website content to a new Wix platform\n* Rebuild and organize site pages, navigation, and layouts in Wix Editor or Wix Studio\n* Ensure all content, images, links, and forms are accurately migrated and functional\n* Optimize pages for mobile responsiveness and accessibility\n* Conduct quality assurance testing across browsers and devices\n\n**Back-End & Automation Setup**\n\n* Set up and configure Wix back-end features including member areas, forms, and databases (Wix CMS / Wix Velo as needed)\n* Build basic automations for tasks such as registration confirmations, contact form responses, and event notifications\n* Connect third-party tools and integrations (e.g. email marketing, registration platforms)\n* Document all workflows, automations, and site structure for handoff\n\n**General Support**\n\n* Attend team check-ins and provide progress updates\n* Maintain organized file and asset libraries\n* Support the marketing and events team with digital requests as capacity allows\n\nQualifications\n\n**Required**\n\n* Currently enrolled in or recently completed a diploma or degree in Web Development, Computer Science, Digital Marketing, or a related field\n* Familiarity with Wix, WordPress, or similar CMS platforms\n* Basic understanding of HTML/CSS\n* Strong attention to detail and ability to manage multiple tasks\n\n**Nice to Have**\n\n* Experience with Wix Velo (JavaScript-based development)\n* Familiarity with automation tools (Zapier, Make, or similar)\n* Interest in the arts, culture, or non-profit sector\n* Experience with Google Workspace or project management tools\n\nWhat You'll Gain\n\n* Hands-on experience with a full website migration project from start to launch\n* Exposure to digital operations in a non-profit arts organization\n* A portfolio-ready project with real impact\n* Mentorship from the Art Vancouver team\n* A reference letter upon successful completion\n\nJob Types: Full-time, Apprenticeship, Internship / Co-op, Seasonal\n\nPay: $18.25 per hour\n\nApplication question(s):\n\n* Are you registered in a school at this time?\n\nExperience:\n\n* Web services: 1 year (preferred)\n\nWork Location: In person",
-      "salary": "",
-      "salary_source": "",
-      "salary_currency": "CAD",
-      "job_type": "temporary, fulltime, internship",
-      "is_remote": false,
-      "work_arrangement": "On-site",
-      "emails": "",
-      "ats": "Indeed"
-    }
-  ]
+  "new_jobs": []
 }
