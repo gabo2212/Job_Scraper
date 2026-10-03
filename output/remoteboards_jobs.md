@@ -1,48 +1,30 @@
 # 🌍 Remote boards - Gabriel Fortin — Junior Remote Dev / Automation / AI (Québec) Roles
-*Last updated: 2026-10-02 16:44 UTC*
+*Last updated: 2026-10-03 15:11 UTC*
 
-**7 new role(s)** since last run · 51 total in current remote-board postings
+**4 new role(s)** since last run · 50 total in current remote-board postings
 
-### [Platform Developer I - Build Control / CICD](https://himalayas.app/companies/intelerad/jobs/platform-developer-i-build-control-cicd) — Intelerad
-- 📍 **Location:** Remote - Canada
-- 💰 **Salary:** 75,000-105,000 CAD/yr
+### [Digital Ad Quality Analyst (AI-Assisted QC)](https://himalayas.app/companies/tubescience/jobs/digital-ad-quality-analyst-ai-assisted-qc) — TubeScience
+- 📍 **Location:** Remote - Worldwide
+- 💰 **Salary:** 10-14 USD/hourly
 - **Work mode:** Remote
-- **Job type:** Full Time
-- 🕒 **Posted:** 2026-10-02
+- **Job type:** Contractor
+- 🕒 **Posted:** 2026-10-03
 
-### [Jr. Software Engineer - Java, Angular, JavaScript](https://himalayas.app/companies/motorola-solutions/jobs/jr-software-engineer-java-angular-javascript) — Motorola Solutions
-- 📍 **Location:** Remote - Canada
-- 💰 **Salary:** 70,000-90,000 CAD/yr
-- **Work mode:** Remote
-- **Job type:** Full Time
-- 🕒 **Posted:** 2026-10-01
-
-### [Junior Linux Kernel Engineer - Ubuntu](https://himalayas.app/companies/canonical/jobs/junior-linux-kernel-engineer-ubuntu) — Canonical
+### [Data Annotator | Remote - Contract](https://himalayas.app/companies/xperteez-technology/jobs/data-annotator-remote-contract) — Xperteez Technology
 - 📍 **Location:** Remote - Worldwide
 - **Work mode:** Remote
-- **Job type:** Full Time
-- 🕒 **Posted:** 2026-09-19
+- **Job type:** Contractor
+- 🕒 **Posted:** 2026-10-03
 
-### [Junior Software Engineer - Cross-platform C++ - Multipass](https://himalayas.app/companies/canonical/jobs/junior-software-engineer-cross-platform-c-multipass) — Canonical
-- 📍 **Location:** Remote - Australia, Canada, Germany, India, United Kingdom, United States
+### [Junior DevOps / Cloud Engineer](https://himalayas.app/companies/cloudcops-gmbh/jobs/junior-devops-cloud-engineer) — CloudCops GmbH
+- 📍 **Location:** Remote - Worldwide
+- 💰 **Salary:** 65,000-85,000 EUR/yr
 - **Work mode:** Remote
 - **Job type:** Full Time
-- 🕒 **Posted:** 2026-09-09
-
-### [QA Analyst (Future Roles)](https://jobicy.com/jobs/152333-qa-analyst-future-roles) — Testlio
-- 📍 **Location:** Remote - Argentina, Brazil, Canada, Czechia, Estonia, Ireland, Mexico, Poland, Portugal, Romania, Spain, UK, Ukraine, USA
-- **Work mode:** Remote
-- **Job type:** Contract
 - 🕒 **Posted:** 2026-10-02
 
-### [Member of Technical Staff, Agentic Environments](https://jobs.ashbyhq.com/cohere/8878b0d0-7d88-4ee9-bc17-b0dd237e39a0) — Cohere
-- 📍 **Location:** Remote - Europe, Canada, New York, European Union
-- 💰 **Salary:** CA$250K – CA$535K • Offers Equity • Multiple Ranges
+### [Software Engineer, Ceph & Distributed Storage](https://jobicy.com/jobs/149972-software-engineer-ceph-distributed-storage) — Canonical
+- 📍 **Location:** Remote - EMEA, LATAM, Canada, USA
 - **Work mode:** Remote
-- **Job type:** FullTime
-- 🕒 **Posted:** 2026-08-13
-
-### [Backend Engineer, Control Plane](https://job-boards.greenhouse.io/tailscale/jobs/4733177005) — Tailscale
-- 📍 **Location:** Remote (Canada)
-- **Work mode:** Remote
-- 🕒 **Posted:** 2026-09-11
+- **Job type:** Full-Time
+- 🕒 **Posted:** 2026-10-03
