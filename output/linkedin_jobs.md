@@ -1,6 +1,8 @@
 # 🔥 LinkedIn — Gabriel Fortin — Junior Remote Dev / Automation / AI (Québec) Roles
-*Last updated: 2026-10-04 08:46 UTC*
+*Last updated: 2026-10-04 18:45 UTC*
 
-**0 new role(s)** since last run · 0 total in last 1h
+**1 new role(s)** since last run · 1 total in last 1h
 
-No new roles since the last run.
+### [Technical Writer](https://www.linkedin.com/jobs/view/4447084194/) — Bombardier
+- 📍 **Location:** Dorval, Quebec, Canada
+- 🕒 **Posted:** 2026-10-04
