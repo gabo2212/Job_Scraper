@@ -1,7 +1,7 @@
 {
-  "scraped_at": "2026-10-04 18:47 UTC",
+  "scraped_at": "2026-10-04 18:49 UTC",
   "total": 1,
-  "new_count": 1,
+  "new_count": 0,
   "jobs": [
     {
       "company": "SOFTLINE TECHNOLOGY",
@@ -22,24 +22,5 @@
       "ats": "Indeed"
     }
   ],
-  "new_jobs": [
-    {
-      "company": "SOFTLINE TECHNOLOGY",
-      "title": "Software Developer – Full Stack",
-      "location": "Toronto, ON, CA",
-      "url": "https://ca.indeed.com/viewjob?jk=d7562422f03b36e6",
-      "direct_url": "https://softlinetechnology.com/job/title-dashed-rq11645/",
-      "company_url": "https://ca.indeed.com/cmp/Softline-Technology",
-      "date_posted": "2026-10-04",
-      "description": "Description\n\n**Demonstrated experience designing, developing and integrating AI-enabled applications, including Large Language Models (LLMs), AI agents, agent-based workflows, document processing solutions, and human-in-the-loop review and approval processes.** This role will support the development of the Curriculum AI Assistant Platform, which combines AI agents and user workflows to accelerate curriculum development while keeping curriculum experts responsible for all decisions and approvals.\n\n**Experience Requirements**\n\n**Responsibilities**\n--------------------\n\n* Design, develop, test and support AI-powered applications and workflows\n* Design, implement and maintain data pipelines, including extraction, transformation and loading activities.\n* Translate technical specifications into working, tested applications.\n* Develop detailed programming specifications and write, test, debug and maintain application code.\n* Develop and integrate AI agents into a secure web-based platform\n* Develop APIs and application services that support AI capabilities, document processing and workflow automation.\n* Implement human-in-the-loop workflows that allow users to review, validate and approve AI-generated content.\n* Resolve technical issues and provide support during implementation, testing, deployment and maintenance.\n* Prepare technical documentation and support knowledge transfer activities.\n\n**Full Stack Development and Solution Architecture – 45%**\n\n* Experience designing, developing, testing and supporting enterprise web applications.\n* Experience with front-end and back-end development using modern development frameworks and design patterns.\n* Experience designing and implementing scalable application architectures.\n* Experience developing and integrating REST APIs, application services and middleware components.\n* Experience integrating front-end applications with APIs and backend services.\n* Experience working with relational databases, data modelling, SQL and data integration solutions.\n* Experience designing, developing, testing, debugging and maintaining application code.\n* Experience designing and implementing CI/CD pipelines and automated deployment processes.\n* Experience developing AI-enabled applications using Large Language Models (LLMs), AI services or AI platforms.\n* Experience designing and implementing Retrieval-Augmented Generation (RAG), knowledge retrieval and document processing solutions.\n* Experience developing and integrating AI agents and multi-step workflow solutions.\n* Experience implementing human-in-the-loop workflows that support review, validation and approval processes.\n* Experience implementing source traceability, output validation and auditability features.\n* Experience working with Azure services such as Azure Functions, API Management, Logic Apps or similar cloud technologies.\n* Experience implementing Azure Active Directory (Entra ID), Single Sign-On (SSO), Multi-Factor Authentication (MFA), authentication and authorization controls.\n* Understanding of Angular, JavaScript, HTML, CSS and modern web development practices.\n\n**Agile Delivery and Technical Collaboration – 25%**\n\n* Experience working within Agile product delivery teams.\n* Experience participating in sprint planning, backlog refinement, sprint reviews and retrospectives.\n* Experience translating business requirements into technical solutions and backlog items.\n* Experience estimating effort and breaking work into implementable increments.\n* Experience collaborating with business analysts, UX designers, architects, QA resources and product owners.\n* Experience documenting technical requirements, solution designs and implementation approaches.\n* Experience supporting MVP delivery and iterative product enhancement.\n* Experience using Azure DevOps, Jira or similar delivery and backlog management tools.\n* Experience contributing to DevOps practices, release management and continuous improvement activities.\n* Experience supporting technical discovery, proof-of-concepts and validation activities.\n\n**Security, Privacy and Quality Engineering – 20%**\n\n* Experience designing secure applications and services using security-by-design principles.\n* Experience implementing role-based access controls, separation of duties and audit logging.\n* Experience designing solutions that protect sensitive information and comply with privacy requirements.\n* Experience implementing secure handling of documents, uploads, notifications and generated content.\n* Experience building applications that prevent unauthorized access and information disclosure.\n* Experience implementing application monitoring, logging, troubleshooting and operational support capabilities.\n* Experience conducting unit testing, integration testing and supporting user acceptance testing.\n* Experience conducting code reviews and applying software quality assurance practices.\n* Experience designing and developing accessible applications that comply with AODA and WCAG requirements.\n* Experience supporting production deployments, issue resolution and ongoing application maintenance.\n\n**Communication, Facilitation and Delivery Coordination – 10%**\n\n* Strong analytical, problem-solving and communication skills.\n* Experience working within multidisciplinary delivery teams.\n* Experience collaborating with business, product, UX, accessibility, privacy and security teams.\n* Experience facilitating technical discussions, design walkthroughs and solution reviews.\n* Experience preparing technical documentation, architecture diagrams and knowledge transfer materials.\n* Experience presenting technical concepts, risks, trade-offs and recommendations to technical and non-technical audiences.\n* Proven ability to manage competing priorities and meet project deadlines.\n* Ability to work independently and collaboratively in a team environment.\n\nSupplier Comments\n\nClosing Date/Time: 2026-10-07, 12:00 p.m.\n\nMax submission: 1 (one)\n\n5 days onsite\n\nMust Have:\n\n* Design, develop",
-      "salary": "",
-      "salary_source": "",
-      "salary_currency": "",
-      "job_type": "contract",
-      "is_remote": false,
-      "work_arrangement": "On-site",
-      "emails": "",
-      "ats": "Indeed"
-    }
-  ]
+  "new_jobs": []
 }
