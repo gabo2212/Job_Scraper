@@ -1,34 +1,45 @@
 # 🇨🇦 Job Bank — Gabriel Fortin — Junior Remote Dev / Automation / AI (Québec) Roles
-*Last updated: 2026-10-03 19:27 UTC*
+*Last updated: 2026-10-04 19:47 UTC*
 
-**6 new role(s)** since last run · 74 total in current Job Bank postings
+**8 new role(s)** since last run · 73 total in current Job Bank postings
 
-### [software developer](https://www.jobbank.gc.ca/jobsearch/jobposting/50414372) — Maarut
+### [software developer](https://www.jobbank.gc.ca/jobsearch/jobposting/50421683) — Source Code
 - 📍 **Location:** Toronto (ON)
-- 💰 **Salary:** $60.00 hourly
-- 🕒 **Posted:** 2026-10-03
+- 💰 **Salary:** $55.52 hourly
+- 🕒 **Posted:** 2026-10-04
 
-### [software developer](https://www.jobbank.gc.ca/jobsearch/jobposting/50414485) — Upstaff
-- 📍 **Location:** Toronto (ON)
-- 💰 **Salary:** $10,000.00 monthly
-- 🕒 **Posted:** 2026-10-03
-
-### [software developer](https://www.jobbank.gc.ca/jobsearch/jobposting/50414497) — Upstaff
-- 📍 **Location:** Toronto (ON)
-- 💰 **Salary:** $10,000.00 monthly
-- 🕒 **Posted:** 2026-10-03
-
-### [software developer](https://www.jobbank.gc.ca/jobsearch/jobposting/50414298) — Maarut
-- 📍 **Location:** Montréal-Est (QC)
-- 💰 **Salary:** $60.00 hourly
-- 🕒 **Posted:** 2026-10-02
-
-### [Web developer](https://www.jobbank.gc.ca/jobsearch/jobposting/50416217) — YO AI Labs
+### [software developer](https://www.jobbank.gc.ca/jobsearch/jobposting/50421661) — Assembler AI
 - 📍 **Location:** Montréal (QC)
-- 💰 **Salary:** $80.00 to $120.00 hourly
-- 🕒 **Posted:** 2026-10-01
+- 💰 **Salary:** $50.00 hourly
+- 🕒 **Posted:** 2026-10-04
 
-### [data engineer](https://www.jobbank.gc.ca/jobsearch/jobposting/50414504) — Citylitics
+### [software developer](https://www.jobbank.gc.ca/jobsearch/jobposting/50419493) — Source Code
 - 📍 **Location:** Toronto (ON)
-- 💰 **Salary:** $90,000.00 to $110,000.00 annually
-- 🕒 **Posted:** 2026-10-02
+- 💰 **Salary:** $71.27 hourly
+- 🕒 **Posted:** 2026-10-04
+
+### [Web developer](https://www.jobbank.gc.ca/jobsearch/jobposting/50419584) — Mercor
+- 📍 **Location:** Toronto (ON)
+- 💰 **Salary:** $55.00 to $65.00 hourly
+- 🕒 **Posted:** 2026-10-04
+
+### [Web developer](https://www.jobbank.gc.ca/jobsearch/jobposting/50331600) — YO AI Labs
+- 📍 **Location:** Toronto (ON)
+- 💰 **Salary:** $80.00 to $120.00 hourly
+- 🕒 **Posted:** 2026-09-16
+
+### [Web developer](https://www.jobbank.gc.ca/jobsearch/jobposting/50331820) — YO AI Labs
+- 📍 **Location:** Vancouver (BC)
+- 💰 **Salary:** $80.00 to $120.00 hourly
+- 🕒 **Posted:** 2026-09-16
+
+### [data engineer](https://www.jobbank.gc.ca/jobsearch/jobposting/50421650) — Financeit
+- 📍 **Location:** Toronto (ON)
+- 💰 **Salary:** $75,000.00 to $95,000.00 annually
+- 🕒 **Posted:** 2026-09-17
+
+### [artificial intelligence (ai) software engineer](https://www.jobbank.gc.ca/jobsearch/jobposting/49943889) — Geoswift
+- 📍 **Location:** Vancouver (BC)
+- 💰 **Salary:** $63.00 hourly
+- **Work mode:** On-site
+- 🕒 **Posted:** 2026-07-21
