@@ -1,5 +1,5 @@
 # 🟧 ZipRecruiter — Gabriel Fortin — Junior Remote Dev / Automation / AI (Québec) Roles
-*Last updated: 2026-10-05 22:49 UTC*
+*Last updated: 2026-10-06 03:10 UTC*
 
 **0 new role(s)** since last run · 0 total in last 24h
 
