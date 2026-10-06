@@ -1,7 +1,31 @@
 {
-  "scraped_at": "2026-10-06 10:33 UTC",
-  "total": 0,
-  "new_count": 0,
-  "jobs": [],
-  "new_jobs": []
+  "scraped_at": "2026-10-06 20:32 UTC",
+  "total": 1,
+  "new_count": 1,
+  "jobs": [
+    {
+      "company": "RELQ TECHNOLOGIES",
+      "title": "QA Automation + Manual Engineer- Canada Remote",
+      "location": "Canada",
+      "url": "https://www.linkedin.com/jobs/view/4464346622/",
+      "date_posted": "2026-10-06",
+      "salary": "",
+      "ats": "LinkedIn",
+      "description": "Job Title:\nSr. QA Automation+ Manual Engineer\n\nLocation:\nCanada (Remote)\n\nPosition :\n6+ Months Contract\n\nJob Summary\n\nWe are looking for a skilled QA Automation Engineer\nto design, develop, and maintain automated test frameworks and scripts to ensure high-quality software delivery. The ideal candidate will work closely with developers, product owners, and DevOps teams in an Agile environment to ensure functional, regression, and performance testing are automated and scalable.\n\nKey Responsibilities\n\nDesign, develop, and maintain automation test scripts and frameworks\nPerform functional, regression, smoke, and integration testing\nCollaborate with developers and business teams to understand requirements and acceptance criteria\nIntegrate automated tests into CI/CD pipelines\nIdentify, document, and track defects using tools like JIRA\nExecute automated test suites and analyze test results\nParticipate in Agile/Scrum ceremonies (stand-ups, sprint planning, retrospectives)\nEnsure test coverage for web, API, and backend applications\nSupport UAT and production validation when required\nFollow best practices for test automation and QA standards\n\nRequired Skills & Qualifications\n\nStrong experience in QA Automation testing\nHands-on experience with automation tools such as:\nSelenium, Cypress, Playwright, TestNG, JUnit\n\nProgramming experience in Java, Python, JavaScript, or C#\nExperience with API testing (Postman, RestAssured, SOAP UI)\nExperience with CI/CD tools (Jenkins, GitHub Actions, Azure DevOps, GitLab)\nKnowledge of version control systems (Git)\nExperience working in Agile/Scrum environments\nStrong understanding of STLC and SDLC\nExcellent communication and documentation skills\n\nNice To Have (Preferred)\n\nExperience with performance testing tools (JMeter, LoadRunner)\nExperience in cloud environments (AWS, Azure, GCP)\nExperience with BDD frameworks (Cucumber, SpecFlow)\nExposure to containerization (Docker, Kubernetes)\n\nShow more\n\nShow less\n\nSeniority level\n\nNot Applicable\n\nEmployment type\n\nFull-time\n\nIndustries\n\nIT Services and IT Consulting",
+      "work_arrangement": "Remote"
+    }
+  ],
+  "new_jobs": [
+    {
+      "company": "RELQ TECHNOLOGIES",
+      "title": "QA Automation + Manual Engineer- Canada Remote",
+      "location": "Canada",
+      "url": "https://www.linkedin.com/jobs/view/4464346622/",
+      "date_posted": "2026-10-06",
+      "salary": "",
+      "ats": "LinkedIn",
+      "description": "Job Title:\nSr. QA Automation+ Manual Engineer\n\nLocation:\nCanada (Remote)\n\nPosition :\n6+ Months Contract\n\nJob Summary\n\nWe are looking for a skilled QA Automation Engineer\nto design, develop, and maintain automated test frameworks and scripts to ensure high-quality software delivery. The ideal candidate will work closely with developers, product owners, and DevOps teams in an Agile environment to ensure functional, regression, and performance testing are automated and scalable.\n\nKey Responsibilities\n\nDesign, develop, and maintain automation test scripts and frameworks\nPerform functional, regression, smoke, and integration testing\nCollaborate with developers and business teams to understand requirements and acceptance criteria\nIntegrate automated tests into CI/CD pipelines\nIdentify, document, and track defects using tools like JIRA\nExecute automated test suites and analyze test results\nParticipate in Agile/Scrum ceremonies (stand-ups, sprint planning, retrospectives)\nEnsure test coverage for web, API, and backend applications\nSupport UAT and production validation when required\nFollow best practices for test automation and QA standards\n\nRequired Skills & Qualifications\n\nStrong experience in QA Automation testing\nHands-on experience with automation tools such as:\nSelenium, Cypress, Playwright, TestNG, JUnit\n\nProgramming experience in Java, Python, JavaScript, or C#\nExperience with API testing (Postman, RestAssured, SOAP UI)\nExperience with CI/CD tools (Jenkins, GitHub Actions, Azure DevOps, GitLab)\nKnowledge of version control systems (Git)\nExperience working in Agile/Scrum environments\nStrong understanding of STLC and SDLC\nExcellent communication and documentation skills\n\nNice To Have (Preferred)\n\nExperience with performance testing tools (JMeter, LoadRunner)\nExperience in cloud environments (AWS, Azure, GCP)\nExperience with BDD frameworks (Cucumber, SpecFlow)\nExposure to containerization (Docker, Kubernetes)\n\nShow more\n\nShow less\n\nSeniority level\n\nNot Applicable\n\nEmployment type\n\nFull-time\n\nIndustries\n\nIT Services and IT Consulting",
+      "work_arrangement": "Remote"
+    }
+  ]
 }

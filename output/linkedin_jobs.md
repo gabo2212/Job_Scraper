@@ -1,6 +1,9 @@
 # 🔥 LinkedIn — Gabriel Fortin — Junior Remote Dev / Automation / AI (Québec) Roles
-*Last updated: 2026-10-06 10:33 UTC*
+*Last updated: 2026-10-06 20:32 UTC*
 
-**0 new role(s)** since last run · 0 total in last 1h
+**1 new role(s)** since last run · 1 total in last 1h
 
-No new roles since the last run.
+### [QA Automation + Manual Engineer- Canada Remote](https://www.linkedin.com/jobs/view/4464346622/) — RELQ TECHNOLOGIES
+- 📍 **Location:** Canada
+- **Work mode:** Remote
+- 🕒 **Posted:** 2026-10-06
