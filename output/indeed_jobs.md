@@ -1,23 +1,24 @@
 # 🟦 Indeed — Gabriel Fortin — Junior Remote Dev / Automation / AI (Québec) Roles
-*Last updated: 2026-10-07 06:40 UTC*
+*Last updated: 2026-10-07 20:52 UTC*
 
-**3 new role(s)** since last run · 7 total in last 24h
+**3 new role(s)** since last run · 4 total in last 24h
 
-### [Software Engineer I](https://ca.indeed.com/viewjob?jk=bd75b43b0a8504fe) — RAM
-- 📍 **Location:** Vancouver, BC, CA
-- 💰 **Salary:** $60k–$70k/yr
+### [Junior Software Developer - System Integration Labs (North Shore)](https://ca.indeed.com/viewjob?jk=5a076a3e55b4e208) — CAE
+- 📍 **Location:** Mirabel, QC, CA
 - **Work mode:** On-site
 - **Job type:** fulltime
-- 🕒 **Posted:** 2026-10-06
+- 🕒 **Posted:** 2026-10-07
 
-### [Associate, Software Engineer, New Grad](https://ca.indeed.com/viewjob?jk=12e8a69ea7444c66) — Capital One
+### [Software Engineer I](https://ca.indeed.com/viewjob?jk=de8caa8a0b069edc) — TD
 - 📍 **Location:** Toronto, ON, CA
+- 💰 **Salary:** $70k–$98k/yr
 - **Work mode:** On-site
 - **Job type:** fulltime
-- 🕒 **Posted:** 2026-10-06
+- 🕒 **Posted:** 2026-10-07
 
-### [Associate, Software Engineer, New Grad](https://ca.indeed.com/viewjob?jk=ab1a5b47d512b995) — Capital One
-- 📍 **Location:** Toronto, ON, CA
+### [Jr. Full Stack Developer - Invitation Project](https://ca.indeed.com/viewjob?jk=7219e23a15efa179) — Christian Career
+- 📍 **Location:** Langley, BC, CA
+- 💰 **Salary:** $60k–$80k/yr
 - **Work mode:** On-site
 - **Job type:** fulltime
 - 🕒 **Posted:** 2026-10-06
