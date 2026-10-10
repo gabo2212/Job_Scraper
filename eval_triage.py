@@ -4,9 +4,9 @@ Golden-case evaluations for triage_agent.py: synthetic job postings with known-c
 outcomes, run through the EXACT production pipeline (build_static_prefix →
 build_job_prompt → model → parse_verdict).
 
-Calibrated for a junior/entry-level remote independent-work IT candidate in Québec
-(dev/automation/QA/data/AI-training; NOT help desk / support queues).
-AI-assisted coding (Cursor/Copilot) is a strong plus when mentioned.
+Calibrated for a junior/entry-level remote IT candidate in Québec.
+PRIMARY: migration/deployment/app support/tech ops/L1-L2 remote support/data ops.
+SECONDARY: junior accessible software/automation/AI. Pure non-IT customer service out.
 
 Usage:
   python eval_triage.py
@@ -27,7 +27,7 @@ SLEEP_BETWEEN_CALLS = 0.2
 CASES = [
     {
         "id": "junior-python-remote-canada",
-        "note": "Junior Python remote Canada = Tier-1 target",
+        "note": "Junior Python remote Canada = Tier-3 accessible still good",
         "job": {"title": "Junior Python Developer",
                 "company": "Laurentide Soft", "location": "Remote — Canada",
                 "ats": "Lever", "date_posted": "2026-09-04"},
@@ -42,7 +42,7 @@ CASES = [
     },
     {
         "id": "ai-assisted-fullstack-remote",
-        "note": "Junior full-stack that encourages Copilot/Cursor = top Tier-1",
+        "note": "Junior full-stack AI-assisted = Tier-3 strong still OK",
         "job": {"title": "Junior Full-Stack Developer",
                 "company": "ProtoLabs QC", "location": "Remote — Canada",
                 "ats": "Ashby", "date_posted": "2026-09-04"},
@@ -82,7 +82,7 @@ CASES = [
     },
     {
         "id": "l1-helpdesk-remote-canada",
-        "note": "L1 help desk remote = OUT OF SCOPE, must score low",
+        "note": "L1 help desk remote Canada = Tier-1 IN SCOPE",
         "job": {"title": "IT Help Desk Analyst (Level 1)",
                 "company": "NorthStar MSP", "location": "Remote (Canada)",
                 "ats": "Lever", "date_posted": "2026-09-02"},
@@ -90,20 +90,25 @@ CASES = [
                "resets, software installs, printer and VPN issues, ticket "
                "triage. Bilingual French/English an asset. Open to candidates "
                "across Canada. Entry-level / junior welcome."),
-        "expect": {"max_score": 45, "verdicts": ["skip"],
-                   "flag_re": r"customer-facing-support"},
+        "expect": {"min_score": 65, "verdicts": ["strong", "maybe"],
+                   "families": ["it-support-helpdesk", "systems-administration",
+                                "application-support"],
+                   "flag_re": r"remote-canada|strong-support|bilingual"},
     },
     {
         "id": "service-desk-montreal-hybrid",
-        "note": "Service desk hybrid = out of scope even if junior location OK",
+        "note": "Service desk hybrid Montréal L2 = Tier-1 accessible",
         "job": {"title": "Service Desk Analyst II",
                 "company": "Québec CloudOps", "location": "Montréal, QC (hybrid)",
                 "ats": "Ashby", "date_posted": "2026-09-02"},
         "jd": ("Hybrid L2 service desk in Greater Montréal: escalate and resolve "
                "Windows/Office 365 incidents, Active Directory basics, VPN "
-               "troubleshooting, and ticket queue. Bilingual FR/EN required."),
-        "expect": {"max_score": 45, "verdicts": ["skip"],
-                   "flag_re": r"customer-facing-support"},
+               "troubleshooting, and ticket queue. Bilingual FR/EN required. "
+               "College diploma or equivalent OK."),
+        "expect": {"min_score": 60, "verdicts": ["strong", "maybe"],
+                   "families": ["it-support-helpdesk", "m365-ad-ops",
+                                "systems-administration"],
+                   "flag_re": r"bilingual|montreal|strong-support|remote"},
     },
     {
         "id": "deployment-migration-project-remote",

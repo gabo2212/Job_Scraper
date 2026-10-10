@@ -113,30 +113,31 @@ def test_parse_verdict_derives_bands_and_clears_skip_opener():
     assert strong["verdict"] == "strong"
 
 
-def test_role_families_are_independent_junior_not_helpdesk():
+def test_role_families_include_it_ops_and_support():
+    assert "deployment-migration" in ta.ROLE_FAMILIES
+    assert "it-support-helpdesk" in ta.ROLE_FAMILIES
+    assert "application-support" in ta.ROLE_FAMILIES
     assert "software-development" in ta.ROLE_FAMILIES
     assert "ai-assisted-dev" in ta.ROLE_FAMILIES
-    assert "ai-training-annotation" in ta.ROLE_FAMILIES
-    assert "deployment-migration" in ta.ROLE_FAMILIES
     assert "customer-facing-support" in ta.ROLE_FAMILIES
-    assert "help-desk-service-desk" not in ta.ROLE_FAMILIES
     assert "toxicology" not in ta.ROLE_FAMILIES
-    assert "ai-assisted-dev" in ta.FLAG_TAGS
+    assert "procedure-following" in ta.FLAG_TAGS
+    assert "strong-support-match" in ta.FLAG_TAGS
     assert "customer-facing-support" in ta.FLAG_TAGS
     assert "independent-work" in ta.FLAG_TAGS
 
 
-def test_build_static_prefix_calibrated_for_junior_independent():
-    prefix = ta.build_static_prefix("Junior remote developer in Québec.", "")
+def test_build_static_prefix_calibrated_for_it_ops():
+    prefix = ta.build_static_prefix("Junior remote IT ops in Québec.", "")
     assert "junior/entry-level remote IT" in prefix
     assert "Québec" in prefix or "Quebec" in prefix
     assert "strong≥80" in prefix
     assert "us-only" in prefix
-    assert "ai-assisted" in prefix.lower()
-    assert "help desk" in prefix.lower() or "customer-facing-support" in prefix
+    assert "help desk" in prefix.lower() or "it-support-helpdesk" in prefix
+    assert "IN SCOPE" in prefix or "L1-L2" in prefix
     assert "bachelor" in prefix.lower()
     assert "CANDIDATE PROFILE" in prefix
-    assert "Junior remote developer in Québec." in prefix
+    assert "Junior remote IT ops in Québec." in prefix
     assert "toxicology" not in prefix.lower()
     assert "medical-imaging" not in prefix.lower()
 

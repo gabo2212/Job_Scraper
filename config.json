@@ -1,13 +1,118 @@
 {
-  "_README": "Personalized for Gabriel Fortin (Québec, Canada). Portfolio: https://gab-cloud.com/ — JUNIOR remote independent project-based work: junior dev/automation/QA/data/AI-training/cloud/DevOps, AI-assisted coding encouraged. NO help desk / service desk / tech support queues. Specialist/Consultant/Coordinator without junior/entry signal = excluded.",
+  "_README": "Personalized for Gabriel Fortin (Québec, Canada). Portfolio: https://gab-cloud.com/ — PRIMARY: accessible remote IT project/ops/support/migration/deployment work (CompuCom→Sobeys/IGA style). Help desk L1-L2 / app support / tech ops IN SCOPE. Junior accessible software-dev/cyber secondary. Keep senior/lead/architect/manager/US-only out.",
   "profile": {
-    "title": "Gabriel Fortin — Junior Remote Dev / Automation / AI (Québec)",
-    "subtitle": "Remote Canada/Québec · Junior · Independent project work · AI-assisted coding · NOT help desk",
+    "title": "Gabriel Fortin — Remote IT Ops / Migration / Support (Québec)",
+    "subtitle": "Remote Canada/Québec · Contract IT projects · Migration · Deployment · L1-L2 support · Tech ops",
     "emoji": "🖥️"
   },
   "keywords": {
-    "_comment": "TITLE keep list for independent junior remote paths (dev/automation/QA/data/AI-training/cloud). Help-desk/support queue phrases intentionally omitted.",
+    "_comment": "PRIMARY: remote IT ops/support/migration/deployment/project-tech. SECONDARY: junior accessible software/QA/automation/cyber.",
     "include": [
+      "help desk",
+      "helpdesk",
+      "service desk",
+      "IT support",
+      "technical support",
+      "tech support",
+      "desktop support",
+      "application support",
+      "app support",
+      "software support",
+      "soutien technique",
+      "soutien informatique",
+      "support technique",
+      "technicien soutien",
+      "technicien support",
+      "technicien TI",
+      "technicien informatique",
+      "agent de soutien",
+      "analyste soutien",
+      "centre de services",
+      "IT support technician",
+      "IT support analyst",
+      "support analyst L1",
+      "support analyst L2",
+      "support technician L1",
+      "support technician L2",
+      "L1 support",
+      "L2 support",
+      "niveau 1",
+      "niveau 2",
+      "tier 1",
+      "tier 2",
+      "implementation specialist",
+      "implementation analyst",
+      "implementation technician",
+      "deployment specialist",
+      "deployment consultant",
+      "deployment technician",
+      "deployment analyst",
+      "migration specialist",
+      "migration technician",
+      "migration analyst",
+      "project support analyst",
+      "project support associate",
+      "IT project support",
+      "operations associate",
+      "IT operations associate",
+      "technical operations",
+      "tech ops",
+      "rollout technician",
+      "rollout specialist",
+      "field technician",
+      "project technician",
+      "MSP technician",
+      "remote IT technician",
+      "remote support technician",
+      "software deployment",
+      "software rollout",
+      "software implementation",
+      "cloud migration",
+      "legacy migration",
+      "system migration",
+      "data migration",
+      "data conversion",
+      "data cleanup",
+      "data validation",
+      "PLU",
+      "POS support",
+      "retail technology",
+      "device management",
+      "asset tracking",
+      "endpoint deployment",
+      "endpoint imaging",
+      "device provisioning",
+      "user provisioning",
+      "M365",
+      "Microsoft 365",
+      "Active Directory",
+      "AD support",
+      "identity support",
+      "batch operations",
+      "batch monitoring",
+      "ERP support",
+      "application analyst",
+      "UAT tester",
+      "manual QA",
+      "migration validation",
+      "QA validation",
+      "junior systems administrator",
+      "junior sysadmin",
+      "junior network",
+      "cloud support associate",
+      "junior IT operations",
+      "technicien déploiement",
+      "technicien migration",
+      "analyste déploiement",
+      "spécialiste implantation",
+      "specialiste implantation",
+      "analyste implantation",
+      "soutien applicatif",
+      "soutien applications",
+      "déploiement logiciel",
+      "migration de données",
+      "validation de migration",
+      "provisionnement",
       "junior developer",
       "junior programmer",
       "junior software",
@@ -18,161 +123,41 @@
       "junior fullstack",
       "junior python",
       "junior .NET",
-      "junior dotnet",
       "junior php",
-      "junior javascript",
       "associate developer",
-      "associate software",
       "entry level developer",
       "entry-level developer",
       "programmeur junior",
       "développeur junior",
       "developpeur junior",
-      "développeur web junior",
-      "programmeur web junior",
       "junior automation",
       "automation developer",
       "RPA developer",
-      "RPA junior",
       "low-code developer",
-      "no-code developer",
-      "Power Automate",
-      "workflow automation",
-      "automation builder",
-      "Zapier",
-      "n8n",
       "junior QA",
-      "junior test",
-      "QA analyst junior",
-      "test analyst junior",
-      "test automation",
       "software tester",
-      "QA automation",
-      "manual tester junior",
-      "analyste QA junior",
       "testeur logiciel",
       "testeur junior",
       "junior devops",
-      "junior DevOps",
-      "associate devops",
       "junior cloud",
-      "cloud support associate",
-      "infrastructure as code",
-      "junior terraform",
-      "junior azure",
-      "junior aws",
-      "build and release",
       "junior data",
       "junior data analyst",
-      "data analyst junior",
-      "data engineer junior",
-      "ETL developer",
-      "BI analyst junior",
-      "SQL developer junior",
-      "data migration",
-      "data conversion",
       "data annotation",
-      "data labeling",
       "AI trainer",
-      "AI training",
-      "AI annotation",
-      "prompt engineer",
-      "prompt evaluation",
-      "LLM evaluation",
-      "model evaluation",
-      "coding evaluator",
-      "AI coding evaluator",
-      "AI engineer junior",
-      "junior AI",
-      "junior ML",
-      "AI application developer",
-      "LLM application",
-      "AI-assisted",
-      "AI-native",
-      "AI automation",
-      "AI agents",
-      "agentic",
-      "vibe coding",
-      "GitHub Copilot",
-      "Copilot",
-      "Cursor",
-      "Claude Code",
-      "internal tools developer",
-      "rapid prototyping",
-      "MVP developer",
-      "startup junior developer",
-      "contract developer junior",
       "technical writer",
-      "technical writer IT",
-      "documentation specialist junior",
-      "rédacteur technique",
       "junior security",
       "SOC analyst L1",
-      "SOC L1",
-      "GRC junior",
-      "vulnerability analyst junior",
       "junior cybersecurity",
-      "analyste sécurité junior",
-      "junior systems",
-      "junior sysadmin",
-      "junior systems administrator",
-      "junior administrator",
-      "administrateur système junior",
-      "IT operations associate",
-      "junior IT operations",
-      "sysadmin automation",
-      "device provisioning",
-      "endpoint imaging",
-      "software deployment junior",
-      "migration technician junior",
-      "junior deployment",
-      "junior migration",
-      "remote deployment",
-      "remote migration",
-      "data cleanup",
-      "API developer junior",
-      "integration developer junior",
-      "junior integration",
-      "localization tester",
-      "bilingual QA",
-      "web scraping",
-      "scraping automation",
+      "analyste programmeur junior",
+      "développeur .NET junior",
+      "contract IT",
+      "IT contractor",
+      "contract technician",
       "WordPress developer junior",
       "Shopify developer junior",
-      "web developer junior",
-      "full stack junior",
-      "fullstack junior",
-      "AI workflow",
-      "low code",
-      "no code",
-      "analyste données junior",
-      "ingénieur données junior",
-      "junior c#",
-      "junior c sharp",
-      "c# developer junior",
-      ".NET developer junior",
-      "junior software engineer",
-      "entry level software",
-      "entry-level software",
-      "new grad software",
-      "new graduate software",
-      "graduate software developer",
-      "junior API",
-      "junior SQL",
-      "junior linux",
-      "junior backend developer",
-      "junior ai automation",
-      "automation engineer junior",
-      "ai automation engineer",
-      "développeur .NET junior",
-      "développeur logiciel junior",
-      "developpeur logiciel junior",
-      "analyste programmeur junior",
-      "programmeur-analyste junior",
-      "développeur backend junior",
-      "développeur full stack junior"
+      "web developer junior"
     ],
-    "_exclude_comment": "Soft nouns (specialist/consultant/coordinator/implementation/…) need explicit junior/entry signal. Help desk / service desk / tech support / customer-facing queues are hard-excluded (no soft bypass). Non-IT exclusions kept.",
+    "_exclude_comment": "Hard seniority + pure customer-service queues + non-IT. Soft nouns (specialist/consultant/analyst/…) bypass with junior/entry/contract-tech OR IT-ops procedure title match in scrape_jobs._title_is_excluded. Help desk / IT support intentionally NOT excluded.",
     "exclude": [
       "senior",
       "sr.",
@@ -352,251 +337,174 @@
       "fence",
       "vending",
       "équipement agricole",
-      "help desk",
-      "helpdesk",
-      "service desk",
-      "centre de services",
-      "technical support",
-      "tech support",
-      "IT support",
-      "soutien technique",
-      "support technique",
-      "soutien informatique",
-      "agent de soutien",
-      "agent de support",
-      "support agent",
-      "support representative",
-      "support rep",
-      "technical support agent",
-      "technical support representative",
-      "technical support analyst",
       "customer service",
       "call center",
       "call centre",
       "chat support",
       "contact center",
-      "contact centre",
-      "desktop support",
-      "endpoint support",
-      "support technician",
-      "support analyst",
-      "support specialist",
-      "technicien soutien",
-      "technicien support",
-      "technicien help desk",
-      "technicien centre de services",
-      "analyste centre de services",
-      "analyste soutien",
-      "implementation"
+      "contact centre"
     ],
     "fuzzy_seniority": [],
     "fuzzy_domain": [],
     "fuzzy_exclude": []
   },
   "search_terms": {
-    "_comment": "Junior remote independent paths + AI-assisted coding. No help-desk queries.",
+    "_comment": "EN+FR queries for remote IT migration/deployment/support/ops + secondary junior dev.",
     "remote_boards": [
-      "developer",
-      "software engineer",
-      "python",
-      "full stack",
-      "frontend",
-      "backend",
-      ".net",
-      "qa",
-      "test automation",
-      "data analyst",
-      "automation",
-      "ai",
+      "IT support",
+      "help desk",
+      "service desk",
+      "technician",
+      "migration",
+      "deployment",
+      "implementation",
+      "operations",
+      "sysadmin",
       "devops",
-      "security",
-      "programmeur",
-      "technical writer",
-      "junior software engineer",
-      "entry level developer",
-      "c#",
-      "sql",
-      "linux",
-      "api developer",
-      "backend developer",
-      "full stack developer",
-      "ai automation",
-      "new grad"
+      "python",
+      "qa",
+      "automation",
+      "support",
+      "technicien",
+      "soutien",
+      "déploiement",
+      "programmeur"
     ],
     "linkedin": [
-      "Junior Python Developer",
-      "Junior .NET Developer",
-      "Junior Full Stack Developer",
-      "Junior Software Developer",
-      "Junior QA Automation",
-      "Junior DevOps",
-      "Junior Data Analyst",
-      "AI Trainer remote",
-      "Développeur logiciel junior télétravail",
-      "AI-assisted developer",
-      "GitHub Copilot developer",
-      "Junior Software Engineer remote",
-      "RPA developer junior",
-      "Junior Automation Engineer AI",
-      "Développeur junior",
-      "Programmeur junior",
-      "Automatisation junior",
-      "Testeur logiciel junior",
-      "Junior C# Developer",
-      "Développeur IA junior"
+      "IT Support Technician remote Canada",
+      "Help Desk L1 remote Canada",
+      "Service Desk Analyst L1 Canada",
+      "Application Support Analyst remote",
+      "Implementation Specialist junior Canada",
+      "Deployment Technician remote",
+      "Migration Technician remote Canada",
+      "Project Support Analyst IT",
+      "IT Operations Associate remote",
+      "Software Deployment Technician",
+      "Data Migration Analyst remote",
+      "M365 Support Analyst Canada",
+      "Active Directory Support junior",
+      "POS Support Technician remote",
+      "Technicien TI télétravail",
+      "Soutien technique niveau 1 télétravail",
+      "Technicien déploiement migration",
+      "Analyste soutien applicatif",
+      "Junior Systems Administrator remote",
+      "Contract IT Technician Canada",
+      "MSP Technician remote Canada",
+      "UAT Tester remote Canada"
     ],
     "indeed": [
+      "IT Support Technician remote Canada",
+      "Help Desk Analyst L1 remote Canada",
+      "Service Desk Technician Canada remote",
+      "Application Support Analyst Canada",
+      "Technical Support Analyst L1 Canada",
+      "Desktop Support remote Canada",
+      "Implementation Specialist junior remote",
+      "Deployment Consultant junior Canada",
+      "Deployment Technician remote Canada",
+      "Migration Technician remote Canada",
+      "IT Project Support Analyst remote",
+      "Operations Associate IT remote",
+      "Software Deployment Technician Canada",
+      "Cloud Migration Technician Canada",
+      "Data Migration Analyst remote Canada",
+      "Data Validation Analyst remote",
+      "M365 Support Analyst remote Canada",
+      "Active Directory user provisioning",
+      "POS Support Technician Canada",
+      "Retail technology support remote",
+      "MSP Technician Compugen Softchoice",
+      "Contract IT Technician remote Canada",
+      "Field project technician remote",
+      "Batch operations monitoring IT",
+      "Manual QA UAT migration validation",
+      "ERP application support Canada",
+      "Technicien soutien informatique télétravail",
+      "Centre de services TI niveau 1",
+      "Technicien migration déploiement télétravail",
+      "Soutien applicatif télétravail",
+      "Analyste implantation logiciel",
+      "Migration de données télétravail",
+      "Technicien TI contrat Québec",
+      "Déploiement logiciel magasins",
+      "Junior Systems Administrator remote Canada",
+      "Cloud support associate Canada",
       "Junior Python Developer remote Canada",
       "Junior .NET Developer Canada",
-      "Junior Full Stack Developer remote",
-      "Junior Software Developer Canada remote",
-      "Junior Web Developer remote",
-      "Junior PHP Developer Canada",
-      "Junior QA Automation Canada",
-      "Software Tester junior remote",
-      "Junior DevOps Canada remote",
-      "Junior Cloud Associate Canada",
-      "Junior Data Analyst remote Canada",
-      "Data Annotation remote Canada",
-      "AI Trainer remote",
-      "AI Coding Evaluator remote",
-      "Prompt Engineer remote Canada",
-      "LLM Evaluation remote",
-      "AI-assisted development",
-      "AI-native developer",
-      "GitHub Copilot experience",
-      "Cursor AI developer",
-      "vibe coding",
-      "AI automation developer",
-      "AI agents developer",
-      "Low-code developer Zapier",
-      "n8n automation",
-      "RPA developer junior Canada",
-      "Workflow automation developer",
-      "Internal tools developer junior",
-      "MVP developer startup",
-      "Contract Junior Developer remote Canada",
-      "Technical Writer IT remote",
-      "Junior Security Analyst remote",
-      "SOC Analyst L1 remote Canada",
-      "Junior Systems Administrator automation",
-      "Data Migration junior remote",
-      "WordPress developer junior remote",
-      "Shopify developer junior",
-      "Développeur junior télétravail",
-      "Programmeur Python junior",
-      "Développeur .NET junior",
-      "Testeur logiciel junior",
-      "Analyste données junior",
-      "Formateur IA annotation",
-      "Développeur automatisation",
-      "Low-code développeur",
-      "Rédacteur technique TI",
-      "Annotateur de données",
-      "Évaluateur LLM",
-      "Junior AI Engineer remote",
-      "Prototype developer AI tools",
-      "Junior Software Developer AI-assisted",
-      "Junior Software Engineer remote Canada",
-      "Junior C# developer remote Canada",
-      ".NET full stack developer remote Canada",
-      "Junior backend developer Python Linux remote",
-      "Junior automation engineer n8n HubSpot",
-      "Junior AI automation engineer",
-      "Software developer Cursor Claude Code encouraged",
-      "Associate software developer remote Canada",
-      "Entry level software developer Canada remote",
-      "New grad software engineer Canada",
-      "Junior SQL developer remote Canada",
-      "Développeur .NET junior télétravail",
-      "Développeur logiciel junior télétravail",
-      "Analyste programmeur junior télétravail"
+      "Junior QA remote Canada",
+      "Technical Writer IT remote"
     ],
     "glassdoor": [
-      "Junior Python Developer",
-      "Junior Software Developer",
-      "Junior QA",
-      "Junior DevOps",
-      "AI Trainer",
-      "Développeur junior",
-      "Prompt Engineer",
-      "Data Annotation",
-      "Low-code developer",
-      "Technical Writer IT"
+      "IT Support Technician",
+      "Help Desk L1",
+      "Implementation Specialist",
+      "Deployment Technician",
+      "Migration Technician",
+      "Technicien TI",
+      "Application Support",
+      "Junior Systems Administrator"
     ],
     "ziprecruiter": [
-      "Junior Python Developer",
-      "Junior Software Developer",
-      "Junior QA Automation",
-      "AI Trainer remote",
-      "Développeur junior",
-      "Prompt Engineer",
-      "Data Annotation",
-      "Low-code developer"
+      "IT Support Technician",
+      "Help Desk L1",
+      "Implementation Specialist",
+      "Deployment Technician",
+      "Migration Technician",
+      "Technicien TI",
+      "Application Support",
+      "Junior Systems Administrator"
     ],
     "google_jobs": [
-      "Junior Python Developer remote Canada",
-      "Junior Full Stack remote Canada",
-      "AI Trainer remote Canada",
-      "Junior DevOps remote Canada",
-      "Développeur junior télétravail Canada",
-      "Data Annotation remote Canada",
-      "AI-assisted developer remote",
-      "Junior QA remote Canada",
-      "Prompt Engineer remote Canada",
-      "Low-code developer remote Canada"
+      "IT Support Technician remote Canada",
+      "Help Desk remote Canada",
+      "Migration Technician remote Canada",
+      "Deployment Technician remote Canada",
+      "Technicien TI télétravail Canada",
+      "Application Support remote Canada",
+      "Implementation Specialist junior Canada",
+      "Data Migration remote Canada"
     ],
     "hiring_cafe": [],
     "calcareers": [],
     "usajobs": [],
     "governmentjobs": [],
     "workday": [
-      "Junior Developer",
-      "Junior Software",
-      "Junior QA",
-      "Junior DevOps",
-      "Data Analyst junior",
-      "Développeur junior",
-      "AI Trainer",
-      "Technical Writer"
+      "IT Support",
+      "Help Desk",
+      "Service Desk",
+      "Implementation",
+      "Deployment",
+      "Migration",
+      "Application Support",
+      "Technicien",
+      "Junior Developer"
     ],
     "job_bank": [
+      "IT support technician",
+      "help desk",
+      "service desk",
+      "application support",
+      "implementation specialist",
+      "deployment technician",
+      "migration technician",
+      "project support analyst",
+      "IT operations",
+      "data migration",
+      "software deployment",
+      "technicien soutien informatique",
+      "soutien technique",
+      "technicien déploiement",
+      "migration de données",
+      "soutien applicatif",
+      "centre de services",
+      "junior systems administrator",
+      "cloud support",
       "junior software developer",
-      "junior python developer",
-      "junior web developer",
-      "junior full stack",
-      "junior QA",
-      "software tester",
-      "junior devops",
-      "junior data analyst",
-      "data annotation",
-      "AI trainer",
-      "prompt engineer",
-      "low-code developer",
-      "RPA developer",
-      "technical writer",
-      "junior automation",
-      "développeur junior",
       "programmeur junior",
       "testeur logiciel",
-      "analyste données junior",
-      "annotateur données",
-      "rédacteur technique",
-      "automatisation",
-      "développeur web junior",
-      "intelligence artificielle junior",
-      "évaluation modèles IA",
-      "WordPress junior",
-      "migration de données junior",
-      "cloud junior",
-      "junior software engineer",
-      "junior C# developer",
-      "junior .NET developer",
-      "junior backend developer",
-      "junior API developer",
-      "analyste programmeur junior",
-      "développeur .NET",
-      "automatisation IA"
+      "contrat TI"
     ]
   },
   "locations": {
@@ -736,7 +644,17 @@
   },
   "remote_boards": {
     "_comment": "Remote-first boards (remote_boards.py). One request per endpoint per run (daily cron); honest User-Agent; link back + credit to each board. Skipped after evaluation: Wellfound (anti-bot 303), Remote.co (timeouts, no feed), JustRemote (JS-only, no API/RSS), Dynamite Jobs (RSS is a blog, not jobs).",
-    "boards": ["remotive", "remoteok", "weworkremotely", "himalayas", "jobicy", "workingnomads", "arbeitnow", "hnhiring", "companyboards"],
+    "boards": [
+      "remotive",
+      "remoteok",
+      "weworkremotely",
+      "himalayas",
+      "jobicy",
+      "workingnomads",
+      "arbeitnow",
+      "hnhiring",
+      "companyboards"
+    ],
     "max_age_days": 45,
     "request_delay": 2.0,
     "himalayas": {
@@ -745,68 +663,283 @@
       "country": "CA"
     },
     "jobicy": {
-      "geos": ["canada", "anywhere"],
+      "geos": [
+        "canada",
+        "anywhere"
+      ],
       "count": 100
     },
     "weworkremotely": {
-      "feeds": ["remote-programming-jobs", "remote-devops-sysadmin-jobs", "remote-jobs"]
+      "feeds": [
+        "remote-programming-jobs",
+        "remote-devops-sysadmin-jobs",
+        "remote-jobs"
+      ]
     },
     "companyboards": {
       "_comment": "Curated public career boards (Greenhouse/Lever/Ashby JSON APIs; each verified to exist 2026-10-01). One request per company, 0.6s apart. Only remote postings with an explicit junior/entry signal are kept.",
       "company_delay": 0.6,
       "companies": [
-        {"name": "Hootsuite", "ats": "greenhouse", "slug": "hootsuite"},
-        {"name": "Jobber", "ats": "ashby", "slug": "jobber"},
-        {"name": "Float", "ats": "ashby", "slug": "float"},
-        {"name": "Clearco", "ats": "ashby", "slug": "clearco"},
-        {"name": "Ritual", "ats": "greenhouse", "slug": "ritual"},
-        {"name": "Neo Financial", "ats": "ashby", "slug": "neofinancial"},
-        {"name": "Later", "ats": "greenhouse", "slug": "later"},
-        {"name": "Unbounce", "ats": "greenhouse", "slug": "unbounce"},
-        {"name": "Procurify", "ats": "ashby", "slug": "procurify"},
-        {"name": "Trulioo", "ats": "ashby", "slug": "trulioo"},
-        {"name": "1Password", "ats": "ashby", "slug": "1password"},
-        {"name": "Faire", "ats": "greenhouse", "slug": "faire"},
-        {"name": "Lightspeed", "ats": "ashby", "slug": "lightspeed"},
-        {"name": "D2L", "ats": "greenhouse", "slug": "d2l"},
-        {"name": "Tulip", "ats": "greenhouse", "slug": "tulip"},
-        {"name": "Benevity", "ats": "ashby", "slug": "benevity"},
-        {"name": "Hopper", "ats": "ashby", "slug": "hopper"},
-        {"name": "Achievers", "ats": "lever", "slug": "achievers"},
-        {"name": "Wattpad", "ats": "lever", "slug": "wattpad"},
-        {"name": "Mejuri", "ats": "greenhouse", "slug": "mejuri"},
-        {"name": "Loopio", "ats": "ashby", "slug": "loopio"},
-        {"name": "Miovision", "ats": "ashby", "slug": "miovision"},
-        {"name": "Shakepay", "ats": "greenhouse", "slug": "shakepay"},
-        {"name": "Koho", "ats": "ashby", "slug": "koho"},
-        {"name": "Jane App", "ats": "ashby", "slug": "jane"},
-        {"name": "Geotab", "ats": "greenhouse", "slug": "geotab"},
-        {"name": "Caseware", "ats": "lever", "slug": "caseware"},
-        {"name": "BlueCat", "ats": "lever", "slug": "bluecatnetworks"},
-        {"name": "7shifts", "ats": "greenhouse", "slug": "7shifts"},
-        {"name": "Tucows", "ats": "greenhouse", "slug": "tucows"},
-        {"name": "Cohere", "ats": "ashby", "slug": "cohere"},
-        {"name": "Mozilla", "ats": "greenhouse", "slug": "mozilla"},
-        {"name": "GitLab", "ats": "greenhouse", "slug": "gitlab"},
-        {"name": "Zapier", "ats": "ashby", "slug": "zapier"},
-        {"name": "PostHog", "ats": "ashby", "slug": "posthog"},
-        {"name": "Supabase", "ats": "ashby", "slug": "supabase"},
-        {"name": "Vercel", "ats": "greenhouse", "slug": "vercel"},
-        {"name": "Netlify", "ats": "greenhouse", "slug": "netlify"},
-        {"name": "Buffer", "ats": "ashby", "slug": "buffer"},
-        {"name": "Close", "ats": "ashby", "slug": "close"},
-        {"name": "Remote", "ats": "greenhouse", "slug": "remote"},
-        {"name": "Oyster", "ats": "ashby", "slug": "oyster"},
-        {"name": "Mattermost", "ats": "greenhouse", "slug": "mattermost"},
-        {"name": "Tailscale", "ats": "greenhouse", "slug": "tailscale"},
-        {"name": "Grafana Labs", "ats": "greenhouse", "slug": "grafanalabs"},
-        {"name": "Elastic", "ats": "greenhouse", "slug": "elastic"},
-        {"name": "Wikimedia Foundation", "ats": "greenhouse", "slug": "wikimedia"},
-        {"name": "FullStory", "ats": "ashby", "slug": "fullstory"},
-        {"name": "Linear", "ats": "ashby", "slug": "linear"},
-        {"name": "Airtable", "ats": "greenhouse", "slug": "airtable"},
-        {"name": "Notion", "ats": "ashby", "slug": "notion"},
-        {"name": "Rewind", "ats": "ashby", "slug": "rewind"}
+        {
+          "name": "Hootsuite",
+          "ats": "greenhouse",
+          "slug": "hootsuite"
+        },
+        {
+          "name": "Jobber",
+          "ats": "ashby",
+          "slug": "jobber"
+        },
+        {
+          "name": "Float",
+          "ats": "ashby",
+          "slug": "float"
+        },
+        {
+          "name": "Clearco",
+          "ats": "ashby",
+          "slug": "clearco"
+        },
+        {
+          "name": "Ritual",
+          "ats": "greenhouse",
+          "slug": "ritual"
+        },
+        {
+          "name": "Neo Financial",
+          "ats": "ashby",
+          "slug": "neofinancial"
+        },
+        {
+          "name": "Later",
+          "ats": "greenhouse",
+          "slug": "later"
+        },
+        {
+          "name": "Unbounce",
+          "ats": "greenhouse",
+          "slug": "unbounce"
+        },
+        {
+          "name": "Procurify",
+          "ats": "ashby",
+          "slug": "procurify"
+        },
+        {
+          "name": "Trulioo",
+          "ats": "ashby",
+          "slug": "trulioo"
+        },
+        {
+          "name": "1Password",
+          "ats": "ashby",
+          "slug": "1password"
+        },
+        {
+          "name": "Faire",
+          "ats": "greenhouse",
+          "slug": "faire"
+        },
+        {
+          "name": "Lightspeed",
+          "ats": "ashby",
+          "slug": "lightspeed"
+        },
+        {
+          "name": "D2L",
+          "ats": "greenhouse",
+          "slug": "d2l"
+        },
+        {
+          "name": "Tulip",
+          "ats": "greenhouse",
+          "slug": "tulip"
+        },
+        {
+          "name": "Benevity",
+          "ats": "ashby",
+          "slug": "benevity"
+        },
+        {
+          "name": "Hopper",
+          "ats": "ashby",
+          "slug": "hopper"
+        },
+        {
+          "name": "Achievers",
+          "ats": "lever",
+          "slug": "achievers"
+        },
+        {
+          "name": "Wattpad",
+          "ats": "lever",
+          "slug": "wattpad"
+        },
+        {
+          "name": "Mejuri",
+          "ats": "greenhouse",
+          "slug": "mejuri"
+        },
+        {
+          "name": "Loopio",
+          "ats": "ashby",
+          "slug": "loopio"
+        },
+        {
+          "name": "Miovision",
+          "ats": "ashby",
+          "slug": "miovision"
+        },
+        {
+          "name": "Shakepay",
+          "ats": "greenhouse",
+          "slug": "shakepay"
+        },
+        {
+          "name": "Koho",
+          "ats": "ashby",
+          "slug": "koho"
+        },
+        {
+          "name": "Jane App",
+          "ats": "ashby",
+          "slug": "jane"
+        },
+        {
+          "name": "Geotab",
+          "ats": "greenhouse",
+          "slug": "geotab"
+        },
+        {
+          "name": "Caseware",
+          "ats": "lever",
+          "slug": "caseware"
+        },
+        {
+          "name": "BlueCat",
+          "ats": "lever",
+          "slug": "bluecatnetworks"
+        },
+        {
+          "name": "7shifts",
+          "ats": "greenhouse",
+          "slug": "7shifts"
+        },
+        {
+          "name": "Tucows",
+          "ats": "greenhouse",
+          "slug": "tucows"
+        },
+        {
+          "name": "Cohere",
+          "ats": "ashby",
+          "slug": "cohere"
+        },
+        {
+          "name": "Mozilla",
+          "ats": "greenhouse",
+          "slug": "mozilla"
+        },
+        {
+          "name": "GitLab",
+          "ats": "greenhouse",
+          "slug": "gitlab"
+        },
+        {
+          "name": "Zapier",
+          "ats": "ashby",
+          "slug": "zapier"
+        },
+        {
+          "name": "PostHog",
+          "ats": "ashby",
+          "slug": "posthog"
+        },
+        {
+          "name": "Supabase",
+          "ats": "ashby",
+          "slug": "supabase"
+        },
+        {
+          "name": "Vercel",
+          "ats": "greenhouse",
+          "slug": "vercel"
+        },
+        {
+          "name": "Netlify",
+          "ats": "greenhouse",
+          "slug": "netlify"
+        },
+        {
+          "name": "Buffer",
+          "ats": "ashby",
+          "slug": "buffer"
+        },
+        {
+          "name": "Close",
+          "ats": "ashby",
+          "slug": "close"
+        },
+        {
+          "name": "Remote",
+          "ats": "greenhouse",
+          "slug": "remote"
+        },
+        {
+          "name": "Oyster",
+          "ats": "ashby",
+          "slug": "oyster"
+        },
+        {
+          "name": "Mattermost",
+          "ats": "greenhouse",
+          "slug": "mattermost"
+        },
+        {
+          "name": "Tailscale",
+          "ats": "greenhouse",
+          "slug": "tailscale"
+        },
+        {
+          "name": "Grafana Labs",
+          "ats": "greenhouse",
+          "slug": "grafanalabs"
+        },
+        {
+          "name": "Elastic",
+          "ats": "greenhouse",
+          "slug": "elastic"
+        },
+        {
+          "name": "Wikimedia Foundation",
+          "ats": "greenhouse",
+          "slug": "wikimedia"
+        },
+        {
+          "name": "FullStory",
+          "ats": "ashby",
+          "slug": "fullstory"
+        },
+        {
+          "name": "Linear",
+          "ats": "ashby",
+          "slug": "linear"
+        },
+        {
+          "name": "Airtable",
+          "ats": "greenhouse",
+          "slug": "airtable"
+        },
+        {
+          "name": "Notion",
+          "ats": "ashby",
+          "slug": "notion"
+        },
+        {
+          "name": "Rewind",
+          "ats": "ashby",
+          "slug": "rewind"
+        }
       ]
     }
   },
@@ -886,94 +1019,93 @@
       "Air Canada",
       "CN",
       "CAE",
-      "Ubisoft Montréal"
+      "Ubisoft Montréal",
+      "Insight",
+      "Bell",
+      "Telus"
     ],
     "_exclude_comment": "Drop clearly unrelated employers when title still matched.",
     "exclude": []
   },
   "priority_topics": {
-    "_comment": "Gold ★ for independent junior remote + AI-assisted coding signals.",
+    "_comment": "Gold ★ for Sobeys-like remote IT ops / migration / support first.",
     "terms": [
       [
-        "AI-Assisted Dev",
-        "AI[- ]?assisted|AI[- ]?native|AI[- ]?first|vibe\\s+coding|\\bCopilot\\b|\\bCursor\\b|Claude\\s+Code|LLM|agentic|prompt\\s+engineer|AI\\s+tools?"
+        "Migration / Deployment",
+        "migrat|deploy|rollout|implantation|d[eé]ploiement|ePLUM|PLU|endpoint|provision"
       ],
       [
-        "Junior / Entry Level",
-        "junior|entry[- ]?level|d[eé]butant|associate|0[-–]?2\\s*(?:years?|ans)|no\\s+experience"
+        "Help Desk / L1-L2 Support",
+        "help\\s*desk|service\\s*desk|IT\\s+support|soutien\\s+(?:technique|informatique)|L[12]|niveau\\s*[12]|tier\\s*[12]"
       ],
       [
-        "Remote independent",
-        "\\bremote\\b|t[eé]l[eé]travail|teletravail|work from home|project[- ]based|contract"
+        "App / ERP / POS Support",
+        "application\\s+support|app\\s+support|ERP|POS|retail\\s+tech|soutien\\s+applicatif"
       ],
       [
-        "Junior Dev / Web",
-        "junior\\s+(?:software|web|backend|frontend|full[- ]?stack|python|\\.?NET|php)|d[eé]veloppeur junior|programmeur junior"
+        "Data Ops / Validation",
+        "data\\s+(?:migration|conversion|cleanup|validation)|UAT|manual\\s+QA|batch\\s+ops"
       ],
       [
-        "Automation / Scripting",
-        "automation|scripting|\\bRPA\\b|PowerShell|Python|low[- ]?code|Zapier|\\bn8n\\b|workflow"
+        "M365 / AD Ops",
+        "M365|Microsoft\\s+365|Active\\s+Directory|\\bAD\\b|user\\s+provision"
       ],
       [
-        "QA / Testing",
-        "\\bQA\\b|test automation|software tester|testeur"
+        "Remote Canada / Contract",
+        "\\bremote\\b|t[eé]l[eé]travail|contract|contrat|project[- ]based"
       ],
       [
-        "Data / Analyst",
-        "data\\s+(?:analyst|engineer|migration|annotation)|\\bETL\\b|BI\\s+analyst"
+        "Junior / Entry",
+        "junior|entry[- ]?level|d[eé]butant|associate|0[-–]?2\\s*(?:years?|ans)"
       ],
       [
-        "AI Training / Annotation",
-        "AI\\s+train|data\\s+annotat|prompt\\s+eval|LLM\\s+eval|model\\s+eval|coding\\s+eval"
-      ],
-      [
-        "Cloud / DevOps (Junior)",
-        "junior\\s+(?:devops|cloud)|terraform|infrastructure as code|azure|aws"
+        "Junior Dev / Automation",
+        "junior\\s+(?:software|python|\\.?NET|QA|automation)|d[eé]veloppeur junior|RPA|low[- ]?code"
       ]
     ]
   },
   "role_categories": {
-    "_comment": "Dashboard Role chips — independent junior remote paths (no help desk).",
+    "_comment": "Dashboard Role chips — Tier1 IT ops first, junior dev last.",
     "terms": [
       [
-        "AI-Assisted Dev",
-        "AI[- ]?assisted|coding\\s+assistants?|AI[- ]?native|AI[- ]?first|vibe\\s+coding|\\bCopilot\\b|\\bCursor\\b|Claude\\s+Code|LLM\\s+app|agentic|prompt\\s+engineer|AI\\s+(?:tools?|automation|agents?)"
+        "Migration / Deployment",
+        "migrat|deploy|rollout|implantation|d[eé]ploiement|implementation|endpoint\\s+(?:imaging|deploy)|device\\s+provision"
       ],
       [
-        "Junior Dev / Web",
-        "junior\\s+(?:software|web|backend|frontend|full[- ]?stack|python|\\.?NET|php|javascript|developer|programmer)|d[eé]veloppeur junior|programmeur junior|WordPress|Shopify|associate\\s+(?:developer|software)"
+        "Help Desk / IT Support",
+        "help\\s*desk|helpdesk|service\\s*desk|IT\\s+support|technical\\s+support|desktop\\s+support|soutien\\s+(?:technique|informatique)|support\\s+technique|L[12]\\s+support|centre\\s+de\\s+services"
       ],
       [
-        "Automation & Scripting",
-        "automation|scripting|\\bRPA\\b|low[- ]?code|no[- ]?code|Power\\s*Automate|Zapier|\\bn8n\\b|workflow\\s+automation|PowerShell|internal tools"
+        "App / ERP / POS Support",
+        "application\\s+support|app\\s+support|software\\s+support|ERP|POS|retail\\s+tech|soutien\\s+applicatif"
       ],
       [
-        "QA / Testing",
-        "\\bQA\\b|test automation|software tester|testeur|manual test|localization test|bilingual QA"
+        "Tech Ops / Batch / Monitoring",
+        "tech\\s+ops|technical\\s+operations|batch\\s+(?:ops|operations|monitoring)|IT\\s+operations"
       ],
       [
-        "Data / Analyst",
-        "data\\s+(?:analyst|engineer|migration|conversion|cleanup|entry)|\\bETL\\b|BI\\s+analyst|SQL\\s+developer|analyste donn"
+        "Data Ops / QA Validation",
+        "data\\s+(?:migration|conversion|cleanup|validation|entry)|UAT|manual\\s+QA|migration\\s+validation"
       ],
       [
-        "AI Training / Annotation",
-        "AI\\s+train|data\\s+annotat|data\\s+label|prompt\\s+eval|LLM\\s+eval|model\\s+eval|coding\\s+eval|annotateur|Outlier|DataAnnotation|Appen|Scale AI|Mercor"
+        "M365 / AD Ops",
+        "M365|Microsoft\\s+365|Active\\s+Directory|user\\s+provision|identity"
       ],
       [
-        "Cloud / DevOps (Junior)",
-        "junior\\s+(?:devops|cloud)|cloud support associate|terraform|infrastructure as code|build\\s*(?:&|and)\\s*release|junior\\s+(?:azure|aws)"
+        "Project Support / Implementation",
+        "project\\s+support|implementation\\s+(?:specialist|analyst|consultant)|operations?\\s+associate|rollout"
+      ],
+      [
+        "Sysadmin / Network / Cloud (Junior)",
+        "junior\\s+(?:sysadmin|systems|network|cloud|devops)|cloud\\s+support\\s+associate|administrateur\\s+syst[eè]me\\s+junior"
+      ],
+      [
+        "Junior Dev / Automation",
+        "junior\\s+(?:software|web|backend|python|\\.?NET|developer|automation)|d[eé]veloppeur junior|programmeur junior|RPA|low[- ]?code|AI[- ]?assisted"
       ],
       [
         "Security (Junior)",
-        "junior\\s+security|SOC\\s*(?:analyst\\s*)?L1|GRC\\s+junior|vulnerability|cyber|analyste s[eé]curit"
-      ],
-      [
-        "Deployment / Migration (Junior)",
-        "junior\\s+(?:deploy|migration|implementation)|remote\\s+(?:device\\s+)?(?:provision|imaging|deploy|migration)|data\\s+migration|endpoint\\s+imaging"
-      ],
-      [
-        "Other Remote IT",
-        "technical\\s+writer|documentation|junior\\s+sysadmin|IT operations associate|sysadmin\\s+automation|API\\s+integration"
+        "junior\\s+security|SOC\\s*(?:analyst\\s*)?L1|cyber|analyste\\s+s[eé]curit"
       ]
     ]
   },

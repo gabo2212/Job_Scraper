@@ -169,7 +169,9 @@ _JUNIOR_ENTRY_SIGNAL_RE = re.compile(
     r"junior|jr\.?|entry[- ]?level|d[eé]butant|associate|"
     r"graduate|new\s*grad|apprenti|"
     r"level\s*[12]|niveau\s*[12]|tier\s*[12]|[ln][12]|"
-    r"0[-–]?2\s*(?:years?|ans)|no\s+experience"
+    r"0[-–]?2\s*(?:years?|ans)|no\s+experience|"
+    r"technician|technicien|contract|contractuel|temporary|temps\s+partiel|"
+    r"fixed[- ]?term|term\s+contract"
     r")\b"
     r"|(?:"
     r"administrator|administrateur|specialist|sp[eé]cialiste|"
@@ -179,50 +181,66 @@ _JUNIOR_ENTRY_SIGNAL_RE = re.compile(
     r")"
 )
 
-# Ticket-queue / customer-facing support — hard exclude unless clearly
-# an independent junior path (dev/automation/QA/data) in the same title.
-_HARD_SUPPORT_QUEUE_RE = re.compile(
+# Non-IT customer queues — still hard-excluded (not IT help desk / app support).
+_HARD_CUSTOMER_QUEUE_RE = re.compile(
     r"(?i)(?:"
-    r"help\s*desk|helpdesk|service\s*desk|centre\s+de\s+services|"
-    r"technical\s+support|tech\s+support|it\s+support|"
-    r"soutien\s+technique|support\s+technique|soutien\s+informatique|"
-    r"agent\s+(?:de\s+)?(?:soutien|support)|"
-    r"support\s+(?:agent|representative|rep\b|analyst|specialist|technician|engineer)|"
     r"customer\s+support|customer\s+service|call\s*cent(?:er|re)|"
     r"chat\s+support|contact\s+cent(?:er|re)|"
-    r"desktop\s+support|endpoint\s+support"
+    r"support\s+[aà]\s+la\s+client[eè]le|"
+    r"agent\s+de\s+service\s+[aà]\s+la\s+client[eè]le"
     r")"
 )
-_INDEPENDENT_JUNIOR_OVERRIDE_RE = re.compile(
-    r"(?i)\b(?:"
-    r"junior|jr\.?|entry[- ]?level|d[eé]butant|associate|"
-    r"developer|d[eé]veloppeur|programmer|programmeur|"
-    r"automation|scripting|devops|"
-    r"\bQA\b|test\s+automat|data\s+analyst|data\s+engineer|"
-    r"python|\.NET|fastapi|full[- ]?stack"
-    r")\b"
+
+# Accessible remote IT ops / support / migration / deployment procedure work.
+# These titles may bypass soft-noun excludes even without an explicit "junior".
+_IT_OPS_PROCEDURE_RE = re.compile(
+    r"(?i)(?:"
+    r"help\s*desk|helpdesk|service\s*desk|centre\s+de\s+services|"
+    r"(?:technical|tech|it|desktop|endpoint|application|app|software)\s+support|"
+    r"soutien\s+(?:technique|informatique)|support\s+technique|"
+    r"agent\s+(?:de\s+)?(?:soutien|support)|"
+    r"support\s+(?:agent|representative|rep\b|analyst|specialist|technician|engineer)|"
+    r"implementation\s+(?:specialist|consultant|analyst|technician|associate)|"
+    r"deployment\s+(?:specialist|consultant|analyst|technician|associate)|"
+    r"migration\s+(?:specialist|consultant|analyst|technician|associate)|"
+    r"project\s+support\s+(?:analyst|associate|specialist|technician)|"
+    r"(?:IT\s+)?operations?\s+associate|"
+    r"rollout\s+(?:technician|specialist|analyst|consultant)|"
+    r"technicien\s+(?:soutien|support|d[eé]ploiement|migration|TI|informatique)|"
+    r"(?:field|project)\s+(?:technician|tech\b)|"
+    r"MSP\s+(?:technician|tech\b|support)|"
+    r"user\s+provision|"
+    r"(?:M365|Microsoft\s+365|Active\s+Directory|AD)\s+(?:ops|support|admin|technician)|"
+    r"(?:POS|retail)\s+(?:tech|support|migration|deployment)|"
+    r"data\s+(?:migration|conversion|cleanup|validation)|"
+    r"(?:UAT|manual\s+QA|migration\s+validation)|"
+    r"batch\s+(?:ops|operations|monitoring)|"
+    r"tech\s+ops|technical\s+operations"
+    r")"
 )
 
-# Soft nouns that ALWAYS need an explicit junior/entry signal (no variety bypass).
+# Soft nouns that ALWAYS need an explicit junior/entry signal (no variety bypass)
+# unless the title matches accessible IT-ops procedure work above.
 _REQUIRES_JUNIOR_ALWAYS_RE = re.compile(
     r"(?i)\b(?:"
     r"specialist|sp[eé]cialiste|consultant|coordinator|coordonnateur|"
-    r"implementation|officer|advisor|adviser|expert|integrator"
+    r"officer|advisor|adviser|expert|integrator"
     r")\b"
 )
 
-# Independent junior paths (dev/automation/QA/data/AI/cloud) without exact include.
+# Accessible junior/IT-ops paths without exact include (dev + ops/support/migration).
 _VARIETY_KEEP_RE = re.compile(
     r"(?i)(?:"
     r"junior\s+(?:software|web|backend|frontend|full[- ]?stack|python|\.?NET|php|"
     r"javascript|devops|cloud|QA|test|data|automation|security|SOC|sysadmin|"
-    r"developer|d[eé]veloppeur|programmeur|analyst|analyste|AI|ML)|"
+    r"developer|d[eé]veloppeur|programmeur|analyst|analyste|AI|ML|"
+    r"IT|support|migration|deployment|implementation)|"
     r"(?:software|web|backend|frontend|full[- ]?stack|python|\.?NET|php|javascript)\s+"
     r"(?:developer|engineer|d[eé]veloppeur)(?!.{0,20}\b(?:senior|sr\.?|lead|principal|staff)\b)|"
     r"test\s+automation|QA\s+automat|software\s+tester|manual\s+tester|"
     r"\bRPA\b|low[- ]?code|no[- ]?code|Power\s*Automate|Zapier|\bn8n\b|\bMake\b|"
     r"workflow\s+automation|automation\s+builder|"
-    r"data\s+(?:analyst|engineer|migration|conversion|annotation|label|entry)|"
+    r"data\s+(?:analyst|engineer|migration|conversion|annotation|label|entry|cleanup|validation)|"
     r"\bETL\b|BI\s+analyst|SQL\s+developer|"
     r"AI[- ]?(?:assisted|native|first)\b|"
     r"AI\s+(?:train|annotat|engineer|developer|automation|agent|native|assisted|tools)|"
@@ -239,9 +257,26 @@ _VARIETY_KEEP_RE = re.compile(
     r"programmeur\s+junior|d[eé]veloppeur\s+junior|"
     r"programmeur(?:\s+\w+){0,3}\s+junior|"
     r"d[eé]veloppeur(?:\s+\w+){0,3}\s+junior|"
-    r"analyste\s+(?:donn[eé]es|QA|test)\s+junior|"
-    r"associate\s+(?:cloud|software|network|developer|engineer|devops)|"
-    r"MVP\s+(?:developer|engineer)|startup\s+(?:developer|engineer)"
+    r"(?:developer|engineer|analyst|analyste|technician|technicien)\s+junior|"
+    r"WordPress|Shopify|"
+    r"analyste\s+(?:donn[eé]es|QA|test|soutien|support)\s+junior|"
+    r"associate\s+(?:cloud|software|network|developer|engineer|devops|IT)|"
+    r"MVP\s+(?:developer|engineer)|startup\s+(?:developer|engineer)|"
+    r"help\s*desk|helpdesk|service\s*desk|centre\s+de\s+services|"
+    r"(?:technical|tech|it|desktop|endpoint|application|app)\s+support|"
+    r"soutien\s+(?:technique|informatique)|support\s+technique|"
+    r"implementation\s+(?:specialist|consultant|analyst|technician|associate)|"
+    r"deployment\s+(?:specialist|consultant|analyst|technician|associate)|"
+    r"migration\s+(?:specialist|consultant|analyst|technician|associate)|"
+    r"project\s+support\s+(?:analyst|associate|specialist|technician)|"
+    r"(?:IT\s+)?operations?\s+associate|"
+    r"rollout\s+(?:technician|specialist|analyst)|"
+    r"technicien\s+(?:soutien|support|d[eé]ploiement|migration|TI|informatique)|"
+    r"(?:field|project)\s+technician|"
+    r"user\s+provision|(?:M365|Microsoft\s+365|Active\s+Directory)\b|"
+    r"(?:POS|retail)\s+(?:tech|support|migration|deployment)|"
+    r"tech\s+ops|technical\s+operations|batch\s+ops|"
+    r"manual\s+QA|UAT\s+(?:tester|analyst)|migration\s+validation"
     r")"
 )
 
@@ -385,12 +420,13 @@ def fetch(url, *, retries=4, _base_wait=30.0):
     return ""
 
 
-# Tier suffixes after soft nouns are always hard (not soft-bypassable).
-# re.finditer won't see "specialist ii" after matching word-bounded "specialist".
+# Tier III+ after soft nouns are always hard (not soft-bypassable).
+# "II" is kept for L2 support / associate tracks (in scope for this fork).
+# re.finditer won't see "specialist iii" after matching word-bounded "specialist".
 _HARD_TIER_SUFFIX_RE = re.compile(
     r"(?i)\b(?:specialist|sp[eé]cialiste|analyst|analyste|technician|technicien|"
     r"administrator|administrateur|engineer|ing[eé]nieur|consultant|"
-    r"coordinator|coordonnateur)\s+(?:II|III|IV|V)\b"
+    r"coordinator|coordonnateur)\s+(?:III|IV|V)\b"
 )
 
 
@@ -411,30 +447,32 @@ def _requires_too_many_years(*parts: str) -> bool:
 def _title_is_excluded(title: str, *, force_soft_bypass: bool = False) -> bool:
     """True if title hits keywords.exclude, with soft-exclude bypass.
 
-    Soft tokens need an explicit junior/entry cue. Consultant/specialist/
-    coordinator/implementation NEVER bypass without that cue. Developer/
-    engineer/analyst/admin may also bypass when the title matches an
-    independent junior variety-keep path. Hard excludes always drop.
-    Ticket-queue / customer-facing support titles are hard-excluded unless
-    the same title clearly signals independent junior dev/automation/QA work.
+    Soft tokens need an explicit junior/entry/contract-tech cue, OR an
+    accessible IT-ops procedure title (help desk L1-L2, migration/deployment
+    implementation, project support, operations associate). Pure non-IT
+    customer-service / call-center titles are hard-excluded. Senior/lead/
+    architect/manager and tier II+/III+ always drop.
     """
     if not title:
         return True
     if _HARD_TIER_SUFFIX_RE.search(title):
         return True
-    if _HARD_SUPPORT_QUEUE_RE.search(title):
-        if not (_INDEPENDENT_JUNIOR_OVERRIDE_RE.search(title)
-                and _JUNIOR_ENTRY_SIGNAL_RE.search(title)):
-            return True
+    if _HARD_CUSTOMER_QUEUE_RE.search(title):
+        return True
     soft_spans = {m.span() for m in _SOFT_EXCLUDE_RE.finditer(title)}
     has_junior = _has_soft_bypass_signal(title)
     variety_ok = bool(_VARIETY_KEEP_RE.search(title))
+    it_ops_ok = bool(_IT_OPS_PROCEDURE_RE.search(title))
     always_needs_junior = bool(_REQUIRES_JUNIOR_ALWAYS_RE.search(title))
-    can_bypass = has_junior or (variety_ok and not always_needs_junior)
-    # force_soft_bypass: caller already proved the title is a plain dev/QA/data
-    # role (remote boards use bare titles like "Backend Developer"); soft nouns
-    # still never bypass for specialist/consultant/coordinator-style titles.
-    if force_soft_bypass and not always_needs_junior:
+    can_bypass = (
+        has_junior
+        or it_ops_ok
+        or (variety_ok and not always_needs_junior)
+    )
+    # force_soft_bypass: caller already proved the title is a plain IT role
+    # (remote boards use bare titles like "Backend Developer"); specialist/
+    # consultant still need junior OR IT-ops procedure signal.
+    if force_soft_bypass and (not always_needs_junior or it_ops_ok):
         can_bypass = True
     for m in EXCLUDED_SENIORITY_RE.finditer(title):
         if can_bypass and m.span() in soft_spans:
@@ -447,13 +485,14 @@ def _title_is_excluded(title: str, *, force_soft_bypass: bool = False) -> bool:
 
 def title_matches_keywords(title: str) -> bool:
     """True if a job title is not excluded and matches keywords.include OR a
-    independent junior variety-keep pattern (dev/QA/data/AI/automation/…).
+    variety-keep / IT-ops procedure pattern (dev/QA/data + support/migration).
     """
     if _title_is_excluded(title):
         return False
     if _KEYWORD_RE.search(title):
         return True
-    return bool(_VARIETY_KEEP_RE.search(title or ""))
+    t = title or ""
+    return bool(_VARIETY_KEEP_RE.search(t) or _IT_OPS_PROCEDURE_RE.search(t))
 
 
 def text_matches_keywords(title: str, *parts: str) -> bool:

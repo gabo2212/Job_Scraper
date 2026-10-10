@@ -47,18 +47,21 @@ FETCH_TIMEOUT = 15    # seconds per JD fetch
 MAX_OUTPUT_TOKENS = 700
 
 ROLE_FAMILIES = (
+    "deployment-migration | it-support-helpdesk | application-support | "
+    "tech-ops-monitoring | data-ops-validation | m365-ad-ops | "
+    "project-support-implementation | systems-administration | cloud-devops | "
     "software-development | automation-scripting | qa-testing | data-analytics | "
-    "ai-training-annotation | ai-assisted-dev | cloud-devops | cybersecurity | "
-    "deployment-migration | systems-administration | technical-writing | "
-    "customer-facing-support | other"
+    "ai-training-annotation | ai-assisted-dev | cybersecurity | "
+    "technical-writing | customer-facing-support | other"
 )
 SENIORITY_FITS = (
     "excellent | appropriate | stretch | too-senior | too-junior | unclear"
 )
 FLAG_TAGS = (
     "remote-canada | remote-quebec | montreal-hybrid | independent-work | "
-    "project-based | ai-assisted-dev | ai-training | strong-dev-match | "
-    "strong-automation-match | strong-deployment-match | bilingual-asset | "
+    "project-based | procedure-following | strong-deployment-match | "
+    "strong-support-match | strong-ops-match | strong-dev-match | "
+    "strong-automation-match | ai-assisted-dev | ai-training | bilingual-asset | "
     "linux-match | powershell-match | networking-match | learnable-tool-gap | "
     "experience-gap | degree-required | degree-or-equivalent | "
     "degree-preferred | senior-title | "
@@ -258,24 +261,30 @@ def build_static_prefix(profile: str, resume: str) -> str:
         f'"flags": [zero+ of {{{FLAG_TAGS}}}], '
         '"outreach_opener": "<2 tailored sentences, or empty string if skip>"}',
         "",
-        "Target tiers (prefer lower # when duties match):",
-        "T1: remote independent junior software/web/backend/full-stack/Python/"
-        ".NET/PHP/JS, automation/scripting/RPA/low-code, QA/test automation, "
-        "data analyst/ETL, AI training/annotation/prompt/LLM/coding evaluation, "
-        "AI-assisted/AI-native/vibe-coding/Copilot/Cursor-friendly product work, "
-        "and remote junior deployment/migration/endpoint project tasks "
-        "(project-based — NOT ticket queues).",
-        "T2: junior cloud/DevOps/IaC, junior sysadmin-automation, junior "
-        "security (vuln scan / GRC / remote SOC L1 alerts only if not "
-        "customer ticket support), technical writing/documentation.",
-        "T3: any other clearly junior remote IT that is independent/"
-        "project-based.",
+        "PRIMARY target = accessible remote IT project/ops/support/migration/"
+        "deployment work (procedure-following, VPN/RDP into endpoints, software "
+        "config, data imports/PLU, validation, documentation, L1-L2 remote "
+        "support). Software-dev and cyber are SECONDARY only if junior/"
+        "accessible.",
         "",
-        "OUT OF SCOPE (cap≈45, verdict skip, flag customer-facing-support) "
-        "unless the SAME posting is clearly independent project work: help "
-        "desk, service desk, tech/IT/desktop support agent/rep/analyst, "
-        "call-center/chat support, L1/L2 ticket queues, customer service, "
-        "soutien technique / agent de soutien / centre de services.",
+        "Target tiers (prefer lower # when duties match):",
+        "T1: remote migration/deployment/rollout/implementation (junior/"
+        "entry/contract-tech or clearly procedure-following), application/"
+        "ERP/POS support, tech ops/batch/monitoring, L1-L2 remote help desk/"
+        "service desk/IT support, data migration/cleanup/validation, IT "
+        "project support / rollout tech / implementation analyst, M365/AD/"
+        "user provisioning, manual QA/UAT/migration validation, retail tech/"
+        "device management, MSP/staffing client-project technician roles.",
+        "T2: junior sysadmin/network/cloud support, IT project assistant, "
+        "junior security (SOC L1 / GRC / vuln scan) when accessible.",
+        "T3: junior accessible software/web/backend/Python/.NET/PHP/JS, "
+        "automation/RPA/low-code, AI-assisted coding, AI training/annotation.",
+        "",
+        "OUT OF SCOPE (cap≈45, verdict skip, flag customer-facing-support): "
+        "pure non-IT customer service / call-center / chat support with no IT "
+        "duties. Senior consultant/architect/lead/manager. US-resident-only.",
+        "IN SCOPE again: help desk, service desk, tech/IT/desktop/app support "
+        "L1-L2, soutien technique / centre de services when remote-eligible.",
         "",
         "Scoring weights (sum≈100): role/duty match 30, skills/experience 25, "
         "seniority/education 20, location/remote 15, transferable/bonus 10.",
@@ -283,24 +292,27 @@ def build_static_prefix(profile: str, resume: str) -> str:
         "borderline, 40-59 weak, 0-39 poor.",
         "Verdict from score: strong≥80, maybe 60-79, skip<60.",
         "",
-        "AI-assisted coding: postings that mention or encourage AI tools "
-        "(Copilot, Cursor, Claude Code, LLM, AI-assisted, AI-first, vibe "
-        "coding, agentic, prompt tooling) for DEV/AUTOMATION roles are a "
-        "STRONG plus — flag ai-assisted-dev. Postings that BAN AI tools or "
-        "require heavy whiteboard/algorithm/CS-fundamentals interviews or "
-        "deep years of pro engineering are a minus — flag ai-tools-banned. "
-        "Candidate is HONESTLY junior and builds with AI assistance; do NOT "
-        "claim senior engineering depth.",
+        "Rank realistic fit + task simplicity + remote QC eligibility + hire "
+        "likelihood over salary/prestige. Procedure-following remote migration/"
+        "support that mirrors prior retail endpoint migration contract work is "
+        "a STRONG plus — flag procedure-following / project-based / "
+        "strong-deployment-match / strong-support-match as applicable.",
         "",
-        "Specialist / consultant / implementation / coordinator / engineer "
-        "titles WITHOUT an explicit junior/entry/0-2yrs/associate signal, OR "
-        "mandatory 3+ years → cap≤40, often skip (flag senior-title or "
-        "experience-gap).",
+        "AI-assisted coding: for DEV/AUTOMATION roles, Copilot/Cursor/Claude "
+        "encouraged = plus (flag ai-assisted-dev). AI tools banned or heavy "
+        "LeetCode/whiteboard = minus (flag ai-tools-banned). Candidate is "
+        "HONESTLY junior; do NOT claim senior engineering depth.",
         "",
-        "Duty boosts: independent heads-down project/task work, scripting/"
-        "automation, remote deployment/migration/validation (not queues), "
-        "documentation, bilingual FR/EN. Flag independent-work / "
-        "project-based / ai-training when applicable.",
+        "Specialist / consultant / coordinator / engineer titles: if duties "
+        "are clearly junior/entry/contract-tech OR procedure-following "
+        "implementation/deployment/migration/support, score on duties (do NOT "
+        "auto-cap≤40). Pure senior consultant / architect / mandatory 3+ yrs "
+        "lead work → cap≤40 (flag senior-title or experience-gap).",
+        "",
+        "Duty boosts: VPN/RDP remote endpoint work, documented procedures, "
+        "software config, data import/PLU/validation, bilingual FR/EN, "
+        "Windows/PowerShell, contract 1–12 months. Flag independent-work / "
+        "project-based / procedure-following when applicable.",
         "",
         "Bachelor's degree (candidate has NONE — college AI program, partial "
         "CS Cégep, Secondary V, plus real IT contract work, portfolio "
@@ -330,9 +342,9 @@ def build_static_prefix(profile: str, resume: str) -> str:
         "Experience: 0-2 yrs OK; 2-3 preferred OK; strict 3 yrs → moderate "
         "penalty; 4-5+ required → strong penalty.",
         "Missing common tools = learnable minor gap for junior roles "
-        "(flag learnable-tool-gap). Transferable skills (Linux, PowerShell/"
-        "Python, TCP/IP, APIs/.NET, Docker) count; do NOT inflate projects "
-        "into years of professional experience.",
+        "(flag learnable-tool-gap). Transferable skills (Windows, Linux, "
+        "PowerShell/Python, TCP/IP, VPN/RDP, AD labs, Docker) count; do NOT "
+        "inflate projects into years of professional experience.",
         "",
         "Location (Québec-based candidate): best = fully remote explicitly "
         "open to Québec/Canada; strong = Canada-wide remote; acceptable = "
@@ -344,10 +356,12 @@ def build_static_prefix(profile: str, resume: str) -> str:
         "(bilingual-asset).",
         "",
         "Hard caps: US-only ≤20; senior/lead/staff/principal ≤35 unless "
-        "duties clearly junior (flag senior-title); specialist/consultant "
-        "w/o junior cue or mandatory 3+ yrs ≤40; help-desk/support queues "
-        "≤45 + skip; mandatory 5+ years ≤40; strictly required bachelor's w/o "
-        "alternative ≤65 (never auto-skip); relocation outside Québec ≤30.",
+        "duties clearly junior (flag senior-title); pure senior consultant "
+        "w/o junior/procedure cue or mandatory 3+ yrs lead ≤40; non-IT "
+        "customer-service queues ≤45 + skip; mandatory 5+ years ≤40; "
+        "strictly required bachelor's w/o alternative ≤65 (never auto-skip); "
+        "relocation outside Québec ≤30. Do NOT apply the old help-desk "
+        "auto-skip — L1-L2 remote IT support is T1.",
         "",
         "Profile vs resume: BOTH verified. Profile may include newer facts "
         "absent from the resume — do not discard them. If they conflict, "

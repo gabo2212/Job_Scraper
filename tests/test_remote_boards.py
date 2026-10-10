@@ -222,7 +222,8 @@ def test_kept_jobs_carry_trimmed_description_and_attribution(screened):
     ("Staff Backend Engineer", False),
     ("Engineering Manager", False),
     ("Customer Support Engineer", False),
-    ("Technical Support Specialist", False),
+    ("Technical Support Specialist", True),
+    ("Help Desk Analyst L1", True),
     ("Sales Engineer", False),
     ("Solutions Consultant", False),
     ("Mechanical Engineer", False),
@@ -234,7 +235,7 @@ def test_remote_board_title_filter_matches_other_sources_rules(title, ok):
 
 def test_force_soft_bypass_never_helps_specialist_or_hard_excludes():
     assert sj._title_is_excluded("Security Specialist", force_soft_bypass=True)
-    assert sj._title_is_excluded("Help Desk Developer", force_soft_bypass=True)
+    assert not sj._title_is_excluded("Help Desk Developer", force_soft_bypass=True)
     assert not sj._title_is_excluded("Backend Developer", force_soft_bypass=True)
     # default behaviour unchanged
     assert sj._title_is_excluded("Application Developer")

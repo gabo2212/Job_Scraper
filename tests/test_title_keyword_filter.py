@@ -1,4 +1,4 @@
-"""Junior independent-path keyword filter: soft nouns + hard support queues."""
+"""IT-ops + junior keyword filter: soft nouns, help desk IN, customer service OUT."""
 from scrape_jobs import title_matches_keywords, _title_is_excluded, _requires_too_many_years
 
 
@@ -37,8 +37,8 @@ def test_keeps_junior_independent_titles():
         assert title_matches_keywords(title), f"should keep: {title}"
 
 
-def test_drops_helpdesk_and_support_queues():
-    drop = [
+def test_keeps_helpdesk_and_it_support():
+    keep = [
         "Junior IT Support Technician — Remote",
         "Help Desk Agent L1",
         "Service Desk Technician",
@@ -51,30 +51,38 @@ def test_drops_helpdesk_and_support_queues():
         "Support Engineer L1",
         "IT Support Consultant",
         "Technical Support Representative",
-        "Customer Support Agent",
-        "Call Center Tech Support",
         "Soutien technique niveau 1",
         "Centre de services analyste",
-    ]
-    for title in drop:
-        assert not title_matches_keywords(title), f"should drop support: {title}"
-
-
-def test_drops_specialist_consultant_without_junior():
-    drop = [
-        "IT Operations Specialist",
-        "Deployment Specialist",
-        "Migration Specialist",
-        "Data Migration Specialist/Consultant",
+        "Application Support Analyst",
         "Implementation Specialist",
         "Deployment Consultant",
-        "IT Specialist – Endpoint Management",
-        "Coordonnateur TI",
-        "IT Coordinator",
+        "Project Support Analyst",
+        "IT Operations Associate",
+        "Migration Technician",
+        "Deployment Technician",
+    ]
+    for title in keep:
+        assert title_matches_keywords(title), f"should keep IT ops/support: {title}"
+
+
+def test_drops_non_it_customer_service():
+    drop = [
+        "Customer Support Agent",
+        "Customer Service Representative",
+        "Call Center Agent",
+        "Chat Support Specialist",
+    ]
+    for title in drop:
+        assert not title_matches_keywords(title), f"should drop non-IT CS: {title}"
+
+
+def test_drops_specialist_consultant_without_it_ops_or_junior():
+    drop = [
         "Security Specialist",
         "SharePoint Specialist",
         "Consultant",
-        "Implementation Analyst",
+        "Coordonnateur TI",
+        "IT Coordinator",
         "Endpoint Management Specialist",
     ]
     for title in drop:
@@ -137,8 +145,10 @@ def test_variety_keep_ai_and_dev():
 
 
 def test_hard_tier_suffix_not_soft_bypassed():
-    assert _title_is_excluded("Technical Implementation Specialist II")
-    assert not title_matches_keywords("Technical Implementation Specialist II")
+    assert _title_is_excluded("Technical Implementation Specialist III")
+    assert not title_matches_keywords("Technical Implementation Specialist III")
+    # II is allowed for L2 support / associate tracks
+    assert title_matches_keywords("Service Desk Analyst II")
     assert not title_matches_keywords("Housekeeping Associate")
     assert not title_matches_keywords("Retail Associate")
 
@@ -156,3 +166,10 @@ def test_build_title_re_empty_never_matches():
     rx = _build_title_re([])
     assert rx.search("Junior Cloud Engineer") is None
     assert list(rx.finditer("anything")) == []
+
+
+def test_force_soft_bypass_helps_dev_not_pure_specialist():
+    assert _title_is_excluded("Security Specialist", force_soft_bypass=True)
+    assert not _title_is_excluded("Help Desk Developer", force_soft_bypass=True)
+    assert not _title_is_excluded("Backend Developer", force_soft_bypass=True)
+    assert _title_is_excluded("Application Developer")

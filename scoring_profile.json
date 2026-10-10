@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "description": "Deterministic fit scoring for Gabriel Fortin — JUNIOR remote independent project-based work (dev/automation/QA/data/AI-training/cloud). AI-assisted coding (Cursor/Copilot/Claude) is a strong plus. Help desk / service desk / customer-facing support queues are heavily penalized. Specialist/consultant without junior signal penalized. From CV 2026 (CompuCom/Sobeys migration contract, Cirque du Soleil, HTB labs, CDI AI). No bachelor's (graded degree penalty: asset -3, or-equivalent -6, required-with-alt -9, strictly required -15 raw, x1.6); ~1 yr experience.",
+  "description": "Deterministic fit scoring for Gabriel Fortin — PRIMARY remote IT ops/support/migration/deployment (CompuCom→Sobeys/IGA style). Help desk L1-L2 / app support / tech ops / data ops / QA validation / M365-AD IN SCOPE. Junior accessible software-dev secondary. Senior/lead/architect/manager/US-only penalized. Graded bachelor's penalty (asset -3, or-equivalent -6, required-with-alt -9, strictly required -15 raw, x1.6). ~1 yr experience.",
   "settings": {
     "title_multiplier": 3,
     "body_multiplier": 1,
@@ -10,52 +10,48 @@
   },
   "fit_terms": [
     {
-      "pattern": "\\b(AI[- ]?assisted|AI[- ]?native|AI[- ]?first|vibe\\s+coding|GitHub\\s+Copilot|\\bCopilot\\b|\\bCursor\\b|Claude\\s+Code|encourage[sd]?\\s+(?:the\\s+)?use\\s+of\\s+AI|AI\\s+tools?\\s+(?:allowed|encouraged|welcome)|agentic)\\b",
+      "pattern": "\\b(remote\\s+(?:device\\s+)?(?:provision|imaging|deploy|migration)|(?:software|system|cloud|legacy|endpoint)\\s+(?:migration|deployment|rollout|implementation)|data\\s+(?:migration|conversion|cleanup|validation)|PLU|ePLUM|VPN|RDP|PowerShell.*(?:deploy|migration|script)|technicien\\s+(?:d[eé]ploiement|migration))\\b",
       "weight": 22
     },
     {
-      "pattern": "\\b(junior|entry[- ]?level|d[eé]butant|associate)\\b.*\\b(developer|d[eé]veloppeur|programmer|programmeur|software|python|\\.?NET|php|full[- ]?stack|QA|devops|data|automation|AI|ML)\\b|\\b(developer|d[eé]veloppeur|programmer|software|python|QA|devops|data)\\b.*\\b(junior|entry[- ]?level|d[eé]butant|associate)\\b",
+      "pattern": "\\b(help\\s*desk|helpdesk|service\\s*desk|centre\\s+de\\s+services|IT\\s+support|technical\\s+support|tech\\s+support|desktop\\s+support|application\\s+support|app\\s+support|soutien\\s+(?:technique|informatique|applicatif)|support\\s+technique|L\\s*[12]|niveau\\s*[12]|tier\\s*[12])\\b",
       "weight": 20
     },
     {
-      "pattern": "\\b(junior\\s+(?:software|web|backend|frontend|full[- ]?stack|python|\\.?NET|php|javascript)\\s+(?:developer|engineer)|programmeur\\s+junior|d[eé]veloppeur\\s+junior)\\b",
+      "pattern": "\\b(implementation\\s+(?:specialist|consultant|analyst|technician)|deployment\\s+(?:specialist|consultant|analyst|technician)|migration\\s+(?:specialist|consultant|analyst|technician)|project\\s+support\\s+(?:analyst|associate)|(?:IT\\s+)?operations?\\s+associate|rollout\\s+(?:technician|specialist)|MSP\\s+technician)\\b",
       "weight": 19
     },
     {
-      "pattern": "\\b(AI\\s+train(?:er|ing)?|data\\s+annotat(?:ion|or)|prompt\\s+(?:engineer|eval)|LLM\\s+eval|model\\s+eval|coding\\s+eval(?:uator)?|AI\\s+coding\\s+eval|review(?:ing)?\\s+AI[- ]?generated\\s+code)\\b",
-      "weight": 18
+      "pattern": "\\b(M365|Microsoft\\s+365|Active\\s+Directory|user\\s+provision|identity\\s+(?:ops|support)|batch\\s+(?:ops|operations|monitoring)|tech\\s+ops|technical\\s+operations|ERP\\s+support|POS\\s+support|retail\\s+tech)\\b",
+      "weight": 17
     },
     {
-      "pattern": "\\b(test\\s+automation|QA\\s+automat|software\\s+tester|junior\\s+QA|manual\\s+tester|localisation|localization\\s+test)\\b",
-      "weight": 16
-    },
-    {
-      "pattern": "\\b(automation|scripting|\\bRPA\\b|low[- ]?code|no[- ]?code|Power\\s*Automate|Zapier|\\bn8n\\b|workflow\\s+automation|internal\\s+tools?)\\b",
-      "weight": 16
-    },
-    {
-      "pattern": "\\b(data\\s+(?:analyst|engineer|migration|conversion|cleanup)|\\bETL\\b|BI\\s+analyst|SQL\\s+developer)\\b.*\\b(junior|entry|associate|remote)?|\\b(junior|entry)\\b.*\\b(data\\s+analyst|ETL)\\b",
+      "pattern": "\\b(manual\\s+QA|UAT|migration\\s+validation|QA\\s+validation|testeur|software\\s+tester|junior\\s+QA)\\b",
       "weight": 15
     },
     {
-      "pattern": "\\b(junior\\s+(?:devops|cloud)|cloud\\s+support\\s+associate|infrastructure\\s+as\\s+code|terraform|junior\\s+(?:azure|aws))\\b",
+      "pattern": "\\b(junior\\s+(?:sysadmin|systems?\\s+administrator|network|cloud|IT\\s+operations)|cloud\\s+support\\s+associate|administrateur\\s+syst[eè]me\\s+junior)\\b",
       "weight": 14
     },
     {
-      "pattern": "\\b(remote\\s+(?:device\\s+)?(?:provision|imaging|deploy|migration)|junior\\s+(?:deploy|migration)|data\\s+migration|PowerShell.*(?:deploy|migration|script))\\b",
-      "weight": 14
-    },
-    {
-      "pattern": "\\b(Python|FastAPI|\\.?NET|C#|PHP|JavaScript|TypeScript|Docker|Bash|PowerShell|SQL)\\b",
+      "pattern": "\\b(junior|entry[- ]?level|d[eé]butant|associate)\\b.*\\b(developer|d[eé]veloppeur|programmer|programmeur|software|python|\\.?NET|php|full[- ]?stack|QA|devops|data|automation|AI|ML)\\b|\\b(developer|d[eé]veloppeur|programmer|software|python|QA|devops|data)\\b.*\\b(junior|entry[- ]?level|d[eé]butant|associate)\\b",
       "weight": 12
     },
     {
-      "pattern": "\\b(technical\\s+writer|documentation\\s+(?:writer|specialist)|r[eé]dacteur\\s+technique)\\b",
+      "pattern": "\\b(automation|scripting|\\bRPA\\b|low[- ]?code|Power\\s*Automate|Zapier|\\bn8n\\b|workflow\\s+automation)\\b",
       "weight": 11
     },
     {
-      "pattern": "\\b(junior\\s+security|SOC\\s*(?:analyst\\s*)?L?1|GRC\\s+junior|vulnerability\\s+scan|Hack\\s+The\\s+Box|\\bHTB\\b)\\b",
-      "weight": 11
+      "pattern": "\\b(Python|FastAPI|\\.?NET|C#|PHP|JavaScript|TypeScript|Docker|Bash|PowerShell|SQL|Windows|Linux)\\b",
+      "weight": 12
+    },
+    {
+      "pattern": "\\b(CyberArk|GlobalProtect|VPN|RDP|TCP/?IP)\\b",
+      "weight": 10
+    },
+    {
+      "pattern": "\\b(AI[- ]?assisted|AI[- ]?native|GitHub\\s+Copilot|\\bCopilot\\b|\\bCursor\\b|Claude\\s+Code)\\b",
+      "weight": 8
     },
     {
       "pattern": "\\b(t[eé]l[eé]travail|teletravail|work from home|fully\\s+remote|remote[- ]first|Canada[- ]wide\\s+remote|remote\\s*[—-]\\s*Canada)\\b",
@@ -70,34 +66,45 @@
       "weight": 6
     },
     {
-      "pattern": "\\b(project[- ]based|contract|temporary|independent|heads[- ]down|async)\\b",
+      "pattern": "\\b(project[- ]based|contract|temporary|contrat|fixed[- ]?term)\\b",
+      "weight": 10
+    },
+    {
+      "pattern": "\\b(CompuCom|Sobeys|IGA|Compugen|Softchoice|CGI|CDW|Insight|Bell|Telus)\\b",
       "weight": 8
     },
     {
-      "pattern": "\\b(WordPress|Shopify|web\\s+scraping|MVP|startup|rapid\\s+prototyp)\\b",
-      "weight": 7
+      "pattern": "\\b(junior\\s+security|SOC\\s*(?:analyst\\s*)?L?1|GRC\\s+junior|Hack\\s+The\\s+Box|\\bHTB\\b)\\b",
+      "weight": 9
+    },
+    {
+      "pattern": "\\b(technical\\s+writer|documentation\\s+(?:writer|specialist)|r[eé]dacteur\\s+technique)\\b",
+      "weight": 8
     }
   ],
   "signature_terms": [
-    "junior|entry[- ]?level|d[eé]butant|associate",
-    "AI[- ]?assisted|Copilot|Cursor|vibe\\s+coding|LLM|agentic",
-    "developer|d[eé]veloppeur|programmeur|automation|\\bQA\\b|devops|data\\s+analyst",
-    "AI\\s+train|data\\s+annotat|prompt\\s+eval",
+    "help\\s*desk|service\\s*desk|IT\\s+support|soutien\\s+technique|migration|deployment|implementation",
+    "junior|entry[- ]?level|d[eé]butant|associate|technician|technicien|contract",
     "remote|t[eé]l[eé]travail|Canada|Qu[eé]bec",
-    "Python|PowerShell|FastAPI|\\.?NET|Docker"
+    "PowerShell|Python|Windows|VPN|RDP|Active\\s+Directory|M365",
+    "data\\s+migration|PLU|POS|application\\s+support"
   ],
   "poor_fit_terms": [
     {
-      "pattern": "\\b(help\\s*desk|helpdesk|service\\s*desk|centre\\s+de\\s+services|technical\\s+support|tech\\s+support|IT\\s+support|desktop\\s+support|soutien\\s+technique|support\\s+technique|soutien\\s+informatique|agent\\s+(?:de\\s+)?(?:soutien|support)|customer\\s+support|customer\\s+service|call\\s*cent(?:er|re)|chat\\s+support|ticket\\s+queue|L1\\s*/\\s*L2\\s+support)\\b",
-      "penalty": 50
+      "pattern": "\\b(customer\\s+support|customer\\s+service|call\\s*cent(?:er|re)|chat\\s+support|contact\\s+cent(?:er|re)|support\\s+[aà]\\s+la\\s+client[eè]le)\\b",
+      "penalty": 40
     },
     {
       "pattern": "\\b(senior|\\bsr\\.?\\b|principal|staff engineer|director|manager|vice president|\\bvp\\b|head of|architect|chief|intermediate|mid[- ]level|team\\s+lead|tech\\s+lead)\\b",
       "penalty": 45
     },
     {
-      "pattern": "\\b((?:specialist|sp[eé]cialiste|consultant|coordinator|coordonnateur|implementation)(?!.{0,40}(?:junior|entry|d[eé]butant|associate|0[-–]?2)))\\b",
-      "penalty": 40
+      "pattern": "\\b((?:coordinator|coordonnateur|officer|advisor|adviser|expert|integrator)(?!.{0,40}(?:junior|entry|d[eé]butant|associate|technician|technicien|0[-–]?2|L\\s*[12]|niveau\\s*[12])))\\b",
+      "penalty": 35
+    },
+    {
+      "pattern": "\\b((?:specialist|sp[eé]cialiste|consultant)(?!.{0,40}(?:junior|entry|d[eé]butant|associate|technician|technicien|implementation|deployment|migration|0[-–]?2|L\\s*[12]|niveau\\s*[12]|contract)))\\b(?!.*(?:implementation|deployment|migration|help\\s*desk|service\\s*desk|IT\\s+support))",
+      "penalty": 30
     },
     {
       "pattern": "\\b(level\\s*[3-5]|niveau\\s*[3-5]|tier\\s*[3-5]|\\b[LN][3-5]\\b|analyst\\s+(iii|iv|v)|specialist\\s+(ii|iii|iv|v)|classe principale)\\b",
@@ -108,7 +115,7 @@
       "penalty": 35
     },
     {
-      "pattern": "\\b(master'?s degree required|phd|ph\\.d|CS\\s+fundamentals\\s+required|whiteboard\\s+interview|算法|LeetCode|no\\s+AI\\s+tools|AI\\s+tools?\\s+(?:banned|prohibited|not\\s+allowed)|must\\s+not\\s+use\\s+AI)\\b",
+      "pattern": "\\b(master'?s degree required|phd|ph\\.d|CS\\s+fundamentals\\s+required|whiteboard\\s+interview|LeetCode|no\\s+AI\\s+tools|AI\\s+tools?\\s+(?:banned|prohibited|not\\s+allowed)|must\\s+not\\s+use\\s+AI)\\b",
       "penalty": 30
     },
     {
@@ -142,53 +149,53 @@
   ],
   "test_cases": [
     {
-      "title": "Junior Python Developer — Remote (AI tools welcome)",
-      "company": "Laurentide Soft",
-      "description": "Junior Python/FastAPI role. Fully remote Canada. We encourage Copilot and Cursor. Portfolio projects welcome. 0-2 years.",
-      "expected_score_range": [85, 100],
-      "rationale": "Junior remote python + AI-assisted encouraged"
-    },
-    {
-      "title": "AI Trainer / Coding Evaluator — Remote",
-      "company": "EvalLabs",
-      "description": "Remote flexible. Review and rate LLM-generated code. Python/.NET familiarity. Independent task-based work. Canada eligible.",
-      "expected_score_range": [75, 100],
-      "rationale": "AI training / coding eval remote independent"
-    },
-    {
-      "title": "Junior QA Automation — télétravail",
-      "company": "Desjardins",
-      "description": "Testeur automatisation junior, Python, remote Québec, bilingue.",
-      "expected_score_range": [70, 100],
-      "rationale": "Junior QA remote QC"
+      "title": "Junior IT Deployment Technician (Remote)",
+      "company": "Acme Retail Systems",
+      "description": "Project-based multi-site retail endpoint migrations. VPN/RDP, PowerShell scripts, validate installs, document procedures. Remote Canada. Junior/entry 0-2 years.",
+      "expected_score_range": [80, 100],
+      "rationale": "Sobeys-like remote migration/deployment"
     },
     {
       "title": "IT Help Desk Analyst (Level 1)",
       "company": "NorthStar MSP",
-      "description": "Tier-1 remote ticket queue, password resets, printer issues. Entry-level.",
-      "expected_score_range": [0, 40],
-      "rationale": "Help desk queue is out of scope"
+      "description": "Tier-1 remote support for Windows endpoints: password resets, software installs, VPN issues, ticket triage. Bilingual FR/EN. Canada-wide. Entry-level.",
+      "expected_score_range": [70, 100],
+      "rationale": "L1 remote help desk is now in scope"
+    },
+    {
+      "title": "Implementation Specialist — Retail POS",
+      "company": "Softchoice",
+      "description": "Follow documented procedures to configure POS software, import PLU data, validate migrations remotely. Contract 6 months. Remote Québec. College diploma OK.",
+      "expected_score_range": [75, 100],
+      "rationale": "Procedure-following implementation matches Sobeys"
+    },
+    {
+      "title": "Junior Python Developer — Remote (AI tools welcome)",
+      "company": "Laurentide Soft",
+      "description": "Junior Python/FastAPI role. Fully remote Canada. Copilot/Cursor encouraged. 0-2 years.",
+      "expected_score_range": [65, 100],
+      "rationale": "Junior remote python still OK as Tier-3"
     },
     {
       "title": "Deployment Consultant",
       "company": "BigConsult",
-      "description": "Implementation specialist for enterprise rollouts. 5+ years. Client-facing.",
-      "expected_score_range": [0, 35],
-      "rationale": "Consultant + no junior + years"
+      "description": "Lead enterprise implementation programs. Client-facing workshops. 5+ years consulting experience required.",
+      "expected_score_range": [0, 40],
+      "rationale": "Senior consultant + years out of scope"
     },
     {
       "title": "Senior Software Engineer",
       "company": "Example Corp",
-      "description": "Staff-level. 8+ years. US only. No AI tools in interviews.",
+      "description": "Staff-level. 8+ years. US only.",
       "expected_score_range": [0, 25],
       "rationale": "Senior + US-only"
     },
     {
-      "title": "Junior Full-Stack Developer — AI-first startup",
-      "company": "ProtoLabs QC",
-      "description": "Remote Canada. Build MVPs with Cursor/Copilot. Low-code OK. Junior welcome.",
-      "expected_score_range": [85, 100],
-      "rationale": "AI-first junior remote MVP"
+      "title": "Customer Service Representative",
+      "company": "RetailCo",
+      "description": "Call center customer service. No IT duties.",
+      "expected_score_range": [0, 40],
+      "rationale": "Non-IT customer service out of scope"
     }
   ]
 }

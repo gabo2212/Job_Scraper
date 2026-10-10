@@ -2,7 +2,7 @@
 
 A free, serverless job-hunting pipeline: **GitHub Actions** scrape job boards on a schedule, an **AI agent scores every new posting against your profile**, and a static **dashboard on GitHub Pages** lets you triage the results. No server, no database, no paid service required (the AI scoring is optional and costs cents).
 
-This fork is tuned for **junior / entry-level remote work**: it filters out senior titles and help-desk queues, screens remote boards for location eligibility, and surfaces a "Best shot" list of the roles the AI rated worth applying to.
+This fork is tuned for **accessible remote IT ops / migration / support / deployment** (plus junior software as a secondary path): it filters out senior/lead/architect titles and pure non-IT customer-service queues, keeps L1–L2 help desk and procedure-following implementation work, screens remote boards for location eligibility, and surfaces a "Best shot" list of the roles the AI rated worth applying to.
 
 - Your dashboard: `https://<your-username>.github.io/Job_Scraper/triage.html`
 - Example / mine (a junior, bilingual, Québec-based IT search): <https://gabo2212.github.io/Job_Scraper/triage.html>
@@ -27,8 +27,8 @@ What this fork upgraded (each item exists in the code or workflows of this repo)
 
 **Filtering**
 - **Canada / Québec support**: config-driven location filter (`location_filter`), French search terms and title keywords, Canadian LinkedIn geoIds, Canadian Indeed locations, and the dashboard map's fallback point moved from California to Québec (`MAP_FALLBACK` in `triage.html`).
-- **Junior-only filtering**: seniority and help-desk/support-queue excludes, plus a junior-signal bypass so ambiguous titles (e.g. "Software Engineer") only pass when the posting shows a junior cue (`_title_is_excluded` in `scrape_jobs.py`).
-- **New role buckets** and priority topics in `config.json` (AI-Assisted Dev, Junior Dev / Web, Automation & Scripting, QA, Data, AI Training, Junior Cloud/DevOps, Junior Security, Deployment/Migration).
+- **Junior + IT-ops filtering**: seniority excludes with junior/entry/contract-tech bypass; help desk / IT support / migration / deployment titles kept; pure customer-service queues dropped (`_title_is_excluded` in `scrape_jobs.py`).
+- **Role buckets** in `config.json` prioritizing Migration/Deployment, Help Desk/IT Support, App/ERP/POS, Tech Ops, Data Ops, M365/AD, Project Support, then junior sysadmin/dev.
 
 **AI triage**
 - **OpenAI support** (default model `gpt-6-luna`) alongside Anthropic: provider auto-detected from the API keys, or forced with the `TRIAGE_PROVIDER` / `TRIAGE_MODEL` variables.
