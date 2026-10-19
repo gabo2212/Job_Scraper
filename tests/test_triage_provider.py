@@ -133,13 +133,15 @@ def test_build_static_prefix_calibrated_for_it_ops():
     assert "Québec" in prefix or "Quebec" in prefix
     assert "strong≥80" in prefix
     assert "us-only" in prefix
-    assert "help desk" in prefix.lower() or "it-support-helpdesk" in prefix
-    assert "IN SCOPE" in prefix or "L1-L2" in prefix
-    assert "bachelor" in prefix.lower()
+    low = prefix.lower()
+    assert "help desk" in low or "service desk" in low
+    assert "out of scope" in low
+    assert "application" in low or "erp" in low or "migration" in low
+    assert "bachelor" in low
     assert "CANDIDATE PROFILE" in prefix
     assert "Junior remote IT ops in Québec." in prefix
-    assert "toxicology" not in prefix.lower()
-    assert "medical-imaging" not in prefix.lower()
+    assert "toxicology" not in low
+    assert "medical-imaging" not in low
 
 
 def test_redact_private_flags_list():

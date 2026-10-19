@@ -5,8 +5,8 @@ outcomes, run through the EXACT production pipeline (build_static_prefix →
 build_job_prompt → model → parse_verdict).
 
 Calibrated for a junior/entry-level remote IT candidate in Québec.
-PRIMARY: migration/deployment/app support/tech ops/L1-L2 remote support/data ops.
-SECONDARY: junior accessible software/automation/AI. Pure non-IT customer service out.
+PRIMARY: migration/deployment/app-ERP-POS support/tech ops/data ops + junior
+software/automation/QA/cloud. Help desk / service desk / tech-support queues OUT.
 
 Usage:
   python eval_triage.py
@@ -82,7 +82,7 @@ CASES = [
     },
     {
         "id": "l1-helpdesk-remote-canada",
-        "note": "L1 help desk remote Canada = Tier-1 IN SCOPE",
+        "note": "L1 help desk remote Canada = OUT OF SCOPE (ticket queue)",
         "job": {"title": "IT Help Desk Analyst (Level 1)",
                 "company": "NorthStar MSP", "location": "Remote (Canada)",
                 "ats": "Lever", "date_posted": "2026-09-02"},
@@ -90,14 +90,14 @@ CASES = [
                "resets, software installs, printer and VPN issues, ticket "
                "triage. Bilingual French/English an asset. Open to candidates "
                "across Canada. Entry-level / junior welcome."),
-        "expect": {"min_score": 65, "verdicts": ["strong", "maybe"],
-                   "families": ["it-support-helpdesk", "systems-administration",
-                                "application-support"],
-                   "flag_re": r"remote-canada|strong-support|bilingual"},
+        "expect": {"max_score": 45, "verdicts": ["skip"],
+                   "families": ["it-support-helpdesk", "customer-facing-support",
+                                "other"],
+                   "flag_re": r"customer-facing-support"},
     },
     {
         "id": "service-desk-montreal-hybrid",
-        "note": "Service desk hybrid Montréal L2 = Tier-1 accessible",
+        "note": "Service desk hybrid Montréal L2 = OUT OF SCOPE (ticket queue)",
         "job": {"title": "Service Desk Analyst II",
                 "company": "Québec CloudOps", "location": "Montréal, QC (hybrid)",
                 "ats": "Ashby", "date_posted": "2026-09-02"},
@@ -105,10 +105,24 @@ CASES = [
                "Windows/Office 365 incidents, Active Directory basics, VPN "
                "troubleshooting, and ticket queue. Bilingual FR/EN required. "
                "College diploma or equivalent OK."),
-        "expect": {"min_score": 60, "verdicts": ["strong", "maybe"],
-                   "families": ["it-support-helpdesk", "m365-ad-ops",
-                                "systems-administration"],
-                   "flag_re": r"bilingual|montreal|strong-support|remote"},
+        "expect": {"max_score": 45, "verdicts": ["skip"],
+                   "families": ["it-support-helpdesk", "customer-facing-support",
+                                "other"],
+                   "flag_re": r"customer-facing-support"},
+    },
+    {
+        "id": "application-support-erp-remote",
+        "note": "ERP/application support remote = IN SCOPE (not help desk)",
+        "job": {"title": "Application Support Analyst — ERP",
+                "company": "RetailTech QC", "location": "Remote — Canada",
+                "ats": "Lever", "date_posted": "2026-09-02"},
+        "jd": ("Configure ERP modules, validate data imports, document "
+               "procedures, support store rollouts. Not a call-center help "
+               "desk. Remote Canada. Junior/associate welcome. College OK."),
+        "expect": {"min_score": 70, "verdicts": ["strong", "maybe"],
+                   "families": ["application-support", "deployment-migration",
+                                "data-ops-validation", "project-support-implementation"],
+                   "flag_re": r"remote-canada|procedure|strong-ops|strong-support|project"},
     },
     {
         "id": "deployment-migration-project-remote",

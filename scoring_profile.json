@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "description": "Deterministic fit scoring for Gabriel Fortin — PRIMARY remote IT ops/support/migration/deployment (CompuCom→Sobeys/IGA style). Help desk L1-L2 / app support / tech ops / data ops / QA validation / M365-AD IN SCOPE. Junior accessible software-dev secondary. Senior/lead/architect/manager/US-only penalized. Graded bachelor's penalty (asset -3, or-equivalent -6, required-with-alt -9, strictly required -15 raw, x1.6). ~1 yr experience.",
+  "description": "Deterministic fit scoring for Gabriel Fortin — PRIMARY broad junior/entry REMOTE IT (migration/deployment, app/ERP/POS support, ops, junior dev/QA/data/cloud/cyber). Help desk / service desk / tech-support ticket queues HARD poor-fit. Senior/lead/architect/manager/US-only penalized. Graded bachelor's penalty (asset -3, or-equivalent -6, required-with-alt -9, strictly required -15 raw, x1.6). ~1 yr experience.",
   "settings": {
     "title_multiplier": 3,
     "body_multiplier": 1,
@@ -14,32 +14,36 @@
       "weight": 22
     },
     {
-      "pattern": "\\b(help\\s*desk|helpdesk|service\\s*desk|centre\\s+de\\s+services|IT\\s+support|technical\\s+support|tech\\s+support|desktop\\s+support|application\\s+support|app\\s+support|soutien\\s+(?:technique|informatique|applicatif)|support\\s+technique|L\\s*[12]|niveau\\s*[12]|tier\\s*[12])\\b",
+      "pattern": "\\b(implementation\\s+(?:specialist|consultant|analyst|technician)|deployment\\s+(?:specialist|consultant|analyst|technician)|migration\\s+(?:specialist|consultant|analyst|technician)|project\\s+support\\s+(?:analyst|associate)|(?:IT\\s+)?operations?\\s+associate|rollout\\s+(?:technician|specialist)|MSP\\s+technician)\\b",
       "weight": 20
     },
     {
-      "pattern": "\\b(implementation\\s+(?:specialist|consultant|analyst|technician)|deployment\\s+(?:specialist|consultant|analyst|technician)|migration\\s+(?:specialist|consultant|analyst|technician)|project\\s+support\\s+(?:analyst|associate)|(?:IT\\s+)?operations?\\s+associate|rollout\\s+(?:technician|specialist)|MSP\\s+technician)\\b",
-      "weight": 19
+      "pattern": "\\b((?:application|app|software|ERP|POS)\\s+support|soutien\\s+applicatif|retail\\s+tech)\\b",
+      "weight": 18
     },
     {
-      "pattern": "\\b(M365|Microsoft\\s+365|Active\\s+Directory|user\\s+provision|identity\\s+(?:ops|support)|batch\\s+(?:ops|operations|monitoring)|tech\\s+ops|technical\\s+operations|ERP\\s+support|POS\\s+support|retail\\s+tech)\\b",
+      "pattern": "\\b(M365|Microsoft\\s+365|Active\\s+Directory|user\\s+provision|identity\\s+(?:ops|support)|batch\\s+(?:ops|operations|monitoring)|tech\\s+ops|technical\\s+operations)\\b",
       "weight": 17
     },
     {
-      "pattern": "\\b(manual\\s+QA|UAT|migration\\s+validation|QA\\s+validation|testeur|software\\s+tester|junior\\s+QA)\\b",
+      "pattern": "\\b(junior\\s+(?:software|web|backend|frontend|full[- ]?stack|python|\\.?NET|php|developer|d[eé]veloppeur|programmer|programmeur)|associate\\s+developer|entry[- ]?level\\s+developer)\\b",
+      "weight": 18
+    },
+    {
+      "pattern": "\\b(manual\\s+QA|UAT|migration\\s+validation|QA\\s+validation|testeur|software\\s+tester|junior\\s+QA|test\\s+automation)\\b",
       "weight": 15
     },
     {
-      "pattern": "\\b(junior\\s+(?:sysadmin|systems?\\s+administrator|network|cloud|IT\\s+operations)|cloud\\s+support\\s+associate|administrateur\\s+syst[eè]me\\s+junior)\\b",
-      "weight": 14
+      "pattern": "\\b(junior\\s+(?:sysadmin|systems?\\s+administrator|network|cloud|IT\\s+operations|devops)|cloud\\s+support\\s+associate|administrateur\\s+syst[eè]me\\s+junior|NOC)\\b",
+      "weight": 15
     },
     {
       "pattern": "\\b(junior|entry[- ]?level|d[eé]butant|associate)\\b.*\\b(developer|d[eé]veloppeur|programmer|programmeur|software|python|\\.?NET|php|full[- ]?stack|QA|devops|data|automation|AI|ML)\\b|\\b(developer|d[eé]veloppeur|programmer|software|python|QA|devops|data)\\b.*\\b(junior|entry[- ]?level|d[eé]butant|associate)\\b",
-      "weight": 12
+      "weight": 14
     },
     {
       "pattern": "\\b(automation|scripting|\\bRPA\\b|low[- ]?code|Power\\s*Automate|Zapier|\\bn8n\\b|workflow\\s+automation)\\b",
-      "weight": 11
+      "weight": 12
     },
     {
       "pattern": "\\b(Python|FastAPI|\\.?NET|C#|PHP|JavaScript|TypeScript|Docker|Bash|PowerShell|SQL|Windows|Linux)\\b",
@@ -80,30 +84,38 @@
     {
       "pattern": "\\b(technical\\s+writer|documentation\\s+(?:writer|specialist)|r[eé]dacteur\\s+technique)\\b",
       "weight": 8
+    },
+    {
+      "pattern": "\\b(data\\s+(?:analyst|annotation|label)|AI\\s+train(?:er|ing)|prompt\\s+(?:engineer|eval))\\b",
+      "weight": 7
     }
   ],
   "signature_terms": [
-    "help\\s*desk|service\\s*desk|IT\\s+support|soutien\\s+technique|migration|deployment|implementation",
+    "migration|deployment|implementation|application\\s+support|soutien\\s+applicatif",
     "junior|entry[- ]?level|d[eé]butant|associate|technician|technicien|contract",
     "remote|t[eé]l[eé]travail|Canada|Qu[eé]bec",
     "PowerShell|Python|Windows|VPN|RDP|Active\\s+Directory|M365",
-    "data\\s+migration|PLU|POS|application\\s+support"
+    "data\\s+migration|PLU|POS|junior\\s+(?:developer|QA|devops|cloud)"
   ],
   "poor_fit_terms": [
     {
+      "pattern": "\\b(help\\s*desk|helpdesk|service\\s*desk|centre\\s+de\\s+services|(?:technical|tech|it|desktop|endpoint)\\s+support|soutien\\s+(?:technique|informatique)|support\\s+technique|L\\s*[12]\\s+support|tier\\s*[12]\\s+support)\\b",
+      "penalty": 45
+    },
+    {
       "pattern": "\\b(customer\\s+support|customer\\s+service|call\\s*cent(?:er|re)|chat\\s+support|contact\\s+cent(?:er|re)|support\\s+[aà]\\s+la\\s+client[eè]le)\\b",
-      "penalty": 40
+      "penalty": 45
     },
     {
       "pattern": "\\b(senior|\\bsr\\.?\\b|principal|staff engineer|director|manager|vice president|\\bvp\\b|head of|architect|chief|intermediate|mid[- ]level|team\\s+lead|tech\\s+lead)\\b",
       "penalty": 45
     },
     {
-      "pattern": "\\b((?:coordinator|coordonnateur|officer|advisor|adviser|expert|integrator)(?!.{0,40}(?:junior|entry|d[eé]butant|associate|technician|technicien|0[-–]?2|L\\s*[12]|niveau\\s*[12])))\\b",
+      "pattern": "\\b((?:coordinator|coordonnateur|officer|advisor|adviser|expert|integrator)(?!.{0,40}(?:junior|entry|d[eé]butant|associate|technician|technicien|0[-–]?2)))\\b",
       "penalty": 35
     },
     {
-      "pattern": "\\b((?:specialist|sp[eé]cialiste|consultant)(?!.{0,40}(?:junior|entry|d[eé]butant|associate|technician|technicien|implementation|deployment|migration|0[-–]?2|L\\s*[12]|niveau\\s*[12]|contract)))\\b(?!.*(?:implementation|deployment|migration|help\\s*desk|service\\s*desk|IT\\s+support))",
+      "pattern": "\\b((?:specialist|sp[eé]cialiste|consultant)(?!.{0,40}(?:junior|entry|d[eé]butant|associate|technician|technicien|implementation|deployment|migration|0[-–]?2|contract)))\\b(?!.*(?:implementation|deployment|migration|application\\s+support|ERP|POS))",
       "penalty": 30
     },
     {
@@ -159,8 +171,8 @@
       "title": "IT Help Desk Analyst (Level 1)",
       "company": "NorthStar MSP",
       "description": "Tier-1 remote support for Windows endpoints: password resets, software installs, VPN issues, ticket triage. Bilingual FR/EN. Canada-wide. Entry-level.",
-      "expected_score_range": [70, 100],
-      "rationale": "L1 remote help desk is now in scope"
+      "expected_score_range": [0, 45],
+      "rationale": "Help desk ticket queue is out of scope"
     },
     {
       "title": "Implementation Specialist — Retail POS",
@@ -173,8 +185,15 @@
       "title": "Junior Python Developer — Remote (AI tools welcome)",
       "company": "Laurentide Soft",
       "description": "Junior Python/FastAPI role. Fully remote Canada. Copilot/Cursor encouraged. 0-2 years.",
-      "expected_score_range": [65, 100],
-      "rationale": "Junior remote python still OK as Tier-3"
+      "expected_score_range": [70, 100],
+      "rationale": "Junior remote python is in scope"
+    },
+    {
+      "title": "Application Support Analyst — ERP",
+      "company": "RetailTech",
+      "description": "Configure ERP modules, validate data imports, document procedures. Remote Canada. Junior/associate OK.",
+      "expected_score_range": [70, 100],
+      "rationale": "Product/ERP support not call-center"
     },
     {
       "title": "Deployment Consultant",

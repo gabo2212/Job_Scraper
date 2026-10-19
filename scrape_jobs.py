@@ -181,41 +181,80 @@ _JUNIOR_ENTRY_SIGNAL_RE = re.compile(
     r")"
 )
 
-# Non-IT customer queues — still hard-excluded (not IT help desk / app support).
+# Hard-excluded ticket queues: help desk / service desk / generic tech support
+# L1 agents / non-IT customer service. App/ERP/POS/product support stays in scope
+# via _IT_OPS_PROCEDURE_RE (application|app|software|ERP|POS support).
 _HARD_CUSTOMER_QUEUE_RE = re.compile(
     r"(?i)(?:"
     r"customer\s+support|customer\s+service|call\s*cent(?:er|re)|"
     r"chat\s+support|contact\s+cent(?:er|re)|"
     r"support\s+[aà]\s+la\s+client[eè]le|"
-    r"agent\s+de\s+service\s+[aà]\s+la\s+client[eè]le"
+    r"agent\s+de\s+service\s+[aà]\s+la\s+client[eè]le|"
+    r"help\s*desk|helpdesk|service\s*desk|centre\s+de\s+services|"
+    r"(?:technical|tech|it|desktop|endpoint)\s+support|"
+    r"soutien\s+(?:technique|informatique)(?!\s+applicatif)|"
+    r"support\s+technique|"
+    r"(?:L\s*[12]|niveau\s*[12]|tier\s*[12])\s+"
+    r"(?:support|soutien|help\s*desk|service\s*desk)|"
+    r"support\s+(?:agent|representative|rep\b)|"
+    r"agent\s+(?:de\s+)?(?:soutien|support)"
     r")"
 )
+# Bare "Support Analyst/Engineer/…" without a product/ops qualifier = ticket queue.
+_BARE_SUPPORT_ROLE_RE = re.compile(
+    r"(?i)\bsupport\s+(?:engineer|analyst|specialist|technician|consultant)\b"
+)
+_PRODUCT_SUPPORT_OK_RE = re.compile(
+    r"(?i)(?:application|app|software|ERP|POS|product|retail|"
+    r"migration|deployment|implementation|project|ops|operations|"
+    r"M365|Microsoft\s+365|Active\s+Directory|\bAD\b|"
+    r"soutien\s+applicatif)"
+)
 
-# Accessible remote IT ops / support / migration / deployment procedure work.
+
+def _is_hard_support_queue_title(title: str) -> bool:
+    """True for help-desk / ticket-queue titles; False for app/ERP/POS/product support."""
+    t = title or ""
+    if _HARD_CUSTOMER_QUEUE_RE.search(t):
+        # Allow "soutien applicatif" / "application support" even if a generic
+        # agent/soutien token also appears nearby.
+        if _PRODUCT_SUPPORT_OK_RE.search(t) and not re.search(
+            r"(?i)help\s*desk|helpdesk|service\s*desk|centre\s+de\s+services|"
+            r"(?:technical|tech|it|desktop|endpoint)\s+support|"
+            r"customer\s+(?:support|service)|call\s*cent",
+            t,
+        ):
+            return False
+        return True
+    if _BARE_SUPPORT_ROLE_RE.search(t) and not _PRODUCT_SUPPORT_OK_RE.search(t):
+        return True
+    return False
+
+# Accessible remote IT ops / migration / deployment / product-app support.
 # These titles may bypass soft-noun excludes even without an explicit "junior".
+# Help desk / generic tech-support ticket queues are NOT included (hard-excluded).
 _IT_OPS_PROCEDURE_RE = re.compile(
     r"(?i)(?:"
-    r"help\s*desk|helpdesk|service\s*desk|centre\s+de\s+services|"
-    r"(?:technical|tech|it|desktop|endpoint|application|app|software)\s+support|"
-    r"soutien\s+(?:technique|informatique)|support\s+technique|"
-    r"agent\s+(?:de\s+)?(?:soutien|support)|"
-    r"support\s+(?:agent|representative|rep\b|analyst|specialist|technician|engineer)|"
+    r"(?:application|app|software|ERP|POS)\s+support|"
+    r"soutien\s+applicatif|"
     r"implementation\s+(?:specialist|consultant|analyst|technician|associate)|"
     r"deployment\s+(?:specialist|consultant|analyst|technician|associate)|"
     r"migration\s+(?:specialist|consultant|analyst|technician|associate)|"
     r"project\s+support\s+(?:analyst|associate|specialist|technician)|"
     r"(?:IT\s+)?operations?\s+associate|"
     r"rollout\s+(?:technician|specialist|analyst|consultant)|"
-    r"technicien\s+(?:soutien|support|d[eé]ploiement|migration|TI|informatique)|"
+    r"technicien\s+(?:d[eé]ploiement|migration|implantation)|"
     r"(?:field|project)\s+(?:technician|tech\b)|"
-    r"MSP\s+(?:technician|tech\b|support)|"
+    r"MSP\s+(?:technician|tech\b)(?!.{0,20}(?:help\s*desk|service\s*desk))|"
     r"user\s+provision|"
     r"(?:M365|Microsoft\s+365|Active\s+Directory|AD)\s+(?:ops|support|admin|technician)|"
     r"(?:POS|retail)\s+(?:tech|support|migration|deployment)|"
     r"data\s+(?:migration|conversion|cleanup|validation)|"
     r"(?:UAT|manual\s+QA|migration\s+validation)|"
     r"batch\s+(?:ops|operations|monitoring)|"
-    r"tech\s+ops|technical\s+operations"
+    r"tech\s+ops|technical\s+operations|"
+    r"network\s+operations?\s*(?:center|centre)|NOC\s+(?:analyst|technician)|"
+    r"junior\s+(?:sysadmin|systems?\s+administrator|network|cloud|devops)"
     r")"
 )
 
@@ -262,21 +301,21 @@ _VARIETY_KEEP_RE = re.compile(
     r"analyste\s+(?:donn[eé]es|QA|test|soutien|support)\s+junior|"
     r"associate\s+(?:cloud|software|network|developer|engineer|devops|IT)|"
     r"MVP\s+(?:developer|engineer)|startup\s+(?:developer|engineer)|"
-    r"help\s*desk|helpdesk|service\s*desk|centre\s+de\s+services|"
-    r"(?:technical|tech|it|desktop|endpoint|application|app)\s+support|"
-    r"soutien\s+(?:technique|informatique)|support\s+technique|"
+    r"(?:application|app|software|ERP|POS)\s+support|"
+    r"soutien\s+applicatif|"
     r"implementation\s+(?:specialist|consultant|analyst|technician|associate)|"
     r"deployment\s+(?:specialist|consultant|analyst|technician|associate)|"
     r"migration\s+(?:specialist|consultant|analyst|technician|associate)|"
     r"project\s+support\s+(?:analyst|associate|specialist|technician)|"
     r"(?:IT\s+)?operations?\s+associate|"
     r"rollout\s+(?:technician|specialist|analyst)|"
-    r"technicien\s+(?:soutien|support|d[eé]ploiement|migration|TI|informatique)|"
+    r"technicien\s+(?:d[eé]ploiement|migration|implantation)|"
     r"(?:field|project)\s+technician|"
     r"user\s+provision|(?:M365|Microsoft\s+365|Active\s+Directory)\b|"
     r"(?:POS|retail)\s+(?:tech|support|migration|deployment)|"
     r"tech\s+ops|technical\s+operations|batch\s+ops|"
-    r"manual\s+QA|UAT\s+(?:tester|analyst)|migration\s+validation"
+    r"manual\s+QA|UAT\s+(?:tester|analyst)|migration\s+validation|"
+    r"NOC\s+(?:analyst|technician)|network\s+operations?"
     r")"
 )
 
@@ -448,16 +487,17 @@ def _title_is_excluded(title: str, *, force_soft_bypass: bool = False) -> bool:
     """True if title hits keywords.exclude, with soft-exclude bypass.
 
     Soft tokens need an explicit junior/entry/contract-tech cue, OR an
-    accessible IT-ops procedure title (help desk L1-L2, migration/deployment
-    implementation, project support, operations associate). Pure non-IT
+    accessible IT-ops procedure title (migration/deployment/implementation,
+    app/ERP/POS support, project support, operations associate). Help desk /
+    service desk / generic tech-support ticket queues and pure non-IT
     customer-service / call-center titles are hard-excluded. Senior/lead/
-    architect/manager and tier II+/III+ always drop.
+    architect/manager and tier III+ always drop.
     """
     if not title:
         return True
     if _HARD_TIER_SUFFIX_RE.search(title):
         return True
-    if _HARD_CUSTOMER_QUEUE_RE.search(title):
+    if _is_hard_support_queue_title(title):
         return True
     soft_spans = {m.span() for m in _SOFT_EXCLUDE_RE.finditer(title)}
     has_junior = _has_soft_bypass_signal(title)
@@ -2604,7 +2644,8 @@ def scrape_jobbank_recent(*, max_pages: int | None = None) -> list:
     pages = max_pages if max_pages is not None else JOBBANK_MAX_PAGES
     pages = max(1, min(pages, 5))  # hard cap — polite + fail-safe
     terms = list(JOBBANK_TERMS) or [
-        "IT support", "help desk", "technicien informatique", "soutien technique",
+        "junior developer", "migration technician", "deployment technician",
+        "application support", "technicien déploiement", "programmeur junior",
     ]
     locations = _jobbank_location_strings()
     print(f"🇨🇦 Scraping Job Bank Canada ({len(terms)} term(s) × "

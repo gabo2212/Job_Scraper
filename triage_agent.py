@@ -261,30 +261,38 @@ def build_static_prefix(profile: str, resume: str) -> str:
         f'"flags": [zero+ of {{{FLAG_TAGS}}}], '
         '"outreach_opener": "<2 tailored sentences, or empty string if skip>"}',
         "",
-        "PRIMARY target = accessible remote IT project/ops/support/migration/"
-        "deployment work (procedure-following, VPN/RDP into endpoints, software "
-        "config, data imports/PLU, validation, documentation, L1-L2 remote "
-        "support). Software-dev and cyber are SECONDARY only if junior/"
-        "accessible.",
+        "PRIMARY target = broad junior/entry REMOTE IT that is legitimate: "
+        "migration/deployment/implementation projects, app/ERP/POS/product "
+        "support (config, not call-center), tech ops/batch/monitoring, data "
+        "ops, junior software/web/automation/QA, junior cloud/DevOps/"
+        "sysadmin/NOC/cyber, M365/AD ops, technical writing, contract 1–12 "
+        "month IT projects. English OR French. Prefer remote Québec; Montréal "
+        "hybrid OK.",
         "",
         "Target tiers (prefer lower # when duties match):",
         "T1: remote migration/deployment/rollout/implementation (junior/"
         "entry/contract-tech or clearly procedure-following), application/"
-        "ERP/POS support, tech ops/batch/monitoring, L1-L2 remote help desk/"
-        "service desk/IT support, data migration/cleanup/validation, IT "
-        "project support / rollout tech / implementation analyst, M365/AD/"
-        "user provisioning, manual QA/UAT/migration validation, retail tech/"
-        "device management, MSP/staffing client-project technician roles.",
-        "T2: junior sysadmin/network/cloud support, IT project assistant, "
-        "junior security (SOC L1 / GRC / vuln scan) when accessible.",
-        "T3: junior accessible software/web/backend/Python/.NET/PHP/JS, "
-        "automation/RPA/low-code, AI-assisted coding, AI training/annotation.",
+        "ERP/POS/product support (configuration, not ticket queues), tech "
+        "ops/batch/monitoring, data migration/cleanup/validation, IT project "
+        "support / rollout tech / implementation analyst, M365/AD/user "
+        "provisioning, manual QA/UAT/migration validation, retail tech/"
+        "device management, MSP client-project technician (non-helpdesk).",
+        "T2: junior accessible software/web/backend/Python/.NET/PHP/JS, "
+        "automation/RPA/low-code, AI-assisted coding, junior sysadmin/"
+        "network/cloud/DevOps/NOC, junior security (SOC L1 / GRC) when "
+        "accessible, technical writing.",
+        "T3: AI training/annotation / data labeling — score if legitimate "
+        "employer; FLAG sketchy gig / scam signals (crypto pay, unpaid "
+        "trial, vague 'AI trainer' mills) and cap≤55 when sketchy.",
         "",
         "OUT OF SCOPE (cap≈45, verdict skip, flag customer-facing-support): "
-        "pure non-IT customer service / call-center / chat support with no IT "
-        "duties. Senior consultant/architect/lead/manager. US-resident-only.",
-        "IN SCOPE again: help desk, service desk, tech/IT/desktop/app support "
-        "L1-L2, soutien technique / centre de services when remote-eligible.",
+        "help desk, service desk, centre de services, generic tech/IT/"
+        "desktop support ticket queues, L1 ticket-agent roles, pure "
+        "customer service / call-center / chat support. Senior consultant/"
+        "architect/lead/manager. US-resident-only.",
+        "IN SCOPE (contrast): application/app/software/ERP/POS/product "
+        "support and procedure-following migration/deployment — NOT help "
+        "desk queues.",
         "",
         "Scoring weights (sum≈100): role/duty match 30, skills/experience 25, "
         "seniority/education 20, location/remote 15, transferable/bonus 10.",
@@ -294,9 +302,11 @@ def build_static_prefix(profile: str, resume: str) -> str:
         "",
         "Rank realistic fit + task simplicity + remote QC eligibility + hire "
         "likelihood over salary/prestige. Procedure-following remote migration/"
-        "support that mirrors prior retail endpoint migration contract work is "
-        "a STRONG plus — flag procedure-following / project-based / "
-        "strong-deployment-match / strong-support-match as applicable.",
+        "deployment that mirrors prior retail endpoint migration contract "
+        "work is a STRONG plus — flag procedure-following / project-based / "
+        "strong-deployment-match / strong-ops-match as applicable. Junior "
+        "accessible independent/dev/ops roles also score high when remote-"
+        "eligible.",
         "",
         "AI-assisted coding: for DEV/AUTOMATION roles, Copilot/Cursor/Claude "
         "encouraged = plus (flag ai-assisted-dev). AI tools banned or heavy "
@@ -305,14 +315,16 @@ def build_static_prefix(profile: str, resume: str) -> str:
         "",
         "Specialist / consultant / coordinator / engineer titles: if duties "
         "are clearly junior/entry/contract-tech OR procedure-following "
-        "implementation/deployment/migration/support, score on duties (do NOT "
-        "auto-cap≤40). Pure senior consultant / architect / mandatory 3+ yrs "
-        "lead work → cap≤40 (flag senior-title or experience-gap).",
+        "implementation/deployment/migration/app-support, score on duties "
+        "(do NOT auto-cap≤40). Pure senior consultant / architect / "
+        "mandatory 3+ yrs lead work → cap≤40 (flag senior-title or "
+        "experience-gap).",
         "",
         "Duty boosts: VPN/RDP remote endpoint work, documented procedures, "
         "software config, data import/PLU/validation, bilingual FR/EN, "
-        "Windows/PowerShell, contract 1–12 months. Flag independent-work / "
-        "project-based / procedure-following when applicable.",
+        "Windows/PowerShell, contract 1–12 months, junior-accessible "
+        "coding/automation. Flag independent-work / project-based / "
+        "procedure-following when applicable.",
         "",
         "Bachelor's degree (candidate has NONE — college AI program, partial "
         "CS Cégep, Secondary V, plus real IT contract work, portfolio "
@@ -357,11 +369,12 @@ def build_static_prefix(profile: str, resume: str) -> str:
         "",
         "Hard caps: US-only ≤20; senior/lead/staff/principal ≤35 unless "
         "duties clearly junior (flag senior-title); pure senior consultant "
-        "w/o junior/procedure cue or mandatory 3+ yrs lead ≤40; non-IT "
-        "customer-service queues ≤45 + skip; mandatory 5+ years ≤40; "
-        "strictly required bachelor's w/o alternative ≤65 (never auto-skip); "
-        "relocation outside Québec ≤30. Do NOT apply the old help-desk "
-        "auto-skip — L1-L2 remote IT support is T1.",
+        "w/o junior/procedure cue or mandatory 3+ yrs lead ≤40; help desk / "
+        "service desk / generic tech-support ticket queues ≤45 + skip "
+        "(flag customer-facing-support); non-IT customer-service queues "
+        "≤45 + skip; mandatory 5+ years ≤40; strictly required bachelor's "
+        "w/o alternative ≤65 (never auto-skip); relocation outside Québec "
+        "≤30.",
         "",
         "Profile vs resume: BOTH verified. Profile may include newer facts "
         "absent from the resume — do not discard them. If they conflict, "
@@ -673,6 +686,8 @@ def main() -> int:
                     help="model id for the API path (overrides TRIAGE_MODEL / defaults)")
     ap.add_argument("--from-files", action="store_true",
                     help="read the live per-source snapshots instead of all_jobs.json")
+    ap.add_argument("--rescore", action="store_true",
+                    help="ignore existing scores.json and re-score all roles (full refresh)")
     ap.add_argument("--dry-run", action="store_true", help="report only; write nothing")
     args = ap.parse_args()
 
@@ -703,6 +718,10 @@ def main() -> int:
 
     data = load_scores()
     scores = data["scores"]
+    if args.rescore:
+        scores = {}
+        data["scores"] = scores
+        print("♻️  --rescore: clearing prior scores for a full refresh")
     unscored = find_unscored(jobs, scores)
 
     if args.dry_run:
@@ -714,8 +733,8 @@ def main() -> int:
 
     # Prune scores for roles that aged out of all_jobs.json. Guarded: never
     # prune against the fallback snapshots or an empty master — one bad scrape
-    # run must not wipe the score history.
-    if source == "all_jobs.json" and jobs:
+    # run must not wipe the score history. Skip when --rescore (empty map).
+    if not args.rescore and source == "all_jobs.json" and jobs:
         live = {j["url"] for j in jobs if j.get("url")}
         stale = [u for u in scores if u not in live]
         if stale:

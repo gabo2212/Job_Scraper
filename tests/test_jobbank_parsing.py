@@ -71,8 +71,9 @@ def test_keyword_filter_keeps_junior_drops_senior():
     html = FIXTURE.read_text(encoding="utf-8")
     jobs = _parse_jobbank_articles(html)
     kept = [j for j in jobs if title_matches_keywords(j["title"])]
-    # IT support / help desk titles are in scope; senior architect titles drop.
-    assert any("support" in j["title"].lower() for j in kept)
+    # Help desk / IT support queues are out; junior dev + senior architect checks.
     assert title_matches_keywords("Junior Python Developer")
-    assert title_matches_keywords("junior IT support technician")
+    assert title_matches_keywords("Application Support Analyst")
+    assert not title_matches_keywords("junior IT support technician")
+    assert not title_matches_keywords("Help Desk Agent L1")
     assert not title_matches_keywords("senior IT architect")
